@@ -20,3 +20,4 @@
 ## Networking
 - ss -tuln — Show all listening ports
 - ss -tulnp — Show listening ports with process names
+-h flag to use to display in a "human redable"
