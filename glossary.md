@@ -109,3 +109,8 @@ available patch
 file named "passwords" with the word "password123"
 - `echo "tryhackme" >> passwords` — Adds "tryhackme" to the file "passwords"
 while keeping existing content like "password123"
+- **IPv4** — Internet Protocol version 4, format: 192.168.0.18
+- **IPv6** — Internet Protocol version 6, format: 2a02:a31a:a4b8:7800:...
+- **ISP** — Internet Service Provider, the company providing your internet connection
+- **Localhost** — The IP address 127.0.0.1, always refers to your own machine
+- **VPN** — Virtual Private Network, hides your real public IP address
