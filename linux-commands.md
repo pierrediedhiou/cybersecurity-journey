@@ -12,7 +12,7 @@
 ## File & Directory Management
 - `mkdir` — Make Directory, create a new folder
 - `rmdir` — Remove Directory, delete an empty folder
-- `rm -r` — Delete a directory and all its contents
+- `rm -R` — Delete a directory and all its contents
 - `rm -fr` — Force delete a directory and its contents
 - `rm filename` — Delete a file
 - `touch filename` — Create an empty file or modify the timestamp of a file/folder
