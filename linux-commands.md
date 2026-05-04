@@ -9,7 +9,7 @@
 
 - `ls /dev` — Find the name of storage peripherals on the machine
 - `lsblk` — Display storage devices
-ls -l (to find the owner of a file)
+
 ## File & Directory Management
 - `mkdir` — Make Directory, create a new folder
 - `rmdir` — Remove Directory, delete an empty folder
