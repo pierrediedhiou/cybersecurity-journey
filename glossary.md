@@ -114,3 +114,4 @@ while keeping existing content like "password123"
 - **ISP** — Internet Service Provider, the company providing your internet connection
 - **Localhost** — The IP address 127.0.0.1, always refers to your own machine
 - **VPN** — Virtual Private Network, hides your real public IP address
+rwx - Read Write Execute - 4 + 2 + 1
