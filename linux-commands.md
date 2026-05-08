@@ -130,3 +130,52 @@
 - `fdisk` — Create or add a partition on a hard drive
 - `Mkfs` — Make File System, create a file system
 - `mount` — Associate a partition/file system to a directory
+## File System Directories
+- `/etc` — Stores system configuration files used by the operating system
+- `/var` — Variable data directory, stores files that frequently change
+- `/root` — Home directory for the root user
+- `/tmp` — Temporary directory, contents are cleared on restart
+- `/var/log` — Standard directory where Linux stores all log files
+
+## Text Editors
+- `nano filename` — Create or edit a file using the nano text editor
+- `nano /home/tryhackme/task3` — Example of opening a specific file with nano
+- Control + X — Exit nano
+- Control + X then Y then Enter — Save and exit nano
+- `vim filename` — Open a file in VIM, a more advanced text editor
+
+## File Transfer
+- `wget URL` — Download a file from the web via HTTP
+- `scp file user@ip:/path` — Securely transfer files between two computers
+using SSH (provides authentication and encryption)
+
+## Process Management
+- `ps aux` — See all processes run by all users including background processes
+- `kill PID` — Terminate a process by its Process ID
+- `fg` — Bring a previously backgrounded process back to the foreground
+
+## Kill Signals
+- `SIGTERM` — Kill a process but allow it to do cleanup tasks first
+- `SIGKILL` — Kill a process immediately with no cleanup
+- `SIGSTOP` — Stop/suspend a process
+
+## Services Management
+- `systemctl start servicename` — Start a service
+- `systemctl stop servicename` — Stop a service
+- `systemctl enable servicename` — Enable a service to start at boot
+- `systemctl disable servicename` — Disable a service from starting at boot
+- `systemctl status servicename` — Check the status of a service
+
+## Package Management
+- `apt install packagename` — Install software
+- `apt remove packagename` — Remove software
+
+## Cron Jobs
+- `crontab` — Schedule tasks to run automatically at specified times
+- Crontab format requires 6 values:
+  - MIN — Minute to execute at
+  - HOUR — Hour to execute at
+  - DOM — Day of month to execute at
+  - MON — Month of year to execute at
+  - DOW — Day of week to execute at
+  - CMD — The actual command to execute
