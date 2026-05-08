@@ -2,6 +2,8 @@
 
 ## A
 - **AES** — Advanced Encryption Standard, a widely used encryption algorithm
+- **ASCII** — American Standard Code for Information Interchange, the most 
+basic text format for plain readable text files
 
 ## B
 - **Bash** — The most common Linux shell/command language
@@ -29,7 +31,7 @@ vulnerabilities (ex: CVE-2024-3094)
 
 ## F
 - **Firewall** — Security system that monitors and controls network traffic
-- **FTP** — File Transfer Protocol, used to transfer files over a network
+- **FTP** — File Transfer Protocol, used to transfer files over a network (Port 21)
 
 ## H
 - **Hash** — A fixed-length string generated from data, used to verify integrity
@@ -41,6 +43,16 @@ server memory
 
 ## I
 - **Injection** — Attack inserting malicious code into an input field
+- **IP Address** — Internet Protocol Address, a unique numerical label assigned
+to every device on a network
+- **ipconfig** — Windows command for Internet Protocol Configuration, shows
+network information. Full path: C:\Windows\System32\ipconfig.exe
+- **IPv4** — Internet Protocol version 4, format: 192.168.0.18
+- **IPv6** — Internet Protocol version 6, format: 2a02:a31a:a4b8:7800:...
+- **ISP** — Internet Service Provider, the company providing your internet connection
+
+## L
+- **Localhost** — The IP address 127.0.0.1, always refers to your own machine
 
 ## M
 - **Malware** — Malicious software designed to damage or gain unauthorized access
@@ -63,28 +75,39 @@ server memory
 - **Pentest** — Penetration Test, an authorized simulated attack on a system
 - **Phishing** — A social engineering attack using fake emails to steal credentials
 - **Ping** — Command to test if a host is reachable on a network
-- **Port** — A virtual endpoint for network communication (ex: port 80 = HTTP)
+- **Port** — A virtual endpoint for network communication
 - **Privilege Escalation** — Gaining higher access than originally permitted
 - **Protocol** — A set of rules for communication between devices
 
 ## R
 - **Ransomware** — Malware that encrypts files and demands payment for decryption
 - **RCE** — Remote Code Execution, running code on a target system remotely
+- **RDP** — Remote Desktop Protocol, allows graphical remote access to Windows
+machines (Port 3389)
 - **Reconnaissance** — Information gathering phase before an attack
 - **Reverse Shell** — A connection from target back to attacker giving remote control
 - **Root** — The highest privilege user in Linux, like admin on Windows
+- **RPC** — Remote Procedure Call, allows programs to request services from
+other programs on a network
+- **RPCSS** — Remote Procedure Call Subsystem, Windows service running on Port 135
 
 ## S
 - **Session Token** — A unique ID used to authenticate a logged-in user
 - **Shell** — Interface to interact with the operating system via commands
 - **Shellcode** — Small piece of code used as a payload in exploitation
 - **Shodan** — Search engine for devices connected to the Internet
+- **SMB** — Server Message Block, Windows file sharing protocol (Port 445)
 - **Snake Oil** — Bogus or fraudulent cryptographic product or method
 - **SQL Injection** — Attack inserting SQL code into a database query
 - **SSH** — Secure Shell, a protocol for securely connecting to remote computers
+(Port 22)
 - **Sudo** — Command that grants temporary root privileges
+- **Sysmon** — System Monitor, part of Microsoft Sysinternals Suite, monitors
+and logs system activity to the Windows Event Log
+- **Sysinternals** — Microsoft toolkit for monitoring and managing Windows systems
 
 ## T
+- **Telnet** — Insecure remote access protocol (Port 23), replaced by SSH
 - **Trojan** — Malware disguised as legitimate software
 - **Two-Factor Authentication (2FA)** — Security method requiring two forms
 of verification
@@ -92,8 +115,16 @@ of verification
 ## V
 - **VirusTotal** — Virus-scanning service that scans files and URLs against
 multiple antivirus engines and website scanners in a single operation
-- **VPN** — Virtual Private Network, encrypts internet traffic for privacy
+- **VPN** — Virtual Private Network, encrypts internet traffic and hides your
+real public IP address
 - **Vulnerability** — A weakness in a system that can be exploited
+
+## W
+- **rwx** — Read, Write, Execute — Linux file permissions represented as:
+  - r (Read) = 4
+  - w (Write) = 2
+  - x (Execute) = 1
+  - Example: rwx = 4+2+1 = 7
 
 ## X
 - **XSS** — Cross-Site Scripting, injecting malicious scripts into web pages
@@ -104,20 +135,20 @@ multiple antivirus engines and website scanners in a single operation
 - **Zero-Day** — A vulnerability unknown to the software vendor with no
 available patch
 
-## Linux File Commands
-- `echo "password123" > passwords` — Replaces/overwrites the contents of a
-file named "passwords" with the word "password123"
-- `echo "tryhackme" >> passwords` — Adds "tryhackme" to the file "passwords"
-while keeping existing content like "password123"
-- **IPv4** — Internet Protocol version 4, format: 192.168.0.18
-- **IPv6** — Internet Protocol version 6, format: 2a02:a31a:a4b8:7800:...
-- **ISP** — Internet Service Provider, the company providing your internet connection
-- **Localhost** — The IP address 127.0.0.1, always refers to your own machine
-- **VPN** — Virtual Private Network, hides your real public IP address
-rwx - Read Write Execute - 4 + 2 + 1
-- Port 135 — RPCSS (Remote Procedure Call), Windows service
-- Port 22  — SSH
-- Port 80  — HTTP
-- Port 443 — HTTPS
-- Port 445 — SMB (Windows file sharing)
-- Port 3389 — RDP (Remote Desktop Protocol)
+## Common Ports Reference
+| Port | Service | Description |
+|------|---------|-------------|
+| 21 | FTP | File Transfer Protocol |
+| 22 | SSH | Secure Shell |
+| 23 | Telnet | Insecure remote access |
+| 80 | HTTP | Web traffic |
+| 135 | RPCSS | Windows Remote Procedure Call |
+| 443 | HTTPS | Secure web traffic |
+| 445 | SMB | Windows file sharing |
+| 3389 | RDP | Remote Desktop Protocol |
+
+## Linux File Commands Reference
+- `echo "password123" > passwords` — Overwrites the file "passwords" with
+"password123"
+- `echo "tryhackme" >> passwords` — Appends "tryhackme" to the file "passwords"
+while keeping existing content
