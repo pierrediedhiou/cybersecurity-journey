@@ -1,28 +1,120 @@
 # Linux Commands Cheatsheet
 
+## Archiving & Compression
+- `tar` — Tape Archive, used to archive and compress files
+- `tar xzvf filename.tgz` — Unzip/extract a tgz file
+
+## Cron Jobs
+- `crontab` — Schedule tasks to run automatically at specified times
+- Crontab format requires 6 values:
+  - MIN — Minute to execute at
+  - HOUR — Hour to execute at
+  - DOM — Day of month to execute at
+  - MON — Month of year to execute at
+  - DOW — Day of week to execute at
+  - CMD — The actual command to execute
+
+## File & Directory Management
+- `mkdir` — Make Directory, create a new folder
+- `rmdir` — Remove Directory, delete an empty folder
+- `rm filename` — Delete a file
+- `rm -r` — Delete a directory and all its contents
+- `rm -fr` — Force delete a directory and its contents
+- `touch filename` — Create an empty file or modify the timestamp of a file/folder
+- `mv` — Move or rename a file
+- `cp` — Copy a file
+- `ln` — Create a link between files
+- `ln -s` — Create a symbolic link (requires complete paths)
+
+## File Operations & Redirection
+- `echo "text"` — Repeat/display text or variables (ex: echo $0)
+- `echo "text" > filename` — Overwrite a file with text
+- `echo "text" >> filename` — Append text to an existing file
+- `>` — Send the result of a command to a file
+- `>>` — Add output to an existing file
+- `|` — Pipe, allows two commands to communicate
+- `*` — Wildcard for filenames
+- `{}` — Used in the exec part of find command to insert the found filename
+- `'xxx'` — Apostrophe, protection block for characters
+- `xargs` — Retrieve arguments passed to another command
+- `-h` — Flag to display output in a human-readable format (ex: ls -lh, df -h)
+
+## File System Directories
+| Directory | Description |
+|-----------|-------------|
+| `/etc` | Stores system configuration files used by the operating system |
+| `/var` | Variable data directory, stores files that frequently change |
+| `/root` | Home directory for the root user |
+| `/tmp` | Temporary directory, contents are cleared on restart |
+| `/var/log` | Standard directory where Linux stores all log files |
+
+## File Transfer
+- `wget URL` — Download a file from the web via HTTP
+- `scp file user@ip:/path` — Securely transfer files between two computers
+using SSH (provides authentication and encryption)
+
+## Kill Signals
+- `SIGTERM` — Kill a process but allow it to do cleanup tasks first
+- `SIGKILL` — Kill a process immediately with no cleanup
+- `SIGSTOP` — Stop/suspend a process
+
+## Memory & Disk
+- `du` — Disk Usage, show size of directories and files
+- `df` — Disk Free, show available disk space on the filesystem
+- `df -h` — Show partition sizes in human-readable format
+- `swapon` — Activate/deactivate swap or display swap information
+- `vmstat` — Virtual Memory Statistics, returns info about memory, processes, CPU
+- `smem` — Show a report on memory being used
+- `sar` — Collect statistical data on the system
+- `sar -u` — Display current CPU data
+- `sar -d` — Generate real-time disk I/O statistics
+- `sar -r` — Show memory used
+- `sar -w` — Show number of context switches per second
+
 ## Navigation
 - `pwd` — Print Working Directory, shows the directory you are currently in
 - `cd foldername` — Change Directory, move into a folder
 - `cd ..` — Go back to the parent directory
 - `cd /bin/` — Navigate to the bin directory
 - `ls` — List files and folders in the current directory
-
+- `ls -l filename` — Show detailed file info including owner and permissions
 - `ls /dev` — Find the name of storage peripherals on the machine
 - `lsblk` — Display storage devices
-
-## File & Directory Management
-- `mkdir` — Make Directory, create a new folder
-- `rmdir` — Remove Directory, delete an empty folder
-- `rm -R` — Delete a directory and all its contents
-- `rm -fr` — Force delete a directory and its contents
-- `rm filename` — Delete a file
-- `touch filename` — Create an empty file or modify the timestamp of a file/folder
-- `mv` — Move or rename a file
-- `cp` — Copy a file
-- `ln` — Create a link between files
-- `ln -s` — Create a symbolic link (requires complete paths)
 - `~` — Symbol representing the home directory (tilde)
 - `..` — Symbol representing the parent directory
+
+## Networking
+- `ss -tuln` — Show all listening ports
+- `ss -tulnp` — Show listening ports with process names
+- `ifconfig | grep "inet "` — Show your private IP address
+- `curl ifconfig.me` — Show your public IP address
+- `nmtui` — Manage network from a graphical command line interface
+- `nmcli` — Manage network from the command line
+- `lsof` — Check which processes are using the network
+
+## Package Management
+- `apt install packagename` — Install software
+- `apt remove packagename` — Remove software
+
+## Permissions & Ownership
+- `chmod` — Change/modify permissions of a file
+- `chown` — Change the owner of a file
+- `getfacl` — Consult file access control lists
+- `passwd` — Change password
+
+## Process Management
+- `ps` — Process Status, display information about running processes
+- `ps -f` — Display processes with more details
+- `ps -e` — Display all processes on the machine
+- `ps aux` — Display all processes in long format including background processes
+- `top` — Real-time view of running processes and system resource usage
+- `time` — Display a summary of the execution time of a process
+- `uptime` — Show how long the system has been running
+- `nproc` — Show the number of processors
+- `nice` — Change the priority of a process
+- `at` — Schedule a program to run at a given time
+- `kill PID` — Terminate a process by its Process ID
+- `fg` — Bring a previously backgrounded process back to the foreground
 
 ## Reading & Displaying Files
 - `cat filename` — Display the contents of a file
@@ -40,84 +132,21 @@
 ## Searching & Filtering
 - `find / -name "filename" 2>/dev/null` — Search entire system for a file
 - `find folder1 folder2 -type f` — Find files in specific folders
-- `find -iname "filename"` — Search for files using a case-insensitive regular expression
+- `find -iname "filename"` — Search for files using a case-insensitive
+regular expression
 - `grep "keyword" filename` — Search for specific strings inside a file
 - `sort` — Sort the output of a command
 - `cut` — Cut sections of a file and print the result
 
-## File Operations & Redirection
-- `echo "text"` — Repeat/display text or variables (ex: echo $0)
-- `echo "text" > filename` — Overwrite a file with text
-- `echo "text" >> filename` — Append text to an existing file
-- `>` — Send the result of a command to a file
-- `>>` — Add output to an existing file
-- `|` — Pipe, allows two commands to communicate
-- `*` — Wildcard for filenames
-- `{}` — Used in the exec part of find command to insert the found filename
-- `'xxx'` — Apostrophe, protection block for characters
-- `xargs` — Retrieve arguments passed to another command
-- `-h` — Flag to display output in a human-readable format (ex: ls -lh, df -h)
-
-## Permissions & Ownership
-- `chmod` — Change/modify permissions of a file
-- `chown` — Change the owner of a file
-- `getfacl` — Consult file access control lists
-- `passwd` — Change password
-
-## Users & Identity
-- `whoami` — Find out which user you are currently logged in as
-- `id` — Shows the identity of the current user
-- `su` — Switch User, change to another user (root by default)
-- `sudo` — Execute a command without leaving your account
-- `sudo su` — Become root without knowing the root password
-- `$` — Symbol representing a regular user
-- `#` — Symbol representing a superuser (root)
-- `exit` — Exit the current shell or user session
-
-## Processes & System
-- `ps` — Process Status, display information about running processes
-- `ps -f` — Display processes with more details
-- `ps -e` — Display all processes on the machine
-- `ps aux` — Display all processes in long format
-- `top` — Real-time view of running processes and system resource usage
-- `time` — Display a summary of the execution time of a process
-- `uptime` — Show how long the system has been running
-- `nproc` — Show the number of processors
-- `nice` — Change the priority of a process
-- `at` — Schedule a program to run at a given time
-
-## Memory & Disk
-- `du` — Disk Usage, show size of directories and files
-- `df` — Disk Free, show available disk space on the filesystem
-- `df -h` — Show partition sizes in human-readable format
-- `swapon` — Activate/deactivate swap or display swap information
-- `vmstat` — Virtual Memory Statistics, returns info about memory, processes, CPU
-- `smem` — Show a report on memory being used
-- `sar` — Collect statistical data on the system
-- `sar -u` — Display current CPU data
-- `sar -d` — Generate real-time disk I/O statistics
-- `sar -r` — Show memory used
-- `sar -w` — Show number of context switches per second
-
-## Networking
-- `ss -tuln` — Show all listening ports
-- `ss -tulnp` — Show listening ports with process names
-- `ifconfig | grep "inet "` — Show your private IP address
-- `curl ifconfig.me` — Show your public IP address
-- `Nmtui` — Manage network from a graphical command line interface
-- `nmcli` — Manage network from the command line
-- `lsof` — Check which processes are using the network
-
 ## Services & Daemons
 - `systemctl` — Manage daemons and services
-- `systemctl status servicename` — Check the state of a service
+- `systemctl start servicename` — Start a service
+- `systemctl stop servicename` — Stop a service
+- `systemctl enable servicename` — Enable a service to start at boot
 - `systemctl disable servicename` — Disable a service at boot
+- `systemctl status servicename` — Check the status of a service
 - `systemctl is-system-running` — Check if the system is in normal working state
 - `systemd-analyze` — Overview of machine startup time
-
-## Archiving & Compression
-- `tar` — Tape Archive, used to archive and compress files
-- `tar xzvf filename.tgz` — Unzip/extract a tgz file
 
 ## Shell & Miscellaneous
 - `man command` — Show the manual page for a command (ex: man ls)
@@ -128,54 +157,21 @@
 - `csh` — Launch a new C shell
 - `cal` — Show a calendar
 - `fdisk` — Create or add a partition on a hard drive
-- `Mkfs` — Make File System, create a file system
+- `mkfs` — Make File System, create a file system
 - `mount` — Associate a partition/file system to a directory
-## File System Directories
-- `/etc` — Stores system configuration files used by the operating system
-- `/var` — Variable data directory, stores files that frequently change
-- `/root` — Home directory for the root user
-- `/tmp` — Temporary directory, contents are cleared on restart
-- `/var/log` — Standard directory where Linux stores all log files
 
 ## Text Editors
 - `nano filename` — Create or edit a file using the nano text editor
-- `nano /home/tryhackme/task3` — Example of opening a specific file with nano
-- Control + X — Exit nano
-- Control + X then Y then Enter — Save and exit nano
+- `Control + X` — Exit nano without saving
+- `Control + X then Y then Enter` — Save and exit nano
 - `vim filename` — Open a file in VIM, a more advanced text editor
 
-## File Transfer
-- `wget URL` — Download a file from the web via HTTP
-- `scp file user@ip:/path` — Securely transfer files between two computers
-using SSH (provides authentication and encryption)
-
-## Process Management
-- `ps aux` — See all processes run by all users including background processes
-- `kill PID` — Terminate a process by its Process ID
-- `fg` — Bring a previously backgrounded process back to the foreground
-
-## Kill Signals
-- `SIGTERM` — Kill a process but allow it to do cleanup tasks first
-- `SIGKILL` — Kill a process immediately with no cleanup
-- `SIGSTOP` — Stop/suspend a process
-
-## Services Management
-- `systemctl start servicename` — Start a service
-- `systemctl stop servicename` — Stop a service
-- `systemctl enable servicename` — Enable a service to start at boot
-- `systemctl disable servicename` — Disable a service from starting at boot
-- `systemctl status servicename` — Check the status of a service
-
-## Package Management
-- `apt install packagename` — Install software
-- `apt remove packagename` — Remove software
-
-## Cron Jobs
-- `crontab` — Schedule tasks to run automatically at specified times
-- Crontab format requires 6 values:
-  - MIN — Minute to execute at
-  - HOUR — Hour to execute at
-  - DOM — Day of month to execute at
-  - MON — Month of year to execute at
-  - DOW — Day of week to execute at
-  - CMD — The actual command to execute
+## Users & Identity
+- `whoami` — Find out which user you are currently logged in as
+- `id` — Shows the identity of the current user
+- `su` — Switch User, change to another user (root by default)
+- `sudo` — Execute a command without leaving your account
+- `sudo su` — Become root without knowing the root password
+- `$` — Symbol representing a regular user
+- `#` — Symbol representing a superuser (root)
+- `exit` — Exit the current shell or user session
