@@ -115,3 +115,9 @@ while keeping existing content like "password123"
 - **Localhost** — The IP address 127.0.0.1, always refers to your own machine
 - **VPN** — Virtual Private Network, hides your real public IP address
 rwx - Read Write Execute - 4 + 2 + 1
+- Port 135 — RPCSS (Remote Procedure Call), Windows service
+- Port 22  — SSH
+- Port 80  — HTTP
+- Port 443 — HTTPS
+- Port 445 — SMB (Windows file sharing)
+- Port 3389 — RDP (Remote Desktop Protocol)
