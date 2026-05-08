@@ -152,3 +152,80 @@ available patch
 "password123"
 - `echo "tryhackme" >> passwords` — Appends "tryhackme" to the file "passwords"
 while keeping existing content
+## Linux Filesystem
+- **/etc** — Directory storing system configuration files
+- **/var** — Variable data directory for frequently changing files
+- **/root** — Home directory for the root user
+- **/tmp** — Temporary directory, cleared on every restart
+- **/var/log** — Standard directory for all Linux log files
+
+## C
+- **Crontab** — Special file used by the cron process to schedule automated
+tasks at specified times
+- **CLI** — Command-Line Interface, text-based interface to interact with
+a computer
+
+## G
+- **GPO** — Group Policy Objects, collection of settings applied to
+Organizational Units in Active Directory
+- **GUI** — Graphical User Interface, visual interface for interacting
+with a computer
+
+## K
+- **KDC** — Key Distribution Center, service installed on the Domain
+Controller that creates Kerberos tickets on the network
+
+## N
+- **NTFS** — New Technology File System, the standard file system used
+by Windows
+
+## O
+- **OUs** — Organizational Units, container objects in Active Directory
+used to classify users and machines
+
+## T
+- **TGT** — Ticket Granting Ticket, allows users to request tickets to
+access specific services, encrypted using the krbtgt account password hash
+- **TPM** — Trusted Platform Module, hardware security chip on Windows
+- **Tree** — Group of Windows domains sharing the same namespace
+- **Trust Relationship** — Administrative and communication link between
+two domains allowing authentication and authorization across domains
+
+## U
+- **UAC** — User Account Control, Windows security feature that controls
+administrative privileges
+
+## V
+- **VSS** — Volume Shadow Copy Service, Windows service for backup and
+restore of files
+
+## W
+### Windows Active Directory
+- **Active Directory** — Centralized repository to store credentials and
+manage users and devices on a network
+- **ADDS** — Active Directory Domain Service, the main Active Directory service
+- **Domain Controller** — Server in charge of running Active Directory services
+- **Delegation** — Process of granting privileges to a user over an OU
+or other Active Directory object
+- **SPN** — Service Principal Name, indicates the service and server name
+to access
+- **SYSVOL** — Network share used to distribute GPOs to domain machines
+- **Machine Account** — Windows computer account, always ends with $ symbol
+
+### Windows Command Line
+- `cmd.exe` — Default command-line interpreter in Windows
+- `set` — Check your system path from the command line
+- `ver` — Determine the Windows operating system version
+- `systeminfo` — List system information including OS, processor and memory
+- `cls` — Clear the Command Prompt screen
+- `help` — Get help information for a specific command
+- `more` — Display long output one page at a time
+- `ipconfig` — Check network information (IP address, subnet mask, gateway)
+Full path: C:\Windows\System32\ipconfig.exe
+- `ipconfig /all` — Look up detailed network info including physical
+(MAC) address
+- `ping target_name` — Check if a host is reachable on the network
+- `tracert target_name` — Trace the network route to reach a target
+- `nslookup` — Look up a host or domain and return its IP address
+- `netstat` — Display current network connections and listening ports
+- `netstat -h` — Display the netstat help page
