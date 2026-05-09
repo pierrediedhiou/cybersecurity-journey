@@ -9,7 +9,8 @@ manage users and devices on a network
 basic text format for plain readable text files
 
 ## B
-- **Bash** — The most common Linux shell/command language
+- **Bash** (Bourne Again Shell) — Most common shell on Linux, default on Kali Linux
+- **Bind Shell** — Shell that listens on a port on the target waiting for attacker
 - **Burp Suite** — Popular web security testing tool used to intercept web traffic
 
 ## C
@@ -32,6 +33,8 @@ vulnerabilities (ex: CVE-2024-3094)
 - **Daemon** — A background service running on Linux
 - **Delegation** — Process of granting privileges to a user over an OU
 or other Active Directory object
+- **Directory** — A container (folder) that organizes and stores files
+  - Examples: /home/tryhackme/ | /var/log/
 - **Domain Controller** — Server in charge of running Active Directory services
 
 ## E
@@ -40,7 +43,11 @@ or other Active Directory object
 - **Exploit** — Code or technique that takes advantage of a vulnerability
 
 ## F
+- **File** — A unit of stored data (text, code, image, config, etc).
+Everything in Linux is technically a file
+  - Examples: /etc/passwd | flag.txt | /var/log/auth.log
 - **Firewall** — Security system that monitors and controls network traffic
+- **Fish** — User friendly Linux shell with autocompletion features
 - **FTP** — File Transfer Protocol, used to transfer files over a network (Port 21)
 
 ## G
@@ -72,11 +79,16 @@ network information. Full path: C:\Windows\System32\ipconfig.exe
 Controller that creates Kerberos tickets on the network
 
 ## L
+- **Linux Distributions** — Different versions of Linux built for different purposes:
+  - **General Purpose:** Ubuntu | Debian | Fedora | Linux Mint
+  - **Cybersecurity:** Kali Linux | Parrot OS | BlackArch | REMnux
+  - **Server/Enterprise:** CentOS | RHEL | Alpine Linux
 - **Localhost** — The IP address 127.0.0.1, always refers to your own machine
 
 ## M
 - **Machine Account** — Windows computer account, always ends with $ symbol
 - **Malware** — Malicious software designed to damage or gain unauthorized access
+- **Meterpreter** — Advanced shell built into Metasploit, runs in memory
 - **Metasploit** — Popular penetration testing framework for exploiting vulnerabilities
 - **MITM** — Man In The Middle attack, intercepting communication between
 two parties
@@ -101,7 +113,11 @@ used to classify users and machines
 - **Phishing** — A social engineering attack using fake emails to steal credentials
 - **Ping** — Command to test if a host is reachable on a network
 - **Port** — A virtual endpoint for network communication
+- **PowerShell** — Advanced Windows shell, widely used by admins and attackers
 - **Privilege Escalation** — Gaining higher access than originally permitted
+- **Process** — A program that is currently running in memory, each with a
+unique PID (Process ID). Temporary, disappears when the program stops
+  - Commands: ps aux (view) | kill PID (terminate)
 - **Protocol** — A set of rules for communication between devices
 
 ## R
@@ -110,7 +126,7 @@ used to classify users and machines
 - **RDP** — Remote Desktop Protocol, allows graphical remote access to Windows
 machines (Port 3389)
 - **Reconnaissance** — Information gathering phase before an attack
-- **Reverse Shell** — A connection from target back to attacker giving remote control
+- **Reverse Shell** — Shell sent from target back to attacker giving remote control
 - **Root** — The highest privilege user in Linux, like admin on Windows
 - **RPC** — Remote Procedure Call, allows programs to request services from
 other programs on a network
@@ -122,9 +138,24 @@ other programs on a network
   - Example: rwx = 4+2+1 = 7
 
 ## S
+- **Service** — A process that runs continuously in the background, starts
+automatically at boot, runs without user interaction
+  - Examples: SSH server | Web server | Database server
+  - Commands: systemctl start/stop/status servicename
 - **Session Token** — A unique ID used to authenticate a logged-in user
-- **Shell** — Interface to interact with the operating system via commands
+- **Shell** — Interface between the user and the operating system that
+interprets and executes commands
 - **Shellcode** — Small piece of code used as a payload in exploitation
+- **Shells (Common Types):**
+  - **Bash** — Most common on Linux, default on Kali
+  - **Zsh** — Default on modern Macs, similar to Bash
+  - **sh** — The original Unix shell, lightweight and basic
+  - **Fish** — User friendly shell with autocompletion
+  - **cmd.exe** — Basic Windows command-line interpreter
+  - **PowerShell** — Advanced Windows shell
+  - **Web Shell** — Malicious script giving browser-based shell access
+  - **Meterpreter** — Advanced shell built into Metasploit
+  - How to check current shell — Linux/Mac: echo $0 | Windows: echo %COMSPEC%
 - **Shodan** — Search engine for devices connected to the Internet
 - **SMB** — Server Message Block, Windows file sharing protocol (Port 445)
 - **Snake Oil** — Bogus or fraudulent cryptographic product or method
@@ -164,6 +195,10 @@ real public IP address
 restore of files
 - **Vulnerability** — A weakness in a system that can be exploited
 
+## W
+- **Web Shell** — Malicious script uploaded to a web server giving
+browser-based shell access
+
 ## X
 - **XSS** — Cross-Site Scripting, injecting malicious scripts into web pages
 - **XZ Utils** — Linux compression tool targeted by a supply chain attack
@@ -172,6 +207,7 @@ restore of files
 ## Z
 - **Zero-Day** — A vulnerability unknown to the software vendor with no
 available patch
+- **Zsh** (Z Shell) — Default shell on modern Macs, similar to Bash
 
 ## Linux Filesystem Reference
 | Directory | Description |
@@ -202,61 +238,16 @@ while keeping existing content
 
 ## Windows Command Line Reference
 - `cmd.exe` — Default command-line interpreter in Windows
-- `set` — Check your system path from the command line
-- `ver` — Determine the Windows operating system version
-- `systeminfo` — List system information including OS, processor and memory
 - `cls` — Clear the Command Prompt screen
 - `help` — Get help information for a specific command
-- `more` — Display long output one page at a time
 - `ipconfig` — Check network information (IP address, subnet mask, gateway)
 - `ipconfig /all` — Look up detailed network info including physical MAC address
-- `ping target_name` — Check if a host is reachable on the network
-- `tracert target_name` — Trace the network route to reach a target
-- `nslookup` — Look up a host or domain and return its IP address
+- `more` — Display long output one page at a time
 - `netstat` — Display current network connections and listening ports
 - `netstat -h` — Display the netstat help page
-## Key Concepts
-
-### Directory
-A container (folder) that organizes and stores files.
-Examples: /home/tryhackme/ | /var/log/
-
-### File
-A unit of stored data (text, code, image, config, etc).
-Everything in Linux is technically a file.
-Examples: /etc/passwd | flag.txt | /var/log/auth.log
-
-### Process
-A program that is currently running in memory.
-Each process has a unique PID (Process ID).
-Temporary — disappears when the program stops.
-Commands: ps aux (view) | kill PID (terminate)
-
-### Service
-A process that runs continuously in the background.
-Starts automatically at boot, runs without user interaction.
-Examples: SSH server | Web server | Database server
-Commands: systemctl start/stop/status servicename
-## Most Common Shells in Cybersecurity
-
-### Linux/Mac Shells
-- **Bash** (Bourne Again Shell) — Most common on Linux, default on Kali Linux
-- **Zsh** (Z Shell) — Default on modern Macs, similar to Bash
-- **sh** (Bourne Shell) — The original Unix shell, lightweight and basic
-- **Fish** — User friendly shell with autocompletion features
-
-### Windows Shells
-- **cmd.exe** — Basic Windows command-line interpreter, default on Windows
-- **PowerShell** — Advanced Windows shell, widely used by admins and attackers
-
-### Cybersecurity Specific Shells
-- **Reverse Shell** — Shell sent from target back to attacker giving remote control
-- **Bind Shell** — Shell that listens on a port on the target waiting for attacker
-- **Web Shell** — Malicious script uploaded to a web server giving browser-based
-shell access
-- **Meterpreter** — Advanced shell built into Metasploit, runs in memory
-
-### How to check your current shell
-- Linux/Mac: echo $0
-- Linux/Mac: echo $SHELL
-- Windows: echo %COMSPEC%
+- `nslookup` — Look up a host or domain and return its IP address
+- `ping target_name` — Check if a host is reachable on the network
+- `set` — Check your system path from the command line
+- `systeminfo` — List system information including OS, processor and memory
+- `tracert target_name` — Trace the network route to reach a target
+- `ver` — Determine the Windows operating system version
