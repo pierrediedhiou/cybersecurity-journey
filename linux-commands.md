@@ -175,3 +175,70 @@ regular expression
 - `$` — Symbol representing a regular user
 - `#` — Symbol representing a superuser (root)
 - `exit` — Exit the current shell or user session
+## Linux Shell
+- `echo $0` — Check which shell you are currently using
+- `cat /etc/shells` — List all available/installed shells on the system
+- `history` — Display all previously typed commands
+- `#!/bin/bash` — Shebang line used at the top of a Bash script to
+indicate it should run with Bash
+- `chmod +x filename` — Give executable permissions to a script
+
+## Scripting & Variables
+- Scripting — Writing and executing a series of commands in a text file
+- Variables — Store a value to be reused in a script (ex: name="Pierre")
+- Loops — Used in scripts to repeat iterative tasks automatically
+
+## Windows Command Line (Additional Commands)
+- `dir` — View child directories and files in current directory
+- `dir /a` — Display hidden and system files
+- `dir /s` — Display files in current directory and all subdirectories
+- `cd target_directory` — Change to a specific directory
+- `del filename` — Delete a file
+- `erase filename` — Delete a file (alternative to del)
+- `tasklist` — List all currently running processes
+- `tasklist /FI "imagename eq notepad.exe"` — Find running process
+related to a specific program
+- `taskkill /PID 1516` — Kill a process by its PID
+- `chkdsk` — Check the file system and disk volumes for errors and
+bad sectors
+- `driverquery` — Display a list of installed device drivers
+- `sfc /scannow` — Scan system files for corruption and repair them
+- `shutdown /s` — Shutdown the system
+- `shutdown /r` — Restart the system
+- `shutdown /a` — Abort a scheduled system shutdown
+
+## PowerShell Commands
+- `Get-Content filename` — Read and display the contents of a file
+(similar to cat in Linux)
+- `Set-Location path` — Change the current working directory
+(similar to cd in Linux)
+- `Get-Command` — List all available cmdlets, functions, aliases
+and scripts in the current PowerShell session
+- `Get-ChildItem` — List files and folders in current directory
+(similar to ls in Linux)
+- `Get-ChildItem | Sort-Object Length` — List files sorted by size
+- `Get-ChildItem | Where-Object -Property "Extension" -eq ".txt"` —
+List only .txt files
+- `Get-ComputerInfo` — Retrieve comprehensive system information
+- `Get-LocalUser` — List all local user accounts on the system
+- `Get-NetIPConfiguration` — Show detailed network interface info
+including IP addresses, DNS servers and gateway
+- `Get-NetIPAddress` — Show details for all IP addresses configured
+on the system including inactive ones
+- `Get-Process` — View all running processes including CPU and
+memory usage
+- `Get-Service` — Retrieve information about services on the machine
+(running, stopped or paused)
+- `Get-NetTCPConnection` — Display current TCP connections including
+local and remote endpoints
+- `Get-FileHash filename` — Generate a hash of a file
+- `Invoke-Command` — Execute commands on remote systems, used for
+remote management and automation
+
+## PowerShell Comparison Operators
+- `-eq` — Equal to
+- `-ne` — Not equal to
+- `-gt` — Greater than (strict, excludes equal values)
+- `-ge` — Greater than or equal to
+- `-lt` — Less than (strict, excludes equal values)
+- `-le` — Less than or equal to
