@@ -237,3 +237,26 @@ A process that runs continuously in the background.
 Starts automatically at boot, runs without user interaction.
 Examples: SSH server | Web server | Database server
 Commands: systemctl start/stop/status servicename
+## Most Common Shells in Cybersecurity
+
+### Linux/Mac Shells
+- **Bash** (Bourne Again Shell) — Most common on Linux, default on Kali Linux
+- **Zsh** (Z Shell) — Default on modern Macs, similar to Bash
+- **sh** (Bourne Shell) — The original Unix shell, lightweight and basic
+- **Fish** — User friendly shell with autocompletion features
+
+### Windows Shells
+- **cmd.exe** — Basic Windows command-line interpreter, default on Windows
+- **PowerShell** — Advanced Windows shell, widely used by admins and attackers
+
+### Cybersecurity Specific Shells
+- **Reverse Shell** — Shell sent from target back to attacker giving remote control
+- **Bind Shell** — Shell that listens on a port on the target waiting for attacker
+- **Web Shell** — Malicious script uploaded to a web server giving browser-based
+shell access
+- **Meterpreter** — Advanced shell built into Metasploit, runs in memory
+
+### How to check your current shell
+- Linux/Mac: echo $0
+- Linux/Mac: echo $SHELL
+- Windows: echo %COMSPEC%
