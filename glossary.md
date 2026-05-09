@@ -55,7 +55,10 @@ Everything in Linux is technically a file
 Organizational Units in Active Directory
 - **GUI** — Graphical User Interface, visual interface for interacting
 with a computer
-
+- **Get-Command** — PowerShell cmdlet to list all available commands,
+functions and aliases in the current session
+- **Get-Content** — PowerShell cmdlet to read and display file contents,
+similar to cat in Linux
 ## H
 - **Hash** — A fixed-length string generated from data, used to verify integrity
 - **Have I Been Pwned** — Tool that tells you if an email address has appeared
@@ -73,7 +76,8 @@ network information. Full path: C:\Windows\System32\ipconfig.exe
 - **IPv4** — Internet Protocol version 4, format: 192.168.0.18
 - **IPv6** — Internet Protocol version 6, format: 2a02:a31a:a4b8:7800:...
 - **ISP** — Internet Service Provider, the company providing your internet connection
-
+- **Invoke-Command** — PowerShell cmdlet for executing commands on remote
+systems, used by admins and penetration testers alike
 ## K
 - **KDC** — Key Distribution Center, service installed on the Domain
 Controller that creates Kerberos tickets on the network
@@ -84,7 +88,8 @@ Controller that creates Kerberos tickets on the network
   - **Cybersecurity:** Kali Linux | Parrot OS | BlackArch | REMnux
   - **Server/Enterprise:** CentOS | RHEL | Alpine Linux
 - **Localhost** — The IP address 127.0.0.1, always refers to your own machine
-
+- **Loop** — Programming/scripting construct used to repeat a set of
+commands iteratively
 ## M
 - **Machine Account** — Windows computer account, always ends with $ symbol
 - **Malware** — Malicious software designed to damage or gain unauthorized access
@@ -169,7 +174,10 @@ to access
 and logs system activity to the Windows Event Log
 - **Sysinternals** — Microsoft toolkit for monitoring and managing Windows systems
 - **SYSVOL** — Network share used to distribute GPOs to domain machines
-
+- **Scripting** — The process of writing and executing a series of commands
+contained in a text file to automate tasks
+- **Shebang** — The line #!/bin/bash at the top of a script that tells
+the system which shell to use to execute it
 ## T
 - **Telnet** — Insecure remote access protocol (Port 23), replaced by SSH
 - **TGT** — Ticket Granting Ticket, allows users to request tickets to
@@ -181,7 +189,10 @@ access specific services, encrypted using the krbtgt account password hash
 two domains allowing authentication and authorization across domains
 - **Two-Factor Authentication (2FA)** — Security method requiring two forms
 of verification
-
+- **Taskkill** — Windows command to terminate a running process by PID
+- **Tasklist** — Windows command to list all currently running processes
+- **TCP Connection** — Transmission Control Protocol connection, a
+reliable connection-based communication between two endpoints
 ## U
 - **UAC** — User Account Control, Windows security feature that controls
 administrative privileges
@@ -194,7 +205,8 @@ real public IP address
 - **VSS** — Volume Shadow Copy Service, Windows service for backup and
 restore of files
 - **Vulnerability** — A weakness in a system that can be exploited
-
+- **Variable** — A named storage location in a script that holds a value
+to be reused (ex: name="Pierre")
 ## W
 - **Web Shell** — Malicious script uploaded to a web server giving
 browser-based shell access
