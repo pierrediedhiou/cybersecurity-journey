@@ -215,3 +215,25 @@ while keeping existing content
 - `nslookup` — Look up a host or domain and return its IP address
 - `netstat` — Display current network connections and listening ports
 - `netstat -h` — Display the netstat help page
+## Key Concepts
+
+### Directory
+A container (folder) that organizes and stores files.
+Examples: /home/tryhackme/ | /var/log/
+
+### File
+A unit of stored data (text, code, image, config, etc).
+Everything in Linux is technically a file.
+Examples: /etc/passwd | flag.txt | /var/log/auth.log
+
+### Process
+A program that is currently running in memory.
+Each process has a unique PID (Process ID).
+Temporary — disappears when the program stops.
+Commands: ps aux (view) | kill PID (terminate)
+
+### Service
+A process that runs continuously in the background.
+Starts automatically at boot, runs without user interaction.
+Examples: SSH server | Web server | Database server
+Commands: systemctl start/stop/status servicename
