@@ -263,3 +263,132 @@ while keeping existing content
 - `systeminfo` — List system information including OS, processor and memory
 - `tracert target_name` — Trace the network route to reach a target
 - `ver` — Determine the Windows operating system version
+## A
+- **ARP** — Address Resolution Protocol, resolves IP addresses to MAC
+addresses on a local network
+
+## B
+- **BGP** — Border Gateway Protocol, the primary routing protocol used
+on the Internet, allows different networks to exchange routing information
+
+## C
+- **CA** — Certificate Authority, a trusted organization that issues
+digital certificates to verify identities
+- **CNAME Record** — Canonical Name DNS record, maps a domain name to
+another domain name (ex: www.example.com → example.com)
+- **CRS** — Certificate Signing Request, a request sent to a CA to
+obtain a digital certificate
+
+## D
+- **Datagram** — UDP data unit that encapsulates application data
+- **DHCP** — Dynamic Host Configuration Protocol, automatically assigns
+IP addresses to devices on a network. Uses UDP and follows 4 steps:
+  1. Discover — Client broadcasts looking for a DHCP server
+  2. Offer — Server offers an available IP address
+  3. Request — Client accepts the offered IP
+  4. Acknowledge — Server confirms the IP is assigned to the client
+- **DNS** — Domain Name System, translates domain names into IP addresses
+- **DNS Record Types:**
+  - **A Record** — Maps a hostname to an IPv4 address
+  - **AAAA Record** — Maps a hostname to an IPv6 address
+  - **CNAME Record** — Maps a domain to another domain name
+  - **MX Record** — Specifies the mail server for a domain
+
+## E
+- **EIGRP** — Enhanced Interior Gateway Routing Protocol, a Cisco
+proprietary routing protocol that chooses efficient paths based on
+bandwidth and delay
+
+## F
+- **Frame** — An IP packet encapsulated on a WiFi or Ethernet network
+
+## H
+- **HTTP** — Hypertext Transfer Protocol, designed to retrieve web pages
+(Port 80)
+- **HTTPS** — Hypertext Transfer Protocol Secure, encrypted version of
+HTTP (Port 443)
+
+## I
+- **ICMP** — Internet Control Message Protocol, used for network
+diagnostics like ping and traceroute
+- **IMAP** — Internet Message Access Protocol, allows email
+synchronization across devices including read, moved and deleted messages
+
+## M
+- **MAC Address** — Media Access Control address, a unique 48-bit
+hardware identifier for network devices, represented in hexadecimal
+(ex: 7C:DF:A1:D3:8C:5C)
+- **MIME** — Multipurpose Internet Mail Extensions, standard for
+formatting non-text email content (attachments, images, etc)
+- **MX Record** — Mail Exchange DNS record, specifies the mail server
+responsible for handling emails for a domain
+
+## N
+- **NFS** — Network File System, allows files to be shared over a network
+- **NSLOOKUP** — Command to look up the IP address of a domain name
+
+## O
+- **OSPF** — Open Shortest Path First, a routing protocol that allows
+routers to share network topology and calculate the most efficient paths
+- **OSI Model** — Open Systems Interconnection model, a 7-layer framework
+describing how data travels over a network:
+  1. Physical — Physical connection between devices (cables, signals)
+  2. Data Link — Communication on same network segment, uses MAC addresses
+  (ex: Ethernet, WiFi)
+  3. Network — Logical addressing and routing between networks (ex: IP,
+  ICMP, VPN)
+  4. Transport — End-to-end communication between applications (ex: TCP,
+  UDP)
+  5. Session — Establishes, maintains and synchronizes communication
+  between applications
+  6. Presentation — Data encoding, compression and encryption
+  7. Application — Network services for end-user applications (ex: HTTP,
+  FTP, DNS, SMTP)
+  - Mnemonic bottom to top: Please Do Not Throw Spinach Pizza Away
+
+## P
+- **POP3** — Post Office Protocol version 3, used to retrieve emails
+from a mail server
+- **Port 80** — HTTP web traffic
+- **Port 443** — HTTPS secure web traffic
+- **Port 8080** — Alternative HTTP port
+- **Port 8443** — Alternative HTTPS port
+
+## R
+- **RIP** — Routing Information Protocol, a simple routing protocol for
+small networks that chooses routes based on fewest hops
+- **Routing Protocols** — Protocols that allow routers to share network
+information and determine best paths for data:
+  - OSPF — Open Shortest Path First
+  - EIGRP — Enhanced Interior Gateway Routing Protocol
+  - BGP — Border Gateway Protocol
+  - RIP — Routing Information Protocol
+
+## S
+- **Segment** — TCP data unit that encapsulates application data sent
+over TCP
+- **SFTP** — SSH File Transfer Protocol, allows secure encrypted file
+transfer (runs over SSH)
+- **SMTP** — Simple Mail Transfer Protocol, defines how mail clients
+talk to mail servers and how mail servers talk to each other
+- **SSL** — Secure Sockets Layer, predecessor to TLS, used to encrypt
+network communications (now largely replaced by TLS)
+
+## T
+- **TCP** — Transmission Control Protocol, a connection-oriented
+transport protocol that ensures reliable data delivery (Layer 4)
+- **Telnet** — Teletype Network protocol, used for remote terminal
+connection, sends data in plain text (insecure, replaced by SSH, Port 23)
+- **TLS** — Transport Layer Security, added to existing protocols to
+protect communication confidentiality, integrity and authenticity
+- **TTL** — Time-to-Live, an IP header field that limits how long a
+packet can travel through the network, used by traceroute
+
+## U
+- **UDP** — User Datagram Protocol, a connectionless transport protocol
+that allows fast data delivery to a specific process on a target host,
+no guarantee of delivery (Layer 4)
+
+## W
+- **WHOIS** — Command and service to look up registration records of
+any registered domain name
