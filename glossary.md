@@ -221,27 +221,6 @@ browser-based shell access
 available patch
 - **Zsh** (Z Shell) — Default shell on modern Macs, similar to Bash
 
-## Linux Filesystem Reference
-| Directory | Description |
-|-----------|-------------|
-| `/etc` | System configuration files |
-| `/var` | Variable data, frequently changing files |
-| `/root` | Home directory for the root user |
-| `/tmp` | Temporary files, cleared on restart |
-| `/var/log` | All Linux system log files |
-
-## Common Ports Reference
-| Port | Service | Description |
-|------|---------|-------------|
-| 21 | FTP | File Transfer Protocol |
-| 22 | SSH | Secure Shell |
-| 23 | Telnet | Insecure remote access |
-| 80 | HTTP | Web traffic |
-| 135 | RPCSS | Windows Remote Procedure Call |
-| 443 | HTTPS | Secure web traffic |
-| 445 | SMB | Windows file sharing |
-| 3389 | RDP | Remote Desktop Protocol |
-
 ## Linux File Commands Reference
 - `echo "password123" > passwords` — Overwrites the file "passwords" with
 "password123"
@@ -392,3 +371,51 @@ no guarantee of delivery (Layer 4)
 ## W
 - **WHOIS** — Command and service to look up registration records of
 any registered domain name
+
+## Linux Filesystem Reference
+| Directory | Description |
+|-----------|-------------|
+| `/etc` | System configuration files |
+| `/var` | Variable data, frequently changing files |
+| `/root` | Home directory for the root user |
+| `/tmp` | Temporary files, cleared on restart |
+| `/var/log` | All Linux system log files |
+
+## Common Ports Reference
+| Port | Service | Description |
+|------|---------|-------------|
+| 21 | FTP | File Transfer Protocol |
+| 22 | SSH | Secure Shell |
+| 23 | Telnet | Insecure remote access |
+| 80 | HTTP | Web traffic |
+| 135 | RPCSS | Windows Remote Procedure Call |
+| 443 | HTTPS | Secure web traffic |
+| 445 | SMB | Windows file sharing |
+| 3389 | RDP | Remote Desktop Protocol |
+## Common Ports Reference
+
+### All Protocols — Transport Protocol & Port
+| Protocol | Transport | Default Port | Description |
+|----------|-----------|--------------|-------------|
+| TELNET | TCP | 23 | Insecure remote access |
+| DNS | UDP or TCP | 53 | Domain Name System |
+| HTTP | TCP | 80 | Web traffic |
+| HTTPS | TCP | 443 | Secure web traffic |
+| FTP | TCP | 21 | File Transfer Protocol |
+| SMTP | TCP | 25 | Sending emails |
+| POP3 | TCP | 110 | Receiving emails |
+| IMAP | TCP | 143 | Email synchronization |
+| SSH | TCP | 22 | Secure Shell |
+| RPCSS | TCP | 135 | Windows Remote Procedure Call |
+| SMB | TCP | 445 | Windows file sharing |
+| RDP | TCP | 3389 | Remote Desktop Protocol |
+
+### Cleartext vs Secure Protocol Ports
+| Protocol | Cleartext Port | Secure Version | Secure Port |
+|----------|---------------|----------------|-------------|
+| HTTP | 80 | HTTPS | 443 |
+| FTP | 21 | FTPS | 990 |
+| TELNET | 23 | SSH | 22 |
+| SMTP | 25 | SMTPS | 465 and 587 |
+| POP3 | 110 | POP3S | 995 |
+| IMAP | 143 | IMAPS | 993 |
