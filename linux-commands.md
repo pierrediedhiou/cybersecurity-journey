@@ -242,3 +242,48 @@ remote management and automation
 - `-ge` — Greater than or equal to
 - `-lt` — Less than (strict, excludes equal values)
 - `-le` — Less than or equal to
+## Networking Commands
+- `ping target` — Test connectivity to a target and measure round-trip
+time (RTT) using ICMP
+- `ping -c 4 target` — Send exactly 4 ping packets then stop
+- `traceroute target` — Discover the network route from your host to
+the target (Linux/Mac)
+- `tracert target` — Same as traceroute but for Windows
+- `nslookup domain` — Look up the IP address of a domain
+- `whois domain` — Look up registration records of a domain name
+
+## FTP Commands (inside an FTP session)
+- `USER username` — Input the username
+- `PASS password` — Enter the password
+- `RETR filename` — Download a file from the FTP server to the client
+- `STOR filename` — Upload a file from the client to the FTP server
+
+## HTTP Methods
+- `GET` — Retrieve data from a server (HTML file, image, etc)
+- `POST` — Submit new data to the server (form, file upload)
+- `PUT` — Create or overwrite a resource on the server
+- `DELETE` — Delete a specified file or resource on the server
+
+## SMTP Commands (inside an SMTP session)
+- `HELO` or `EHLO` — Initiate an SMTP session
+- `MAIL FROM` — Specify the sender's email address
+- `RCPT TO` — Specify the recipient's email address
+- `DATA` — Begin sending the email content
+- `.` — Sent on its own line to indicate end of email message
+
+## POP3 Commands (inside a POP3 session)
+- `USER username` — Identify the user
+- `PASS password` — Provide the user's password
+- `STAT` — Request the number of messages and total size
+- `LIST` — List all messages and their sizes
+- `RETR message_number` — Retrieve a specific message
+- `DELE message_number` — Mark a message for deletion
+- `QUIT` — End the POP3 session and apply changes
+
+## IMAP Commands (inside an IMAP session)
+- `LOGIN username password` — Authenticate the user
+- `SELECT mailbox` — Select a mailbox folder to work with
+- `FETCH mail_number body[]` — Fetch a message (header and body)
+- `MOVE sequence mailbox` — Move messages to another mailbox
+- `COPY sequence mailbox` — Copy messages to another mailbox
+- `LOGOUT` — Log out of the IMAP session
