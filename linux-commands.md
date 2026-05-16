@@ -287,3 +287,87 @@ the target (Linux/Mac)
 - `MOVE sequence mailbox` — Move messages to another mailbox
 - `COPY sequence mailbox` — Copy messages to another mailbox
 - `LOGOUT` — Log out of the IMAP session
+## Wireshark
+- **Wireshark** — Graphical network packet analyzer used to capture
+and investigate network traffic
+
+### Wireshark Interface Sections
+- **Toolbar** — Main toolbar for packet sniffing, filtering, sorting,
+summarising, exporting and merging
+- **Display Filter Bar** — Main query and filtering section
+- **Recent Files** — List of recently investigated files
+- **Capture Filter and Interfaces** — Capture filters and available
+network interfaces (connection points between a computer and a network)
+- **Status Bar** — Tool status, profile and numeric packet information
+
+### Wireshark Alert Severity Colours
+| Severity | Colour | Description |
+|----------|--------|-------------|
+| Chat | Blue | Information on usual workflow |
+| Note | Cyan | Notable events like application error codes |
+| Warn | Yellow | Warnings like unusual error codes or problems |
+| Error | Red | Problems like malformed packets |
+
+## Tcpdump
+- **tcpdump** — Powerful command-line packet analyzer used to capture,
+log and filter network traffic flowing through a computer
+
+### Tcpdump Basic Options
+- `tcpdump -i INTERFACE` — Listen on a specific network interface
+- `tcpdump -i any` — Listen on all available interfaces
+- `tcpdump -i eth0` — Listen on the eth0 interface
+- `tcpdump -i wlo1` — Listen on the WiFi network interface
+- `tcpdump -r FILE` — Read captured packets from a file
+- `tcpdump -w FILE` — Save captured packets to a file
+- `tcpdump -c COUNT` — Capture a specific number of packets then stop
+- `tcpdump -n` — Do not resolve IP addresses
+- `tcpdump -nn` — Do not resolve IP addresses or protocol numbers
+- `tcpdump -v` — Verbose output, more details about packets
+- `tcpdump -vv` — More verbose output
+- `tcpdump -vvv` — Maximum verbosity output
+- `tcpdump -q` — Quick output, print brief packet information
+- `tcpdump -e` — Print the link-level header
+- `tcpdump -A` — Show packet data in ASCII
+- `tcpdump -xx` — Show packet data in hexadecimal (hex) format
+- `tcpdump -X` — Show packet headers and data in both hex and ASCII
+- `ip address show` — List all available network interfaces
+- `ip a s` — Shorthand for ip address show
+
+### Tcpdump Logical Operators
+- `and` — Capture packets where both conditions are true
+  - Example: `tcpdump host 1.1.1.1 and tcp`
+- `or` — Capture packets where either condition is true
+  - Example: `tcpdump udp or icmp`
+- `not` — Capture packets where the condition is not true
+  - Example: `tcpdump not tcp`
+
+### Tcpdump Size Filters
+- `greater LENGTH` — Filter packets with length greater than or equal
+to specified length
+- `less LENGTH` — Filter packets with length less than or equal to
+specified length
+
+### Tcpdump Binary Operators
+- `&` — AND: returns 0 unless both inputs are 1
+- `|` — OR: returns 1 unless both inputs are 0
+- `!` — NOT: inverts the bit (1 becomes 0, 0 becomes 1)
+
+### Tcpdump TCP Flags
+- `tcp-syn` — TCP SYN (Synchronize) flag
+- `tcp-ack` — TCP ACK (Acknowledge) flag
+- `tcp-fin` — TCP FIN (Finish) flag
+- `tcp-rst` — TCP RST (Reset) flag
+- `tcp-push` — TCP Push flag
+- `tcp[tcpflags]` — Used to refer to the TCP flags field in a filter
+
+### Tcpdump Packet Header Syntax
+- `proto[expr:size]` — Refer to contents of any byte in a packet header
+  - `proto` — Protocol (arp, ether, icmp, ip, ip6, tcp, udp)
+  - `expr` — Byte offset, 0 refers to the first byte
+  - `size` — Number of bytes (1, 2 or 4), default is 1
+
+### Tcpdump Practical Examples
+- `tcpdump -i any tcp port 22` — Capture SSH traffic on all interfaces
+- `tcpdump -i wlo1 udp port 123` — Capture NTP traffic on WiFi
+- `tcpdump -i eth0 host example.com and tcp port 443 -w https.pcap` —
+Capture HTTPS traffic from example.com and save to file
