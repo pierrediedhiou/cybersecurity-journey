@@ -371,3 +371,23 @@ specified length
 - `tcpdump -i wlo1 udp port 123` — Capture NTP traffic on WiFi
 - `tcpdump -i eth0 host example.com and tcp port 443 -w https.pcap` —
 Capture HTTPS traffic from example.com and save to file
+### Tcpdump Filtering Commands
+| Command | Explanation |
+|---------|-------------|
+| `tcpdump host IP` | Filters packets by IP address |
+| `tcpdump host HOSTNAME` | Filters packets by hostname |
+| `tcpdump src host IP` | Filters packets by specific source host |
+| `tcpdump dst host IP` | Filters packets by specific destination host |
+| `tcpdump port PORT_NUMBER` | Filters packets by port number |
+| `tcpdump src port PORT_NUMBER` | Filters packets by source port number |
+| `tcpdump dst port PORT_NUMBER` | Filters packets by destination port number |
+| `tcpdump PROTOCOL` | Filters packets by protocol (ex: ip, ip6, icmp) |
+
+### Tcpdump Display Options
+| Command | Explanation |
+|---------|-------------|
+| `tcpdump -q` | Quick and quiet — brief packet information |
+| `tcpdump -e` | Include MAC addresses in output |
+| `tcpdump -A` | Print packets in ASCII encoding |
+| `tcpdump -xx` | Display packets in hexadecimal format |
+| `tcpdump -X` | Show packets in both hexadecimal and ASCII formats |
