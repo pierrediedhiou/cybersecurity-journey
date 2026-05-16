@@ -7,7 +7,8 @@ manage users and devices on a network
 - **AES** — Advanced Encryption Standard, a widely used encryption algorithm
 - **ASCII** — American Standard Code for Information Interchange, the most
 basic text format for plain readable text files
-
+- **ASCII** (in networking context) — Human readable text format used
+to display packet data in tools like tcpdump and Wireshark
 ## B
 - **Bash** (Bourne Again Shell) — Most common shell on Linux, default on Kali Linux
 - **Bind Shell** — Shell that listens on a port on the target waiting for attacker
@@ -66,7 +67,8 @@ in a leaked data breach
 - **Heartbleed** — Critical OpenSSL vulnerability (CVE-2014-0160) that leaked
 server memory
 - **Honeypot** — A decoy system designed to attract and detect attackers
-
+- **Hex (Hexadecimal)** — Base-16 number system used to display raw
+packet data in network analysis tools
 ## I
 - **Injection** — Attack inserting malicious code into an input field
 - **IP Address** — Internet Protocol Address, a unique numerical label assigned
@@ -102,7 +104,10 @@ two parties
 - **NAT** — Network Address Translation, maps private IPs to a public IP
 - **Nmap** — Network scanning tool used to discover open ports and services
 - **NTFS** — New Technology File System, the standard file system used by Windows
-
+- **Network Interface** — The connection point between a computer and
+a network (ex: eth0, wlo1, lo, ens33)
+- **NTP** — Network Time Protocol, used to synchronize clocks across
+networked devices (UDP Port 123)
 ## O
 - **Open Port** — A port actively accepting connections on a device
 - **OpenSSL** — Cryptographic library that powers HTTPS encryption
@@ -124,7 +129,12 @@ used to classify users and machines
 unique PID (Process ID). Temporary, disappears when the program stops
   - Commands: ps aux (view) | kill PID (terminate)
 - **Protocol** — A set of rules for communication between devices
-
+- **Packet Sniffer** — A tool that captures and analyzes network traffic
+passing through a network interface
+- **pcap** — Packet Capture file format used to save captured network
+traffic (file extension .pcap)
+- **pcap-filter** — Filter syntax used in tcpdump to filter packets
+by protocol, port, host, size and more
 ## R
 - **Ransomware** — Malware that encrypts files and demands payment for decryption
 - **RCE** — Remote Code Execution, running code on a target system remotely
@@ -193,6 +203,15 @@ of verification
 - **Tasklist** — Windows command to list all currently running processes
 - **TCP Connection** — Transmission Control Protocol connection, a
 reliable connection-based communication between two endpoints
+- **tcpdump** — Command-line packet analyzer tool used to capture, log
+and filter network traffic on Linux/Mac
+- **TCP Flags** — Control bits in a TCP packet header that manage the
+state of a connection:
+  - SYN — Synchronize, initiates a connection
+  - ACK — Acknowledge, confirms receipt of data
+  - FIN — Finish, terminates a connection
+  - RST — Reset, abruptly terminates a connection
+  - PSH — Push, sends data immediately without buffering
 ## U
 - **UAC** — User Account Control, Windows security feature that controls
 administrative privileges
@@ -210,7 +229,8 @@ to be reused (ex: name="Pierre")
 ## W
 - **Web Shell** — Malicious script uploaded to a web server giving
 browser-based shell access
-
+- **Wireshark** — Graphical network packet analyzer used to capture,
+filter and investigate network traffic in real time
 ## X
 - **XSS** — Cross-Site Scripting, injecting malicious scripts into web pages
 - **XZ Utils** — Linux compression tool targeted by a supply chain attack
