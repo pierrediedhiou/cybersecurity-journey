@@ -391,3 +391,81 @@ Capture HTTPS traffic from example.com and save to file
 | `tcpdump -A` | Print packets in ASCII encoding |
 | `tcpdump -xx` | Display packets in hexadecimal format |
 | `tcpdump -X` | Show packets in both hexadecimal and ASCII formats |
+## Nmap
+- **Nmap** — Open-source network scanner used to discover hosts,
+services, and vulnerabilities on a network
+
+### Nmap Target Specification
+| Format | Example | Description |
+|--------|---------|-------------|
+| Single IP | `192.168.0.1` | Scan a single IP address |
+| IP Range | `192.168.0.1-10` | Scan IPs from .1 to .10 |
+| Subnet | `192.168.0.1/24` | Scan entire subnet (0-255) |
+| Hostname | `example.thm` | Scan by hostname |
+
+### Nmap Host Discovery
+| Command | Explanation |
+|---------|-------------|
+| `nmap -sn TARGET` | Discover live hosts without port scanning |
+| `nmap -sL TARGET` | List targets to scan without actually scanning |
+| `nmap -Pn TARGET` | Scan hosts that appear to be offline/down |
+
+### Nmap Scan Types
+| Command | Explanation |
+|---------|-------------|
+| `nmap -sT TARGET` | TCP Connect scan |
+| `nmap -sS TARGET` | SYN scan (stealth scan) |
+| `nmap -sU TARGET` | UDP scan |
+
+### Nmap Service & OS Detection
+| Command | Explanation |
+|---------|-------------|
+| `nmap -O TARGET` | Enable OS detection |
+| `nmap -sV TARGET` | Enable service and version detection |
+| `nmap -A TARGET` | OS detection, version detection and extras |
+
+### Nmap Port Selection
+| Command | Explanation |
+|---------|-------------|
+| `nmap -F TARGET` | Fast mode, scan 100 most common ports |
+| `nmap -p10-1024 TARGET` | Scan ports 10 to 1024 |
+| `nmap -p-25 TARGET` | Scan ports 1 to 25 |
+| `nmap -p- TARGET` | Scan all ports (1-65535) |
+| `nmap -p1-1023 TARGET` | Scan well-known ports only |
+
+### Nmap Timing Templates
+| Template | Flag | Approx Speed |
+|----------|------|-------------|
+| Paranoid | `-T0` | 9.8 hours |
+| Sneaky | `-T1` | 27.53 minutes |
+| Polite | `-T2` | 40.56 seconds |
+| Normal | `-T3` | 0.15 seconds (default) |
+| Aggressive | `-T4` | 0.13 seconds |
+| Insane | `-T5` | Fastest, may miss results |
+
+### Nmap Performance Options
+| Command | Explanation |
+|---------|-------------|
+| `--min-parallelism NUM` | Minimum number of parallel probes |
+| `--max-parallelism NUM` | Maximum number of parallel probes |
+| `--min-rate NUM` | Minimum packets per second |
+| `--max-rate NUM` | Maximum packets per second |
+| `--host-timeout TIME` | Maximum time to wait for a target host |
+
+### Nmap Verbosity & Debugging
+| Command | Explanation |
+|---------|-------------|
+| `nmap -v TARGET` | Verbose output, more details |
+| `nmap -vv TARGET` | More verbose output |
+| `nmap -vvvv TARGET` | Maximum verbose output |
+| `nmap -v2 TARGET` | Specify verbosity level directly |
+| `nmap -d TARGET` | Debugging output |
+| `nmap -d9 TARGET` | Maximum debugging level |
+
+### Nmap Output Formats
+| Command | Explanation |
+|---------|-------------|
+| `nmap -oN filename` | Normal output saved to file |
+| `nmap -oX filename` | XML output saved to file |
+| `nmap -oG filename` | Grep-able output (useful for grep and awk) |
+| `nmap -oA basename` | Output in all major formats at once |
