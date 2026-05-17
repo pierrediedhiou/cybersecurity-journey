@@ -108,6 +108,10 @@ two parties
 a network (ex: eth0, wlo1, lo, ens33)
 - **NTP** — Network Time Protocol, used to synchronize clocks across
 networked devices (UDP Port 123)
+- **Nmap** — Open-source network scanner used to discover hosts,
+open ports, services and operating systems on a network
+- **NTP** — Network Time Protocol, used to synchronize clocks across
+networked devices (UDP Port 123)
 ## O
 - **Open Port** — A port actively accepting connections on a device
 - **OpenSSL** — Cryptographic library that powers HTTPS encryption
@@ -188,6 +192,12 @@ and logs system activity to the Windows Event Log
 contained in a text file to automate tasks
 - **Shebang** — The line #!/bin/bash at the top of a script that tells
 the system which shell to use to execute it
+- **SNMP** — Simple Network Management Protocol, used to monitor and
+manage network devices like routers, switches and servers
+- **SYN Scan** — A stealthy Nmap scan (-sS) that sends SYN packets
+without completing the TCP handshake, harder to detect in logs
+- **Subnet** — A subdivision of an IP network, represented with slash
+notation (ex: 192.168.0.1/24 covers 256 addresses)
 ## T
 - **Telnet** — Insecure remote access protocol (Port 23), replaced by SSH
 - **TGT** — Ticket Granting Ticket, allows users to request tickets to
@@ -212,10 +222,17 @@ state of a connection:
   - FIN — Finish, terminates a connection
   - RST — Reset, abruptly terminates a connection
   - PSH — Push, sends data immediately without buffering
+  - **TCP Connect Scan** — An Nmap scan (-sT) that completes the full
+TCP three-way handshake to detect open ports
+- **Timing Template** — Nmap setting (-T0 to -T5) that controls scan
+speed from paranoid (slowest, stealthiest) to insane (fastest)
 ## U
 - **UAC** — User Account Control, Windows security feature that controls
 administrative privileges
-
+- **UDP Scan** — An Nmap scan (-sU) used to discover open UDP services
+on a target
+- **UDP** — User Datagram Protocol, connectionless transport protocol,
+faster but less reliable than TCP
 ## V
 - **VirusTotal** — Virus-scanning service that scans files and URLs against
 multiple antivirus engines and website scanners in a single operation
