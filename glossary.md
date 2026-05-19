@@ -9,6 +9,12 @@ manage users and devices on a network
 basic text format for plain readable text files
 - **ASCII** (in networking context) — Human readable text format used
 to display packet data in tools like tcpdump and Wireshark
+- **AES** — Advanced Encryption Standard, adopted in 2001, key sizes
+of 128, 192 or 256 bits. Current industry standard for symmetric
+encryption
+- **Asymmetric Encryption** — Encryption that uses two keys: a public
+key (shared with everyone) and a private key (kept secret). Examples:
+RSA, Diffie-Hellman, ECC
 ## B
 - **Bash** (Bourne Again Shell) — Most common shell on Linux, default on Kali Linux
 - **Bind Shell** — Shell that listens on a port on the target waiting for attacker
@@ -29,7 +35,13 @@ tasks at specified times
 - **CTF** — Capture The Flag, a cybersecurity competition to practice hacking skills
 - **CVE** — Common Vulnerabilities and Exposures, a standardized ID for known
 vulnerabilities (ex: CVE-2024-3094)
-
+- **Cipher** — An algorithm or method used to convert plaintext into
+ciphertext and back. Usually developed by a mathematician
+- **Ciphertext** — The scrambled, unreadable version of a message
+after encryption. No information about the original plaintext should
+be recoverable without the key
+- **Cryptography** — The practice and study of techniques for secure
+communication and data protection in the presence of adversaries
 ## D
 - **Daemon** — A background service running on Linux
 - **Delegation** — Process of granting privileges to a user over an OU
@@ -37,12 +49,20 @@ or other Active Directory object
 - **Directory** — A container (folder) that organizes and stores files
   - Examples: /home/tryhackme/ | /var/log/
 - **Domain Controller** — Server in charge of running Active Directory services
-
+- **Decryption** — The reverse process of encryption, converting
+ciphertext back into plaintext using a cipher and a key
+- **DES** — Data Encryption Standard, adopted in 1977, uses a 56-bit
+key. Broken in under 24 hours in 1999, now deprecated
+- **Diffie-Hellman** — Asymmetric key exchange protocol that allows
+two parties to establish a shared secret over an insecure channel
 ## E
 - **Encryption** — Process of encoding data so only authorized parties can read it
 - **Enumeration** — Systematically gathering information about a target system
 - **Exploit** — Code or technique that takes advantage of a vulnerability
-
+- **ECC** — Elliptic Curve Cryptography, a form of asymmetric
+encryption that provides strong security with smaller key sizes
+- **Encryption** — The process of converting plaintext into ciphertext
+using a cipher and a key. The cipher is public but the key is secret
 ## F
 - **File** — A unit of stored data (text, code, image, config, etc).
 Everything in Linux is technically a file
@@ -83,7 +103,9 @@ systems, used by admins and penetration testers alike
 ## K
 - **KDC** — Key Distribution Center, service installed on the Domain
 Controller that creates Kerberos tickets on the network
-
+- **Key** — A string of bits used by a cipher to encrypt or decrypt
+data. Must remain secret (except for public keys in asymmetric
+encryption)
 ## L
 - **Linux Distributions** — Different versions of Linux built for different purposes:
   - **General Purpose:** Ubuntu | Debian | Fedora | Linux Mint
@@ -99,7 +121,9 @@ commands iteratively
 - **Metasploit** — Popular penetration testing framework for exploiting vulnerabilities
 - **MITM** — Man In The Middle attack, intercepting communication between
 two parties
-
+- **Modulo** — Mathematical operation that returns the remainder of a
+division. Written as % or mod
+  - Example: 10 % 3 = 1
 ## N
 - **NAT** — Network Address Translation, maps private IPs to a public IP
 - **Nmap** — Network scanning tool used to discover open ports and services
@@ -139,6 +163,10 @@ passing through a network interface
 traffic (file extension .pcap)
 - **pcap-filter** — Filter syntax used in tcpdump to filter packets
 by protocol, port, host, size and more
+- **PCIDSS** — Payment Card Industry Data Security Standard, a set of
+security standards designed to protect card payment data
+- **Plaintext** — The original readable message or data before
+encryption. Can be a document, image, or any binary data
 ## R
 - **Ransomware** — Malware that encrypts files and demands payment for decryption
 - **RCE** — Remote Code Execution, running code on a target system remotely
@@ -155,7 +183,8 @@ other programs on a network
   - w (Write) = 2
   - x (Execute) = 1
   - Example: rwx = 4+2+1 = 7
-
+- **RSA** — A widely used asymmetric encryption algorithm based on the
+mathematical difficulty of factoring large prime numbers
 ## S
 - **Service** — A process that runs continuously in the background, starts
 automatically at boot, runs without user interaction
@@ -198,6 +227,8 @@ manage network devices like routers, switches and servers
 without completing the TCP handshake, harder to detect in logs
 - **Subnet** — A subdivision of an IP network, represented with slash
 notation (ex: 192.168.0.1/24 covers 256 addresses)
+- **Symmetric Encryption** — Encryption that uses the same key for
+both encrypting and decrypting data. Examples: AES, DES, 3DES
 ## T
 - **Telnet** — Insecure remote access protocol (Port 23), replaced by SSH
 - **TGT** — Ticket Granting Ticket, allows users to request tickets to
@@ -226,6 +257,9 @@ state of a connection:
 TCP three-way handshake to detect open ports
 - **Timing Template** — Nmap setting (-T0 to -T5) that controls scan
 speed from paranoid (slowest, stealthiest) to insane (fastest)
+- **3DES** — Triple DES, applies DES encryption three times for a
+168-bit key (112-bit effective security). Deprecated in 2019,
+replaced by AES
 ## U
 - **UAC** — User Account Control, Windows security feature that controls
 administrative privileges
@@ -252,7 +286,13 @@ filter and investigate network traffic in real time
 - **XSS** — Cross-Site Scripting, injecting malicious scripts into web pages
 - **XZ Utils** — Linux compression tool targeted by a supply chain attack
 (CVE-2024-3094)
-
+- **XOR** — Exclusive OR, a logical binary operation that returns 1
+if bits are different and 0 if bits are the same. Widely used in
+cryptography and computing
+  - Symbol: ⊕ or ^
+  - 1 XOR 0 = 1
+  - 1 XOR 1 = 0
+  - 0 XOR 0 = 0
 ## Z
 - **Zero-Day** — A vulnerability unknown to the software vendor with no
 available patch
