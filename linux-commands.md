@@ -469,3 +469,32 @@ services, and vulnerabilities on a network
 | `nmap -oX filename` | XML output saved to file |
 | `nmap -oG filename` | Grep-able output (useful for grep and awk) |
 | `nmap -oA basename` | Output in all major formats at once |
+## Cryptography Operations
+
+### XOR Operation
+- **XOR** (Exclusive OR) — Logical operation that compares two bits:
+  - Returns 1 if the bits are DIFFERENT
+  - Returns 0 if the bits are the SAME
+  - Symbol: ⊕ or ^
+  - Example: 1 XOR 0 = 1 | 1 XOR 1 = 0 | 0 XOR 0 = 0
+
+### Modulo Operation
+- **Modulo** — Returns the remainder when dividing two numbers
+  - Written as % or mod
+  - Example: 10 % 3 = 1 (because 10 divided by 3 = 3 remainder 1)
+  - Example: 15 % 5 = 0 (because 15 divided by 5 = 3 remainder 0)
+
+### Encryption Standards Comparison
+| Standard | Key Size | Status |
+|----------|----------|--------|
+| DES | 56 bits | Broken in 1999, deprecated |
+| 3DES | 168 bits (112 effective) | Deprecated 2019 |
+| AES | 128, 192 or 256 bits | Current standard (since 2001) |
+
+### Symmetric vs Asymmetric Encryption
+| | Symmetric | Asymmetric |
+|---|---|---|
+| Keys used | Same key for encrypt and decrypt | Public key + Private key |
+| Speed | Fast | Slower |
+| Examples | AES, DES, 3DES | RSA, Diffie-Hellman, ECC |
+| Key sharing | Key must stay secret | Public key shared freely |
