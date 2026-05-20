@@ -498,3 +498,32 @@ services, and vulnerabilities on a network
 | Speed | Fast | Slower |
 | Examples | AES, DES, 3DES | RSA, Diffie-Hellman, ECC |
 | Key sharing | Key must stay secret | Public key shared freely |
+## Public Key Cryptography Commands
+
+### SSH Key Generation & Usage
+- `ssh-keygen` — Generate an SSH key pair (public and private key)
+- `ssh -i privateKeyFileName user@host` — Connect to a host using
+a specific private key file
+
+### GPG Commands
+- `gpg --import backup.key` — Import a GPG key from a backup file
+- `gpg --decrypt confidential_message.gpg` — Decrypt a GPG
+encrypted message
+
+### Key Types Comparison
+| Key Type | Algorithm | Description |
+|----------|-----------|-------------|
+| RSA | RSA | Most widely used, based on prime factorization |
+| DSA | DSA | Designed specifically for digital signatures |
+| ECDSA | Elliptic Curve DSA | Smaller key sizes, same security as DSA |
+| ECDSA-SK | ECDSA + Security Key | Hardware-based private key protection |
+| Ed25519 | EdDSA + Curve25519 | Modern, fast and highly secure |
+| Ed25519-SK | Ed25519 + Security Key | Hardware-based private key protection |
+
+### Symmetric vs Asymmetric vs Digital Signatures
+| | Symmetric | Asymmetric | Digital Signature |
+|---|---|---|---|
+| Purpose | Encrypt data | Encrypt data | Verify identity |
+| Keys | One shared key | Public + Private key | Private to sign, Public to verify |
+| Examples | AES, DES | RSA, Diffie-Hellman | DSA, ECDSA, Ed25519 |
+| Speed | Fast | Slow | Medium |
