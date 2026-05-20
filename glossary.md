@@ -19,7 +19,8 @@ RSA, Diffie-Hellman, ECC
 - **Bash** (Bourne Again Shell) — Most common shell on Linux, default on Kali Linux
 - **Bind Shell** — Shell that listens on a port on the target waiting for attacker
 - **Burp Suite** — Popular web security testing tool used to intercept web traffic
-
+- **Brute-Force Attack** — Attack method that tries every possible
+key or password combination until the correct one is found
 ## C
 - **cat** — Linux command meaning concatenate, used to display file contents
 - **Censys** — Search engine for Internet-connected hosts, websites, certificates,
@@ -42,6 +43,8 @@ after encryption. No information about the original plaintext should
 be recoverable without the key
 - **Cryptography** — The practice and study of techniques for secure
 communication and data protection in the presence of adversaries
+- **Cryptanalysis** — The study of methods to break or bypass
+cryptographic security systems without knowing the key
 ## D
 - **Daemon** — A background service running on Linux
 - **Delegation** — Process of granting privileges to a user over an OU
@@ -55,6 +58,14 @@ ciphertext back into plaintext using a cipher and a key
 key. Broken in under 24 hours in 1999, now deprecated
 - **Diffie-Hellman** — Asymmetric key exchange protocol that allows
 two parties to establish a shared secret over an insecure channel
+- **Dictionary Attack** — Attack method where the attacker tries
+common dictionary words or combinations to guess a password or key
+- **Diffie-Hellman** — Key exchange protocol that establishes a shared
+secret between two parties over an insecure channel
+- **Digital Signature** — A cryptographic method to verify the
+authenticity and integrity of a message or document
+- **DSA** — Digital Signature Algorithm, a public-key cryptography
+algorithm specifically designed for digital signatures
 ## E
 - **Encryption** — Process of encoding data so only authorized parties can read it
 - **Enumeration** — Systematically gathering information about a target system
@@ -63,6 +74,17 @@ two parties to establish a shared secret over an insecure channel
 encryption that provides strong security with smaller key sizes
 - **Encryption** — The process of converting plaintext into ciphertext
 using a cipher and a key. The cipher is public but the key is secret
+- **ECDSA** — Elliptic Curve Digital Signature Algorithm, a variant
+of DSA that uses elliptic curve cryptography for smaller key sizes
+with equivalent security
+- **ECDSA-SK** — ECDSA with Security Key, extends ECDSA by using
+hardware-based security keys for enhanced private key protection
+- **Ed25519** — A public-key signature system using EdDSA with
+Curve25519, modern, fast and highly secure
+- **Ed25519-SK** — Ed25519 with Security Key, uses hardware-based
+security keys for improved private key protection
+- **EdDSA** — Edwards-curve Digital Signature Algorithm, the algorithm
+used by Ed25519
 ## F
 - **File** — A unit of stored data (text, code, image, config, etc).
 Everything in Linux is technically a file
@@ -80,6 +102,9 @@ with a computer
 functions and aliases in the current session
 - **Get-Content** — PowerShell cmdlet to read and display file contents,
 similar to cat in Linux
+- **GPG** — GNU Privacy Guard, an open-source implementation of the
+OpenPGP standard used for encrypting and signing data
+- **GnuPG** — Another name for GPG (GNU Privacy Guard)
 ## H
 - **Hash** — A fixed-length string generated from data, used to verify integrity
 - **Have I Been Pwned** — Tool that tells you if an email address has appeared
@@ -167,6 +192,14 @@ by protocol, port, host, size and more
 security standards designed to protect card payment data
 - **Plaintext** — The original readable message or data before
 encryption. Can be a document, image, or any binary data
+- **PGP** — Pretty Good Privacy, software that implements encryption
+for files, digital signing and secure communication
+- **Private Key** — Secret key kept by the owner, used to decrypt
+data or sign messages in asymmetric encryption
+- **Public Key** — Key shared openly with everyone, used to encrypt
+data or verify signatures in asymmetric encryption
+- **Public Key Cryptography** — Encryption system using two
+mathematically linked keys: a public key and a private key
 ## R
 - **Ransomware** — Malware that encrypts files and demands payment for decryption
 - **RCE** — Remote Code Execution, running code on a target system remotely
@@ -184,6 +217,9 @@ other programs on a network
   - x (Execute) = 1
   - Example: rwx = 4+2+1 = 7
 - **RSA** — A widely used asymmetric encryption algorithm based on the
+mathematical difficulty of factoring large prime numbers
+- **RSA** — A widely used asymmetric encryption algorithm that enables
+secure data transmission over insecure channels, based on the
 mathematical difficulty of factoring large prime numbers
 ## S
 - **Service** — A process that runs continuously in the background, starts
@@ -229,6 +265,8 @@ without completing the TCP handshake, harder to detect in logs
 notation (ex: 192.168.0.1/24 covers 256 addresses)
 - **Symmetric Encryption** — Encryption that uses the same key for
 both encrypting and decrypting data. Examples: AES, DES, 3DES
+- **ssh-keygen** — Command-line tool used to generate SSH key pairs
+(public and private keys)
 ## T
 - **Telnet** — Insecure remote access protocol (Port 23), replaced by SSH
 - **TGT** — Ticket Granting Ticket, allows users to request tickets to
