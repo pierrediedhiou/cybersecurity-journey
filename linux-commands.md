@@ -527,3 +527,8 @@ encrypted message
 | Keys | One shared key | Public + Private key | Private to sign, Public to verify |
 | Examples | AES, DES | RSA, Diffie-Hellman | DSA, ECDSA, Ed25519 |
 | Speed | Fast | Slow | Medium |
+## Hashcat
+- **Hashcat** — Password cracking tool that uses hash files and
+wordlists to recover plaintext passwords
+
+### Hashcat Basic Syntax
