@@ -21,6 +21,9 @@ RSA, Diffie-Hellman, ECC
 - **Burp Suite** — Popular web security testing tool used to intercept web traffic
 - **Brute-Force Attack** — Attack method that tries every possible
 key or password combination until the correct one is found
+- **bcrypt** — A password hashing function based on the Blowfish
+cipher, commonly used on OpenBSD, FreeBSD and Linux systems.
+Prefix: $2b$, $2y$, $2a$
 ## C
 - **cat** — Linux command meaning concatenate, used to display file contents
 - **Censys** — Search engine for Internet-connected hosts, websites, certificates,
@@ -66,6 +69,8 @@ secret between two parties over an insecure channel
 authenticity and integrity of a message or document
 - **DSA** — Digital Signature Algorithm, a public-key cryptography
 algorithm specifically designed for digital signatures
+- **Digest** — Another name for a hash value, the fixed-size output
+produced by a hash function
 ## E
 - **Encryption** — Process of encoding data so only authorized parties can read it
 - **Enumeration** — Systematically gathering information about a target system
@@ -85,6 +90,9 @@ Curve25519, modern, fast and highly secure
 security keys for improved private key protection
 - **EdDSA** — Edwards-curve Digital Signature Algorithm, the algorithm
 used by Ed25519
+- **Encoding** — The process of converting data from one form to
+another to make it compatible with a specific system. Reversible
+without a key (ex: Base64, URL encoding)
 ## F
 - **File** — A unit of stored data (text, code, image, config, etc).
 Everything in Linux is technically a file
@@ -105,6 +113,9 @@ similar to cat in Linux
 - **GPG** — GNU Privacy Guard, an open-source implementation of the
 OpenPGP standard used for encrypting and signing data
 - **GnuPG** — Another name for GPG (GNU Privacy Guard)
+- **GPU** — Graphics Processing Unit, specialized hardware originally
+for image processing, also widely used for password cracking due to
+its ability to perform massive parallel computations
 ## H
 - **Hash** — A fixed-length string generated from data, used to verify integrity
 - **Have I Been Pwned** — Tool that tells you if an email address has appeared
@@ -114,6 +125,17 @@ server memory
 - **Honeypot** — A decoy system designed to attract and detect attackers
 - **Hex (Hexadecimal)** — Base-16 number system used to display raw
 packet data in network analysis tools
+- **Hash Collision** — When two different inputs produce the same
+hash output. Considered a weakness in a hash function
+- **Hash Function** — A function that takes input data of any size
+and produces a fixed-size output called a hash value or digest
+- **Hash Value** — A fixed-size string of characters computed by a
+hash function from an input of any size
+- **Hashcat** — A popular password cracking tool that uses wordlists
+and hash types to recover plaintext passwords
+- **HMAC** — Keyed-Hash Message Authentication Code, uses a
+cryptographic hash function combined with a secret key to verify
+the authenticity and integrity of data
 ## I
 - **Injection** — Attack inserting malicious code into an input field
 - **IP Address** — Internet Protocol Address, a unique numerical label assigned
@@ -149,6 +171,11 @@ two parties
 - **Modulo** — Mathematical operation that returns the remainder of a
 division. Written as % or mod
   - Example: 10 % 3 = 1
+  - **MD5** — Message-Digest Algorithm 5, a widely used hash function
+that produces a 128-bit hash value. Considered cryptographically
+broken and unsuitable for security use
+- **md5crypt** — MD5-based password hashing originally developed for
+FreeBSD. Prefix: $1$
 ## N
 - **NAT** — Network Address Translation, maps private IPs to a public IP
 - **Nmap** — Network scanning tool used to discover open ports and services
@@ -161,6 +188,8 @@ networked devices (UDP Port 123)
 open ports, services and operating systems on a network
 - **NTP** — Network Time Protocol, used to synchronize clocks across
 networked devices (UDP Port 123)
+- **NTLM** — NT LAN Manager, a Microsoft authentication protocol
+that uses hashing to store and verify Windows passwords
 ## O
 - **Open Port** — A port actively accepting connections on a device
 - **OpenSSL** — Cryptographic library that powers HTTPS encryption
@@ -200,6 +229,8 @@ data or sign messages in asymmetric encryption
 data or verify signatures in asymmetric encryption
 - **Public Key Cryptography** — Encryption system using two
 mathematically linked keys: a public key and a private key
+- **Password Salting** — Adding a random value (salt) to a password
+before hashing it, making rainbow table attacks ineffective
 ## R
 - **Ransomware** — Malware that encrypts files and demands payment for decryption
 - **RCE** — Remote Code Execution, running code on a target system remotely
@@ -221,6 +252,8 @@ mathematical difficulty of factoring large prime numbers
 - **RSA** — A widely used asymmetric encryption algorithm that enables
 secure data transmission over insecure channels, based on the
 mathematical difficulty of factoring large prime numbers
+- **Rainbow Table** — A precomputed lookup table of hash values to
+plaintext passwords, used to quickly crack password hashes
 ## S
 - **Service** — A process that runs continuously in the background, starts
 automatically at boot, runs without user interaction
@@ -267,6 +300,12 @@ notation (ex: 192.168.0.1/24 covers 256 addresses)
 both encrypting and decrypting data. Examples: AES, DES, 3DES
 - **ssh-keygen** — Command-line tool used to generate SSH key pairs
 (public and private keys)
+- **SHA1** — Secure Hash Algorithm 1, produces a 160-bit hash value.
+No longer considered secure for cryptographic use
+- **SHA256** — Secure Hash Algorithm 256, produces a 256-bit hash
+value. Part of the SHA-2 family, widely used and considered secure
+- **scrypt** — A password-based key derivation function designed to
+be memory-intensive to resist brute-force attacks. Prefix: $7$
 ## T
 - **Telnet** — Insecure remote access protocol (Port 23), replaced by SSH
 - **TGT** — Ticket Granting Ticket, allows users to request tickets to
@@ -315,6 +354,8 @@ restore of files
 - **Vulnerability** — A weakness in a system that can be exploited
 - **Variable** — A named storage location in a script that holds a value
 to be reused (ex: name="Pierre")
+- **VM** — Virtual Machine, a software-based emulation of a physical
+computer that runs its own operating system
 ## W
 - **Web Shell** — Malicious script uploaded to a web server giving
 browser-based shell access
@@ -331,6 +372,9 @@ cryptography and computing
   - 1 XOR 0 = 1
   - 1 XOR 1 = 0
   - 0 XOR 0 = 0
+  ## Y
+- **yescrypt** — A modern scalable password hashing scheme, default
+and recommended choice on new Linux systems. Prefix: $y$
 ## Z
 - **Zero-Day** — A vulnerability unknown to the software vendor with no
 available patch
