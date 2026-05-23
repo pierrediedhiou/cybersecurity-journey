@@ -147,6 +147,12 @@ network information. Full path: C:\Windows\System32\ipconfig.exe
 - **ISP** — Internet Service Provider, the company providing your internet connection
 - **Invoke-Command** — PowerShell cmdlet for executing commands on remote
 systems, used by admins and penetration testers alike
+## J
+- **John the Ripper** — Free open source password cracking tool that
+automatically detects hash types and supports wordlist, single and
+brute force attack modes. Pre-installed on Kali Linux
+- **Jumbo John** — The most popular extended version of John the
+Ripper with additional hash support and features
 ## K
 - **KDC** — Key Distribution Center, service installed on the Domain
 Controller that creates Kerberos tickets on the network
@@ -190,6 +196,11 @@ open ports, services and operating systems on a network
 networked devices (UDP Port 123)
 - **NTLM** — NT LAN Manager, a Microsoft authentication protocol
 that uses hashing to store and verify Windows passwords
+- **NP** — Non-deterministic Polynomial Time, a class of computational
+problems where a given solution can be checked quickly but finding
+the solution itself may be very hard
+- **NThash** — The hash format used by modern Windows operating systems
+to store user and service passwords (also called NTLM hash)
 ## O
 - **Open Port** — A port actively accepting connections on a device
 - **OpenSSL** — Cryptographic library that powers HTTPS encryption
@@ -231,6 +242,10 @@ data or verify signatures in asymmetric encryption
 mathematically linked keys: a public key and a private key
 - **Password Salting** — Adding a random value (salt) to a password
 before hashing it, making rainbow table attacks ineffective
+- **P (Polynomial Time)** — A class of computational problems whose
+solution can be found efficiently in polynomial time (not exponential)
+- **Password Cracking** — The process of recovering plaintext passwords
+from stored hash values using tools like John the Ripper or Hashcat
 ## R
 - **Ransomware** — Malware that encrypts files and demands payment for decryption
 - **RCE** — Remote Code Execution, running code on a target system remotely
@@ -254,6 +269,10 @@ secure data transmission over insecure channels, based on the
 mathematical difficulty of factoring large prime numbers
 - **Rainbow Table** — A precomputed lookup table of hash values to
 plaintext passwords, used to quickly crack password hashes
+- **Rockyou.txt** — The most widely used password wordlist in
+cybersecurity, containing over 14 million real passwords leaked from
+the RockYou data breach. Pre-installed on Kali Linux at
+/usr/share/wordlists/rockyou.txt
 ## S
 - **Service** — A process that runs continuously in the background, starts
 automatically at boot, runs without user interaction
@@ -361,6 +380,11 @@ computer that runs its own operating system
 browser-based shell access
 - **Wireshark** — Graphical network packet analyzer used to capture,
 filter and investigate network traffic in real time
+- **Word Mangling** — The process of applying rules to modify words
+in a wordlist to generate password variations (ex: password →
+Password1!)
+- **Wordlist** — A text file containing a list of words or passwords
+used in dictionary attacks for password cracking
 ## X
 - **XSS** — Cross-Site Scripting, injecting malicious scripts into web pages
 - **XZ Utils** — Linux compression tool targeted by a supply chain attack
