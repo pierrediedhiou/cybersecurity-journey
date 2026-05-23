@@ -532,3 +532,10 @@ encrypted message
 wordlists to recover plaintext passwords
 
 ### Hashcat Basic Syntax
+## John the Ripper
+- **John the Ripper** — Free open source password cracking tool,
+beginner friendly with automatic hash type detection
+- **Jumbo John** — The most popular extended version of John the
+Ripper with more features and hash support
+
+### John the Ripper Basic Syntax
