@@ -1,0 +1,52 @@
+- `john` — Invokes the John the Ripper program
+- `[options]` — Specifies the options you want to use
+- `[file path]` — File containing the hash to crack
+
+### John the Ripper Common Commands
+| Command | Explanation |
+|---------|-------------|
+| `john hashfile.txt` | Auto detect hash type and crack |
+| `john --wordlist=/path/to/wordlist hashfile.txt` | Crack using a wordlist |
+| `john --show hashfile.txt` | Show all previously cracked passwords |
+| `john --format=NT hashfile.txt` | Specify hash format manually |
+| `john --list=formats` | List all supported hash formats |
+
+### John Attack Modes
+| Mode | Command | Description |
+|------|---------|-------------|
+| **Wordlist** | `--wordlist=rockyou.txt` | Try every word in a wordlist |
+| **Single** | `--single` | Use username and variations to guess |
+| **Incremental** | `--incremental` | Brute force every possible combination |
+| **Rules** | `--rules` | Apply mutation rules to wordlist words |
+
+### John vs Hashcat Comparison
+| | John the Ripper | Hashcat |
+|---|---|---|
+| **Best for** | Beginners, quick cracks | Advanced, large scale cracking |
+| **Speed** | Uses CPU | Uses GPU (much faster) |
+| **Hash detection** | Automatic | Manual (-m flag) |
+| **Ease of use** | Easier | More complex |
+| **Pre-installed** | Kali Linux | Kali Linux |
+
+### John Word Mangling Rules
+Rules allow John to modify wordlist words to match common
+password patterns:
+
+#### Rule Modifiers
+| Modifier | Description |
+|----------|-------------|
+| `Az` | Appends characters to the end of the word |
+| `A0` | Prepends characters to the beginning of the word |
+| `c` | Capitalises the character positionally |
+
+#### Character Sets (used inside square brackets)
+| Pattern | Description |
+|---------|-------------|
+| `[0-9]` | Numbers 0 to 9 |
+| `[0]` | Only the number 0 |
+| `[A-z]` | Both uppercase and lowercase letters |
+| `[A-Z]` | Uppercase letters only |
+| `[a-z]` | Lowercase letters only |
+| `[!£$%@]` | Special symbols |
+
+#### Common Rule Example
