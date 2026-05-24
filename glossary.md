@@ -50,6 +50,8 @@ communication and data protection in the presence of adversaries
 cryptographic security systems without knowing the key
 - **CIDR** — Classless Inter-Domain Routing, a notation for specifying
 IP address ranges (ex: 192.168.0.0/24 covers 256 addresses)
+- **Concurrency** — In Metasploit, the number of targets being scanned
+simultaneously during a scan module
 ## D
 - **Daemon** — A background service running on Linux
 - **Delegation** — Process of granting privileges to a user over an OU
@@ -201,6 +203,9 @@ graphical interface and automation features
 in memory, provides a powerful interactive shell on the target system
 - **Module** — A self-contained piece of code in Metasploit that
 performs a specific task (exploit, scanner, payload, etc)
+- **msfvenom** — Metasploit command-line tool used to generate
+standalone payloads in various formats (exe, php, python, etc)
+for use outside of msfconsole
 ## N
 - **NAT** — Network Address Translation, maps private IPs to a public IP
 - **Nmap** — Network scanning tool used to discover open ports and services
@@ -393,6 +398,8 @@ speed from paranoid (slowest, stealthiest) to insane (fastest)
 - **3DES** — Triple DES, applies DES encryption three times for a
 168-bit key (112-bit effective security). Deprecated in 2019,
 replaced by AES
+- **Threads** — In Metasploit scanning, the number of simultaneous
+processes running during a scan. More threads = faster but noisier
 ## U
 - **UAC** — User Account Control, Windows security feature that controls
 administrative privileges
@@ -424,6 +431,9 @@ in a wordlist to generate password variations (ex: password →
 Password1!)
 - **Wordlist** — A text file containing a list of words or passwords
 used in dictionary attacks for password cracking
+- **Workspace** — A Metasploit feature that organizes scan results and
+data into separate project spaces, useful when working on multiple
+targets or engagements
 ## X
 - **XSS** — Cross-Site Scripting, injecting malicious scripts into web pages
 - **XZ Utils** — Linux compression tool targeted by a supply chain attack
