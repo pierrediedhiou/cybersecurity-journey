@@ -48,6 +48,8 @@ be recoverable without the key
 communication and data protection in the presence of adversaries
 - **Cryptanalysis** — The study of methods to break or bypass
 cryptographic security systems without knowing the key
+- **CIDR** — Classless Inter-Domain Routing, a notation for specifying
+IP address ranges (ex: 192.168.0.0/24 covers 256 addresses)
 ## D
 - **Daemon** — A background service running on Linux
 - **Delegation** — Process of granting privileges to a user over an OU
@@ -93,6 +95,8 @@ used by Ed25519
 - **Encoding** — The process of converting data from one form to
 another to make it compatible with a specific system. Reversible
 without a key (ex: Base64, URL encoding)
+- **Exploit** — A piece of code that takes advantage of a vulnerability
+present on a target system to gain access or cause unintended behavior
 ## F
 - **File** — A unit of stored data (text, code, image, config, etc).
 Everything in Linux is technically a file
@@ -167,6 +171,10 @@ encryption)
 - **Localhost** — The IP address 127.0.0.1, always refers to your own machine
 - **Loop** — Programming/scripting construct used to repeat a set of
 commands iteratively
+- **LHOST** — Local Host, the IP address of the attacking machine used
+in Metasploit reverse shell connections
+- **LPORT** — Local Port, the port on the attacking machine that
+listens for incoming reverse shell connections
 ## M
 - **Machine Account** — Windows computer account, always ends with $ symbol
 - **Malware** — Malicious software designed to damage or gain unauthorized access
@@ -182,6 +190,17 @@ that produces a 128-bit hash value. Considered cryptographically
 broken and unsuitable for security use
 - **md5crypt** — MD5-based password hashing originally developed for
 FreeBSD. Prefix: $1$
+- **Metasploit** — The most widely used open source exploitation
+framework, supports all phases of penetration testing from
+reconnaissance to post-exploitation
+- **Metasploit Framework** — The free open source command-line version
+of Metasploit, pre-installed on Kali Linux
+- **Metasploit Pro** — The commercial version of Metasploit with a
+graphical interface and automation features
+- **Meterpreter** — An advanced Metasploit payload that runs entirely
+in memory, provides a powerful interactive shell on the target system
+- **Module** — A self-contained piece of code in Metasploit that
+performs a specific task (exploit, scanner, payload, etc)
 ## N
 - **NAT** — Network Address Translation, maps private IPs to a public IP
 - **Nmap** — Network scanning tool used to discover open ports and services
@@ -246,6 +265,12 @@ before hashing it, making rainbow table attacks ineffective
 solution can be found efficiently in polynomial time (not exponential)
 - **Password Cracking** — The process of recovering plaintext passwords
 from stored hash values using tools like John the Ripper or Hashcat
+- **Payload** — Code that runs on the target system after an exploit
+succeeds. Determines what happens after gaining access:
+  - **Singles** — Self-contained, no download needed
+  - **Stagers** — Small payload that sets up connection, downloads stage
+  - **Stages** — Downloaded by stager, enables larger payloads
+  - **Adapters** — Converts payloads into different formats
 ## R
 - **Ransomware** — Malware that encrypts files and demands payment for decryption
 - **RCE** — Remote Code Execution, running code on a target system remotely
@@ -273,6 +298,12 @@ plaintext passwords, used to quickly crack password hashes
 cybersecurity, containing over 14 million real passwords leaked from
 the RockYou data breach. Pre-installed on Kali Linux at
 /usr/share/wordlists/rockyou.txt
+- **RHOSTS** — Remote Hosts, the target IP address or range set in
+Metasploit modules
+- **RPORT** — Remote Port, the port on the target system running the
+vulnerable service
+- **Reverse Shell** — A connection initiated from the target back to
+the attacker's machine, used to gain remote control
 ## S
 - **Service** — A process that runs continuously in the background, starts
 automatically at boot, runs without user interaction
@@ -325,6 +356,12 @@ No longer considered secure for cryptographic use
 value. Part of the SHA-2 family, widely used and considered secure
 - **scrypt** — A password-based key derivation function designed to
 be memory-intensive to resist brute-force attacks. Prefix: $7$
+- **Session** — An active connection established between Metasploit
+and a target system, identified by a Session ID
+- **Staged Payload** — A two-part payload where a small stager is
+sent first to set up the connection, then downloads the larger stage
+- **Stager** — The first part of a staged payload, sets up a
+communication channel between attacker and target
 ## T
 - **Telnet** — Insecure remote access protocol (Port 23), replaced by SSH
 - **TGT** — Ticket Granting Ticket, allows users to request tickets to
@@ -375,6 +412,8 @@ restore of files
 to be reused (ex: name="Pierre")
 - **VM** — Virtual Machine, a software-based emulation of a physical
 computer that runs its own operating system
+- **Vulnerability** — A design, coding or logic flaw in a system that
+can be exploited to disclose information or execute unauthorized code
 ## W
 - **Web Shell** — Malicious script uploaded to a web server giving
 browser-based shell access
