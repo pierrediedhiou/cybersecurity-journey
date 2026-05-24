@@ -539,3 +539,53 @@ beginner friendly with automatic hash type detection
 Ripper with more features and hash support
 
 ### John the Ripper Basic Syntax
+## Metasploit
+
+### Launching Metasploit
+- `msfconsole` — Launch the Metasploit Framework console
+
+### Metasploit Basic Commands
+| Command | Explanation |
+|---------|-------------|
+| `search <keyword>` | Search for a module by name or keyword |
+| `use <module>` | Select a module to use |
+| `info` | Show information about the current module |
+| `show options` | Display required and optional parameters |
+| `show payloads` | List compatible payloads for current module |
+| `set <option> <value>` | Set a parameter value |
+| `setg <option> <value>` | Set a global parameter value for all modules |
+| `unsetg <option>` | Clear a global parameter value |
+| `run` or `exploit` | Execute the current module |
+| `back` | Go back to the main console |
+| `sessions` | List all active sessions |
+| `sessions -i <ID>` | Interact with a specific session |
+
+### Metasploit Common Parameters
+| Parameter | Full Name | Description |
+|-----------|-----------|-------------|
+| `RHOSTS` | Remote Hosts | IP address of the target system |
+| `RPORT` | Remote Port | Port on the target system |
+| `PAYLOAD` | Payload | The payload to use with the exploit |
+| `LHOST` | Local Host | IP address of your attacking machine |
+| `LPORT` | Local Port | Port on your machine for reverse shell |
+| `SESSION` | Session | ID of an existing connection to reuse |
+
+### Metasploit Payload Types
+| Type | Description |
+|------|-------------|
+| **Singles** | Self-contained payloads that run without downloading anything extra (ex: add user, launch notepad) |
+| **Stagers** | Small payload that sets up a connection channel then downloads the rest of the payload |
+| **Stages** | Downloaded by the stager, allows larger sized payloads |
+| **Adapters** | Wraps payloads to convert them into different formats (ex: PowerShell) |
+
+### Identifying Payload Types by Name
+| Example | Type | Explanation |
+|---------|------|-------------|
+| `generic/shell_reverse_tcp` | Single/Inline | Uses / separator, self-contained |
+| `windows/x64/shell/reverse_tcp` | Staged | Uses / separator with extra stage directory |
+
+### Metasploit Two Versions
+| Version | Type | Interface |
+|---------|------|-----------|
+| **Metasploit Pro** | Commercial | Graphical User Interface (GUI) |
+| **Metasploit Framework** | Open Source | Command Line (msfconsole) |
