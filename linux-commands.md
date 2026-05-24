@@ -589,3 +589,49 @@ Ripper with more features and hash support
 |---------|------|-----------|
 | **Metasploit Pro** | Commercial | Graphical User Interface (GUI) |
 | **Metasploit Framework** | Open Source | Command Line (msfconsole) |
+## Metasploit: Exploitation & Advanced Commands
+
+### Launching & Payload Generation
+| Command | Explanation |
+|---------|-------------|
+| `msfconsole` | Launch the Metasploit Framework console |
+| `msfvenom` | Generate standalone payloads outside of Metasploit |
+
+### Metasploit Database Commands
+| Command | Explanation |
+|---------|-------------|
+| `db_status` | Check the database connection status |
+| `workspace` | List all available workspaces |
+| `workspace <name>` | Switch to a specific workspace |
+| `workspace -a <name>` | Create a new workspace |
+| `workspace -d <name>` | Delete a workspace |
+| `workspace -h` | List all available workspace options |
+| `help` | Show Database Backends Commands menu |
+
+### Metasploit Session Management
+| Command | Explanation |
+|---------|-------------|
+| `sessions` | List all active sessions |
+| `sessions -i <ID>` | Interact with a specific session |
+| `Control + Z` | Background a session (keeps it alive) |
+| `Control + C` | Abort/terminate a session |
+
+### Metasploit Scanner Module Parameters
+| Parameter | Explanation |
+|-----------|-------------|
+| `CONCURRENCY` | Number of targets to be scanned simultaneously |
+| `PORTS` | Port range to scan (1-1000 scans ports 1 to 1000, unlike Nmap) |
+| `RHOSTS` | Target IP or network range to scan |
+| `THREADS` | Number of simultaneous threads (more = faster scan) |
+
+### Useful Metasploit Modules
+| Module | Explanation |
+|--------|-------------|
+| `scanner/discovery/udp_sweep` | Quickly identify services running over UDP |
+| `info` | Show detailed information about any module |
+
+### Important Notes
+- Metasploit port scanning (1-1000) scans ports 1 to 1000 exactly
+- Nmap default scans the 1000 most commonly used ports (not 1-1000)
+- More THREADS = faster scan but more noisy on the network
+- Always use `db_status` to confirm database is connected before scanning
