@@ -635,3 +635,94 @@ Ripper with more features and hash support
 - Nmap default scans the 1000 most commonly used ports (not 1-1000)
 - More THREADS = faster scan but more noisy on the network
 - Always use `db_status` to confirm database is connected before scanning
+## Meterpreter Commands
+
+### About Meterpreter
+- Runs entirely in memory on the target system
+- Does not write itself to disk (harder to detect)
+- Not installed on the target system permanently
+- Loaded as a Metasploit payload after successful exploitation
+
+### Meterpreter Core Commands
+| Command | Explanation |
+|---------|-------------|
+| `background` | Background the current session (keeps it alive) |
+| `exit` | Terminate the Meterpreter session |
+| `guid` | Get the session GUID (Globally Unique Identifier) |
+| `help` | Display the help menu |
+| `info` | Display information about a Post module |
+| `irb` | Open an interactive Ruby shell on the current session |
+| `load` | Load one or more Meterpreter extensions |
+| `migrate` | Migrate Meterpreter to another process |
+| `run` | Execute a Meterpreter script or Post module |
+| `sessions` | Quickly switch to another session |
+
+### Meterpreter File System Commands
+| Command | Explanation |
+|---------|-------------|
+| `cd <directory>` | Change directory |
+| `ls` or `dir` | List files in the current directory |
+| `pwd` | Print the current working directory |
+| `cat <file>` | Display the contents of a file |
+| `edit <file>` | Edit a file |
+| `rm <file>` | Delete a file |
+| `search <keyword>` | Search for files on the target system |
+| `upload <file>` | Upload a file or directory to the target |
+| `download <file>` | Download a file or directory from the target |
+
+### Meterpreter Networking Commands
+| Command | Explanation |
+|---------|-------------|
+| `arp` | Display the host ARP cache |
+| `ifconfig` | Display network interfaces on the target system |
+| `netstat` | Display active network connections |
+| `portfwd` | Forward a local port to a remote service |
+| `route` | View and modify the routing table |
+
+### Meterpreter System Commands
+| Command | Explanation |
+|---------|-------------|
+| `clearev` | Clear the event logs on the target |
+| `execute <command>` | Execute a command on the target |
+| `getpid` | Show the current process identifier |
+| `getuid` | Show the user Meterpreter is running as |
+| `kill <PID>` | Terminate a process by PID |
+| `pkill <name>` | Terminate processes by name |
+| `ps` | List all running processes |
+| `reboot` | Reboot the remote computer |
+| `shell` | Drop into a system command shell |
+| `shutdown` | Shut down the remote computer |
+| `sysinfo` | Get system information including OS details |
+
+### Meterpreter Surveillance Commands
+| Command | Explanation |
+|---------|-------------|
+| `idletime` | Show how long the remote user has been idle |
+| `keyscan_start` | Start capturing keystrokes on the target |
+| `keyscan_dump` | Dump the captured keystroke buffer |
+| `keyscan_stop` | Stop capturing keystrokes |
+| `screenshare` | Watch the remote user's desktop in real time |
+| `screenshot` | Take a screenshot of the target desktop |
+| `record_mic` | Record audio from the target microphone |
+| `webcam_list` | List available webcams on the target |
+| `webcam_snap` | Take a snapshot from a webcam |
+| `webcam_stream` | Stream live video from a webcam |
+| `webcam_chat` | Start a video chat with the target |
+
+### Meterpreter Privilege & Password Commands
+| Command | Explanation |
+|---------|-------------|
+| `getsystem` | Attempt to elevate privileges to local system |
+| `hashdump` | Dump the contents of the SAM database |
+
+### Meterpreter Command Categories
+- Core commands
+- File system commands
+- Networking commands
+- System commands
+- User interface commands
+- Webcam commands
+- Audio output commands
+- Elevate commands
+- Password database commands
+- Timestomp commands
