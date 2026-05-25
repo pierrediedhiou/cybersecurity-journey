@@ -122,6 +122,10 @@ OpenPGP standard used for encrypting and signing data
 - **GPU** — Graphics Processing Unit, specialized hardware originally
 for image processing, also widely used for password cracking due to
 its ability to perform massive parallel computations
+- **GUID** — Globally Unique Identifier, a unique reference number
+used to identify a Meterpreter session or object
+- **getsystem** — Meterpreter command that attempts to automatically
+escalate privileges to SYSTEM level on a Windows target
 ## H
 - **Hash** — A fixed-length string generated from data, used to verify integrity
 - **Have I Been Pwned** — Tool that tells you if an email address has appeared
@@ -142,6 +146,8 @@ and hash types to recover plaintext passwords
 - **HMAC** — Keyed-Hash Message Authentication Code, uses a
 cryptographic hash function combined with a secret key to verify
 the authenticity and integrity of data
+- **hashdump** — Meterpreter command that extracts password hashes
+from the Windows SAM database for offline cracking
 ## I
 - **Injection** — Attack inserting malicious code into an input field
 - **IP Address** — Internet Protocol Address, a unique numerical label assigned
@@ -165,6 +171,9 @@ Controller that creates Kerberos tickets on the network
 - **Key** — A string of bits used by a cipher to encrypt or decrypt
 data. Must remain secret (except for public keys in asymmetric
 encryption)
+- **Keylogger** — A tool or technique that records keystrokes on a
+target system. In Meterpreter: keyscan_start, keyscan_dump,
+keyscan_stop
 ## L
 - **Linux Distributions** — Different versions of Linux built for different purposes:
   - **General Purpose:** Ubuntu | Debian | Fedora | Linux Mint
@@ -206,6 +215,14 @@ performs a specific task (exploit, scanner, payload, etc)
 - **msfvenom** — Metasploit command-line tool used to generate
 standalone payloads in various formats (exe, php, python, etc)
 for use outside of msfconsole
+- **Migrate** — Meterpreter command that moves the payload from one
+process to another on the target, used to gain stability or avoid
+detection
+- **Meterpreter** — An advanced Metasploit payload that runs entirely
+in memory on the target system without writing to disk, making it
+harder to detect. Provides a powerful interactive shell with
+commands for file management, networking, surveillance and
+privilege escalation
 ## N
 - **NAT** — Network Address Translation, maps private IPs to a public IP
 - **Nmap** — Network scanning tool used to discover open ports and services
@@ -276,6 +293,10 @@ succeeds. Determines what happens after gaining access:
   - **Stagers** — Small payload that sets up connection, downloads stage
   - **Stages** — Downloaded by stager, enables larger payloads
   - **Adapters** — Converts payloads into different formats
+  - **portfwd** — Meterpreter command that forwards a local port to a
+remote service, used for pivoting into internal networks
+- **Privilege Escalation** — The process of gaining higher access
+than originally permitted. In Meterpreter: getsystem
 ## R
 - **Ransomware** — Malware that encrypts files and demands payment for decryption
 - **RCE** — Remote Code Execution, running code on a target system remotely
@@ -367,6 +388,11 @@ and a target system, identified by a Session ID
 sent first to set up the connection, then downloads the larger stage
 - **Stager** — The first part of a staged payload, sets up a
 communication channel between attacker and target
+- **SAM Database** — Security Account Manager, a Windows database
+that stores user account password hashes. Can be dumped using
+hashdump in Meterpreter
+- **screenshare** — Meterpreter command that allows real-time viewing
+of the target user's desktop
 ## T
 - **Telnet** — Insecure remote access protocol (Port 23), replaced by SSH
 - **TGT** — Ticket Granting Ticket, allows users to request tickets to
@@ -400,6 +426,8 @@ speed from paranoid (slowest, stealthiest) to insane (fastest)
 replaced by AES
 - **Threads** — In Metasploit scanning, the number of simultaneous
 processes running during a scan. More threads = faster but noisier
+- **Timestomp** — A Meterpreter technique used to modify file
+timestamps to hide evidence of activity on a target system
 ## U
 - **UAC** — User Account Control, Windows security feature that controls
 administrative privileges
