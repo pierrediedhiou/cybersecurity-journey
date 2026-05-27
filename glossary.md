@@ -52,6 +52,11 @@ cryptographic security systems without knowing the key
 IP address ranges (ex: 192.168.0.0/24 covers 256 addresses)
 - **Concurrency** — In Metasploit, the number of targets being scanned
 simultaneously during a scan module
+- **CSS** — Cascading Style Sheets, describes the visual appearance
+of a web application including colors, fonts and layouts
+- **CSP** — Content Security Policy, an HTTP security header that
+helps prevent XSS attacks by controlling where resources can be
+loaded from
 ## D
 - **Daemon** — A background service running on Linux
 - **Delegation** — Process of granting privileges to a user over an OU
@@ -75,6 +80,8 @@ authenticity and integrity of a message or document
 algorithm specifically designed for digital signatures
 - **Digest** — Another name for a hash value, the fixed-size output
 produced by a hash function
+- **Database** — A structured system for storing, modifying and
+retrieving information used by web applications
 ## E
 - **Encryption** — Process of encoding data so only authorized parties can read it
 - **Enumeration** — Systematically gathering information about a target system
@@ -106,7 +113,8 @@ Everything in Linux is technically a file
 - **Firewall** — Security system that monitors and controls network traffic
 - **Fish** — User friendly Linux shell with autocompletion features
 - **FTP** — File Transfer Protocol, used to transfer files over a network (Port 21)
-
+- **Fragment** — The part of a URL starting with # that points to
+a specific section of a webpage
 ## G
 - **GPO** — Group Policy Objects, collection of settings applied to
 Organizational Units in Active Directory
@@ -148,6 +156,10 @@ cryptographic hash function combined with a secret key to verify
 the authenticity and integrity of data
 - **hashdump** — Meterpreter command that extracts password hashes
 from the Windows SAM database for offline cracking
+- **HTML** — Hypertext Markup Language, the foundational language
+that instructs web browsers what to display and how to display it
+- **HSTS** — HTTP Strict Transport Security, a header that forces
+browsers to always connect over HTTPS
 ## I
 - **Injection** — Attack inserting malicious code into an input field
 - **IP Address** — Internet Protocol Address, a unique numerical label assigned
@@ -165,6 +177,8 @@ automatically detects hash types and supports wordlist, single and
 brute force attack modes. Pre-installed on Kali Linux
 - **Jumbo John** — The most popular extended version of John the
 Ripper with additional hash support and features
+- **JavaScript (JS)** — A programming language that enables complex
+interactive behavior in web browsers, part of the web front end
 ## K
 - **KDC** — Key Distribution Center, service installed on the Domain
 Controller that creates Kerberos tickets on the network
@@ -223,6 +237,9 @@ in memory on the target system without writing to disk, making it
 harder to detect. Provides a powerful interactive shell with
 commands for file management, networking, surveillance and
 privilege escalation
+- **MIME Type** — Multipurpose Internet Mail Extensions type, a
+label that identifies the format of a file or content (ex:
+text/html, image/png)
 ## N
 - **NAT** — Network Address Translation, maps private IPs to a public IP
 - **Nmap** — Network scanning tool used to discover open ports and services
@@ -297,6 +314,12 @@ succeeds. Determines what happens after gaining access:
 remote service, used for pivoting into internal networks
 - **Privilege Escalation** — The process of gaining higher access
 than originally permitted. In Meterpreter: getsystem
+- **Path** — The part of a URL that points to a specific file or
+page on the web server (ex: /about/team)
+## Q
+- **Query String** — The part of a URL starting with ? that sends
+parameters to the server (ex: ?search=hacking). Can be exploited
+for injection attacks if not validated
 ## R
 - **Ransomware** — Malware that encrypts files and demands payment for decryption
 - **RCE** — Remote Code Execution, running code on a target system remotely
@@ -330,6 +353,8 @@ Metasploit modules
 vulnerable service
 - **Reverse Shell** — A connection initiated from the target back to
 the attacker's machine, used to gain remote control
+- **Referrer-Policy** — An HTTP header that controls how much
+referrer information is sent when a user clicks a link
 ## S
 - **Service** — A process that runs continuously in the background, starts
 automatically at boot, runs without user interaction
@@ -428,6 +453,9 @@ replaced by AES
 processes running during a scan. More threads = faster but noisier
 - **Timestomp** — A Meterpreter technique used to modify file
 timestamps to hide evidence of activity on a target system
+- **Typosquatting** — Registering domain names similar to legitimate
+ones with small differences to trick users (ex: g00gle.com instead
+of google.com), commonly used in phishing attacks
 ## U
 - **UAC** — User Account Control, Windows security feature that controls
 administrative privileges
@@ -435,6 +463,9 @@ administrative privileges
 on a target
 - **UDP** — User Datagram Protocol, connectionless transport protocol,
 faster but less reliable than TCP
+- **URL** — Uniform Resource Locator, a web address that guides your
+browser to a specific resource on the internet. Made up of: scheme,
+host, port, path, query string and fragment
 ## V
 - **VirusTotal** — Virus-scanning service that scans files and URLs against
 multiple antivirus engines and website scanners in a single operation
@@ -462,6 +493,15 @@ used in dictionary attacks for password cracking
 - **Workspace** — A Metasploit feature that organizes scan results and
 data into separate project spaces, useful when working on multiple
 targets or engagements
+- **WAF** — Web Application Firewall, filters incoming traffic to
+block malicious requests before they reach the web server
+- **Web Application** — A software application that runs in a web
+browser, consisting of front end (HTML, CSS, JS) and back end
+(server, database)
+- **Web Browser** — A tool used to access and interact with web
+applications (ex: Chrome, Firefox, Safari)
+- **Web Server** — A component responsible for hosting and delivering
+content for web applications
 ## X
 - **XSS** — Cross-Site Scripting, injecting malicious scripts into web pages
 - **XZ Utils** — Linux compression tool targeted by a supply chain attack
@@ -473,6 +513,10 @@ cryptography and computing
   - 1 XOR 0 = 1
   - 1 XOR 1 = 0
   - 0 XOR 0 = 0
+  - **X-Content-Type-Options** — An HTTP security header that prevents
+browsers from guessing MIME types, uses the nosniff directive
+- **XSS** — Cross-Site Scripting, an attack that injects malicious
+scripts into web pages viewed by other users
   ## Y
 - **yescrypt** — A modern scalable password hashing scheme, default
 and recommended choice on new Linux systems. Prefix: $y$
