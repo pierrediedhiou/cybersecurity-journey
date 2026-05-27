@@ -726,3 +726,80 @@ Ripper with more features and hash support
 - Elevate commands
 - Password database commands
 - Timestomp commands
+## Web Application Basics
+
+### URL Structure Breakdown
+| Component | Symbol | Description | Security Note |
+|-----------|--------|-------------|---------------|
+| **Scheme** | `http://` or `https://` | Protocol used to access the website | Always prefer HTTPS |
+| **User** | `user@` | Optional login credentials in URL | Avoid — exposes sensitive info |
+| **Host/Domain** | `example.com` | The website you are accessing | Watch for typosquatting |
+| **Port** | `:80` or `:443` | Directs browser to correct service | 80=HTTP, 443=HTTPS |
+| **Path** | `/page/file` | Specific file or page on the server | Secure paths from unauthorized access |
+| **Query String** | `?search=term` | Parameters sent to the server | Validate to prevent injection attacks |
+| **Fragment** | `#section` | Points to specific section of a page | Validate to prevent injection attacks |
+
+### HTTP Message Structure
+| Part | Description |
+|------|-------------|
+| **Start Line** | Introduces the message, states request or response type |
+| **Headers** | Key-value pairs providing extra info about the message |
+| **Empty Line** | Separates headers from the body |
+| **Body** | Contains the actual data (form data, webpage content, etc) |
+
+### HTTP Methods
+| Method | Purpose | Security Note |
+|--------|---------|---------------|
+| `GET` | Fetch data from server without changes | Never put sensitive info in GET requests |
+| `POST` | Send data to create or update something | Always validate input, prevent SQLi and XSS |
+| `PUT` | Replace or update a resource on server | Verify user is authorized before accepting |
+| `DELETE` | Remove a resource from server | Only authorized users should delete |
+| `PATCH` | Update part of a resource | Validate data to avoid inconsistencies |
+| `HEAD` | Like GET but retrieves headers only | Useful for checking metadata |
+| `OPTIONS` | Show available methods for a resource | Helps clients understand server capabilities |
+| `TRACE` | Shows allowed methods, used for debugging | Often disabled for security reasons |
+| `CONNECT` | Create a secure encrypted connection | Used for HTTPS tunneling |
+
+### HTTP Versions Timeline
+| Version | Year | Key Features |
+|---------|------|-------------|
+| HTTP/0.9 | 1991 | First version, GET requests only |
+| HTTP/1.0 | 1996 | Added headers and content type support |
+| HTTP/1.1 | 1997 | Persistent connections, chunked encoding, caching |
+| HTTP/2 | 2015 | Multiplexing, header compression, prioritization |
+| HTTP/3 | 2022 | Built on QUIC protocol, faster and more secure |
+
+### HTTP Security Headers
+| Header | Purpose |
+|--------|---------|
+| `Content-Security-Policy (CSP)` | Prevents XSS by controlling where resources load from |
+| `Strict-Transport-Security (HSTS)` | Forces browsers to always use HTTPS |
+| `X-Content-Type-Options` | Prevents browsers from guessing MIME types |
+| `Referrer-Policy` | Controls how much referrer info is sent to other sites |
+
+### CSP Directives
+| Directive | Description |
+|-----------|-------------|
+| `default-src` | Default policy, usually set to self (current website only) |
+| `script-src` | Where scripts can be loaded from |
+| `style-src` | Where CSS stylesheets can be loaded from |
+
+### HSTS Directives
+| Directive | Description |
+|-----------|-------------|
+| `max-age` | Expiry time in seconds for the HSTS setting |
+| `includeSubDomains` | Apply HSTS to all subdomains |
+| `preload` | Include site in browser preload lists |
+
+### Referrer-Policy Options
+| Policy | Description |
+|--------|-------------|
+| `no-referrer` | Never send referrer information |
+| `same-origin` | Only send referrer for same website links |
+| `strict-origin` | Send referrer only when protocol stays the same |
+| `strict-origin-when-cross-origin` | Full URL for same origin, origin only for cross origin |
+
+### X-Content-Type-Options
+| Directive | Description |
+|-----------|-------------|
+| `nosniff` | Instructs browser not to guess the MIME type |
