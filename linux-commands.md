@@ -803,3 +803,88 @@ Ripper with more features and hash support
 | Directive | Description |
 |-----------|-------------|
 | `nosniff` | Instructs browser not to guess the MIME type |
+## JavaScript Essentials
+
+### JavaScript Integration Methods
+| Method | Description |
+|--------|-------------|
+| **Internal** | JS code placed directly inside the HTML document |
+| **External** | JS loaded from a separate file using the src attribute |
+
+```html
+<!-- Internal JavaScript -->
+<script>
+  alert("Hello!");
+</script>
+
+<!-- External JavaScript -->
+<script src="script.js"></script>
+```
+
+### JavaScript Data Types
+| Data Type | Description | Example |
+|-----------|-------------|---------|
+| `string` | Text values | "Hello", "password123" |
+| `number` | Numeric values | 42, 3.14 |
+| `boolean` | True or false values | true, false |
+| `null` | Intentionally empty value | null |
+| `undefined` | Variable declared but not assigned | undefined |
+| `object` | Complex data like arrays or objects | {name: "Pierre"} |
+
+### JavaScript Control Flow
+| Structure | Description |
+|-----------|-------------|
+| `if-else` | Execute different code blocks based on a condition |
+| `switch` | Select one of many code blocks to execute |
+| `for` | Loop that runs a set number of times |
+| `while` | Loop that runs while a condition is true |
+| `do...while` | Loop that runs at least once then checks condition |
+
+### JavaScript Dialogue Functions
+| Function | Description | Returns |
+|----------|-------------|---------|
+| `alert("message")` | Displays a message with an OK button | Nothing |
+| `prompt("question")` | Asks user for input | String input or null |
+| `confirm("question")` | Asks user to confirm with OK/Cancel | true or false |
+
+### JavaScript Examples
+```javascript
+// Variable
+let name = "Pierre";
+
+// Function
+function greet(name) {
+  return "Hello " + name;
+}
+
+// If-Else
+if (name === "Pierre") {
+  alert("Welcome back!");
+} else {
+  alert("Who are you?");
+}
+
+// For Loop
+for (let i = 0; i < 5; i++) {
+  console.log(i);
+}
+
+// While Loop
+while (condition === true) {
+  // code runs repeatedly
+}
+
+// Prompt
+let username = prompt("What is your name?");
+
+// Confirm
+let answer = confirm("Are you sure?");
+// Returns true if OK, false if Cancel
+```
+
+### Request-Response Cycle
+1. User types a URL or clicks a link in their browser (client)
+2. Browser sends an HTTP request to the web server
+3. Server processes the request
+4. Server sends back an HTTP response
+5. Browser renders the response (HTML, CSS, JS)
