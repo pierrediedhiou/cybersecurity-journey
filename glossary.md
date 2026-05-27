@@ -24,6 +24,8 @@ key or password combination until the correct one is found
 - **bcrypt** — A password hashing function based on the Blowfish
 cipher, commonly used on OpenBSD, FreeBSD and Linux systems.
 Prefix: $2b$, $2y$, $2a$
+- **Boolean** — A data type that can only be true or false,
+used in conditions and control flow in programming
 ## C
 - **cat** — Linux command meaning concatenate, used to display file contents
 - **Censys** — Search engine for Internet-connected hosts, websites, certificates,
@@ -57,6 +59,9 @@ of a web application including colors, fonts and layouts
 - **CSP** — Content Security Policy, an HTTP security header that
 helps prevent XSS attacks by controlling where resources can be
 loaded from
+- **Control Flow** — The order in which code is executed in a
+program, controlled by conditions (if-else, switch) and loops
+(for, while, do...while)
 ## D
 - **Daemon** — A background service running on Linux
 - **Delegation** — Process of granting privileges to a user over an OU
@@ -115,6 +120,8 @@ Everything in Linux is technically a file
 - **FTP** — File Transfer Protocol, used to transfer files over a network (Port 21)
 - **Fragment** — The part of a URL starting with # that points to
 a specific section of a webpage
+- **Function** — A reusable block of code designed to perform a
+specific task. Called by name whenever that task needs to be done
 ## G
 - **GPO** — Group Policy Objects, collection of settings applied to
 Organizational Units in Active Directory
@@ -179,6 +186,9 @@ brute force attack modes. Pre-installed on Kali Linux
 Ripper with additional hash support and features
 - **JavaScript (JS)** — A programming language that enables complex
 interactive behavior in web browsers, part of the web front end
+- **JavaScript (JS)** — A popular scripting language that adds
+interactive features to websites alongside HTML and CSS. Runs in
+the browser (front end) and can also run on servers (Node.js)
 ## K
 - **KDC** — Key Distribution Center, service installed on the Domain
 Controller that creates Kerberos tickets on the network
@@ -200,6 +210,11 @@ commands iteratively
 in Metasploit reverse shell connections
 - **LPORT** — Local Port, the port on the attacking machine that
 listens for incoming reverse shell connections
+- **Loop** — A programming construct that repeats a block of code
+multiple times while a condition is true:
+  - for — runs a set number of times
+  - while — runs while condition is true
+  - do...while — runs at least once then checks condition
 ## M
 - **Machine Account** — Windows computer account, always ends with $ symbol
 - **Malware** — Malicious software designed to damage or gain unauthorized access
@@ -259,12 +274,16 @@ problems where a given solution can be checked quickly but finding
 the solution itself may be very hard
 - **NThash** — The hash format used by modern Windows operating systems
 to store user and service passwords (also called NTLM hash)
+- **Null** — A data type representing an intentionally empty or
+non-existent value in programming
 ## O
 - **Open Port** — A port actively accepting connections on a device
 - **OpenSSL** — Cryptographic library that powers HTTPS encryption
 - **OSI Model** — 7-layer framework describing how data travels over a network
 - **OUs** — Organizational Units, container objects in Active Directory
 used to classify users and machines
+- **Object** — A complex data type in JavaScript that stores
+multiple values as key-value pairs (ex: {name: "Pierre", age: 25})
 
 ## P
 - **Packet** — Small unit of data transmitted over a network
@@ -355,6 +374,9 @@ vulnerable service
 the attacker's machine, used to gain remote control
 - **Referrer-Policy** — An HTTP header that controls how much
 referrer information is sent when a user clicks a link
+- **Request-Response Cycle** — The process where a browser (client)
+sends an HTTP request to a web server and the server responds with
+the requested content
 ## S
 - **Service** — A process that runs continuously in the background, starts
 automatically at boot, runs without user interaction
@@ -418,6 +440,10 @@ that stores user account password hashes. Can be dumped using
 hashdump in Meterpreter
 - **screenshare** — Meterpreter command that allows real-time viewing
 of the target user's desktop
+- **String** — A data type representing text values in programming
+(ex: "Hello", "password123")
+- **src attribute** — HTML attribute that specifies the path to an
+external JavaScript file to be loaded into a web page
 ## T
 - **Telnet** — Insecure remote access protocol (Port 23), replaced by SSH
 - **TGT** — Ticket Granting Ticket, allows users to request tickets to
@@ -480,6 +506,8 @@ to be reused (ex: name="Pierre")
 computer that runs its own operating system
 - **Vulnerability** — A design, coding or logic flaw in a system that
 can be exploited to disclose information or execute unauthorized code
+- **Variable** — A named container that stores a data value in
+programming, can be updated and reused throughout the code
 ## W
 - **Web Shell** — Malicious script uploaded to a web server giving
 browser-based shell access
