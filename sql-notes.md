@@ -1,0 +1,261 @@
+# SQL Notes
+
+## What is SQL?
+- **SQL** (Structured Query Language) — A programming language used to
+query, define and manipulate data stored in a relational database
+- SQL allows you to create tables, modify them, delete them and
+manipulate the data contained in them
+- Every SQL query ends with a semicolon `;`
+
+---
+
+## Relational vs Non-Relational Databases
+| | Relational (SQL) | Non-Relational (NoSQL) |
+|---|---|---|
+| **Data format** | Structured, tables with rows and columns | Non-tabular, flexible format |
+| **Examples** | MySQL, Oracle, PostgreSQL, Microsoft SQL Server | MongoDB, Redis, CouchDB |
+| **Best for** | Structured data with clear relationships | Unstructured or varying data |
+| **Relationships** | Yes, via foreign keys | No fixed relationships |
+
+---
+
+## Key Database Concepts
+- **Table** — Where all data is stored in a relational database
+(ex: a Books table storing book records)
+- **Column** — Defines what pieces of information are stored
+(ex: id, name, published_date)
+- **Row** — A single record inserted into a table
+(ex: one book entry)
+- **Primary Key** — A column that ensures data is unique for each
+record in a table
+- **Foreign Key** — A column in one table that links to another
+table, creating a relationship between them
+- **DBMS** — Database Management System, software that allows users
+to retrieve, update and manage stored data:
+  - MySQL
+  - Oracle Database
+  - Microsoft SQL Server
+  - PostgreSQL
+  - MariaDB
+  - MongoDB
+
+---
+
+## CRUD Operations
+CRUD stands for the four basic database operations:
+| Operation | SQL Command | Description |
+|-----------|-------------|-------------|
+| **Create** | `INSERT INTO` | Add new records to a table |
+| **Read** | `SELECT` | Fetch data from a table |
+| **Update** | `UPDATE` | Modify existing records |
+| **Delete** | `DELETE` | Remove records from a table |
+
+---
+
+## Database Commands
+```sql
+-- Create a database
+CREATE DATABASE database_name;
+
+-- Show all databases
+SHOW DATABASES;
+
+-- Select a database to use
+USE database_name;
+
+-- Delete a database
+DROP DATABASE database_name;
+```
+
+---
+
+## Table Commands
+```sql
+-- Create a table
+CREATE TABLE table_name (
+  id INT PRIMARY KEY,
+  name VARCHAR(100),
+  published_date DATE
+);
+
+-- Show table structure and column types
+DESCRIBE table_name;
+
+-- Modify a table
+ALTER TABLE table_name ADD column_name datatype;
+
+-- Delete a table
+DROP TABLE table_name;
+```
+
+---
+
+## The SELECT Statement
+The SELECT statement has 6 clauses — only the first two are mandatory:
+
+```sql
+SELECT column1, column2      -- Clause 1: MANDATORY - columns to retrieve
+FROM table_name              -- Clause 2: MANDATORY - table to query
+WHERE condition              -- Clause 3: optional - filter results
+GROUP BY column              -- Clause 4: optional - group results
+HAVING condition             -- Clause 5: optional - filter grouped results
+ORDER BY column ASC/DESC;    -- Clause 6: optional - sort results
+LIMIT number;                -- Limit the number of results displayed
+```
+
+### SELECT Examples
+```sql
+-- Select all columns
+SELECT * FROM users;
+
+-- Select specific columns
+SELECT first_name, last_name FROM users;
+
+-- Select with condition
+SELECT * FROM users WHERE username = 'pierre';
+
+-- Select with ordering
+SELECT * FROM books ORDER BY published_date DESC;
+
+-- Select with limit
+SELECT * FROM users LIMIT 10;
+```
+
+---
+
+## INSERT Statement
+```sql
+-- Insert a new record
+INSERT INTO table_name (column1, column2, column3)
+VALUES (value1, value2, value3);
+
+-- Example
+INSERT INTO users (first_name, last_name, email)
+VALUES ('Pierre', 'Diedhiou', 'pierre@email.com');
+```
+
+---
+
+## UPDATE Statement
+```sql
+-- Update an existing record
+UPDATE table_name
+SET column1 = value1, column2 = value2
+WHERE condition;
+
+-- Example
+UPDATE users SET email = 'new@email.com' WHERE id = 1;
+```
+
+---
+
+## DELETE Statement
+```sql
+-- Delete records matching a condition
+DELETE FROM table_name WHERE condition;
+
+-- Example
+DELETE FROM users WHERE id = 1;
+```
+
+---
+
+## Comparison Operators
+| Operator | Name | Description |
+|----------|------|-------------|
+| `=` | Equal | Checks if two values are equal |
+| `!=` | Not Equal | Checks if two values are not equal |
+| `<` | Less Than | Checks if value is less than another |
+| `>` | Greater Than | Checks if value is greater than another |
+| `<=` | Less Than or Equal | Checks if value is less than or equal |
+| `>=` | Greater Than or Equal | Checks if value is greater than or equal |
+
+---
+
+## ORDER BY Options
+| Option | Description | Example |
+|--------|-------------|---------|
+| `ASC` | Ascending order (A to Z, smallest to largest) | `ORDER BY name ASC` |
+| `DESC` | Descending order (Z to A, largest to smallest) | `ORDER BY name DESC` |
+
+---
+
+## String Functions
+| Function | Description | Example |
+|----------|-------------|---------|
+| `CONCAT()` | Combines two or more strings together | `CONCAT(first_name, ' ', last_name)` |
+| `GROUP_CONCAT()` | Concatenates data from multiple rows into one field | `GROUP_CONCAT(name)` |
+| `SUBSTRING()` | Retrieves a substring from a string at a given position | `SUBSTRING(name, 1, 3)` |
+| `LENGTH()` | Returns the number of characters in a string | `LENGTH(password)` |
+
+---
+
+## Aggregate Functions
+Aggregate functions combine multiple row values into a single result:
+
+| Function | Description | Example |
+|----------|-------------|---------|
+| `COUNT()` | Returns the number of records | `COUNT(id)` |
+| `SUM()` | Returns the sum of all values in a column | `SUM(salary)` |
+| `AVG()` | Returns the average value of a column | `AVG(salary)` |
+| `MAX()` | Returns the maximum value in a column | `MAX(salary)` |
+| `MIN()` | Returns the minimum value in a column | `MIN(salary)` |
+
+### Aggregate Function Examples
+```sql
+-- Count all users
+SELECT COUNT(*) FROM users;
+
+-- Sum of all salaries
+SELECT SUM(salary) FROM employees;
+
+-- Average salary
+SELECT AVG(salary) FROM employees;
+
+-- Highest salary
+SELECT MAX(salary) FROM employees;
+
+-- Lowest salary
+SELECT MIN(salary) FROM employees;
+
+-- Group by with aggregate
+SELECT department, AVG(salary)
+FROM employees
+GROUP BY department
+HAVING AVG(salary) > 50000;
+```
+
+---
+
+## GROUP BY and HAVING
+```sql
+-- Group results by a column
+SELECT department, COUNT(*)
+FROM employees
+GROUP BY department;
+
+-- Filter grouped results using HAVING
+SELECT department, COUNT(*)
+FROM employees
+GROUP BY department
+HAVING COUNT(*) > 5;
+```
+
+---
+
+## SQL Injection (Security Note)
+SQL Injection is one of the most common web vulnerabilities.
+It occurs when user input is inserted directly into a SQL query
+without validation, allowing attackers to manipulate the query.
+
+```sql
+-- Normal login query
+SELECT * FROM users WHERE username='pierre' AND password='1234';
+
+-- SQL Injection attack input: ' OR '1'='1
+-- Resulting malicious query:
+SELECT * FROM users WHERE username='' OR '1'='1' AND password='';
+-- This returns ALL users because '1'='1' is always true!
+```
+
+**Prevention:** Always use prepared statements and validate user input.
