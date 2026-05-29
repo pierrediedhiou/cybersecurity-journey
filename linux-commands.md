@@ -888,3 +888,45 @@ let answer = confirm("Are you sure?");
 3. Server processes the request
 4. Server sends back an HTTP response
 5. Browser renders the response (HTML, CSS, JS)
+## Burp Suite
+
+### About Burp Suite
+- **Burp Suite** — A Java-based framework for web application
+penetration testing that captures and enables manipulation of all
+HTTP/HTTPS traffic between a browser and a web server
+- Pre-installed on Kali Linux
+- Two main versions: Community (free) and Professional (paid)
+
+### Burp Suite Key Features
+| Feature | Description |
+|---------|-------------|
+| **Proxy** | Intercepts and modifies HTTP/HTTPS requests and responses between browser and server |
+| **Repeater** | Captures, modifies and resends the same request multiple times, useful for testing SQLi and other vulnerabilities |
+| **Intruder** | Sprays endpoints with requests, used for brute-force attacks and fuzzing (rate limited in Community version) |
+| **Decoder** | Decodes captured data or encodes payloads before sending to target |
+| **Comparer** | Compares two pieces of data at word or byte level |
+| **Sequencer** | Assesses the randomness of tokens like session cookies and randomly generated values |
+
+### Burp Suite Dashboard Sections
+| Section | Description |
+|---------|-------------|
+| **Tasks** | Define background tasks for Burp Suite to perform. Community includes Live Passive Crawl by default |
+| **Event Log** | Shows actions performed by Burp Suite including proxy start and connections made |
+| **Issue Activity** | Professional only — displays vulnerabilities found by automated scanner ranked by severity |
+| **Advisory** | Professional only — detailed info about vulnerabilities including references and suggested remediations |
+
+### Burp Suite Setup Workflow
+1. Open Burp Suite
+2. Go to **Proxy** tab → **Options**
+3. Confirm proxy listener is set to `127.0.0.1:8080`
+4. Configure your browser to use proxy `127.0.0.1` port `8080`
+5. Install **Burp Suite CA certificate** in your browser
+6. Turn **Intercept On** to start capturing traffic
+7. Browse to your target web application
+8. Requests will appear in Burp for inspection and modification
+
+### Hydra
+- **Hydra** — A fast online brute force password cracking tool
+used to attack login forms and authentication services
+
+### Hydra Basic Syntax
