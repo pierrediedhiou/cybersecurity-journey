@@ -930,3 +930,16 @@ HTTP/HTTPS traffic between a browser and a web server
 used to attack login forms and authentication services
 
 ### Hydra Basic Syntax
+### Hydra Common Commands
+| Command | Explanation |
+|---------|-------------|
+| `hydra -l admin -P rockyou.txt 10.10.10.1 http-post-form` | Brute force a web login form |
+| `hydra -l admin -P rockyou.txt 10.10.10.1 ssh` | Brute force SSH login |
+| `hydra -l admin -P rockyou.txt 10.10.10.1 ftp` | Brute force FTP login |
+| `hydra -L users.txt -P rockyou.txt 10.10.10.1 ssh` | Brute force with username list |
+| `-l` | Single username |
+| `-L` | Username list file |
+| `-p` | Single password |
+| `-P` | Password list file |
+| `-t` | Number of parallel threads |
+| `-v` | Verbose output |
