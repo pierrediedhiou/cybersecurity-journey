@@ -26,6 +26,13 @@ cipher, commonly used on OpenBSD, FreeBSD and Linux systems.
 Prefix: $2b$, $2y$, $2a$
 - **Boolean** — A data type that can only be true or false,
 used in conditions and control flow in programming
+- **Burp Suite** — A Java-based web application penetration testing
+framework that intercepts, inspects and modifies HTTP/HTTPS traffic
+between a browser and web server. Key tools include Proxy, Repeater,
+Intruder, Decoder, Comparer and Sequencer
+- **Brute Force Attack** — An attack method that systematically tries
+every possible combination of credentials until the correct one is
+found
 ## C
 - **cat** — Linux command meaning concatenate, used to display file contents
 - **Censys** — Search engine for Internet-connected hosts, websites, certificates,
@@ -62,6 +69,8 @@ loaded from
 - **Control Flow** — The order in which code is executed in a
 program, controlled by conditions (if-else, switch) and loops
 (for, while, do...while)
+- **Comparer** — A Burp Suite tool that compares two pieces of data
+at word or byte level to identify differences
 ## D
 - **Daemon** — A background service running on Linux
 - **Delegation** — Process of granting privileges to a user over an OU
@@ -87,6 +96,8 @@ algorithm specifically designed for digital signatures
 produced by a hash function
 - **Database** — A structured system for storing, modifying and
 retrieving information used by web applications
+- **Decoder** — A Burp Suite tool used to decode captured data or
+encode payloads before sending them to a target
 ## E
 - **Encryption** — Process of encoding data so only authorized parties can read it
 - **Enumeration** — Systematically gathering information about a target system
@@ -122,6 +133,9 @@ Everything in Linux is technically a file
 a specific section of a webpage
 - **Function** — A reusable block of code designed to perform a
 specific task. Called by name whenever that task needs to be done
+- **Fuzzing** — A testing technique that sends large amounts of
+random or unexpected data to an application to discover
+vulnerabilities or unexpected behavior
 ## G
 - **GPO** — Group Policy Objects, collection of settings applied to
 Organizational Units in Active Directory
@@ -141,6 +155,7 @@ its ability to perform massive parallel computations
 used to identify a Meterpreter session or object
 - **getsystem** — Meterpreter command that attempts to automatically
 escalate privileges to SYSTEM level on a Windows target
+
 ## H
 - **Hash** — A fixed-length string generated from data, used to verify integrity
 - **Have I Been Pwned** — Tool that tells you if an email address has appeared
@@ -167,6 +182,8 @@ from the Windows SAM database for offline cracking
 that instructs web browsers what to display and how to display it
 - **HSTS** — HTTP Strict Transport Security, a header that forces
 browsers to always connect over HTTPS
+- **Hydra** — A fast online brute force password cracking tool used
+to attack login forms, SSH, FTP and other authentication services
 ## I
 - **Injection** — Attack inserting malicious code into an input field
 - **IP Address** — Internet Protocol Address, a unique numerical label assigned
@@ -178,6 +195,9 @@ network information. Full path: C:\Windows\System32\ipconfig.exe
 - **ISP** — Internet Service Provider, the company providing your internet connection
 - **Invoke-Command** — PowerShell cmdlet for executing commands on remote
 systems, used by admins and penetration testers alike
+- **Intruder** — A Burp Suite tool used to automate customized
+attacks against web applications, commonly used for brute forcing
+and fuzzing endpoints
 ## J
 - **John the Ripper** — Free open source password cracking tool that
 automatically detects hash types and supports wordlist, single and
@@ -335,6 +355,9 @@ remote service, used for pivoting into internal networks
 than originally permitted. In Meterpreter: getsystem
 - **Path** — The part of a URL that points to a specific file or
 page on the web server (ex: /about/team)
+- **Proxy** — In Burp Suite, an intercepting proxy that sits between
+the browser and web server, capturing and allowing modification of
+all HTTP/HTTPS traffic
 ## Q
 - **Query String** — The part of a URL starting with ? that sends
 parameters to the server (ex: ?search=hacking). Can be exploited
@@ -377,6 +400,9 @@ referrer information is sent when a user clicks a link
 - **Request-Response Cycle** — The process where a browser (client)
 sends an HTTP request to a web server and the server responds with
 the requested content
+- **Repeater** — A Burp Suite tool that allows capturing, modifying
+and resending HTTP requests multiple times, useful for manual
+testing of vulnerabilities like SQLi and XSS
 ## S
 - **Service** — A process that runs continuously in the background, starts
 automatically at boot, runs without user interaction
@@ -444,6 +470,11 @@ of the target user's desktop
 (ex: "Hello", "password123")
 - **src attribute** — HTML attribute that specifies the path to an
 external JavaScript file to be loaded into a web page
+- **Sequencer** — A Burp Suite tool that assesses the randomness of
+tokens such as session cookies and generated values to identify
+weak randomness vulnerabilities
+- **Session Cookie** — A unique identifier stored in the browser
+that authenticates a user's session with a web application
 ## T
 - **Telnet** — Insecure remote access protocol (Port 23), replaced by SSH
 - **TGT** — Ticket Granting Ticket, allows users to request tickets to
@@ -482,6 +513,9 @@ timestamps to hide evidence of activity on a target system
 - **Typosquatting** — Registering domain names similar to legitimate
 ones with small differences to trick users (ex: g00gle.com instead
 of google.com), commonly used in phishing attacks
+- **Token** — A randomly generated value used for authentication
+or session management. Weak randomness in tokens can lead to
+session hijacking attacks
 ## U
 - **UAC** — User Account Control, Windows security feature that controls
 administrative privileges
