@@ -15,6 +15,9 @@ encryption
 - **Asymmetric Encryption** — Encryption that uses two keys: a public
 key (shared with everyone) and a private key (kept secret). Examples:
 RSA, Diffie-Hellman, ECC
+- **Amazon S3 Bucket** — A cloud storage container on Amazon Web
+Services. Misconfigured S3 buckets are a common security vulnerability
+that can expose sensitive data publicly
 ## B
 - **Bash** (Bourne Again Shell) — Most common shell on Linux, default on Kali Linux
 - **Bind Shell** — Shell that listens on a port on the target waiting for attacker
@@ -71,6 +74,8 @@ program, controlled by conditions (if-else, switch) and loops
 (for, while, do...while)
 - **Comparer** — A Burp Suite tool that compares two pieces of data
 at word or byte level to identify differences
+- **CNAME Record** — Canonical Name DNS record, maps one domain name
+to another domain name
 ## D
 - **Daemon** — A background service running on Linux
 - **Delegation** — Process of granting privileges to a user over an OU
@@ -98,6 +103,9 @@ produced by a hash function
 retrieving information used by web applications
 - **Decoder** — A Burp Suite tool used to decode captured data or
 encode payloads before sending them to a target
+- **DNS Subdomain** — A prefix added to a domain name to create a
+separate section of a website (ex: admin.example.com,
+mail.example.com). Enumerating subdomains can reveal hidden services
 ## E
 - **Encryption** — Process of encoding data so only authorized parties can read it
 - **Enumeration** — Systematically gathering information about a target system
@@ -122,6 +130,9 @@ another to make it compatible with a specific system. Reversible
 without a key (ex: Base64, URL encoding)
 - **Exploit** — A piece of code that takes advantage of a vulnerability
 present on a target system to gain access or cause unintended behavior
+- **Enumeration** — The act of systematically listing all available
+resources on a target, whether accessible or not. A key phase in
+penetration testing and CTF challenges
 ## F
 - **File** — A unit of stored data (text, code, image, config, etc).
 Everything in Linux is technically a file
@@ -155,7 +166,9 @@ its ability to perform massive parallel computations
 used to identify a Meterpreter session or object
 - **getsystem** — Meterpreter command that attempts to automatically
 escalate privileges to SYSTEM level on a Windows target
-
+- **Gobuster** — An open-source offensive enumeration tool written
+in Golang, used to brute force web directories, DNS subdomains,
+virtual hosts and cloud storage buckets using wordlists
 ## H
 - **Hash** — A fixed-length string generated from data, used to verify integrity
 - **Have I Been Pwned** — Tool that tells you if an email address has appeared
@@ -542,6 +555,9 @@ computer that runs its own operating system
 can be exploited to disclose information or execute unauthorized code
 - **Variable** — A named container that stores a data value in
 programming, can be updated and reused throughout the code
+- **Virtual Host (vhost)** — A method of hosting multiple websites
+on a single server using the same IP address. Different hostnames
+are used to serve different websites
 ## W
 - **Web Shell** — Malicious script uploaded to a web server giving
 browser-based shell access
