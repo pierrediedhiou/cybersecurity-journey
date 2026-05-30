@@ -1031,3 +1031,19 @@ password patterns:
 | **Reversible?** | No (one-way) | Yes | Yes (with key) |
 | **Key needed?** | No | No | Yes |
 | **Examples** | MD5, SHA256, bcrypt | Base64, URL encoding | AES, RSA |
+## Gobuster
+
+### About Gobuster
+- **Gobuster** — An open-source offensive tool written in Golang
+that enumerates web directories, DNS subdomains, virtual hosts,
+Amazon S3 buckets and Google Cloud Storage by brute force using
+wordlists
+
+### Gobuster Scan Modes
+| Mode | Description |
+|------|-------------|
+| `dir` | Enumerates directories and files on a web server |
+| `dns` | Enumerates DNS subdomains using DNS services |
+| `vhost` | Enumerates virtual hosts by sending web requests |
+
+### Gobuster Basic Syntax
