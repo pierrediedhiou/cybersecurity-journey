@@ -1047,3 +1047,56 @@ wordlists
 | `vhost` | Enumerates virtual hosts by sending web requests |
 
 ### Gobuster Basic Syntax
+### Gobuster Examples
+```bash
+# Directory enumeration
+gobuster dir -u http://target.com -w /usr/share/wordlists/dirb/common.txt
+
+# DNS subdomain enumeration
+gobuster dns -d target.com -w /usr/share/wordlists/subdomains.txt
+
+# Virtual host enumeration
+gobuster vhost -u http://target.com -w /usr/share/wordlists/subdomains.txt
+```
+
+### Gobuster General Flags
+| Flag | Long Flag | Description |
+|------|-----------|-------------|
+| `-t` | `--threads` | Number of threads for scanning (default: 10) |
+| `-w` | `--wordlist` | Wordlist file to use for brute forcing |
+| `-o` | `--output` | Write results to a file |
+| | `--delay` | Time to wait between requests to avoid detection |
+| | `--debug` | Enable debug output for troubleshooting |
+
+### Gobuster Dir Mode Flags
+| Flag | Long Flag | Description |
+|------|-----------|-------------|
+| `-u` | `--url` | Target URL to enumerate |
+| `-x` | `--extensions` | File extensions to scan for (ex: .php, .js) |
+| `-c` | `--cookies` | Pass a cookie with each request (ex: session ID) |
+| `-H` | `--headers` | Pass a custom header with each request |
+| `-k` | `--no-tls-validation` | Skip TLS certificate check (useful for CTFs) |
+| `-n` | `--no-status` | Hide status codes from output |
+| `-s` | `--status-codes` | Show only specific status codes (ex: 200, 300-400) |
+| `-b` | `--status-codes-blacklist` | Hide specific status codes from output |
+| `-U` | `--username` | Username for authenticated requests |
+| `-P` | `--password` | Password for authenticated requests |
+| `-r` | `--follow-redirect` | Follow HTTP redirects (301, 302) |
+| `-m` | `--method` | HTTP method to use (ex: GET, POST) |
+| | `--exclude-length` | Exclude results based on response body length |
+
+### Gobuster DNS Mode Flags
+| Flag | Long Flag | Description |
+|------|-----------|-------------|
+| `-d` | `--domain` | Target domain to enumerate subdomains for |
+| `-i` | `--show-ips` | Show IP addresses that subdomains resolve to |
+| `-c` | `--show-cname` | Show CNAME records (cannot be used with -i) |
+| `-r` | `--resolver` | Use a custom DNS server for resolving |
+
+### Gobuster VHost Mode Flags
+| Flag | Long Flag | Description |
+|------|-----------|-------------|
+| `-u` | `--url` | Base URL for brute forcing virtual hostnames |
+| | `--append-domain` | Append base domain to each wordlist word |
+| | `--domain` | Append domain to each wordlist entry |
+| `-r` | `--follow-redirect` | Follow HTTP redirects for subdomains |
