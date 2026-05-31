@@ -36,6 +36,9 @@ Intruder, Decoder, Comparer and Sequencer
 - **Brute Force Attack** — An attack method that systematically tries
 every possible combination of credentials until the correct one is
 found
+- **Bind Shell** — A shell that binds to a port on the compromised
+system and listens for an incoming connection from the attacker.
+The attacker connects to the target (opposite of reverse shell)
 ## C
 - **cat** — Linux command meaning concatenate, used to display file contents
 - **Censys** — Search engine for Internet-connected hosts, websites, certificates,
@@ -309,6 +312,11 @@ the solution itself may be very hard
 to store user and service passwords (also called NTLM hash)
 - **Null** — A data type representing an intentionally empty or
 non-existent value in programming
+- **Ncat** — An improved version of Netcat distributed by the Nmap
+project, adds extra features including SSL encryption
+- **Netcat (nc)** — A networking utility used to read and write data
+across network connections, commonly used to set up listeners for
+reverse shells
 ## O
 - **Open Port** — A port actively accepting connections on a device
 - **OpenSSL** — Cryptographic library that powers HTTPS encryption
@@ -371,6 +379,9 @@ page on the web server (ex: /about/team)
 - **Proxy** — In Burp Suite, an intercepting proxy that sits between
 the browser and web server, capturing and allowing modification of
 all HTTP/HTTPS traffic
+- **PHP Shell** — A web shell payload written in PHP that uses
+functions like exec, shell_exec, system, passthru and popen to
+execute commands remotely through a TCP connection
 ## Q
 - **Query String** — The part of a URL starting with ? that sends
 parameters to the server (ex: ?search=hacking). Can be exploited
@@ -416,6 +427,13 @@ the requested content
 - **Repeater** — A Burp Suite tool that allows capturing, modifying
 and resending HTTP requests multiple times, useful for manual
 testing of vulnerabilities like SQLi and XSS
+- **Reverse Shell** — A shell session where the target machine
+initiates the connection back to the attacker's machine. Helps
+bypass firewalls that block incoming connections. Also called
+connect back shell
+- **Rlwrap** — A small utility that uses the GNU readline library
+to add command history and keyboard editing to tools like Netcat,
+making reverse shells more interactive
 ## S
 - **Service** — A process that runs continuously in the background, starts
 automatically at boot, runs without user interaction
@@ -488,6 +506,15 @@ tokens such as session cookies and generated values to identify
 weak randomness vulnerabilities
 - **Session Cookie** — A unique identifier stored in the browser
 that authenticates a user's session with a web application
+- **Shell Payload** — A command or script that exposes a shell to
+an incoming connection (bind shell) or sends a connection to the
+attacker (reverse shell)
+- **Socat** — A utility that creates socket connections between two
+data sources, used to establish advanced shell connections between
+hosts
+- **subprocess** — A Python module commonly used for managing shell
+commands and establishing reverse shell connections in security
+assessments
 ## T
 - **Telnet** — Insecure remote access protocol (Port 23), replaced by SSH
 - **TGT** — Ticket Granting Ticket, allows users to request tickets to
@@ -580,6 +607,9 @@ browser, consisting of front end (HTML, CSS, JS) and back end
 applications (ex: Chrome, Firefox, Safari)
 - **Web Server** — A component responsible for hosting and delivering
 content for web applications
+- **Web Shell** — A malicious script uploaded to a web server that
+gives an attacker browser-based shell access to execute commands
+on the target system
 ## X
 - **XSS** — Cross-Site Scripting, injecting malicious scripts into web pages
 - **XZ Utils** — Linux compression tool targeted by a supply chain attack
