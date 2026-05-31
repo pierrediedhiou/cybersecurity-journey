@@ -18,3 +18,5 @@ working in the field.
 
 ## Badges
 ![Linux Badge](Badge%20cat%20linux.png)
+<img width="700" height="362" alt="2181ffd1fa57ba8a28156073f1a1d3b4" src="https://github.com/user-attachments/assets/f554d927-e66f-432f-a019-332b68d2bf74" />
+<img width="700" height="362" alt="ff15f735621979cb25c9e8e41be6d6c3" src="https://github.com/user-attachments/assets/04bf0a8a-6394-4828-accd-99fb05b34cf8" />
