@@ -79,6 +79,11 @@ program, controlled by conditions (if-else, switch) and loops
 at word or byte level to identify differences
 - **CNAME Record** — Canonical Name DNS record, maps one domain name
 to another domain name
+- **Cookie** — A small text file saved by a website in your browser
+to remember who you are and track your activity. Used for:
+  - Session Management — Keeps you logged in across pages
+  - Personalization — Remembers preferences like dark mode, language
+  - Tracking and Analytics — Monitors browsing behavior
 ## D
 - **Daemon** — A background service running on Linux
 - **Delegation** — Process of granting privileges to a user over an OU
@@ -515,6 +520,18 @@ hosts
 - **subprocess** — A Python module commonly used for managing shell
 commands and establishing reverse shell connections in security
 assessments
+- **SQLi** — SQL Injection, a cyberattack where malicious SQL code
+is inserted into website input fields to trick the database into
+running unauthorized commands. One of the most common and dangerous
+web vulnerabilities
+- **SQLite** — A lightweight file-based relational database management
+system, commonly used in mobile apps and small applications
+- **SQLMap** — An automated open-source tool for detecting and
+exploiting SQL injection vulnerabilities in web applications.
+Pre-installed on Kali Linux
+- **Session Management** — The process of maintaining a user's
+authenticated state across multiple web requests, typically using
+session cookies
 ## T
 - **Telnet** — Insecure remote access protocol (Port 23), replaced by SSH
 - **TGT** — Ticket Granting Ticket, allows users to request tickets to
