@@ -296,3 +296,23 @@ SELECT * FROM users WHERE username='' OR '1'='1' AND password='';
 
 ### SQLMap — Automated SQL Injection Tool
 - See `linux-commands.md` for full SQLMap command reference
+## Pentest Key Lessons
+
+### Core Penetration Testing Principles
+| Principle | Description |
+|-----------|-------------|
+| **Enumeration is everything** | Map the application structure, headers, endpoints and behavior before attempting exploitation |
+| **Small flaws chain into big compromises** | IDOR, weak password resets and upload bypasses connect to create devastating attacks |
+| **Client-side restrictions are not security** | Browser-side checks are easily bypassed, always enforce server-side validation |
+| **Use allowlists not blocklists** | Blocklists miss alternative extensions and edge cases, allowlists are more secure |
+| **Password resets need careful attention** | A single design flaw can lead to full account takeover |
+| **Think like an attacker, report like a consultant** | Finding vulnerabilities is half the job, documenting them clearly with severity ratings and remediation advice is what makes the engagement valuable |
+
+### Vulnerability Severity Rating Guide
+| Severity | Description | Example |
+|----------|-------------|---------|
+| **Critical** | Immediate full system compromise | Remote Code Execution |
+| **High** | Significant data exposure or takeover | IDOR exposing all user data |
+| **Medium** | Limited impact or requires chaining | Weak password reset token |
+| **Low** | Minimal impact, hard to exploit | Information disclosure |
+| **Informational** | No direct impact but worth noting | Server version in headers |
