@@ -18,6 +18,9 @@ RSA, Diffie-Hellman, ECC
 - **Amazon S3 Bucket** — A cloud storage container on Amazon Web
 Services. Misconfigured S3 buckets are a common security vulnerability
 that can expose sensitive data publicly
+- **Allowlist** — A security approach that explicitly permits only
+approved items (file types, IP addresses, inputs) and blocks
+everything else. More secure than a blocklist
 ## B
 - **Bash** (Bourne Again Shell) — Most common shell on Linux, default on Kali Linux
 - **Bind Shell** — Shell that listens on a port on the target waiting for attacker
@@ -39,6 +42,9 @@ found
 - **Bind Shell** — A shell that binds to a port on the compromised
 system and listens for an incoming connection from the attacker.
 The attacker connects to the target (opposite of reverse shell)
+- **Blocklist** — A security approach that explicitly blocks known
+bad items while allowing everything else. Less secure than an
+allowlist because unknown threats are not blocked
 ## C
 - **cat** — Linux command meaning concatenate, used to display file contents
 - **Censys** — Search engine for Internet-connected hosts, websites, certificates,
@@ -84,6 +90,12 @@ to remember who you are and track your activity. Used for:
   - Session Management — Keeps you logged in across pages
   - Personalization — Remembers preferences like dark mode, language
   - Tracking and Analytics — Monitors browsing behavior
+  - **Client-Side Restriction** — A security control implemented in
+the browser (frontend) that can be easily bypassed by an attacker.
+Real security must always be enforced server-side
+- **Chain of Vulnerabilities** — When multiple small vulnerabilities
+are combined to achieve a larger compromise. Each flaw alone may
+seem minor but together can lead to full system takeover
 ## D
 - **Daemon** — A background service running on Linux
 - **Delegation** — Process of granting privileges to a user over an OU
@@ -219,6 +231,11 @@ systems, used by admins and penetration testers alike
 - **Intruder** — A Burp Suite tool used to automate customized
 attacks against web applications, commonly used for brute forcing
 and fuzzing endpoints
+- **IDOR** — Insecure Direct Object Reference, a vulnerability where
+a user can access or modify objects (files, records, accounts) they
+shouldn't have access to by manipulating a reference value like an
+ID in a URL (ex: changing ?id=1234 to ?id=1235 to access another
+user's data)
 ## J
 - **John the Ripper** — Free open source password cracking tool that
 automatically detects hash types and supports wordlist, single and
@@ -387,6 +404,12 @@ all HTTP/HTTPS traffic
 - **PHP Shell** — A web shell payload written in PHP that uses
 functions like exec, shell_exec, system, passthru and popen to
 execute commands remotely through a TCP connection
+- **Password Reset Vulnerability** — A flaw in a password reset
+mechanism that can lead to account takeover. Common flaws include:
+  - Token exposed in HTTP response
+  - Token not expiring after use
+  - Weak or predictable token generation
+  - No rate limiting on reset attempts
 ## Q
 - **Query String** — The part of a URL starting with ? that sends
 parameters to the server (ex: ?search=hacking). Can be exploited
@@ -532,6 +555,9 @@ Pre-installed on Kali Linux
 - **Session Management** — The process of maintaining a user's
 authenticated state across multiple web requests, typically using
 session cookies
+- **Server-Side Validation** — Security checks performed on the
+server rather than the browser. Cannot be bypassed by the attacker
+and is the correct way to implement security controls
 ## T
 - **Telnet** — Insecure remote access protocol (Port 23), replaced by SSH
 - **TGT** — Ticket Granting Ticket, allows users to request tickets to
@@ -583,6 +609,9 @@ faster but less reliable than TCP
 - **URL** — Uniform Resource Locator, a web address that guides your
 browser to a specific resource on the internet. Made up of: scheme,
 host, port, path, query string and fragment
+- **Upload Bypass** — A technique used to upload malicious files
+to a web server by bypassing file type restrictions using alternative
+extensions, MIME type manipulation or other methods
 ## V
 - **VirusTotal** — Virus-scanning service that scans files and URLs against
 multiple antivirus engines and website scanners in a single operation
@@ -627,6 +656,9 @@ content for web applications
 - **Web Shell** — A malicious script uploaded to a web server that
 gives an attacker browser-based shell access to execute commands
 on the target system
+- **Web Shell** — A small malicious script uploaded to a web server
+that accepts commands through HTTP parameters and executes them on
+the server, giving the attacker remote code execution
 ## X
 - **XSS** — Cross-Site Scripting, injecting malicious scripts into web pages
 - **XZ Utils** — Linux compression tool targeted by a supply chain attack
