@@ -259,3 +259,40 @@ SELECT * FROM users WHERE username='' OR '1'='1' AND password='';
 ```
 
 **Prevention:** Always use prepared statements and validate user input.
+## SQL Injection (SQLi)
+
+### What is SQL Injection?
+SQL Injection is a cyberattack where an attacker inserts malicious
+SQL code into a website input field (like a login form or search bar)
+to trick the backend database into running unauthorized commands.
+
+### How SQL Injection Works
+```sql
+-- Normal login query
+SELECT * FROM users WHERE username='pierre' AND password='1234';
+
+-- Attacker input: ' OR '1'='1
+-- Resulting malicious query:
+SELECT * FROM users WHERE username='' OR '1'='1' AND password='';
+-- Returns ALL users because '1'='1' is always true!
+```
+
+### Types of SQL Injection
+| Type | Description |
+|------|-------------|
+| **In-band SQLi** | Results returned directly in the web page |
+| **Blind SQLi** | No visible output, attacker infers results |
+| **Error-based SQLi** | Database error messages reveal information |
+| **Union-based SQLi** | Uses UNION to retrieve data from other tables |
+| **Time-based SQLi** | Uses time delays to infer true/false conditions |
+
+### SQL Injection Prevention
+| Method | Description |
+|--------|-------------|
+| **Prepared Statements** | Separates SQL code from user input |
+| **Input Validation** | Validates and sanitizes all user input |
+| **WAF** | Web Application Firewall blocks malicious queries |
+| **Least Privilege** | Database accounts only have minimum required permissions |
+
+### SQLMap — Automated SQL Injection Tool
+- See `linux-commands.md` for full SQLMap command reference
