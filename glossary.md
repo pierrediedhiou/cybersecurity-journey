@@ -21,6 +21,9 @@ that can expose sensitive data publicly
 - **Allowlist** — A security approach that explicitly permits only
 approved items (file types, IP addresses, inputs) and blocks
 everything else. More secure than a blocklist
+- **Allowlist** — A security approach that explicitly permits only
+approved items and blocks everything else. More secure than a
+blocklist
 ## B
 - **Bash** (Bourne Again Shell) — Most common shell on Linux, default on Kali Linux
 - **Bind Shell** — Shell that listens on a port on the target waiting for attacker
@@ -45,6 +48,11 @@ The attacker connects to the target (opposite of reverse shell)
 - **Blocklist** — A security approach that explicitly blocks known
 bad items while allowing everything else. Less secure than an
 allowlist because unknown threats are not blocked
+- **Banner** — Information displayed by a service when a connection
+is made, often revealing software name and version. Collected
+during enumeration with Nmap -sC
+- **Blocklist** — A security approach that blocks known bad items
+while allowing everything else. Less secure than an allowlist
 ## C
 - **cat** — Linux command meaning concatenate, used to display file contents
 - **Censys** — Search engine for Internet-connected hosts, websites, certificates,
@@ -96,6 +104,17 @@ Real security must always be enforced server-side
 - **Chain of Vulnerabilities** — When multiple small vulnerabilities
 are combined to achieve a larger compromise. Each flaw alone may
 seem minor but together can lead to full system takeover
+- **Chain of Vulnerabilities** — When multiple small vulnerabilities
+are combined to achieve a larger compromise
+- **Client-Side Restriction** — A security control implemented in
+the browser that can be easily bypassed. Real security must always
+be enforced server-side
+- **CVSS** — Common Vulnerability Scoring System, rates vulnerability
+severity from 0.0 to 10.0:
+  - 9.0-10.0 = Critical
+  - 7.0-8.9 = High
+  - 4.0-6.9 = Medium
+  - 0.1-3.9 = Low
 ## D
 - **Daemon** — A background service running on Linux
 - **Delegation** — Process of granting privileges to a user over an OU
@@ -153,6 +172,8 @@ present on a target system to gain access or cause unintended behavior
 - **Enumeration** — The act of systematically listing all available
 resources on a target, whether accessible or not. A key phase in
 penetration testing and CTF challenges
+- **Executive Summary** — The non-technical section of a pentest
+report aimed at managers, explaining findings in plain language
 ## F
 - **File** — A unit of stored data (text, code, image, config, etc).
 Everything in Linux is technically a file
@@ -236,6 +257,12 @@ a user can access or modify objects (files, records, accounts) they
 shouldn't have access to by manipulating a reference value like an
 ID in a URL (ex: changing ?id=1234 to ?id=1235 to access another
 user's data)
+- **IDOR** — Insecure Direct Object Reference, a vulnerability where
+a user accesses objects they shouldn't by manipulating a reference
+value like an ID in a URL (ex: changing ?id=1234 to ?id=1235)
+- **Infrastructure Pentest** — A security assessment of network
+devices including servers, firewalls and printers
+- **Infra Pentest** — Short for Infrastructure Penetration Test
 ## J
 - **John the Ripper** — Free open source password cracking tool that
 automatically detects hash types and supports wordlist, single and
@@ -273,6 +300,8 @@ multiple times while a condition is true:
   - for — runs a set number of times
   - while — runs while condition is true
   - do...while — runs at least once then checks condition
+  - **LAN** — Local Area Network, a network connecting devices within
+a limited area such as an office or home
 ## M
 - **Machine Account** — Windows computer account, always ends with $ symbol
 - **Malware** — Malicious software designed to damage or gain unauthorized access
@@ -410,6 +439,10 @@ mechanism that can lead to account takeover. Common flaws include:
   - Token not expiring after use
   - Weak or predictable token generation
   - No rate limiting on reset attempts
+  - **Password Reset Vulnerability** — A flaw in a password reset
+mechanism that can lead to account takeover
+- **Pentest Report** — A document produced after a penetration test
+detailing all vulnerabilities found, severity, proof and remediation
 ## Q
 - **Query String** — The part of a URL starting with ? that sends
 parameters to the server (ex: ?search=hacking). Can be exploited
@@ -462,6 +495,10 @@ connect back shell
 - **Rlwrap** — A small utility that uses the GNU readline library
 to add command history and keyboard editing to tools like Netcat,
 making reverse shells more interactive
+- **Remediation** — The process of fixing a security vulnerability
+after it has been identified during a pentest
+- **Remote Code Execution (RCE)** — A critical vulnerability that
+allows an attacker to run arbitrary code on a target system remotely
 ## S
 - **Service** — A process that runs continuously in the background, starts
 automatically at boot, runs without user interaction
@@ -558,6 +595,10 @@ session cookies
 - **Server-Side Validation** — Security checks performed on the
 server rather than the browser. Cannot be bypassed by the attacker
 and is the correct way to implement security controls
+- **Server-Side Validation** — Security checks performed on the
+server that cannot be bypassed by the attacker
+- **Session Management** — The process of maintaining a user's
+authenticated state across multiple web requests using session cookies
 ## T
 - **Telnet** — Insecure remote access protocol (Port 23), replaced by SSH
 - **TGT** — Ticket Granting Ticket, allows users to request tickets to
@@ -612,6 +653,9 @@ host, port, path, query string and fragment
 - **Upload Bypass** — A technique used to upload malicious files
 to a web server by bypassing file type restrictions using alternative
 extensions, MIME type manipulation or other methods
+- **Upload Bypass** — A technique to upload malicious files by
+bypassing file type restrictions using alternative extensions or
+MIME type manipulation
 ## V
 - **VirusTotal** — Virus-scanning service that scans files and URLs against
 multiple antivirus engines and website scanners in a single operation
@@ -631,6 +675,8 @@ programming, can be updated and reused throughout the code
 - **Virtual Host (vhost)** — A method of hosting multiple websites
 on a single server using the same IP address. Different hostnames
 are used to serve different websites
+- **Version Control** — In pentest reports, tracking document
+versions between drafts (ex: v1.0, v1.1, v2.0)
 ## W
 - **Web Shell** — Malicious script uploaded to a web server giving
 browser-based shell access
@@ -659,6 +705,9 @@ on the target system
 - **Web Shell** — A small malicious script uploaded to a web server
 that accepts commands through HTTP parameters and executes them on
 the server, giving the attacker remote code execution
+- **Web Shell** — A malicious script uploaded to a web server that
+accepts commands through HTTP parameters and executes them on the
+server giving the attacker remote code execution
 ## X
 - **XSS** — Cross-Site Scripting, injecting malicious scripts into web pages
 - **XZ Utils** — Linux compression tool targeted by a supply chain attack
