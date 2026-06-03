@@ -56,6 +56,9 @@ is made, often revealing software name and version. Collected
 during enumeration with Nmap -sC
 - **Blocklist** — A security approach that blocks known bad items
 while allowing everything else. Less secure than an allowlist
+- **Backdoor** — A hidden method of bypassing normal authentication
+to maintain persistent access to a compromised system after
+exploitation
 ## C
 - **cat** — Linux command meaning concatenate, used to display file contents
 - **Censys** — Search engine for Internet-connected hosts, websites, certificates,
@@ -121,6 +124,12 @@ severity from 0.0 to 10.0:
   - **Credential Stuffing** — An automated attack where stolen username
 and password combinations from one breach are tried against other
 services, exploiting password reuse
+- **C2** — Command and Control, the infrastructure used by attackers
+to remotely control compromised systems after installation of a
+backdoor or malware
+- **Cyber Kill Chain** — A cybersecurity framework that divides a
+cyberattack into 7 stages: Reconnaissance, Weaponization, Delivery,
+Exploitation, Installation, Command and Control, Actions on Objectives
 ## D
 - **Daemon** — A background service running on Linux
 - **Delegation** — Process of granting privileges to a user over an OU
@@ -151,6 +160,9 @@ encode payloads before sending them to a target
 - **DNS Subdomain** — A prefix added to a domain name to create a
 separate section of a website (ex: admin.example.com,
 mail.example.com). Enumerating subdomains can reveal hidden services
+- **Domain Spoofing** — Registering or impersonating a domain that
+looks similar to a legitimate one to trick users
+(ex: paypa1.com instead of paypal.com)
 ## E
 - **Encryption** — Process of encoding data so only authorized parties can read it
 - **Enumeration** — Systematically gathering information about a target system
@@ -216,6 +228,9 @@ escalate privileges to SYSTEM level on a Windows target
 - **Gobuster** — An open-source offensive enumeration tool written
 in Golang, used to brute force web directories, DNS subdomains,
 virtual hosts and cloud storage buckets using wordlists
+- **Google Dorking** — Using advanced search engine operators to
+find sensitive information and confidential files that are publicly
+indexed on the internet
 ## H
 - **Hash** — A fixed-length string generated from data, used to verify integrity
 - **Have I Been Pwned** — Tool that tells you if an email address has appeared
@@ -355,6 +370,9 @@ text/html, image/png)
 two or more verification factors to authenticate a user
 - **Mitigation** — Actions taken to reduce the likelihood or impact
 of a security vulnerability being exploited
+- **Malvertising** — Malicious advertisements displayed on legitimate
+websites that redirect users to malicious pages or trigger drive-by
+downloads
 ## N
 - **NAT** — Network Address Translation, maps private IPs to a public IP
 - **Nmap** — Network scanning tool used to discover open ports and services
@@ -458,6 +476,9 @@ mechanism that can lead to account takeover. Common flaws include:
 mechanism that can lead to account takeover
 - **Pentest Report** — A document produced after a penetration test
 detailing all vulnerabilities found, severity, proof and remediation
+- **Persistence** — The ability of an attacker to maintain access
+to a compromised system across reboots and login sessions, usually
+achieved by installing a backdoor or scheduled task
 ## Q
 - **Query String** — The part of a URL starting with ? that sends
 parameters to the server (ex: ?search=hacking). Can be exploited
@@ -523,6 +544,11 @@ analyze, mitigate and monitor security risks:
   2. Analysis
   3. Mitigation
   4. Monitoring
+  - **Red Team** — An offensive security team that simulates real
+attacker techniques to test an organization's defenses
+- **Reconnaissance** — The first stage of the Cyber Kill Chain where
+an attacker gathers information about the target using passive and
+active techniques
 ## S
 - **Service** — A process that runs continuously in the background, starts
 automatically at boot, runs without user interaction
@@ -626,6 +652,11 @@ authenticated state across multiple web requests using session cookies
 - **Session Fixation** — An attack where an attacker forces a user
 to use a known session ID, allowing the attacker to hijack the
 session after the user authenticates
+- **Smishing** — SMS phishing, where attackers send text messages
+with malicious links or instructions to download malware
+- **Spear Phishing** — A targeted phishing attack where emails are
+crafted to appear from a trusted source known to the recipient
+such as a manager or colleague
 ## T
 - **Telnet** — Insecure remote access protocol (Port 23), replaced by SSH
 - **TGT** — Ticket Granting Ticket, allows users to request tickets to
@@ -707,7 +738,6 @@ on a single server using the same IP address. Different hostnames
 are used to serve different websites
 - **Version Control** — In pentest reports, tracking document
 versions between drafts (ex: v1.0, v1.1, v2.0)
-## V
 - **Vertical Privilege Escalation** — Gaining access to higher
 privilege levels than originally permitted
 (ex: a regular user gaining admin access)
@@ -744,6 +774,9 @@ the server, giving the attacker remote code execution
 - **Web Shell** — A malicious script uploaded to a web server that
 accepts commands through HTTP parameters and executes them on the
 server giving the attacker remote code execution
+- **Weaponization** — The second stage of the Cyber Kill Chain where
+an attacker creates or modifies a payload based on discovered target
+vulnerabilities
 ## X
 - **XSS** — Cross-Site Scripting, injecting malicious scripts into web pages
 - **XZ Utils** — Linux compression tool targeted by a supply chain attack
