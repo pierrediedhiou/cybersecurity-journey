@@ -24,6 +24,9 @@ everything else. More secure than a blocklist
 - **Allowlist** — A security approach that explicitly permits only
 approved items and blocks everything else. More secure than a
 blocklist
+- **Assumed Breach** — An internal pentest scenario where the tester
+starts with the assumption that an attacker already has access to
+the network, evaluating what damage could be done from inside
 ## B
 - **Bash** (Bourne Again Shell) — Most common shell on Linux, default on Kali Linux
 - **Bind Shell** — Shell that listens on a port on the target waiting for attacker
@@ -115,6 +118,9 @@ severity from 0.0 to 10.0:
   - 7.0-8.9 = High
   - 4.0-6.9 = Medium
   - 0.1-3.9 = Low
+  - **Credential Stuffing** — An automated attack where stolen username
+and password combinations from one breach are tried against other
+services, exploiting password reuse
 ## D
 - **Daemon** — A background service running on Linux
 - **Delegation** — Process of granting privileges to a user over an OU
@@ -238,6 +244,9 @@ that instructs web browsers what to display and how to display it
 browsers to always connect over HTTPS
 - **Hydra** — A fast online brute force password cracking tool used
 to attack login forms, SSH, FTP and other authentication services
+- **Horizontal Privilege Escalation** — Accessing resources or data
+belonging to another user at the same privilege level
+(ex: viewing another user's profile by changing an ID)
 ## I
 - **Injection** — Attack inserting malicious code into an input field
 - **IP Address** — Internet Protocol Address, a unique numerical label assigned
@@ -342,6 +351,10 @@ privilege escalation
 - **MIME Type** — Multipurpose Internet Mail Extensions type, a
 label that identifies the format of a file or content (ex:
 text/html, image/png)
+- **MFA** — Multi-Factor Authentication, a security method requiring
+two or more verification factors to authenticate a user
+- **Mitigation** — Actions taken to reduce the likelihood or impact
+of a security vulnerability being exploited
 ## N
 - **NAT** — Network Address Translation, maps private IPs to a public IP
 - **Nmap** — Network scanning tool used to discover open ports and services
@@ -368,6 +381,8 @@ project, adds extra features including SSL encryption
 - **Netcat (nc)** — A networking utility used to read and write data
 across network connections, commonly used to set up listeners for
 reverse shells
+- **Network Segmentation** — Dividing a network into separate zones
+to limit the spread of attacks and control traffic between segments
 ## O
 - **Open Port** — A port actively accepting connections on a device
 - **OpenSSL** — Cryptographic library that powers HTTPS encryption
@@ -499,6 +514,15 @@ making reverse shells more interactive
 after it has been identified during a pentest
 - **Remote Code Execution (RCE)** — A critical vulnerability that
 allows an attacker to run arbitrary code on a target system remotely
+- **Risk** — The potential damage that could occur if a threat
+successfully exploits a vulnerability. Calculated as:
+Vulnerability × Threat = Risk
+- **Risk Management** — A structured ongoing process to identify,
+analyze, mitigate and monitor security risks:
+  1. Identification
+  2. Analysis
+  3. Mitigation
+  4. Monitoring
 ## S
 - **Service** — A process that runs continuously in the background, starts
 automatically at boot, runs without user interaction
@@ -599,6 +623,9 @@ and is the correct way to implement security controls
 server that cannot be bypassed by the attacker
 - **Session Management** — The process of maintaining a user's
 authenticated state across multiple web requests using session cookies
+- **Session Fixation** — An attack where an attacker forces a user
+to use a known session ID, allowing the attacker to hijack the
+session after the user authenticates
 ## T
 - **Telnet** — Insecure remote access protocol (Port 23), replaced by SSH
 - **TGT** — Ticket Granting Ticket, allows users to request tickets to
@@ -640,6 +667,9 @@ of google.com), commonly used in phishing attacks
 - **Token** — A randomly generated value used for authentication
 or session management. Weak randomness in tokens can lead to
 session hijacking attacks
+- **Threat** — Anything that can exploit a vulnerability and cause
+harm. Can be malicious (attackers, malware) or non-malicious
+(human error, system failure)
 ## U
 - **UAC** — User Account Control, Windows security feature that controls
 administrative privileges
@@ -677,6 +707,12 @@ on a single server using the same IP address. Different hostnames
 are used to serve different websites
 - **Version Control** — In pentest reports, tracking document
 versions between drafts (ex: v1.0, v1.1, v2.0)
+## V
+- **Vertical Privilege Escalation** — Gaining access to higher
+privilege levels than originally permitted
+(ex: a regular user gaining admin access)
+- **VPN Gateway** — A network device that provides secure remote
+access to a private network over the internet
 ## W
 - **Web Shell** — Malicious script uploaded to a web server giving
 browser-based shell access
