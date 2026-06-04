@@ -1363,3 +1363,95 @@ Common password reset vulnerabilities to test:
 3. Weak or predictable token generation
 4. Token reuse across accounts
 5. No rate limiting on reset attempts
+## Passive Reconnaissance
+
+### Passive vs Active Reconnaissance
+| | Passive Recon | Active Recon |
+|---|---|---|
+| **Interaction with target** | None — public sources only | Direct engagement with target |
+| **Detection risk** | None | Can be logged, detected or blocked |
+| **Analogy** | Observing from a distance with binoculars | Walking up and testing locks and cameras |
+| **Examples** | WHOIS, DNS lookups, Google Dorking | Nmap scanning, Gobuster, Nikto |
+
+---
+
+### DNS Record Types Reference
+| Record | Description |
+|--------|-------------|
+| `A` | Maps domain to IPv4 address |
+| `AAAA` | Maps domain to IPv6 address |
+| `CNAME` | Alias pointing one domain to another |
+| `MX` | Mail servers responsible for email handling |
+| `SOA` | Start of Authority — primary name server and admin email |
+| `TXT` | Text records — used for SPF, DKIM, DMARC, domain verification |
+
+---
+
+### WHOIS Commands
+```bash
+# Lookup WHOIS record for a domain
+whois tryhackme.com
+```
+
+---
+
+### nslookup Commands (Legacy)
+```bash
+# Simple domain lookup
+nslookup tryhackme.com
+
+# Lookup DNS A records
+nslookup -type=A tryhackme.com
+
+# Lookup DNS MX records at a specific DNS server
+nslookup -type=MX tryhackme.com 1.1.1.1
+
+# Lookup DNS TXT records
+nslookup -type=TXT tryhackme.com
+
+# Lookup DNS AAAA records
+nslookup -type=AAAA tryhackme.com
+
+# Lookup DNS CNAME records
+nslookup -type=CNAME tryhackme.com
+
+# Lookup DNS SOA records
+nslookup -type=SOA tryhackme.com
+```
+
+---
+
+### dig Commands (Recommended)
+```bash
+# Lookup DNS A records
+dig tryhackme.com A
+
+# Lookup DNS MX records at a specific DNS server
+dig @1.1.1.1 tryhackme.com MX
+
+# Lookup DNS TXT records
+dig tryhackme.com TXT
+
+# Lookup DNS AAAA records
+dig tryhackme.com AAAA
+
+# Lookup DNS CNAME records
+dig tryhackme.com CNAME
+
+# Lookup DNS SOA records
+dig tryhackme.com SOA
+
+# Lookup all DNS records
+dig tryhackme.com ANY
+```
+
+---
+
+### dig vs nslookup Comparison
+| | dig | nslookup |
+|---|---|---|
+| **Output** | Cleaner, more detailed | Simpler |
+| **TTL values** | Displayed by default | Not always shown |
+| **Complex queries** | More reliable | Less reliable |
+| **Scripting** | Better suited | Less suited |
+| **Recommendation** | Preferred for pentesting | Legacy tool |
