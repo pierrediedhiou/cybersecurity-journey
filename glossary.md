@@ -27,6 +27,10 @@ blocklist
 - **Assumed Breach** — An internal pentest scenario where the tester
 starts with the assumption that an attacker already has access to
 the network, evaluating what damage could be done from inside
+- **ATT&CK** — Adversarial Tactics Techniques and Common Knowledge,
+a MITRE framework organized as a matrix mapping attacker tactics
+(columns) to techniques (rows). Used for threat modeling and red
+teaming
 ## B
 - **Bash** (Bourne Again Shell) — Most common shell on Linux, default on Kali Linux
 - **Bind Shell** — Shell that listens on a port on the target waiting for attacker
@@ -130,6 +134,8 @@ backdoor or malware
 - **Cyber Kill Chain** — A cybersecurity framework that divides a
 cyberattack into 7 stages: Reconnaissance, Weaponization, Delivery,
 Exploitation, Installation, Command and Control, Actions on Objectives
+- **Covering Tracks** — The final step in ISSAF where an attacker
+erases evidence of their activity including log files and artifacts
 ## D
 - **Daemon** — A background service running on Linux
 - **Delegation** — Process of granting privileges to a user over an OU
@@ -287,6 +293,11 @@ value like an ID in a URL (ex: changing ?id=1234 to ?id=1235)
 - **Infrastructure Pentest** — A security assessment of network
 devices including servers, firewalls and printers
 - **Infra Pentest** — Short for Infrastructure Penetration Test
+- **ISSAF** — Information Systems Security Assessment Framework, an
+open-source pentest framework that divides assessments into planning,
+a nine-step assessment model, and reporting with cleanup
+- **Intelligence Gathering** — The process of collecting passive and
+active information about a target before exploitation
 ## J
 - **John the Ripper** — Free open source password cracking tool that
 automatically detects hash types and supports wordlist, single and
@@ -326,6 +337,9 @@ multiple times while a condition is true:
   - do...while — runs at least once then checks condition
   - **LAN** — Local Area Network, a network connecting devices within
 a limited area such as an office or home
+- **Lateral Movement** — Moving from one compromised system to other
+systems within the same network using harvested credentials or
+exploited trust relationships
 ## M
 - **Machine Account** — Windows computer account, always ends with $ symbol
 - **Malware** — Malicious software designed to damage or gain unauthorized access
@@ -373,6 +387,10 @@ of a security vulnerability being exploited
 - **Malvertising** — Malicious advertisements displayed on legitimate
 websites that redirect users to malicious pages or trigger drive-by
 downloads
+- **MITRE ATT&CK** — A globally accessible knowledge base of
+adversary tactics and techniques based on real-world observations
+- **MITRE** — A nonprofit organization that maintains the ATT&CK
+framework and other cybersecurity resources
 ## N
 - **NAT** — Network Address Translation, maps private IPs to a public IP
 - **Nmap** — Network scanning tool used to discover open ports and services
@@ -401,6 +419,9 @@ across network connections, commonly used to set up listeners for
 reverse shells
 - **Network Segmentation** — Dividing a network into separate zones
 to limit the spread of attacks and control traffic between segments
+- **NIST SP 800-115** — NIST Special Publication 800-115, a US
+government framework covering the full spectrum of security testing
+from document reviews to full penetration tests
 ## O
 - **Open Port** — A port actively accepting connections on a device
 - **OpenSSL** — Cryptographic library that powers HTTPS encryption
@@ -409,7 +430,14 @@ to limit the spread of attacks and control traffic between segments
 used to classify users and machines
 - **Object** — A complex data type in JavaScript that stores
 multiple values as key-value pairs (ex: {name: "Pierre", age: 25})
-
+- **OSSTMM** — Open Source Security Testing Methodology Manual, a
+framework organizing security testing across five channels with RAV
+scoring and STAR report format
+- **OWASP** — Open Web Application Security Project, a nonprofit
+foundation producing free resources for web application security
+including the WSTG and OWASP Top 10
+- **OWASP WSTG** — Web Security Testing Guide, OWASP's methodology
+for testing web application security across all SDLC phases
 ## P
 - **Packet** — Small unit of data transmitted over a network
 - **Patch** — A software update that fixes a security vulnerability
@@ -479,6 +507,11 @@ detailing all vulnerabilities found, severity, proof and remediation
 - **Persistence** — The ability of an attacker to maintain access
 to a compromised system across reboots and login sessions, usually
 achieved by installing a backdoor or scheduled task
+- **PTES** — Penetration Testing Execution Standard, a framework
+organizing a pentest into seven phases from pre-engagement to
+reporting
+- **Post-Exploitation** — Phase after gaining access where the
+tester determines the real-world impact of the compromise
 ## Q
 - **Query String** — The part of a URL starting with ? that sends
 parameters to the server (ex: ?search=hacking). Can be exploited
@@ -549,6 +582,12 @@ attacker techniques to test an organization's defenses
 - **Reconnaissance** — The first stage of the Cyber Kill Chain where
 an attacker gathers information about the target using passive and
 active techniques
+- **RAV** — Risk Assessment Values, an OSSTMM metric measuring the
+balance between the total attack surface and the controls protecting
+it
+- **Rules of Engagement** — Formally agreed boundaries and
+constraints for a penetration test including what is in scope,
+what methods are allowed and when testing can occur
 ## S
 - **Service** — A process that runs continuously in the background, starts
 automatically at boot, runs without user interaction
@@ -657,6 +696,11 @@ with malicious links or instructions to download malware
 - **Spear Phishing** — A targeted phishing attack where emails are
 crafted to appear from a trusted source known to the recipient
 such as a manager or colleague
+- **SDLC** — Software Development Life Cycle, the process of
+planning, creating, testing and deploying software. Security should
+be integrated at every phase
+- **STAR** — Security Test Audit Report, the standardized report
+format prescribed by OSSTMM
 ## T
 - **Telnet** — Insecure remote access protocol (Port 23), replaced by SSH
 - **TGT** — Ticket Granting Ticket, allows users to request tickets to
@@ -701,6 +745,11 @@ session hijacking attacks
 - **Threat** — Anything that can exploit a vulnerability and cause
 harm. Can be malicious (attackers, malware) or non-malicious
 (human error, system failure)
+- **Threat Modeling** — The process of identifying the most valuable
+targets and most likely attack paths based on intelligence gathered
+about the target
+- **Tailgating** — A physical security attack where an unauthorized
+person follows an authorized person through a secured entry point
 ## U
 - **UAC** — User Account Control, Windows security feature that controls
 administrative privileges
