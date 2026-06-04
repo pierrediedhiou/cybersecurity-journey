@@ -31,6 +31,9 @@ the network, evaluating what damage could be done from inside
 a MITRE framework organized as a matrix mapping attacker tactics
 (columns) to techniques (rows). Used for threat modeling and red
 teaming
+- **Active Reconnaissance** — Direct engagement with a target system
+to gather information. Can be logged, detected or blocked by the
+target. Examples: Nmap scanning, Gobuster enumeration
 ## B
 - **Bash** (Bourne Again Shell) — Most common shell on Linux, default on Kali Linux
 - **Bind Shell** — Shell that listens on a port on the target waiting for attacker
@@ -169,6 +172,15 @@ mail.example.com). Enumerating subdomains can reveal hidden services
 - **Domain Spoofing** — Registering or impersonating a domain that
 looks similar to a legitimate one to trick users
 (ex: paypa1.com instead of paypal.com)
+- **dig** — Domain Information Groper, a command-line DNS lookup
+tool that provides cleaner output than nslookup, displays TTL
+values by default and is preferred for pentesting and scripting
+- **DKIM** — DomainKeys Identified Mail, an email authentication
+method using digital signatures stored in DNS TXT records to verify
+email integrity
+- **DMARC** — Domain-based Message Authentication Reporting and
+Conformance, a DNS TXT record policy that tells mail servers what
+to do with emails that fail SPF or DKIM checks
 ## E
 - **Encryption** — Process of encoding data so only authorized parties can read it
 - **Enumeration** — Systematically gathering information about a target system
@@ -422,6 +434,9 @@ to limit the spread of attacks and control traffic between segments
 - **NIST SP 800-115** — NIST Special Publication 800-115, a US
 government framework covering the full spectrum of security testing
 from document reviews to full penetration tests
+- **nslookup** — Name Server Lookup, a legacy command-line tool for
+querying DNS records. Still widely used but dig is preferred for
+pentesting
 ## O
 - **Open Port** — A port actively accepting connections on a device
 - **OpenSSL** — Cryptographic library that powers HTTPS encryption
@@ -512,6 +527,10 @@ organizing a pentest into seven phases from pre-engagement to
 reporting
 - **Post-Exploitation** — Phase after gaining access where the
 tester determines the real-world impact of the compromise
+- **Passive Reconnaissance** — Gathering intelligence from publicly
+available sources without any direct contact or interaction with
+the target. No packets sent, no detection risk. Examples: WHOIS,
+DNS lookups, Google Dorking, Shodan
 ## Q
 - **Query String** — The part of a URL starting with ? that sends
 parameters to the server (ex: ?search=hacking). Can be exploited
@@ -701,6 +720,11 @@ planning, creating, testing and deploying software. Security should
 be integrated at every phase
 - **STAR** — Security Test Audit Report, the standardized report
 format prescribed by OSSTMM
+- **SOA Record** — Start of Authority DNS record, contains the
+primary name server, administrator email and zone serial number
+for a domain
+- **SPF** — Sender Policy Framework, a DNS TXT record that specifies
+which mail servers are authorized to send email for a domain
 ## T
 - **Telnet** — Insecure remote access protocol (Port 23), replaced by SSH
 - **TGT** — Ticket Granting Ticket, allows users to request tickets to
@@ -750,6 +774,11 @@ targets and most likely attack paths based on intelligence gathered
 about the target
 - **Tailgating** — A physical security attack where an unauthorized
 person follows an authorized person through a secured entry point
+- **TTL** — Time To Live, a value in DNS records that specifies how
+long a record should be cached before being refreshed. Also used
+in IP packets to limit their lifetime on a network
+- **TXT Record** — A DNS record containing arbitrary text, commonly
+used for SPF, DKIM, DMARC and domain ownership verification
 ## U
 - **UAC** — User Account Control, Windows security feature that controls
 administrative privileges
