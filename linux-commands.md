@@ -1455,3 +1455,89 @@ dig tryhackme.com ANY
 | **Complex queries** | More reliable | Less reliable |
 | **Scripting** | Better suited | Less suited |
 | **Recommendation** | Preferred for pentesting | Legacy tool |
+## Active Reconnaissance
+
+### Active Reconnaissance Tools Overview
+| Tool | Type | Description |
+|------|------|-------------|
+| **ping** | Network | Test if a host is reachable and online |
+| **traceroute** | Network | Trace the route packets take to a target |
+| **Developer Tools** | Browser | Inspect requests, responses, source code and storage |
+| **Nmap** | Network | Port scanning and service detection |
+| **Gobuster** | Web | Directory and subdomain enumeration |
+
+---
+
+### ping Commands
+```bash
+# Basic ping
+ping target_ip
+
+# Ping with specific number of packets
+ping -c 4 target_ip
+
+# Ping with no DNS resolution
+ping -n target_ip
+```
+
+---
+
+### traceroute Commands
+```bash
+# Trace route to a target (Linux/Mac)
+traceroute target_ip
+
+# Trace route to a target (Windows)
+tracert target_ip
+
+# Trace route without DNS resolution
+traceroute -n target_ip
+```
+
+---
+
+### Browser Developer Tools — Opening
+| Operating System | Shortcut |
+|-----------------|----------|
+| Windows / Linux | `Ctrl + Shift + I` |
+| macOS | `Option + Command + I` |
+| All browsers | `F12` |
+
+Works in Firefox, Chrome, Edge and most Chromium-based browsers.
+
+---
+
+### Browser Developer Tools — Tabs Reference
+| Tab | What to Look For | Recon Value |
+|-----|-----------------|-------------|
+| **Network** | All requests and responses in real time, headers (Server, X-Powered-By, CSP), status codes, cookies, timing data | Reveals server technology, security headers, authentication cookies |
+| **Console** | JavaScript errors, execute JS snippets, interact with DOM | Test JS execution, find error messages leaking info |
+| **Sources** | JavaScript, CSS and HTML files loaded by the page | Hardcoded API endpoints, directory structures, internal service references, developer comments |
+| **Application** | Cookies, Local Storage, Session Storage | Session tokens, API keys, authentication data, tracking IDs |
+| **Security** | Certificate details, issuer, validity period, SANs | Additional subdomains and related domains via Subject Alternative Names |
+
+---
+
+### What to Look for in Developer Tools During Recon
+
+**Network Tab:**
+Server header → reveals web server type (Apache, Nginx, IIS)
+X-Powered-By → reveals backend language (PHP, ASP.NET)
+Content-Security-Policy → reveals allowed sources
+Set-Cookie → reveals session cookie names and attributes
+Status codes → 200, 301, 302, 403, 404, 500
+**Sources Tab:**
+API endpoints hardcoded in JavaScript files
+Internal service URLs and IP addresses
+Directory structures not visible in the rendered page
+Developer comments left in code
+Authentication tokens or API keys accidentally left in code
+**Application Tab:**
+Session cookies and their attributes (HttpOnly, Secure, SameSite)
+LocalStorage and SessionStorage contents
+API keys accidentally stored client-side
+Authentication tokens
+**Security Tab:**
+SSL certificate issuer and validity dates
+Subject Alternative Names (SANs) — reveals additional subdomains
+Certificate transparency logs for related domains
