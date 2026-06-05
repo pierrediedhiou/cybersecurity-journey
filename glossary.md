@@ -34,6 +34,10 @@ teaming
 - **Active Reconnaissance** — Direct engagement with a target system
 to gather information. Can be logged, detected or blocked by the
 target. Examples: Nmap scanning, Gobuster enumeration
+- **Active Reconnaissance** — The process of directly interacting
+with a target system or network to gather information. Can be
+detected by the target. Examples: ping, traceroute, Nmap, Gobuster,
+browser developer tools
 ## B
 - **Bash** (Bourne Again Shell) — Most common shell on Linux, default on Kali Linux
 - **Bind Shell** — Shell that listens on a port on the target waiting for attacker
@@ -181,6 +185,13 @@ email integrity
 - **DMARC** — Domain-based Message Authentication Reporting and
 Conformance, a DNS TXT record policy that tells mail servers what
 to do with emails that fail SPF or DKIM checks
+- **Developer Tools** — Built-in browser tools for inspecting web
+pages, network requests, JavaScript source files, cookies and
+security certificates. Opened with Ctrl+Shift+I or F12. Highly
+useful for web application reconnaissance
+- **DOM** — Document Object Model, the browser's structured
+representation of an HTML page that can be inspected and manipulated
+using JavaScript in the browser console
 ## E
 - **Encryption** — Process of encoding data so only authorized parties can read it
 - **Enumeration** — Systematically gathering information about a target system
@@ -280,6 +291,9 @@ to attack login forms, SSH, FTP and other authentication services
 - **Horizontal Privilege Escalation** — Accessing resources or data
 belonging to another user at the same privilege level
 (ex: viewing another user's profile by changing an ID)
+- **Hardcoded Credentials** — Usernames, passwords or API keys
+written directly into source code instead of stored securely.
+Often found in JavaScript files during source code review
 ## I
 - **Injection** — Attack inserting malicious code into an input field
 - **IP Address** — Internet Protocol Address, a unique numerical label assigned
@@ -352,6 +366,9 @@ a limited area such as an office or home
 - **Lateral Movement** — Moving from one compromised system to other
 systems within the same network using harvested credentials or
 exploited trust relationships
+- **Local Storage** — A browser storage area that persists data
+even after the browser is closed. Sometimes contains API keys or
+tokens accidentally stored client-side
 ## M
 - **Machine Account** — Windows computer account, always ends with $ symbol
 - **Malware** — Malicious software designed to damage or gain unauthorized access
@@ -725,6 +742,13 @@ primary name server, administrator email and zone serial number
 for a domain
 - **SPF** — Sender Policy Framework, a DNS TXT record that specifies
 which mail servers are authorized to send email for a domain
+- **SAN** — Subject Alternative Names, additional domain names and
+subdomains listed in an SSL certificate. Reviewing SANs during
+recon can reveal related domains and subdomains belonging to the
+same organization
+- **Session Storage** — A browser storage area that stores data
+only for the duration of the browser session. Can contain
+authentication tokens or other sensitive data
 ## T
 - **Telnet** — Insecure remote access protocol (Port 23), replaced by SSH
 - **TGT** — Ticket Granting Ticket, allows users to request tickets to
@@ -870,6 +894,10 @@ cryptography and computing
 browsers from guessing MIME types, uses the nosniff directive
 - **XSS** — Cross-Site Scripting, an attack that injects malicious
 scripts into web pages viewed by other users
+- **X-Powered-By** — An HTTP response header that reveals the
+backend technology used by a web server (ex: PHP, ASP.NET).
+Useful during reconnaissance but should be removed in production
+for security reasons
   ## Y
 - **yescrypt** — A modern scalable password hashing scheme, default
 and recommended choice on new Linux systems. Prefix: $y$
