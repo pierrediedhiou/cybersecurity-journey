@@ -1541,3 +1541,73 @@ Authentication tokens
 SSL certificate issuer and validity dates
 Subject Alternative Names (SANs) — reveals additional subdomains
 Certificate transparency logs for related domains
+## Hydra — Complete Command Reference
+
+### Hydra Basic Syntax
+```bash
+hydra -l username -P wordlist.txt server service
+```
+
+### Hydra All Options
+| Option | Description |
+|--------|-------------|
+| `-l username` | Single username to attack |
+| `-L users.txt` | File containing a list of usernames |
+| `-p password` | Single password to try |
+| `-P wordlist.txt` | File containing a list of passwords |
+| `-s PORT` | Specify a non-default port |
+| `-V` or `-vV` | Verbose output showing all attempts |
+| `-t n` | Number of parallel connections (threads) |
+| `-d` | Debug mode for troubleshooting |
+| `-f` | Stop after the first valid password found |
+| `-w n` | Wait time between connections |
+
+### Hydra Supported Services
+| Service | Example Command |
+|---------|----------------|
+| SSH | `hydra -l admin -P rockyou.txt 10.10.10.1 ssh` |
+| FTP | `hydra -l admin -P rockyou.txt 10.10.10.1 ftp` |
+| SMTP | `hydra -l admin -P rockyou.txt 10.10.10.1 smtp` |
+| POP3 | `hydra -l admin -P rockyou.txt 10.10.10.1 pop3` |
+| IMAP | `hydra -l admin -P rockyou.txt 10.10.10.1 imap` |
+| HTTP POST | `hydra -l admin -P rockyou.txt 10.10.10.1 http-post-form` |
+| RDP | `hydra -l admin -P rockyou.txt 10.10.10.1 rdp` |
+
+### Hydra Practical Examples
+```bash
+# Brute force SSH with username list and password list
+hydra -L users.txt -P rockyou.txt 10.10.10.1 ssh
+
+# Brute force FTP stopping at first valid password
+hydra -l admin -P rockyou.txt -f 10.10.10.1 ftp
+
+# Brute force with verbose output and 4 threads
+hydra -l admin -P rockyou.txt -V -t 4 10.10.10.1 ssh
+
+# Brute force on non-default port
+hydra -l admin -P rockyou.txt -s 2222 10.10.10.1 ssh
+```
+
+---
+
+## MITM Attack Tools
+| Tool | Description |
+|------|-------------|
+| **Bettercap** | Modern successor to Ettercap, supports ARP spoofing, DNS spoofing, HTTP/HTTPS proxying |
+| **Ettercap** | Classic LAN MITM tool, still functional but Bettercap is preferred |
+| **mitmproxy** | Interactive HTTPS proxy for inspecting and modifying HTTP/HTTPS traffic |
+| **Responder** | Windows environment tool that exploits LLMNR and NBT-NS to capture credentials |
+
+---
+
+## Defensive Security Checklist
+✅ All services use TLS 1.2 or TLS 1.3 with strong cipher suites
+✅ Cleartext protocols (Telnet, FTP, HTTP) disabled or restricted
+✅ SSH uses key-based authentication with password auth disabled
+✅ Strong password policies with breached password detection
+✅ Account lockout or rate limiting on all authentication endpoints
+✅ Multi-factor authentication enabled for sensitive systems
+✅ Network segmentation limits impact of sniffing attacks
+✅ Certificate validation properly implemented to prevent MITM
+✅ HSTS enabled for web applications to prevent SSL stripping
+✅ Logging and monitoring detect authentication anomalies
