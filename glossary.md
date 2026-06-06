@@ -38,6 +38,9 @@ target. Examples: Nmap scanning, Gobuster enumeration
 with a target system or network to gather information. Can be
 detected by the target. Examples: ping, traceroute, Nmap, Gobuster,
 browser developer tools
+- **ARP Spoofing** — An attack where forged ARP messages associate
+the attacker's MAC address with a legitimate IP address, redirecting
+traffic through the attacker's system on a local network
 ## B
 - **Bash** (Bourne Again Shell) — Most common shell on Linux, default on Kali Linux
 - **Bind Shell** — Shell that listens on a port on the target waiting for attacker
@@ -70,6 +73,12 @@ while allowing everything else. Less secure than an allowlist
 - **Backdoor** — A hidden method of bypassing normal authentication
 to maintain persistent access to a compromised system after
 exploitation
+- **BGP Hijacking** — A sophisticated attack where false BGP routes
+are announced to redirect internet traffic through an attacker's
+infrastructure, targeting specific organizations or regions
+- **Bettercap** — A modern actively maintained MITM attack tool that
+supports ARP spoofing, DNS spoofing, HTTP/HTTPS proxying and more.
+The preferred successor to Ettercap
 ## C
 - **cat** — Linux command meaning concatenate, used to display file contents
 - **Censys** — Search engine for Internet-connected hosts, websites, certificates,
@@ -143,6 +152,9 @@ cyberattack into 7 stages: Reconnaissance, Weaponization, Delivery,
 Exploitation, Installation, Command and Control, Actions on Objectives
 - **Covering Tracks** — The final step in ISSAF where an attacker
 erases evidence of their activity including log files and artifacts
+- **Credential Stuffing** — Using username and password pairs leaked
+from previous breaches and trying them against other services,
+exploiting password reuse
 ## D
 - **Daemon** — A background service running on Linux
 - **Delegation** — Process of granting privileges to a user over an OU
@@ -192,6 +204,12 @@ useful for web application reconnaissance
 - **DOM** — Document Object Model, the browser's structured
 representation of an HTML page that can be inspected and manipulated
 using JavaScript in the browser console
+- **DNS Spoofing** — Providing false DNS responses to redirect
+victims to attacker-controlled servers through DNS cache poisoning
+or compromised DNS servers
+- **Dictionary Attack** — A password attack that tries common words
+from a wordlist, effective because many users choose real words or
+simple variations
 ## E
 - **Encryption** — Process of encoding data so only authorized parties can read it
 - **Enumeration** — Systematically gathering information about a target system
@@ -221,6 +239,9 @@ resources on a target, whether accessible or not. A key phase in
 penetration testing and CTF challenges
 - **Executive Summary** — The non-technical section of a pentest
 report aimed at managers, explaining findings in plain language
+- **Ettercap** — A classic tool for MITM attacks on LANs. Still
+functional but Bettercap is generally preferred for modern
+assessments
 ## F
 - **File** — A unit of stored data (text, code, image, config, etc).
 Everything in Linux is technically a file
@@ -294,6 +315,12 @@ belonging to another user at the same privilege level
 - **Hardcoded Credentials** — Usernames, passwords or API keys
 written directly into source code instead of stored securely.
 Often found in JavaScript files during source code review
+- **Hybrid Attack** — A password attack combining dictionary words
+with common patterns like appended years or character substitutions
+(ex: Summer2024, P@ssw0rd)
+- **Hydra** — A fast flexible online password cracking tool
+supporting many protocols including SSH, FTP, SMTP, POP3, IMAP
+and HTTP
 ## I
 - **Injection** — Attack inserting malicious code into an input field
 - **IP Address** — Internet Protocol Address, a unique numerical label assigned
@@ -369,6 +396,9 @@ exploited trust relationships
 - **Local Storage** — A browser storage area that persists data
 even after the browser is closed. Sometimes contains API keys or
 tokens accidentally stored client-side
+- **LLMNR** — Link-Local Multicast Name Resolution, a Windows
+fallback name resolution protocol exploited by tools like Responder
+to capture authentication credentials
 ## M
 - **Machine Account** — Windows computer account, always ends with $ symbol
 - **Malware** — Malicious software designed to damage or gain unauthorized access
@@ -420,6 +450,12 @@ downloads
 adversary tactics and techniques based on real-world observations
 - **MITRE** — A nonprofit organization that maintains the ATT&CK
 framework and other cybersecurity resources
+- **mitmproxy** — An interactive HTTPS proxy tool used to inspect
+and modify HTTP/HTTPS traffic, useful for analyzing web application
+communications
+- **MITM** — Man in the Middle attack, where an attacker secretly
+intercepts communications between two parties who believe they are
+communicating directly with each other
 ## N
 - **NAT** — Network Address Translation, maps private IPs to a public IP
 - **Nmap** — Network scanning tool used to discover open ports and services
@@ -454,6 +490,9 @@ from document reviews to full penetration tests
 - **nslookup** — Name Server Lookup, a legacy command-line tool for
 querying DNS records. Still widely used but dig is preferred for
 pentesting
+- **NBT-NS** — NetBIOS Name Service, a Windows fallback name
+resolution protocol exploited by Responder to capture credentials
+on internal networks
 ## O
 - **Open Port** — A port actively accepting connections on a device
 - **OpenSSL** — Cryptographic library that powers HTTPS encryption
@@ -548,6 +587,11 @@ tester determines the real-world impact of the compromise
 available sources without any direct contact or interaction with
 the target. No packets sent, no detection risk. Examples: WHOIS,
 DNS lookups, Google Dorking, Shodan
+- **Password Guessing** — A targeted attack using personal
+information about the victim such as pet names, birth years or
+family names gathered from social media
+- **Password Spraying** — Trying a small number of common passwords
+against many accounts to avoid triggering account lockout mechanisms
 ## Q
 - **Query String** — The part of a URL starting with ? that sends
 parameters to the server (ex: ?search=hacking). Can be exploited
@@ -624,6 +668,11 @@ it
 - **Rules of Engagement** — Formally agreed boundaries and
 constraints for a penetration test including what is in scope,
 what methods are allowed and when testing can occur
+- **Responder** — A tool designed for Windows environments that
+exploits LLMNR and NBT-NS protocols to capture authentication
+credentials. Commonly used in internal Active Directory pentests
+- **Rogue Access Point** — A fake wireless access point set up by
+an attacker to intercept traffic from victims who connect to it
 ## S
 - **Service** — A process that runs continuously in the background, starts
 automatically at boot, runs without user interaction
@@ -749,6 +798,12 @@ same organization
 - **Session Storage** — A browser storage area that stores data
 only for the duration of the browser session. Can contain
 authentication tokens or other sensitive data
+- **Sniffing Attack** — Using a network packet capture tool to
+collect information about network traffic passing through an
+interface
+- **SSL Stripping** — A MITM attack that downgrades HTTPS
+connections to HTTP, allowing the attacker to read encrypted
+traffic in plaintext. Prevented by HSTS
 ## T
 - **Telnet** — Insecure remote access protocol (Port 23), replaced by SSH
 - **TGT** — Ticket Granting Ticket, allows users to request tickets to
@@ -879,6 +934,8 @@ server giving the attacker remote code execution
 - **Weaponization** — The second stage of the Cyber Kill Chain where
 an attacker creates or modifies a payload based on discovered target
 vulnerabilities
+- **WWW** — World Wide Web, the system of interlinked web pages
+accessed via the HTTP protocol through a web browser
 ## X
 - **XSS** — Cross-Site Scripting, injecting malicious scripts into web pages
 - **XZ Utils** — Linux compression tool targeted by a supply chain attack
