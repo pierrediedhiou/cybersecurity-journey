@@ -1611,3 +1611,58 @@ hydra -l admin -P rockyou.txt -s 2222 10.10.10.1 ssh
 ✅ Certificate validation properly implemented to prevent MITM
 ✅ HSTS enabled for web applications to prevent SSL stripping
 ✅ Logging and monitoring detect authentication anomalies
+## Nmap — Live Host Discovery
+
+### Host Discovery Scan Types
+| Scan Type | Flag | Example Command |
+|-----------|------|----------------|
+| ARP Scan | `-PR` | `sudo nmap -PR -sn 10.200.6.0/24` |
+| ICMP Echo Scan | `-PE` | `sudo nmap -PE -sn 10.200.6.0/24` |
+| ICMP Timestamp Scan | `-PP` | `sudo nmap -PP -sn 10.200.6.0/24` |
+| ICMP Address Mask Scan | `-PM` | `sudo nmap -PM -sn 10.200.6.0/24` |
+| TCP SYN Ping Scan | `-PS` | `sudo nmap -PS22,80,443 -sn 10.200.6.0/30` |
+| TCP ACK Ping Scan | `-PA` | `sudo nmap -PA22,80,443 -sn 10.200.6.0/30` |
+| UDP Ping Scan | `-PU` | `sudo nmap -PU53,161,162 -sn 10.200.6.0/30` |
+
+### Host Discovery Options
+| Option | Purpose |
+|--------|---------|
+| `-sn` | Host discovery only, no port scan |
+| `-n` | No DNS lookup |
+| `-R` | Reverse DNS lookup for all hosts |
+| `-PS23` | TCP SYN ping scan on Telnet port |
+
+### Host Discovery Practical Examples
+```bash
+# Scan a subnet for live hosts (ARP)
+sudo nmap -PR -sn 10.200.6.0/24
+
+# Scan a subnet for live hosts (ICMP Echo)
+sudo nmap -PE -sn 10.200.6.0/24
+
+# Discover online hosts on target subnet (TCP SYN)
+sudo nmap -PS -sn 10.114.116.2/24
+
+# TCP SYN ping on specific ports
+sudo nmap -PS22,80,443 -sn 10.200.6.0/30
+
+# TCP ACK ping on specific ports
+sudo nmap -PA22,80,443 -sn 10.200.6.0/30
+
+# UDP ping on DNS and SNMP ports
+sudo nmap -PU53,161,162 -sn 10.200.6.0/30
+
+# Scan with reverse DNS lookup
+sudo nmap -R -sn 10.200.6.0/24
+
+# Scan without DNS lookup (faster)
+sudo nmap -n -sn 10.200.6.0/24
+```
+
+### TCP SYN vs TCP ACK Ping Comparison
+| | TCP SYN Ping | TCP ACK Ping |
+|---|---|---|
+| **Flag** | `-PS` | `-PA` |
+| **Privileges required** | No | Yes (sudo) |
+| **How it works** | Sends SYN packet, expects SYN-ACK | Sends ACK packet, expects RST |
+| **Best used when** | Running without root | Running with root privileges |
