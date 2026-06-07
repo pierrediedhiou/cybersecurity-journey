@@ -351,6 +351,14 @@ open-source pentest framework that divides assessments into planning,
 a nine-step assessment model, and reporting with cleanup
 - **Intelligence Gathering** — The process of collecting passive and
 active information about a target before exploitation
+- **ICMP Address Mask Scan** — An Nmap host discovery technique
+using ICMP Address Mask requests (-PM) to find live hosts on a
+network
+- **ICMP Echo Scan** — An Nmap host discovery technique that sends
+ICMP echo requests (like ping) to find live hosts (-PE)
+- **ICMP Timestamp Scan** — An Nmap host discovery technique using
+ICMP Timestamp requests (-PP) to find live hosts, useful when
+echo requests are blocked
 ## J
 - **John the Ripper** — Free open source password cracking tool that
 automatically detects hash types and supports wordlist, single and
@@ -673,6 +681,9 @@ exploits LLMNR and NBT-NS protocols to capture authentication
 credentials. Commonly used in internal Active Directory pentests
 - **Rogue Access Point** — A fake wireless access point set up by
 an attacker to intercept traffic from victims who connect to it
+- **Reverse DNS (rDNS)** — The process of resolving an IP address
+back to a hostname, the opposite of normal DNS lookup. Used in
+Nmap with the -R flag to identify hostnames of discovered hosts
 ## S
 - **Service** — A process that runs continuously in the background, starts
 automatically at boot, runs without user interaction
@@ -858,6 +869,12 @@ long a record should be cached before being refreshed. Also used
 in IP packets to limit their lifetime on a network
 - **TXT Record** — A DNS record containing arbitrary text, commonly
 used for SPF, DKIM, DMARC and domain ownership verification
+- **TCP ACK Ping** — An Nmap host discovery technique (-PA) that
+sends TCP ACK packets to discover live hosts. Requires root/sudo
+privileges
+- **TCP SYN Ping** — An Nmap host discovery technique (-PS) that
+sends TCP SYN packets to discover live hosts. Does not require
+root privileges
 ## U
 - **UAC** — User Account Control, Windows security feature that controls
 administrative privileges
