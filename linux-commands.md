@@ -1666,3 +1666,36 @@ sudo nmap -n -sn 10.200.6.0/24
 | **Privileges required** | No | Yes (sudo) |
 | **How it works** | Sends SYN packet, expects SYN-ACK | Sends ACK packet, expects RST |
 | **Best used when** | Running without root | Running with root privileges |
+## Nmap — Basic Port Scans
+
+### Port States
+| State | Description |
+|-------|-------------|
+| **Open** | A service is actively listening on that port |
+| **Closed** | No service is listening on that port |
+| **Filtered** | Nmap cannot determine if port is open or closed (firewall blocking) |
+| **Unfiltered** | Port is accessible but Nmap cannot determine open or closed |
+
+### Port Scan Types
+| Scan Type | Flag | Example Command | Notes |
+|-----------|------|----------------|-------|
+| TCP Connect Scan | `-sT` | `nmap -sT 10.113.131.3` | No sudo required |
+| TCP SYN Scan | `-sS` | `sudo nmap -sS 10.113.131.3` | Requires sudo, stealthier |
+| UDP Scan | `-sU` | `sudo nmap -sU 10.113.131.3` | Requires sudo, slower |
+
+### Port Selection Options
+| Option | Purpose |
+|--------|---------|
+| `-p-` | Scan all ports (1-65535) |
+| `-p1-1023` | Scan ports 1 to 1023 (well-known ports) |
+| `-F` | Fast mode — scan 100 most common ports |
+| `-r` | Scan ports in consecutive order |
+
+### Scan Speed and Rate Options
+| Option | Purpose |
+|--------|---------|
+| `-T0` | Paranoid — slowest, most stealthy |
+| `-T1` | Sneaky |
+| `-T2` | Polite |
+| `-T3` | Normal (default) |
+| `-
