@@ -875,6 +875,37 @@ privileges
 - **TCP SYN Ping** — An Nmap host discovery technique (-PS) that
 sends TCP SYN packets to discover live hosts. Does not require
 root privileges
+## T
+- **TCP Flags** — Control bits in a TCP packet header that manage
+the state and behavior of a connection:
+
+| Flag | Name | Description |
+|------|------|-------------|
+| `URG` | Urgent | Urgent pointer field is significant, process immediately |
+| `ACK` | Acknowledgement | Acknowledges receipt of a TCP segment |
+| `PSH` | Push | Asks TCP to pass data to the application immediately |
+| `RST` | Reset | Resets the connection, also sent when no service is listening |
+| `SYN` | Synchronise | Initiates TCP 3-way handshake and synchronises sequence numbers |
+| `FIN` | Finish | Sender has no more data to send, begins connection termination |
+
+- **TCP 3-Way Handshake** — The process of establishing a TCP
+connection between two hosts:
+  1. Client sends SYN
+  2. Server responds with SYN-ACK
+  3. Client responds with ACK
+  Connection is now established
+
+- **TCP Connect Scan** — An Nmap scan (-sT) that completes the full
+TCP 3-way handshake to identify open ports. Does not require root
+privileges but is more detectable
+
+- **TCP SYN Scan** — An Nmap scan (-sS) also called a stealth or
+half-open scan. Sends SYN packets but does not complete the
+handshake, making it less detectable. Requires root privileges
+
+- **UDP Scan** — An Nmap scan (-sU) used to discover open UDP
+services. Slower than TCP scans because UDP has no handshake
+mechanism to confirm port state
 ## U
 - **UAC** — User Account Control, Windows security feature that controls
 administrative privileges
