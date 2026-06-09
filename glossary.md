@@ -210,6 +210,9 @@ or compromised DNS servers
 - **Dictionary Attack** — A password attack that tries common words
 from a wordlist, effective because many users choose real words or
 simple variations
+- **Decoy Scan** — An Nmap technique (-D) that mixes the real scan
+with traffic from fake decoy IP addresses, making it harder for
+the target to identify the real attacker
 ## E
 - **Encryption** — Process of encoding data so only authorized parties can read it
 - **Enumeration** — Systematically gathering information about a target system
@@ -256,6 +259,9 @@ specific task. Called by name whenever that task needs to be done
 - **Fuzzing** — A testing technique that sends large amounts of
 random or unexpected data to an application to discover
 vulnerabilities or unexpected behavior
+- **FIN Scan** — An Nmap scan (-sF) that sends packets with only
+the FIN flag set. Can bypass non-stateful firewalls and evade
+some IDS systems
 ## G
 - **GPO** — Group Policy Objects, collection of settings applied to
 Organizational Units in Active Directory
@@ -359,6 +365,12 @@ ICMP echo requests (like ping) to find live hosts (-PE)
 - **ICMP Timestamp Scan** — An Nmap host discovery technique using
 ICMP Timestamp requests (-PP) to find live hosts, useful when
 echo requests are blocked
+- **IDS** — Intrusion Detection System, inspects network packets
+for suspicious behavioral patterns or content signatures and raises
+an alert when a malicious rule is matched
+- **Idle Scan** — Also called Zombie scan, an Nmap technique (-sI)
+that uses an idle host on the network to send probes, making the
+scan appear to come from the zombie host instead of the attacker
 ## J
 - **John the Ripper** — Free open source password cracking tool that
 automatically detects hash types and supports wordlist, single and
@@ -501,6 +513,9 @@ pentesting
 - **NBT-NS** — NetBIOS Name Service, a Windows fallback name
 resolution protocol exploited by Responder to capture credentials
 on internal networks
+- **Null Scan** — An Nmap scan (-sN) that sends packets with no
+TCP flags set (all six flag bits are zero). Can bypass some
+firewalls and IDS systems
 ## O
 - **Open Port** — A port actively accepting connections on a device
 - **OpenSSL** — Cryptographic library that powers HTTPS encryption
@@ -1003,6 +1018,9 @@ scripts into web pages viewed by other users
 backend technology used by a web server (ex: PHP, ASP.NET).
 Useful during reconnaissance but should be removed in production
 for security reasons
+- **Xmas Scan** — An Nmap scan (-sX) that sets the FIN, PSH and
+URG flags simultaneously, named after Christmas tree lights. Can
+bypass non-stateful firewalls
   ## Y
 - **yescrypt** — A modern scalable password hashing scheme, default
 and recommended choice on new Linux systems. Prefix: $y$
@@ -1010,6 +1028,8 @@ and recommended choice on new Linux systems. Prefix: $y$
 - **Zero-Day** — A vulnerability unknown to the software vendor with no
 available patch
 - **Zsh** (Z Shell) — Default shell on modern Macs, similar to Bash
+- **Zombie Scan** — Another name for the Idle scan, uses an idle
+host to relay scan probes to hide the attacker's real IP address
 
 ## Linux File Commands Reference
 - `echo "password123" > passwords` — Overwrites the file "passwords" with
