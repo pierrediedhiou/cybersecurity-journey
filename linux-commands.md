@@ -1699,3 +1699,70 @@ sudo nmap -n -sn 10.200.6.0/24
 | `-T2` | Polite |
 | `-T3` | Normal (default) |
 | `-
+## Nmap — Advanced Port Scans
+
+### Advanced Scan Types
+| Scan Type | Flag | Example Command | Description |
+|-----------|------|----------------|-------------|
+| TCP Null Scan | `-sN` | `sudo nmap -sN 10.113.165.161` | No flags set, all six flag bits are zero |
+| TCP FIN Scan | `-sF` | `sudo nmap -sF 10.113.165.161` | Only FIN flag set |
+| TCP Xmas Scan | `-sX` | `sudo nmap -sX 10.113.165.161` | FIN, PSH and URG flags set simultaneously |
+| TCP Maimon Scan | `-sM` | `sudo nmap -sM 10.113.165.161` | FIN and ACK flags set |
+| TCP ACK Scan | `-sA` | `sudo nmap -sA 10.113.165.161` | Only ACK flag set |
+| TCP Window Scan | `-sW` | `sudo nmap -sW 10.113.165.161` | Like ACK scan but examines TCP Window field |
+| Custom TCP Scan | `--scanflags` | `sudo nmap --scanflags URGACKPSHRSTSYNFIN 10.113.165.161` | Set any combination of TCP flags |
+| Spoofed Source IP | `-S` | `sudo nmap -S SPOOFED_IP 10.113.165.161` | Spoof the source IP address |
+| Spoofed MAC Address | `--spoof-mac` | `--spoof-mac SPOOFED_MAC` | Spoof the source MAC address |
+| Decoy Scan | `-D` | `nmap -D DECOY_IP,ME 10.113.165.161` | Mix real scan with decoy IPs |
+| Idle (Zombie) Scan | `-sI` | `sudo nmap -sI ZOMBIE_IP 10.113.165.161` | Use idle host to send probes |
+| Fragment IP (8 bytes) | `-f` | `nmap -f 10.113.165.161` | Fragment packets into 8-byte chunks |
+| Fragment IP (16 bytes) | `-ff` | `nmap -ff 10.113.165.161` | Fragment packets into 16-byte chunks |
+
+### Evasion and Obfuscation Options
+| Option | Purpose |
+|--------|---------|
+| `-S SPOOFED_IP` | Spoof source IP address |
+| `--spoof-mac SPOOFED_MAC` | Spoof source MAC address |
+| `-D DECOY_IP,ME` | Use decoy IPs to hide real scanner |
+| `-sI ZOMBIE_IP` | Use idle/zombie host for scanning |
+| `-f` | Fragment IP data into 8-byte packets |
+| `-ff` | Fragment IP data into 16-byte packets |
+| `--source-port PORT_NUM` | Specify source port number |
+| `--data-length NUM` | Append random data to reach given length |
+
+### Nmap Output and Debugging Options
+| Option | Purpose |
+|--------|---------|
+| `--reason` | Explains how Nmap made its conclusion about a port |
+| `-v` | Verbose output |
+| `-vv` | Very verbose output |
+| `-d` | Debugging output |
+| `-dd` | More detailed debugging output |
+
+### Custom Scan Flag Examples
+```bash
+# Set SYN, RST and FIN flags simultaneously
+sudo nmap --scanflags RSTSYNFIN 10.113.165.161
+
+# Set all flags
+sudo nmap --scanflags URGACKPSHRSTSYNFIN 10.113.165.161
+
+# Decoy scan mixing real IP with decoys
+nmap -D DECOY_IP1,DECOY_IP2,ME 10.113.165.161
+
+# Idle/Zombie scan
+sudo nmap -sI ZOMBIE_IP 10.113.165.161
+
+# Fragment packets to evade IDS
+sudo nmap -f 10.113.165.161
+```
+
+### When to Use Each Advanced Scan
+| Scan | Best Used When |
+|------|---------------|
+| Null, FIN, Xmas | Trying to bypass non-stateful firewalls |
+| ACK Scan | Mapping firewall rules, not finding open ports |
+| Window Scan | Identifying open ports on specific systems |
+| Decoy Scan | Hiding real source among multiple IPs |
+| Idle/Zombie | Maximum stealth, hiding attacker identity completely |
+| Fragmentation | Evading IDS and packet inspection |
