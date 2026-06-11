@@ -1766,3 +1766,77 @@ sudo nmap -f 10.113.165.161
 | Decoy Scan | Hiding real source among multiple IPs |
 | Idle/Zombie | Maximum stealth, hiding attacker identity completely |
 | Fragmentation | Evading IDS and packet inspection |
+## Nmap — Post Port Scans & Service Detection
+
+### Service and OS Detection Options
+| Option | Meaning |
+|--------|---------|
+| `-sV` | Determine service and version info on open ports |
+| `-sV --version-light` | Try the most likely probes only (2 probes) |
+| `-sV --version-all` | Try all available probes (9 probes) |
+| `-O` | Detect the operating system |
+| `--traceroute` | Run traceroute to the target |
+| `-sC` or `--script=default` | Run default Nmap scripts |
+| `--script=SCRIPTS` | Run specific Nmap scripts |
+| `-A` | Aggressive scan — equivalent to -sV -O -sC --traceroute |
+
+### Nmap Output Format Options
+| Option | Format | Description |
+|--------|--------|-------------|
+| `-oN FILENAME` | Normal | Similar to screen output, human readable |
+| `-oG FILENAME` | Grepable | Optimized for grep and text processing |
+| `-oX FILENAME` | XML | Machine-readable XML format |
+| `-oA FILENAME` | All formats | Saves in Normal, Grepable and XML simultaneously |
+
+### Output Format Details
+- **Normal (-oN)** — Output looks the same as what you see on screen
+during the scan. Easy to read for humans
+- **Grepable (-oG)** — Named after the grep command (Global Regular
+Expression Printer). Useful for searching and filtering results
+with grep, awk and other text tools
+- **XML (-oX)** — Structured format that can be imported into other
+tools like Metasploit or parsed by scripts
+- **All (-oA)** — Saves three files at once with the same base
+filename but different extensions (.nmap, .gnmap, .xml)
+
+### Recommended Full Scan Command
+```bash
+# Complete scan — version detection, OS, scripts, traceroute, save all formats
+sudo nmap -A -oA scan_results target_ip
+
+# Recommended standard pentest scan
+sudo nmap -sV -sC -O --traceroute -oN scan.txt target_ip
+
+# Full port scan with all detection and output
+sudo nmap -p- -sV -sC -O -oA full_scan target_ip
+```
+
+### Nmap Script Categories
+| Category | Description |
+|----------|-------------|
+| `default` | Safe, useful scripts run with -sC |
+| `auth` | Authentication related scripts |
+| `brute` | Brute force credential scripts |
+| `discovery` | Service and host discovery scripts |
+| `exploit` | Exploitation scripts |
+| `vuln` | Vulnerability detection scripts |
+| `safe` | Scripts unlikely to crash services |
+| `intrusive` | Scripts that may crash or affect services |
+
+### Using Nmap Scripts
+```bash
+# Run default scripts
+nmap -sC target_ip
+
+# Run specific script
+nmap --script=http-title target_ip
+
+# Run vulnerability scripts
+nmap --script=vuln target_ip
+
+# Run multiple scripts
+nmap --script=http-title,http-headers target_ip
+
+# Run all scripts in a category
+nmap --script=auth target_ip
+```
