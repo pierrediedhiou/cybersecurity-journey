@@ -1882,3 +1882,32 @@ curl -v http://target.com
 ### OSINT Content Discovery Techniques
 
 **Wayback Machine**
+https://web.archive.org/web/*/target.com
+- Archive of the internet dating back to the late 1990s
+- Find pages removed from live site — old login forms,
+forgotten API endpoints, briefly published content
+
+**GitHub Reconnaissance**
+```bash
+# Search GitHub for target organization
+https://github.com/target-company
+
+# Search for sensitive files
+# Look for: .env files, config files, API keys, credentials
+```
+- Developers sometimes accidentally commit sensitive data
+to public repositories including API keys, credentials
+and configuration files
+
+**S3 Bucket Discovery**
+```bash
+# Standard S3 bucket URL format
+https://{bucket-name}.s3.amazonaws.com
+
+# Try common bucket name patterns
+https://target-company.s3.amazonaws.com
+https://target-company-backup.s3.amazonaws.com
+https://target-company-dev.s3.amazonaws.com
+```
+- Misconfigured public S3 buckets can expose sensitive files
+- Common misconfigurations allow public read or write access
