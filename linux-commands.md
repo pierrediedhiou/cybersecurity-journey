@@ -1840,3 +1840,45 @@ nmap --script=http-title,http-headers target_ip
 # Run all scripts in a category
 nmap --script=auth target_ip
 ```
+## Content Discovery
+
+### Content Discovery Methods Overview
+| Method | Techniques |
+|--------|------------|
+| **Manual** | robots.txt, sitemap.xml, favicon fingerprinting, HTTP headers, framework stack |
+| **OSINT** | Google Dorking, Wappalyzer, Wayback Machine, GitHub, S3 buckets |
+| **Automated** | Gobuster dir, dns and vhost modes |
+
+### Manual Content Discovery Techniques
+
+**robots.txt**
+```bash
+# Access robots.txt directly in browser or curl
+curl http://target.com/robots.txt
+```
+- Tells search engine crawlers which pages they may NOT index
+- Often reveals hidden directories and restricted paths
+- Example finding: `/staff-portal` listed as disallowed
+
+**sitemap.xml**
+```bash
+# Access sitemap.xml
+curl http://target.com/sitemap.xml
+```
+- Tells search engines which pages the owner WANTS listed
+- Can reveal paths and endpoints not visible in navigation
+- Example finding: `/s3cr3t-area` found in sitemap
+
+**HTTP Headers**
+```bash
+# View HTTP headers with curl
+curl -I http://target.com
+
+# View all headers verbose
+curl -v http://target.com
+```
+- Reveals server technology, framework and version information
+
+### OSINT Content Discovery Techniques
+
+**Wayback Machine**
