@@ -262,6 +262,14 @@ vulnerabilities or unexpected behavior
 - **FIN Scan** — An Nmap scan (-sF) that sends packets with only
 the FIN flag set. Can bypass non-stateful firewalls and evade
 some IDS systems
+- **Favicon Fingerprinting** — A technique that identifies the
+technology or framework a website uses by analyzing its favicon
+(website icon). Each framework has a unique favicon hash that
+can be looked up in public databases
+- **Framework Stack** — The combination of technologies used to
+build a web application (ex: PHP + Laravel + MySQL + Apache).
+Identifying the framework stack during recon helps find known
+vulnerabilities
 ## G
 - **GPO** — Group Policy Objects, collection of settings applied to
 Organizational Units in Active Directory
@@ -699,6 +707,10 @@ an attacker to intercept traffic from victims who connect to it
 - **Reverse DNS (rDNS)** — The process of resolving an IP address
 back to a hostname, the opposite of normal DNS lookup. Used in
 Nmap with the -R flag to identify hostnames of discovered hosts
+- **robots.txt** — A file at the root of a website that instructs
+search engine crawlers which pages they should not index. Often
+reveals hidden directories and restricted paths during recon
+(ex: /staff-portal, /admin, /backup)
 ## S
 - **Service** — A process that runs continuously in the background, starts
 automatically at boot, runs without user interaction
@@ -830,6 +842,13 @@ interface
 - **SSL Stripping** — A MITM attack that downgrades HTTPS
 connections to HTTP, allowing the attacker to read encrypted
 traffic in plaintext. Prevented by HSTS
+- **sitemap.xml** — A file that tells search engines which pages
+a website owner wants listed. Can reveal paths and endpoints not
+visible in normal navigation during recon
+- **S3 Bucket** — Amazon Simple Storage Service container used
+to host files and static content. Misconfigured public buckets
+can expose sensitive files not intended to be publicly accessible.
+URL format: https://name.s3.amazonaws.com
 ## T
 - **Telnet** — Insecure remote access protocol (Port 23), replaced by SSH
 - **TGT** — Ticket Granting Ticket, allows users to request tickets to
@@ -999,6 +1018,13 @@ an attacker creates or modifies a payload based on discovered target
 vulnerabilities
 - **WWW** — World Wide Web, the system of interlinked web pages
 accessed via the HTTP protocol through a web browser
+- **Wappalyzer** — A browser extension and online tool that
+identifies the technologies a website uses including frameworks,
+CMS platforms, CDNs, analytics tools and payment processors
+- **Wayback Machine** — An internet archive dating back to the
+late 1990s that captures website snapshots over time. Used in
+recon to find removed pages, old login forms and forgotten
+API endpoints. Available at web.archive.org
 ## X
 - **XSS** — Cross-Site Scripting, injecting malicious scripts into web pages
 - **XZ Utils** — Linux compression tool targeted by a supply chain attack
