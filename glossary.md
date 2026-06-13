@@ -155,6 +155,9 @@ erases evidence of their activity including log files and artifacts
 - **Credential Stuffing** — Using username and password pairs leaked
 from previous breaches and trying them against other services,
 exploiting password reuse
+- **csrfmiddlewaretoken** — A hidden form field automatically added
+by Django to all POST forms as a CSRF protection mechanism. Its
+presence is a strong indicator that the application uses Django
 ## D
 - **Daemon** — A background service running on Linux
 - **Delegation** — Process of granting privileges to a user over an OU
@@ -213,6 +216,9 @@ simple variations
 - **Decoy Scan** — An Nmap technique (-D) that mixes the real scan
 with traffic from fake decoy IP addresses, making it harder for
 the target to identify the real attacker
+- **Django ORM** — Object Relational Mapper used by the Django
+Python web framework to interact with databases. Vulnerable to
+SQL injection via unparameterised ORDER BY clauses (CVE-2021-35042)
 ## E
 - **Encryption** — Process of encoding data so only authorized parties can read it
 - **Enumeration** — Systematically gathering information about a target system
@@ -427,6 +433,9 @@ tokens accidentally stored client-side
 - **LLMNR** — Link-Local Multicast Name Resolution, a Windows
 fallback name resolution protocol exploited by tools like Responder
 to capture authentication credentials
+- **LAMP Stack** — A common web server stack consisting of Linux,
+Apache, MySQL and PHP. Apache version disclosure in headers and
+error pages allows exact CVE matching
 ## M
 - **Machine Account** — Windows computer account, always ends with $ symbol
 - **Malware** — Malicious software designed to damage or gain unauthorized access
@@ -484,6 +493,12 @@ communications
 - **MITM** — Man in the Middle attack, where an attacker secretly
 intercepts communications between two parties who believe they are
 communicating directly with each other
+- **MERN Stack** — A JavaScript web development stack consisting
+of MongoDB, Express.js, React and Node.js. Identified by
+X-Powered-By: Express header and connect.sid session cookies
+- **mod_cgi** — An Apache module that enables CGI script execution.
+When combined with path traversal (CVE-2021-41773) it leads to
+Remote Code Execution (CVSS 9.8 Critical)
 ## N
 - **NAT** — Network Address Translation, maps private IPs to a public IP
 - **Nmap** — Network scanning tool used to discover open ports and services
@@ -524,6 +539,10 @@ on internal networks
 - **Null Scan** — An Nmap scan (-sN) that sends packets with no
 TCP flags set (all six flag bits are zero). Can bypass some
 firewalls and IDS systems
+- **Next.js** — A React-based web framework. Identified by
+X-Powered-By: Next.js header, /_next/static/ paths and
+window.__next_f in HTML source. Vulnerable to middleware bypass
+via CVE-2025-29927
 ## O
 - **Open Port** — A port actively accepting connections on a device
 - **OpenSSL** — Cryptographic library that powers HTTPS encryption
@@ -623,6 +642,10 @@ information about the victim such as pet names, birth years or
 family names gathered from social media
 - **Password Spraying** — Trying a small number of common passwords
 against many accounts to avoid triggering account lockout mechanisms
+- **Prototype Pollution** — A JavaScript vulnerability where an
+attacker can inject properties into Object.prototype, affecting
+all objects in the application. Can lead to authentication bypass
+in Express.js applications (CVE-2020-8203)
 ## Q
 - **Query String** — The part of a URL starting with ? that sends
 parameters to the server (ex: ?search=hacking). Can be exploited
@@ -1025,6 +1048,9 @@ CMS platforms, CDNs, analytics tools and payment processors
 late 1990s that captures website snapshots over time. Used in
 recon to find removed pages, old login forms and forgotten
 API endpoints. Available at web.archive.org
+- **WSGI** — Web Server Gateway Interface, a Python standard for
+web server communication. WSGIServer in the Server header strongly
+indicates a Django or Python-based application
 ## X
 - **XSS** — Cross-Site Scripting, injecting malicious scripts into web pages
 - **XZ Utils** — Linux compression tool targeted by a supply chain attack
