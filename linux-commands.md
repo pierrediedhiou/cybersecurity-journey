@@ -1911,3 +1911,57 @@ https://target-company-dev.s3.amazonaws.com
 ```
 - Misconfigured public S3 buckets can expose sensitive files
 - Common misconfigurations allow public read or write access
+## Web Stack Fingerprinting
+
+### Framework Detection via HTTP Headers
+```bash
+# Check HTTP headers for framework signals
+curl -I http://target.com
+
+# Verbose headers check
+curl -v http://target.com
+
+# Check specific header
+curl -I http://target.com | grep -i "x-powered-by"
+curl -I http://target.com | grep -i "server"
+```
+
+### Express.js (MERN Stack) Fingerprint Signals
+| Signal | Value | Confidence |
+|--------|-------|------------|
+| `X-Powered-By` header | `Express` | High |
+| `Set-Cookie` header | `connect.sid=s%3A...` | High |
+| Unhandled route response | `Cannot GET /nonexistent` (plain text) | High |
+| Frontend root element | In the HTML body | Medium |
+
+### Next.js Fingerprint Signals
+| Signal | Value | Confidence |
+|--------|-------|------------|
+| `X-Powered-By` header | `Next.js` | High |
+| HTML source | `window.__next_f` in script tag | High (confirms App Router) |
+| Static asset paths | `/_next/static/chunks/` | High |
+| Middleware headers | `x-middleware-next` or `x-middleware-rewrite` | Medium |
+| Redirect to protected route | HTTP 307 to `/login` | Medium |
+
+### Django Fingerprint Signals
+| Signal | Value | Confidence |
+|--------|-------|------------|
+| `Server` header | `WSGIServer/0.2 CPython/X.X.X` | High |
+| Cookie name | `csrftoken` | High |
+| `X-Frame-Options` header | `DENY` | High |
+| `X-Content-Type-Options` header | `nosniff` | High |
+| `Referrer-Policy` header | `same-origin` | Medium |
+| HTML source (any POST form) | `csrfmiddlewaretoken` hidden field | High |
+
+### Apache LAMP Fingerprint Signals
+| Signal | Value | Confidence |
+|--------|-------|------------|
+| `Server` header | `Apache/2.4.49 (Unix)` | High — exact CVE match |
+| 404 error page footer | Apache version string | High |
+| `/cgi-bin/` response | 403 Forbidden (not 404) | High — mod_cgi enabled |
+
+### App Endpoints to Test After Fingerprinting
+| Endpoint | Method | Purpose |
+|----------|--------|---------|
+| `/api/user/update` | POST | Accepts JSON and merges into session user object |
+| `/api/admin/flag` | GET | Returns flag if requesting user has admin access |
