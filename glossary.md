@@ -158,6 +158,9 @@ exploiting password reuse
 - **csrfmiddlewaretoken** — A hidden form field automatically added
 by Django to all POST forms as a CSRF protection mechanism. Its
 presence is a strong indicator that the application uses Django
+- **Clickjacking** — An attack where a malicious site embeds a
+legitimate site in an invisible iframe and tricks users into
+clicking on hidden elements. Prevented by X-Frame-Options header
 ## D
 - **Daemon** — A background service running on Linux
 - **Delegation** — Process of granting privileges to a user over an OU
@@ -219,6 +222,10 @@ the target to identify the real attacker
 - **Django ORM** — Object Relational Mapper used by the Django
 Python web framework to interact with databases. Vulnerable to
 SQL injection via unparameterised ORDER BY clauses (CVE-2021-35042)
+- **Directory Listing** — A web server misconfiguration that displays
+all files in a directory when no index file exists. Allows attackers
+to browse and download all accessible files. Common on Apache
+(/files/) and Nginx with autoindex enabled
 ## E
 - **Encryption** — Process of encoding data so only authorized parties can read it
 - **Enumeration** — Systematically gathering information about a target system
@@ -499,6 +506,13 @@ X-Powered-By: Express header and connect.sid session cookies
 - **mod_cgi** — An Apache module that enables CGI script execution.
 When combined with path traversal (CVE-2021-41773) it leads to
 Remote Code Execution (CVSS 9.8 Critical)
+- **mod_status** — An Apache module that exposes real-time server
+statistics at /server-status including active connections and
+requests being processed. Should be restricted to localhost only
+- **MIME Sniffing** — A browser behavior where it guesses the
+content type of a response instead of using the declared
+Content-Type header. Can be exploited for XSS. Prevented by
+X-Content-Type-Options: nosniff
 ## N
 - **NAT** — Network Address Translation, maps private IPs to a public IP
 - **Nmap** — Network scanning tool used to discover open ports and services
@@ -543,6 +557,13 @@ firewalls and IDS systems
 X-Powered-By: Next.js header, /_next/static/ paths and
 window.__next_f in HTML source. Vulnerable to middleware bypass
 via CVE-2025-29927
+- **Nikto** — An open-source web server scanner that automatically
+checks for known misconfigurations, outdated software, exposed
+admin interfaces and missing security headers. Pre-installed
+on Kali Linux
+- **Nginx** — A high-performance web server and reverse proxy.
+Security misconfigurations include autoindex (directory listing)
+and stub_status (/nginx_status) being enabled
 ## O
 - **Open Port** — A port actively accepting connections on a device
 - **OpenSSL** — Cryptographic library that powers HTTPS encryption
@@ -872,6 +893,9 @@ visible in normal navigation during recon
 to host files and static content. Misconfigured public buckets
 can expose sensitive files not intended to be publicly accessible.
 URL format: https://name.s3.amazonaws.com
+- **stub_status** — An Nginx module that exposes real-time server
+statistics at /nginx_status. The Nginx equivalent of Apache
+mod_status. Should be restricted to localhost only
 ## T
 - **Telnet** — Insecure remote access protocol (Port 23), replaced by SSH
 - **TGT** — Ticket Granting Ticket, allows users to request tickets to
@@ -1073,6 +1097,9 @@ for security reasons
 - **Xmas Scan** — An Nmap scan (-sX) that sets the FIN, PSH and
 URG flags simultaneously, named after Christmas tree lights. Can
 bypass non-stateful firewalls
+- **X-Frame-Options** — An HTTP security header that prevents a
+web page from being embedded in an iframe on another domain,
+protecting against clickjacking attacks. Values: DENY or SAMEORIGIN
   ## Y
 - **yescrypt** — A modern scalable password hashing scheme, default
 and recommended choice on new Linux systems. Prefix: $y$
