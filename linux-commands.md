@@ -1965,3 +1965,79 @@ curl -I http://target.com | grep -i "server"
 |----------|--------|---------|
 | `/api/user/update` | POST | Accepts JSON and merges into session user object |
 | `/api/admin/flag` | GET | Returns flag if requesting user has admin access |
+## Web Server Attacks & Nikto
+
+### Nikto — Web Server Scanner
+- **Nikto** — A web server scanner that checks for known
+misconfigurations, outdated software, exposed admin interfaces
+and missing security headers
+
+### Nikto Basic Commands
+```bash
+# Basic Nikto scan
+nikto -h http://target.com
+
+# Scan specific port
+nikto -h http://target.com -p 8080
+
+# Scan with SSL
+nikto -h https://target.com -ssl
+
+# Save output to file
+nikto -h http://target.com -o nikto_output.txt
+
+# Scan with authentication
+nikto -h http://target.com -id admin:password
+```
+
+### Quick Security Header Audit
+```bash
+# Check all security headers at once
+curl -sI http://target.com | grep -i "x-frame-options\|x-content-type\|content-security\|referrer-policy\|strict-transport"
+
+# Check for version disclosure
+curl -sI http://target.com | grep -i "server\|x-powered-by"
+
+# Check for missing headers
+curl -sI http://target.com
+```
+
+### Server-Specific Endpoints to Check
+| Server | Endpoint | What it Exposes |
+|--------|----------|-----------------|
+| Apache | `/server-status` | Real-time server statistics (mod_status) |
+| Apache | `/files/` | Directory listing |
+| Node.js | `/api/debug/env` | Environment variables |
+| Node.js | `/api/routes` | All application routes |
+| Nginx | `/nginx_status` | Real-time server statistics |
+| Nginx | `/files/` | Directory listing (autoindex) |
+
+### Sensitive Files to Check by Server
+| Server | Sensitive Files |
+|--------|----------------|
+| Apache | `backup.bak`, `internal-notes.txt` |
+| Python HTTP | `.env`, `notes.txt`, `backup.zip` |
+| Node.js | `config.js` |
+| Nginx | `server-config.txt`, `deploy-notes.txt` |
+
+---
+
+## Security Headers Reference
+
+### Required Security Headers
+| Header | Protects Against | Example Value |
+|--------|-----------------|---------------|
+| `X-Frame-Options` | Clickjacking — prevents page being embedded in iframe | `DENY` or `SAMEORIGIN` |
+| `X-Content-Type-Options` | MIME sniffing — prevents browser guessing content types | `nosniff` |
+| `Content-Security-Policy` | XSS — restricts where scripts and resources can load from | `default-src 'self'` |
+| `Referrer-Policy` | Controls what is sent in Referer header when navigating | `no-referrer` or `strict-origin` |
+| `Strict-Transport-Security` | Forces HTTPS for all subsequent requests | `max-age=31536000` |
+
+### Common Server Misconfigurations
+| Misconfiguration | Apache | Python HTTP | Node.js | Nginx |
+|-----------------|--------|-------------|---------|-------|
+| Version disclosure in headers | Yes | Yes | Partial | Yes |
+| Directory listing | `/files/` | Root path | N/A | `/files/` |
+| Exposed status/debug endpoint | `/server-status` | N/A | `/api/debug/env`, `/api/routes` | `/nginx_status` |
+| Sensitive files accessible | `backup.bak`, `internal-notes.txt` | `.env`, `notes.txt`, `backup.zip` | `config.js` | `server-config.txt`, `deploy-notes.txt` |
+| Missing security headers | All | All | All | All |
