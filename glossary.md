@@ -161,6 +161,11 @@ presence is a strong indicator that the application uses Django
 - **Clickjacking** — An attack where a malicious site embeds a
 legitimate site in an invisible iframe and tricks users into
 clicking on hidden elements. Prevented by X-Frame-Options header
+- **Cloud Forensics** — Digital forensics investigating data stored
+on cloud infrastructure. Often challenging due to limited evidence
+availability on cloud platforms
+- **Computer Forensics** — The most common type of digital forensics,
+investigating computers and personal devices used in crimes
 ## D
 - **Daemon** — A background service running on Linux
 - **Delegation** — Process of granting privileges to a user over an OU
@@ -226,6 +231,14 @@ SQL injection via unparameterised ORDER BY clauses (CVE-2021-35042)
 all files in a directory when no index file exists. Allows attackers
 to browse and download all accessible files. Common on Apache
 (/files/) and Nginx with autoindex enabled
+- **Database Forensics** — Digital forensics investigating intrusions
+into databases that result in data modification or exfiltration
+- **Digital Forensics** — The branch of forensics that investigates
+cyber crimes by applying methods and procedures to collect, examine,
+analyze and report on digital evidence
+- **Disk Image** — A complete copy of all data on a storage device
+(HDD, SSD). Non-volatile — survives system restarts. Contains files,
+media, documents and browsing history
 ## E
 - **Encryption** — Process of encoding data so only authorized parties can read it
 - **Enumeration** — Systematically gathering information about a target system
@@ -258,6 +271,8 @@ report aimed at managers, explaining findings in plain language
 - **Ettercap** — A classic tool for MITM attacks on LANs. Still
 functional but Bettercap is generally preferred for modern
 assessments
+- **Email Forensics** — Digital forensics investigating emails to
+determine if they are part of phishing or fraudulent campaigns
 ## F
 - **File** — A unit of stored data (text, code, image, config, etc).
 Everything in Linux is technically a file
@@ -283,6 +298,11 @@ can be looked up in public databases
 build a web application (ex: PHP + Laravel + MySQL + Apache).
 Identifying the framework stack during recon helps find known
 vulnerabilities
+- **Forensics** — The application of methods and procedures to
+investigate and solve crimes
+- **FTK Imager** — A widely used tool for creating disk images of
+Windows systems with a user-friendly graphical interface. Can be
+used for both acquisition and analysis
 ## G
 - **GPO** — Group Policy Objects, collection of settings applied to
 Organizational Units in Active Directory
@@ -513,6 +533,13 @@ requests being processed. Should be restricted to localhost only
 content type of a response instead of using the declared
 Content-Type header. Can be exploited for XSS. Prevented by
 X-Content-Type-Options: nosniff
+- **Memory Image** — A copy of data inside a system's RAM. Volatile —
+lost when the system is powered off or restarted. Contains open
+files, running processes and active network connections. Should
+always be captured before disk images
+- **Mobile Forensics** — Digital forensics investigating mobile
+devices, extracting evidence like call records, text messages and
+GPS locations
 ## N
 - **NAT** — Network Address Translation, maps private IPs to a public IP
 - **Nmap** — Network scanning tool used to discover open ports and services
@@ -564,6 +591,8 @@ on Kali Linux
 - **Nginx** — A high-performance web server and reverse proxy.
 Security misconfigurations include autoindex (directory listing)
 and stub_status (/nginx_status) being enabled
+- **Network Forensics** — Digital forensics investigating network
+traffic logs beyond individual devices, covering the whole network
 ## O
 - **Open Port** — A port actively accepting connections on a device
 - **OpenSSL** — Cryptographic library that powers HTTPS encryption
@@ -755,6 +784,9 @@ Nmap with the -R flag to identify hostnames of discovered hosts
 search engine crawlers which pages they should not index. Often
 reveals hidden directories and restricted paths during recon
 (ex: /staff-portal, /admin, /backup)
+- **RAM** — Random Access Memory, volatile memory that stores data
+only while a system is powered on. Source of memory images in
+forensics
 ## S
 - **Service** — A process that runs continuously in the background, starts
 automatically at boot, runs without user interaction
