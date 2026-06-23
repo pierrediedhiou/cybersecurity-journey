@@ -41,6 +41,8 @@ browser developer tools
 - **ARP Spoofing** — An attack where forged ARP messages associate
 the attacker's MAC address with a legitimate IP address, redirecting
 traffic through the attacker's system on a local network
+- **AV** — Antivirus, a security solution that detects known
+malicious programs and regularly scans systems for them
 ## B
 - **Bash** (Bourne Again Shell) — Most common shell on Linux, default on Kali Linux
 - **Bind Shell** — Shell that listens on a port on the target waiting for attacker
@@ -239,6 +241,13 @@ analyze and report on digital evidence
 - **Disk Image** — A complete copy of all data on a storage device
 (HDD, SSD). Non-volatile — survives system restarts. Contains files,
 media, documents and browsing history
+- **Data Leak** — An incident where confidential information is
+exposed to unauthorized entities, used for reputational damage or
+extortion. Unlike security breaches, can be unintentional (human
+error or misconfiguration)
+- **DoS Attack** — Denial of Service attack, where an attacker
+floods a system, network or application with false requests,
+exhausting resources and making it unavailable to legitimate users
 ## E
 - **Encryption** — Process of encoding data so only authorized parties can read it
 - **Enumeration** — Systematically gathering information about a target system
@@ -273,6 +282,9 @@ functional but Bettercap is generally preferred for modern
 assessments
 - **Email Forensics** — Digital forensics investigating emails to
 determine if they are part of phishing or fraudulent campaigns
+- **EDR** — Endpoint Detection and Response, a security solution
+deployed on every system that protects against advanced threats
+and can contain and eradicate detected threats
 ## F
 - **File** — A unit of stored data (text, code, image, config, etc).
 Everything in Linux is technically a file
@@ -303,6 +315,9 @@ investigate and solve crimes
 - **FTK Imager** — A widely used tool for creating disk images of
 Windows systems with a user-friendly graphical interface. Can be
 used for both acquisition and analysis
+- **False Positive** — An alert that points to something dangerous
+but turns out to be benign upon investigation (ex: high data
+transfer that was actually a legitimate backup)
 ## G
 - **GPO** — Group Policy Objects, collection of settings applied to
 Organizational Units in Active Directory
@@ -412,6 +427,14 @@ an alert when a malicious rule is matched
 - **Idle Scan** — Also called Zombie scan, an Nmap technique (-sI)
 that uses an idle host on the network to send probes, making the
 scan appear to come from the zombie host instead of the attacker
+- **Incident** — A true positive alert that has been confirmed as
+actually harmful and requires a response
+- **Insider Attack** — An incident originating from within an
+organization, such as a disgruntled employee infecting the network.
+Often more dangerous due to greater access than outsiders
+- **Incident Severity** — A categorization (low, medium, high,
+critical) used to prioritize incident response. Critical severity
+always takes priority
 ## J
 - **John the Ripper** — Free open source password cracking tool that
 automatically detects hash types and supports wordlist, single and
@@ -540,6 +563,9 @@ always be captured before disk images
 - **Mobile Forensics** — Digital forensics investigating mobile
 devices, extracting evidence like call records, text messages and
 GPS locations
+- **Malware Infection** — An incident caused by malicious programs
+that damage a system, network or application. The most common type
+of security incident
 ## N
 - **NAT** — Network Address Translation, maps private IPs to a public IP
 - **Nmap** — Network scanning tool used to discover open ports and services
@@ -696,6 +722,8 @@ against many accounts to avoid triggering account lockout mechanisms
 attacker can inject properties into Object.prototype, affecting
 all objects in the application. Can lead to authentication bypass
 in Express.js applications (CVE-2020-8203)
+- **Playbook** — A documented set of guidelines for responding to
+a specific type of incident, providing step-by-step response actions
 ## Q
 - **Query String** — The part of a URL starting with ? that sends
 parameters to the server (ex: ?search=hacking). Can be exploited
@@ -928,6 +956,11 @@ URL format: https://name.s3.amazonaws.com
 - **stub_status** — An Nginx module that exposes real-time server
 statistics at /nginx_status. The Nginx equivalent of Apache
 mod_status. Should be restricted to localhost only
+- **Security Breach** — An incident where an unauthorized person
+gains access to confidential data
+- **SIEM** — Security Information and Event Management, a solution
+that collects logs in one centralized location and correlates them
+to identify incidents
 ## T
 - **Telnet** — Insecure remote access protocol (Port 23), replaced by SSH
 - **TGT** — Ticket Granting Ticket, allows users to request tickets to
@@ -1019,6 +1052,9 @@ handshake, making it less detectable. Requires root privileges
 - **UDP Scan** — An Nmap scan (-sU) used to discover open UDP
 services. Slower than TCP scans because UDP has no handshake
 mechanism to confirm port state
+- **True Positive** — An alert that points to something genuinely
+harmful and is confirmed as dangerous upon investigation. Also
+referred to as an incident
 ## U
 - **UAC** — User Account Control, Windows security feature that controls
 administrative privileges
