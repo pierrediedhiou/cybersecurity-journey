@@ -189,3 +189,76 @@ clearly while NIST combines Detection and Analysis.
 ✅ Document every action taken during the response
 
 ✅ Always conduct a Lessons Learned / Post Incident review
+## Logs Fundamentals
+
+### What are Logs?
+Logs are recorded traces of activity on a system, application or
+network. They are essential for security monitoring, incident
+investigation, troubleshooting and compliance.
+
+---
+
+## Use Cases of Logs
+
+| Use Case | Description |
+|----------|-------------|
+| **Security Events Monitoring** | Logs help detect anomalous behavior when real-time monitoring is used |
+| **Incident Investigation and Forensics** | Logs are traces of every activity, offering detailed information on what happened during an incident. Used for root cause analysis |
+| **Troubleshooting** | Logs record errors in systems or applications, helping diagnose and fix issues |
+| **Performance Monitoring** | Logs provide valuable insights into application performance |
+| **Auditing and Compliance** | Logs establish a trail of activities, making compliance requirements easier to meet |
+
+---
+
+## Types of Logs
+
+| Log Type | Usage | Example Events |
+|----------|-------|----------------|
+| **System Logs** | Helpful for troubleshooting OS issues, provides info on operating system activities | System startup/shutdown, driver loading, system errors, hardware events |
+| **Security Logs** | Helps detect and investigate incidents, provides security-related activity info | Authentication events, authorization events, security policy changes, user account changes, abnormal activity |
+| **Application Logs** | Contains events specific to an application, both interactive and non-interactive activity | User interaction, application changes, application updates, application errors |
+| **Audit Logs** | Provides detailed info on system changes and user events, useful for compliance | Data access, system changes, user activity, policy enforcement |
+| **Network Logs** | Provides info on outgoing/incoming network traffic, useful for troubleshooting and investigations | Incoming/outgoing traffic, network connections, firewall logs |
+| **Access Logs** | Provides detailed info about access to different resources | Webserver access, database access, application access, API access |
+
+---
+
+## Windows Security Event IDs
+
+| Event ID | Description |
+|----------|-------------|
+| `4624` | A user account successfully logged in |
+| `4625` | A user account failed to login |
+| `4634` | A user account successfully logged off |
+| `4720` | A user account was created |
+| `4722` | A user account was enabled |
+| `4724` | An attempt was made to reset an account's password |
+| `4725` | A user account was disabled |
+| `4726` | A user account was deleted |
+
+### Key Event IDs to Monitor During Investigations
+✅ 4625 — Repeated failures may indicate brute force attempts
+
+✅ 4720 — Unexpected account creation may indicate persistence
+
+✅ 4724 — Password reset attempts on sensitive accounts
+
+✅ 4726 — Account deletion may indicate covering tracks
+---
+
+## Log Analysis Checklist
+✅ Identify which log type is relevant to the investigation
+
+✅ Check Security Logs for authentication anomalies (4624, 4625)
+
+✅ Check Audit Logs for unauthorized system or data changes
+
+✅ Check Network Logs to trace incoming/outgoing connections
+
+✅ Check Access Logs to identify who accessed what resource
+
+✅ Correlate logs across multiple sources for full picture
+
+✅ Use logs to build a chronological timeline of the incident
+
+✅ Preserve original logs as evidence — do not modify them
