@@ -285,6 +285,9 @@ determine if they are part of phishing or fraudulent campaigns
 - **EDR** — Endpoint Detection and Response, a security solution
 deployed on every system that protects against advanced threats
 and can contain and eradicate detected threats
+- **Event ID** — A unique numeric identifier assigned to a specific
+type of logged event in Windows, used to quickly identify what
+occurred without reading the full log entry
 ## F
 - **File** — A unit of stored data (text, code, image, config, etc).
 Everything in Linux is technically a file
@@ -486,6 +489,9 @@ to capture authentication credentials
 - **LAMP Stack** — A common web server stack consisting of Linux,
 Apache, MySQL and PHP. Apache version disclosure in headers and
 error pages allows exact CVE matching
+- **Log** — A recorded entry of an event that occurred on a system,
+application or network, providing a trace of activity for monitoring,
+troubleshooting and investigation purposes
 ## M
 - **Machine Account** — Windows computer account, always ends with $ symbol
 - **Malware** — Malicious software designed to damage or gain unauthorized access
