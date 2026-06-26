@@ -278,7 +278,7 @@ performs four key functions:
 | Category | Description | Generating Devices | Example Logs |
 |----------|-------------|---------------------|---------------|
 | **Host-Centric** | Events occurring within or related to a host | Windows, Linux, servers | File access, authentication attempts, process execution, registry key changes, PowerShell execution |
-| **Network-Centric** | Events from hosts communicating with each other or the internet | Firewalls, IDS/IPS, routers | SSH connections, FTP file access, web traffic |
+| **Network-Centric** | Events from hosts communicating with each other or the internet | Firewalls, IDS/IPS, routers | SSH connections, FTP file access, web traffic | A user accessing the company's resources through VPN. Network file sharing Activity
 
 ---
 
