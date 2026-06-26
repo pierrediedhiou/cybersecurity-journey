@@ -262,3 +262,48 @@ investigation, troubleshooting and compliance.
 ✅ Use logs to build a chronological timeline of the incident
 
 ✅ Preserve original logs as evidence — do not modify them
+## SIEM (Security Information and Event Management)
+
+### What is a SIEM?
+A SIEM is the core security solution used by SOC analysts. It
+performs four key functions:
+1. Collects logs from various log sources
+2. Standardizes their format into a consistent structure
+3. Correlates the data across sources
+4. Detects malicious activities using detection rules
+---
+
+### Log Source Categories
+
+| Category | Description | Generating Devices | Example Logs |
+|----------|-------------|---------------------|---------------|
+| **Host-Centric** | Events occurring within or related to a host | Windows, Linux, servers | File access, authentication attempts, process execution, registry key changes, PowerShell execution |
+| **Network-Centric** | Events from hosts communicating with each other or the internet | Firewalls, IDS/IPS, routers | SSH connections, FTP file access, web traffic |
+
+---
+
+### Host-Centric Log Examples
+. A user accessing a file
+. A user attempting to authenticate
+. A process execution activity
+. A process adding/editing/deleting a registry key or value
+. PowerShell execution
+### Network-Centric Log Examples
+. SSH connection
+. A file being accessed via FTP
+. Web traffic
+. A user accessing a company resource over the network
+---
+
+### Why SIEM Matters for SOC Analysts
+✅ Centralizes logs from across the entire environment
+
+✅ Makes it possible to correlate events across multiple sources
+
+✅ Standardized format allows consistent searching and analysis
+
+✅ Detection rules automatically flag suspicious patterns
+
+✅ Without a SIEM, analysts would need to check each log source
+
+individually — extremely slow and error-prone
