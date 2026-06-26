@@ -307,3 +307,60 @@ performs four key functions:
 ✅ Without a SIEM, analysts would need to check each log source
 
 individually — extremely slow and error-prone
+## Firewall Fundamentals
+
+### What is a Firewall?
+A firewall inspects a network or device's incoming and outgoing
+traffic, blocking unauthorized access — similar to a security
+guard controlling who enters a building.
+
+---
+
+### Firewall Rule Components
+| Component | Description |
+|-----------|-------------|
+| **Source Address** | The IP address originating the traffic |
+| **Destination Address** | The IP address receiving the traffic |
+| **Port** | The port number used for the traffic |
+| **Protocol** | The protocol used during communication |
+| **Action** | What happens when matching traffic is identified |
+| **Direction** | Whether the rule applies to incoming or outgoing traffic |
+
+---
+
+### Firewall Actions
+| Action | Description |
+|--------|-------------|
+| **Allow** | The defined traffic is permitted through |
+| **Deny** | The defined traffic is blocked |
+| **Forward** | Traffic is redirected to a different network segment |
+
+---
+
+### Firewall Rule Types
+| Rule Type | Applies To | Example |
+|-----------|-----------|---------|
+| **Inbound Rules** | Incoming traffic only | Allow incoming HTTP (port 80) on a web server |
+| **Outbound Rules** | Outgoing traffic only | Block outgoing SMTP (port 25) from all devices except the mail server |
+| **Forward Rules** | Redirects traffic within the network | Forward incoming HTTP (port 80) to the internal web server |
+
+---
+
+### Types of Firewalls
+| Firewall Type | Characteristics |
+|---------------|-----------------|
+| **Stateless Firewalls** | Basic filtering, no track of previous connections, efficient for high-speed networks |
+| **Stateful Firewalls** | Recognize traffic by patterns, support complex rules, monitor network connections |
+| **Proxy Firewalls** | Inspect data inside packets, provide content filtering, application control, decrypt SSL/TLS |
+| **Next-Generation Firewalls (NGFW)** | Advanced threat protection, intrusion prevention system, heuristic anomaly detection, decrypt SSL/TLS |
+
+---
+
+### Firewall Evolution Summary
+Stateless → Stateful → Proxy → Next-Generation
+
+(simplest)                      (most advanced)
+Each generation adds more inspection depth and security capability,
+at the cost of more processing overhead.
+Each generation adds more inspection depth and security capability,
+at the cost of more processing overhead.
