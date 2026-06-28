@@ -364,3 +364,54 @@ Each generation adds more inspection depth and security capability,
 at the cost of more processing overhead.
 Each generation adds more inspection depth and security capability,
 at the cost of more processing overhead.
+## IDS Fundamentals
+
+### What is an IDS?
+An Intrusion Detection System (IDS) monitors network or host
+activity for signs of malicious behavior and raises alerts when
+suspicious activity is detected.
+
+---
+
+### IDS Deployment Types
+| Type | Scope | Description |
+|------|-------|-------------|
+| **HIDS** (Host IDS) | Single host | Installed individually on hosts, detects threats specific to that host only |
+| **NIDS** (Network IDS) | Entire network | Monitors network-wide traffic for malicious activity, regardless of specific hosts |
+
+---
+
+### IDS Detection Modes
+| Mode | How it Works | Strength | Weakness |
+|------|-------------|----------|----------|
+| **Signature-Based** | Matches traffic against known attack patterns (signatures) | Very accurate for known threats | Cannot detect new/unknown attacks |
+| **Anomaly-Based** | Learns normal baseline behavior, alerts on deviation | Can detect unknown/zero-day attacks | Higher false positive rate |
+| **Hybrid** | Combines signature-based and anomaly-based detection | Leverages strengths of both methods | More complex to tune and maintain |
+
+---
+
+### IDS Tools
+| Tool | Description |
+|------|-------------|
+| **Snort** | Open-source IDS developed in 1998. Uses signature-based and anomaly-based detection. One of the most widely used IDS solutions |
+
+---
+
+### IDS Detection Mode Comparison Summary
+Signature-Based  → Known threats     → Fast, accurate, but blind to new attacks
+
+Anomaly-Based    → Unknown threats   → Detects novel attacks, more false positives
+
+Hybrid           → Best of both      → Combines strengths, more complex setup
+---
+
+### Key IDS Concepts to Remember
+✅ HIDS = single host, NIDS = whole network
+
+✅ Signature-based = known attacks only
+
+✅ Anomaly-based = detects deviations from baseline
+
+✅ Hybrid = combines both approaches
+
+✅ IDS detects and alerts — it does NOT block (that's IPS)
