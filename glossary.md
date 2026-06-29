@@ -46,6 +46,9 @@ malicious programs and regularly scans systems for them
 - **Anomaly-Based IDS** — A detection method that first learns the
 normal behavior (baseline) of a network or system, then triggers
 alerts when activity deviates from that baseline
+- **Authenticated Scan** — A vulnerability scan performed with valid
+credentials for the target host, providing more detailed results and
+revealing the internal threat surface
 ## B
 - **Bash** (Bourne Again Shell) — Most common shell on Linux, default on Kali Linux
 - **Bind Shell** — Shell that listens on a port on the target waiting for attacker
@@ -293,6 +296,8 @@ and can contain and eradicate detected threats
 - **Event ID** — A unique numeric identifier assigned to a specific
 type of logged event in Windows, used to quickly identify what
 occurred without reading the full log entry
+- **External Scan** — A vulnerability scan conducted from outside
+the network, simulating an external attacker's perspective
 ## F
 - **File** — A unit of stored data (text, code, image, config, etc).
 Everything in Linux is technically a file
@@ -456,6 +461,8 @@ Often more dangerous due to greater access than outsiders
 - **Incident Severity** — A categorization (low, medium, high,
 critical) used to prioritize incident response. Critical severity
 always takes priority
+- **Internal Scan** — A vulnerability scan conducted from inside
+the network
 ## J
 - **John the Ripper** — Free open source password cracking tool that
 automatically detects hash types and supports wordlist, single and
@@ -765,6 +772,10 @@ a specific type of incident, providing step-by-step response actions
 - **Proxy Firewall** — A firewall type that inspects the data inside
 packets, provides content filtering, application control and
 decrypts SSL/TLS traffic
+- **Patch** — A change made to a software program or system to fix
+an identified vulnerability
+- **Patching** — The process of fixing identified vulnerabilities by
+applying patches to software or systems
 ## Q
 - **Query String** — The part of a URL starting with ? that sends
 parameters to the server (ex: ?search=hacking). Can be exploited
@@ -1132,6 +1143,9 @@ extensions, MIME type manipulation or other methods
 - **Upload Bypass** — A technique to upload malicious files by
 bypassing file type restrictions using alternative extensions or
 MIME type manipulation
+- **Unauthenticated Scan** — A vulnerability scan performed without
+any credentials, revealing the threat surface visible from outside
+the host
 ## V
 - **VirusTotal** — Virus-scanning service that scans files and URLs against
 multiple antivirus engines and website scanners in a single operation
@@ -1158,6 +1172,8 @@ privilege levels than originally permitted
 (ex: a regular user gaining admin access)
 - **VPN Gateway** — A network device that provides secure remote
 access to a private network over the internet
+- **Vulnerability Scanning** — The process of inspecting digital
+systems to find security weaknesses
 ## W
 - **Web Shell** — Malicious script uploaded to a web server giving
 browser-based shell access
