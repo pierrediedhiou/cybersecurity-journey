@@ -415,3 +415,70 @@ Hybrid           → Best of both      → Combines strengths, more complex setu
 ✅ Hybrid = combines both approaches
 
 ✅ IDS detects and alerts — it does NOT block (that's IPS)
+## CyberChef
+
+### What is CyberChef?
+CyberChef is a free, simple and intuitive web-based application
+for performing various cyber operation tasks directly in your
+browser — no installation required.
+
+Available at: **gchq.github.io/CyberChef**
+
+---
+
+### CyberChef Interface — Four Areas
+| Area | Description |
+|------|-------------|
+| **1. Operations** | The full list of available operations you can use (encoding, decoding, encryption, hashing, compression, etc) |
+| **2. Recipe** | Where you build your workflow by adding and chaining operations together in sequence |
+| **3. Input** | Where you paste or type the data you want to process |
+| **4. Output** | Where the result of your recipe appears after processing the input |
+
+---
+
+### CyberChef Workflow
+Input data → Apply Operations (Recipe) → Output result
+---
+
+### Common CyberChef Use Cases
+| Use Case | Operations Used |
+|----------|----------------|
+| Decode Base64 encoded data | From Base64 |
+| Encode text to Base64 | To Base64 |
+| Decrypt XOR encoded strings | XOR |
+| Identify hash type | Analyze Hash |
+| Convert hex to text | From Hex |
+| Decompress data | Gunzip / Unzip |
+| Decode URL encoded strings | URL Decode |
+| Identify file type from bytes | Detect File Type |
+| Parse timestamps | From UNIX Timestamp |
+| Decode malware strings | Multiple chained operations |
+
+---
+
+### Why CyberChef Matters for SOC Analysts
+---
+
+### Common CyberChef Use Cases
+| Use Case | Operations Used |
+|----------|----------------|
+| Decode Base64 encoded data | From Base64 |
+| Encode text to Base64 | To Base64 |
+| Decrypt XOR encoded strings | XOR |
+| Identify hash type | Analyze Hash |
+| Convert hex to text | From Hex |
+| Decompress data | Gunzip / Unzip |
+| Decode URL encoded strings | URL Decode |
+| Identify file type from bytes | Detect File Type |
+| Parse timestamps | From UNIX Timestamp |
+| Decode malware strings | Multiple chained operations |
+
+---
+
+### Why CyberChef Matters for SOC Analysts
+✅ Quickly decode suspicious Base64 strings found in logs
+✅ Decode encoded malware payloads for analysis
+✅ Convert and analyze data without writing code
+✅ Chain multiple operations into a single recipe
+✅ Used daily in SOC, DFIR and malware analysis workflows
+✅ No installation needed — runs entirely in the browser
