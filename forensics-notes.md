@@ -87,4 +87,74 @@ including running processes and active network connections.
 ✅ Include an executive summary in the final report
 
 ✅ Tailor the report to all audiences (law enforcement and management)
+## Malware Analysis Tools
 
+### CAPA — Common Analysis Platform for Artifacts
+
+#### What is CAPA?
+CAPA is a free open-source tool developed by the FireEye Mandiant
+team that automatically identifies the capabilities present in
+executable files without needing to run them (static analysis).
+
+---
+
+#### Supported File Types
+| File Type | Description |
+|-----------|-------------|
+| **PE files** | Windows executables (.exe, .dll, .sys) |
+| **ELF binaries** | Linux/Unix executables |
+| **.NET modules** | Windows .NET assemblies |
+| **Shellcode** | Raw machine code payloads |
+| **Sandbox reports** | Behavioral analysis output files |
+
+---
+
+#### What CAPA Identifies
+CAPA maps identified capabilities to known frameworks:
+- **MITRE ATT&CK** — Tactics and techniques used by the malware
+- **Malware Behavior Catalog (MBC)** — Specific malware behaviors
+- **Capability namespaces** — Grouped by what the malware can do
+
+#### Example Capabilities CAPA Can Detect
+. Create or modify registry keys (persistence)
+. Download files from the internet (C2 communication)
+. Inject code into other processes (evasion)
+. Enumerate running processes (discovery)
+. Encrypt or decrypt data (defense evasion)
+. Establish a reverse shell (command and control)
+---
+
+#### CAPA Basic Usage
+```bash
+# Run CAPA against an executable
+capa malware_sample.exe
+
+# Run CAPA with verbose output
+capa -v malware_sample.exe
+
+# Run CAPA and output as JSON
+capa -j malware_sample.exe > output.json
+
+# Run CAPA against a directory
+capa /path/to/samples/
+```
+
+---
+
+#### CAPA vs Manual Analysis
+| | CAPA | Manual Analysis |
+|---|---|---|
+| **Speed** | Fast — seconds to minutes | Slow — hours to days |
+| **Depth** | High-level capabilities | Deep code-level understanding |
+| **Skill required** | Low | High |
+| **Best for** | Quick triage and capability mapping | In-depth reverse engineering |
+
+---
+
+#### Why CAPA Matters
+✅ Quickly triage suspicious files without running them
+✅ Identify malware capabilities in seconds
+✅ Maps to MITRE ATT&CK for threat intelligence context
+✅ Works on Windows, Linux and .NET executables
+✅ Used in DFIR and malware analysis workflows
+✅ Saves hours of manual reverse engineering time
