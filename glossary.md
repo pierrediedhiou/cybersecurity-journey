@@ -174,6 +174,13 @@ on cloud infrastructure. Often challenging due to limited evidence
 availability on cloud platforms
 - **Computer Forensics** — The most common type of digital forensics,
 investigating computers and personal devices used in crimes
+- **CyberChef** — A free web-based application for performing cyber
+operations such as encoding, decoding, encryption, decryption,
+data analysis and format conversion, all within a browser. Available
+at gchq.github.io/CyberChef
+- **CyberChef Recipe** — A sequence of operations chained together
+in CyberChef to process input data through multiple steps
+automatically
 ## D
 - **Daemon** — A background service running on Linux
 - **Delegation** — Process of granting privileges to a user over an OU
