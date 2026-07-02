@@ -158,3 +158,61 @@ capa /path/to/samples/
 ✅ Works on Windows, Linux and .NET executables
 ✅ Used in DFIR and malware analysis workflows
 ✅ Saves hours of manual reverse engineering time
+## REMnux — Malware Analysis Distribution
+
+### What is REMnux?
+REMnux is a specialized free Linux distribution built for reverse
+engineering and malware analysis. It provides a ready-to-use
+sandbox-like environment for safely dissecting potentially malicious
+software without risking your primary system.
+
+---
+
+### Why Use REMnux?
+✅ Pre-installed with all major malware analysis tools
+✅ Sandbox-like environment — safe to run suspicious files
+✅ No manual tool installation needed
+✅ Isolates malware from your primary system
+✅ Used by professional DFIR analysts and malware researchers
+✅ Free and open source
+---
+
+### Pre-Installed Tools in REMnux
+| Tool | Purpose |
+|------|---------|
+| **Volatility** | Memory forensics — analyzes RAM dumps to extract running processes, network connections and loaded modules |
+| **YARA** | Malware identification and classification using pattern-matching rules |
+| **Wireshark** | Network traffic analysis and packet capture inspection |
+| **oledump** | Analyzes OLE files (Word, Excel) for malicious macros and embedded objects |
+| **INetSim** | Simulates internet services (HTTP, DNS, SMTP) to capture malware network behavior |
+| **CAPA** | Identifies capabilities present in executable files |
+
+---
+
+### REMnux vs Regular Kali Linux
+| | REMnux | Kali Linux |
+|---|---|---|
+| **Primary purpose** | Malware analysis and reverse engineering | Penetration testing |
+| **Pre-installed tools** | DFIR and malware analysis tools | Offensive security tools |
+| **Best for** | Blue team, DFIR, SOC analysts | Red team, pentesters |
+| **Sandbox capability** | Yes — designed for it | No |
+
+---
+
+### REMnux Common Workflow
+1. Receive suspicious file (email attachment, downloaded sample)
+2. Transfer to REMnux VM (isolated environment)
+3. Static analysis — CAPA, YARA, oledump (no execution)
+4. Dynamic analysis — run in INetSim environment, capture network
+5. Memory analysis — Volatility if memory dump available
+6. Wireshark — review captured network traffic
+7. Document findings and IOCs
+---
+
+### IOCs to Extract During Malware Analysis
+. IP addresses and domains contacted
+. File hashes (MD5, SHA256)
+. Registry keys created or modified
+. Files dropped on the system
+. Mutex names
+. Encoded strings and C2 URLs
