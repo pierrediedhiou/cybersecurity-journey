@@ -479,6 +479,10 @@ critical) used to prioritize incident response. Critical severity
 always takes priority
 - **Internal Scan** — A vulnerability scan conducted from inside
 the network
+- **INetSim** — Internet Services Simulation Suite, a tool included
+in REMnux that simulates common internet services (HTTP, DNS, SMTP)
+to trick malware into revealing its network behavior in an isolated
+environment
 ## J
 - **John the Ripper** — Free open source password cracking tool that
 automatically detects hash types and supports wordlist, single and
@@ -696,6 +700,9 @@ foundation producing free resources for web application security
 including the WSTG and OWASP Top 10
 - **OWASP WSTG** — Web Security Testing Guide, OWASP's methodology
 for testing web application security across all SDLC phases
+- **oledump** — A REMnux tool used to analyze OLE (Object Linking
+and Embedding) files such as Word and Excel documents that may
+contain malicious macros or embedded objects
 ## P
 - **Packet** — Small unit of data transmitted over a network
 - **Patch** — A software update that fixes a security vulnerability
@@ -885,6 +892,9 @@ reveals hidden directories and restricted paths during recon
 - **RAM** — Random Access Memory, volatile memory that stores data
 only while a system is powered on. Source of memory images in
 forensics
+- **REMnux** — A specialized Linux distribution designed for reverse
+engineering and malware analysis. Pre-installed with tools like
+Volatility, YARA, Wireshark, oledump and INetSim
 ## S
 - **Service** — A process that runs continuously in the background, starts
 automatically at boot, runs without user interaction
@@ -1198,6 +1208,9 @@ privilege levels than originally permitted
 access to a private network over the internet
 - **Vulnerability Scanning** — The process of inspecting digital
 systems to find security weaknesses
+- **Volatility** — An advanced open-source memory forensics
+framework used to analyze RAM dumps and extract forensic artifacts
+such as running processes, network connections and loaded modules
 ## W
 - **Web Shell** — Malicious script uploaded to a web server giving
 browser-based shell access
@@ -1272,6 +1285,9 @@ protecting against clickjacking attacks. Values: DENY or SAMEORIGIN
   ## Y
 - **yescrypt** — A modern scalable password hashing scheme, default
 and recommended choice on new Linux systems. Prefix: $y$
+- **YARA** — A tool used to identify and classify malware by creating
+rules that describe patterns found in malicious files. Rules can
+match strings, byte sequences or behavioral patterns
 ## Z
 - **Zero-Day** — A vulnerability unknown to the software vendor with no
 available patch
