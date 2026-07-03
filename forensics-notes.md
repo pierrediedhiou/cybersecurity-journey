@@ -216,3 +216,88 @@ software without risking your primary system.
 . Files dropped on the system
 . Mutex names
 . Encoded strings and C2 URLs
+## FlareVM — Windows Malware Analysis Environment
+
+### What is FlareVM?
+**FLARE** stands for **Forensics, Logic Analysis and Reverse
+Engineering**. FlareVM is a free Windows-based virtual machine
+developed by FireEye Mandiant, containing a comprehensive and
+curated collection of tools specifically designed for:
+- Reverse engineers
+- Malware analysts
+- Incident responders
+- Forensic investigators
+- Penetration testers
+
+---
+
+### FlareVM vs REMnux
+| | FlareVM | REMnux |
+|---|---|---|
+| **OS** | Windows | Linux |
+| **Primary focus** | Reverse engineering and malware analysis | Malware analysis and network simulation |
+| **Best for** | Analyzing Windows malware (.exe, .dll) | Analyzing Linux malware, network behavior |
+| **Developed by** | FireEye Mandiant | SANS Institute |
+| **Sandbox** | Yes | Yes |
+| **Used by** | Malware analysts, DFIR, pentesters | DFIR, SOC analysts, malware researchers |
+
+---
+
+### FlareVM Tool Categories
+| Category | Description | Example Tools |
+|----------|-------------|---------------|
+| **Disassemblers and Decompilers** | Convert compiled binaries back to readable code | IDA Pro, Ghidra, Binary Ninja |
+| **Debuggers** | Step through code execution line by line | x64dbg, WinDbg, OllyDbg |
+| **Static Analysis** | Analyze files without executing them | PEStudio, CFF Explorer, strings |
+| **Dynamic Analysis** | Analyze files during execution | Process Monitor, Process Hacker |
+| **Forensics and Incident Response** | Collect and analyze forensic evidence | Volatility, Autopsy, FTK |
+| **Network Analysis** | Capture and inspect network traffic | Wireshark, Fakenet-NG |
+| **File Analysis** | Inspect file structure and contents | HxD (hex editor), 7-Zip |
+| **Scripting and Automation** | Automate repetitive analysis tasks | Python, PowerShell, YARA |
+| **Sysinternals Suite** | Advanced Windows monitoring and diagnostics | Process Explorer, Autoruns, TCPView |
+
+---
+
+### Static vs Dynamic Analysis Comparison
+| | Static Analysis | Dynamic Analysis |
+|---|---|---|
+| **Executes the file** | No | Yes |
+| **Safety** | Safe — malware never runs | Requires isolated environment |
+| **What it reveals** | Code structure, strings, imports, file type | Real behavior, network connections, file changes |
+| **Speed** | Fast | Slower |
+| **Tools** | CAPA, PEStudio, strings, oledump | Process Monitor, Wireshark, Fakenet-NG |
+| **Best for** | First-pass triage | Behavioral analysis |
+
+---
+
+### Reverse Engineering Process
+1. Static triage — file type, hashes, strings, imports (CAPA, PEStudio)
+2. Disassemble — convert binary to assembly (Ghidra, IDA Pro)
+3. Decompile — recover high-level code where possible
+4. Dynamic analysis — run in sandbox, observe behavior
+5. Debug — step through suspicious code sections (x64dbg)
+6. Document — record capabilities, IOCs and MITRE ATT&CK mappings
+---
+
+### Key Sysinternals Tools
+| Tool | Purpose |
+|------|---------|
+| **Process Explorer** | Advanced task manager showing process trees and parent-child relationships |
+| **Process Monitor** | Real-time monitoring of file system, registry and process activity |
+| **Autoruns** | Shows all programs configured to run at startup |
+| **TCPView** | Real-time view of all TCP and UDP connections |
+| **Strings** | Extracts readable text strings from binary files |
+
+---
+
+### FlareVM Workflow for Malware Analysis
+1. Transfer suspicious file to FlareVM (isolated VM snapshot)
+2. Static analysis — PEStudio, CAPA, strings (no execution)
+3. Check file hash against VirusTotal
+4. Disassemble with Ghidra or IDA Pro
+5. Dynamic analysis — run with Process Monitor and Wireshark active
+6. Network capture — review with Wireshark or Fakenet-NG
+7. Debug suspicious code sections with x64dbg
+8. Extract IOCs (IPs, domains, file paths, registry keys)
+9. Map findings to MITRE ATT&CK
+10. Write analysis report
