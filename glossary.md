@@ -270,6 +270,18 @@ floods a system, network or application with false requests,
 exhausting resources and making it unavailable to legitimate users
 - **Destination Address** — In a firewall rule, the IP address of
 the machine that would receive the traffic
+- **Debugging** — The process of identifying errors in code,
+understanding why they occur and correcting them to prevent future
+issues. Used in malware analysis to trace execution flow
+- **Decompiler** — A tool that converts compiled machine code or
+bytecode back into a higher-level programming language like C or
+Python, making it easier to understand what a program does
+- **Disassembler** — A tool that converts compiled binary machine
+code into assembly language instructions for analysis. Used in
+reverse engineering to understand how a program works at a low level
+- **Dynamic Analysis** — Analyzing a file by actually executing it
+in a controlled environment and observing its behavior in real time
+(ex: network connections, file changes, registry modifications)
 ## E
 - **Encryption** — Process of encoding data so only authorized parties can read it
 - **Enumeration** — Systematically gathering information about a target system
@@ -350,6 +362,10 @@ transfer that was actually a legitimate backup)
 - **Firewall** — A security device or software designed to inspect
 incoming and outgoing network traffic and block unauthorized access,
 acting like a security guard for a network
+- **FlareVM** — Forensics, Logic Analysis and Reverse Engineering
+VM, a Windows-based virtual machine developed by FireEye Mandiant
+containing a comprehensive collection of tools for reverse
+engineering, malware analysis, incident response and forensics
 ## G
 - **GPO** — Group Policy Objects, collection of settings applied to
 Organizational Units in Active Directory
@@ -895,6 +911,10 @@ forensics
 - **REMnux** — A specialized Linux distribution designed for reverse
 engineering and malware analysis. Pre-installed with tools like
 Volatility, YARA, Wireshark, oledump and INetSim
+- **Reverse Engineering** — The process of taking a finished
+program apart to understand how it works, without access to the
+original source code. Used to analyze malware and understand
+vulnerabilities
 ## S
 - **Service** — A process that runs continuously in the background, starts
 automatically at boot, runs without user interaction
@@ -1067,6 +1087,13 @@ and actions
 - **Shellcode** — Small, position-independent machine code typically
 used as a payload in exploitation. Can be analyzed by CAPA to
 identify capabilities
+- **Static Analysis** — Analyzing a file without executing it,
+examining its code, strings, imports and structure. Safer than
+dynamic analysis as the malware never runs
+- **Sysinternals Suite** — A collection of advanced Windows system
+utilities developed by Microsoft for monitoring, diagnosing and
+troubleshooting Windows systems. Commonly used in malware analysis
+and incident response
 ## T
 - **Telnet** — Insecure remote access protocol (Port 23), replaced by SSH
 - **TGT** — Ticket Granting Ticket, allows users to request tickets to
