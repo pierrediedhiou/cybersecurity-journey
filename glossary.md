@@ -49,6 +49,10 @@ alerts when activity deviates from that baseline
 - **Authenticated Scan** — A vulnerability scan performed with valid
 credentials for the target host, providing more detailed results and
 revealing the internal threat surface
+- **Alteration** — An attack on data integrity, modifying data
+without authorization. The opposite of Integrity in the DAD triad
+- **Authenticity** — A security property that ensures data, systems
+or identities are genuine and not forged or impersonated
 ## B
 - **Bash** (Bourne Again Shell) — Most common shell on Linux, default on Kali Linux
 - **Bind Shell** — Shell that listens on a port on the target waiting for attacker
@@ -87,6 +91,20 @@ infrastructure, targeting specific organizations or regions
 - **Bettercap** — A modern actively maintained MITM attack tool that
 supports ARP spoofing, DNS spoofing, HTTP/HTTPS proxying and more.
 The preferred successor to Ettercap
+- **Bell-LaPadula Model** — A security model focused on achieving
+confidentiality through three rules:
+  - Simple Security Property (no read up) — lower security subjects
+  cannot read higher security objects
+  - Star Security Property (no write down) — higher security subjects
+  cannot write to lower security objects
+  - Discretionary Security Property — uses an access matrix for
+  read/write operations
+- **Biba Model** — A security model focused on achieving integrity
+through two rules:
+  - Simple Integrity Property (no read down) — higher integrity
+  subjects should not read lower integrity objects
+  - Star Integrity Property (no write up) — lower integrity subjects
+  should not write to higher integrity objects
 ## C
 - **cat** — Linux command meaning concatenate, used to display file contents
 - **Censys** — Search engine for Internet-connected hosts, websites, certificates,
@@ -188,6 +206,17 @@ present in executable files including PE files, ELF binaries,
 - **Capability (Malware)** — A specific function or behavior a
 malware sample can perform, identified by tools like CAPA
 (ex: create registry keys, download files, establish persistence)
+- **CDI** — Constrained Data Item, in the Clark-Wilson model, data
+whose integrity must be preserved
+- **CIA Triad** — Confidentiality, Integrity and Availability, the
+three core pillars of information security:
+  - Confidentiality — only authorized persons can access data
+  - Integrity — data cannot be altered without detection
+  - Availability — systems and services are available when needed
+- **Clark-Wilson Model** — A security model focused on achieving
+integrity using CDIs, UDIs, TPs and IVPs
+- **Confidentiality** — Ensuring only intended recipients can access
+data. Attacked by Disclosure
 ## D
 - **Daemon** — A background service running on Linux
 - **Delegation** — Process of granting privileges to a user over an OU
@@ -282,6 +311,19 @@ reverse engineering to understand how a program works at a low level
 - **Dynamic Analysis** — Analyzing a file by actually executing it
 in a controlled environment and observing its behavior in real time
 (ex: network connections, file changes, registry modifications)
+- **DAD Triad** — Disclosure, Alteration and Destruction, the three
+main attack categories that target the CIA triad:
+  - Disclosure attacks Confidentiality
+  - Alteration attacks Integrity
+  - Destruction/Denial attacks Availability
+- **Defence-in-Depth** — A security strategy using multiple layers
+of security controls so that if one layer fails, others remain.
+Also called Multi-Level Security
+- **Destruction/Denial** — An attack on system availability,
+making systems or services unavailable. The opposite of Availability
+- **Disclosure** — An attack on confidentiality, exposing secret
+or sensitive data to unauthorized parties. The opposite of
+Confidentiality
 ## E
 - **Encryption** — Process of encoding data so only authorized parties can read it
 - **Enumeration** — Systematically gathering information about a target system
@@ -499,6 +541,10 @@ the network
 in REMnux that simulates common internet services (HTTP, DNS, SMTP)
 to trick malware into revealing its network behavior in an isolated
 environment
+- **Integrity** — Ensuring data cannot be altered, and any
+alteration can be detected. Attacked by Alteration
+- **IVP** — Integrity Verification Procedure, in the Clark-Wilson
+model, procedures that check and ensure the validity of CDIs
 ## J
 - **John the Ripper** — Free open source password cracking tool that
 automatically detects hash types and supports wordlist, single and
@@ -700,6 +746,9 @@ SSL/TLS traffic for inspection
 - **NIDS** — Network Intrusion Detection System, monitors the whole
 network for potentially malicious activity regardless of specific
 hosts
+- **Nonrepudiation** — A security property that ensures a party
+cannot deny having performed an action, such as sending a message
+or making a transaction
 ## O
 - **Open Port** — A port actively accepting connections on a device
 - **OpenSSL** — Cryptographic library that powers HTTPS encryption
@@ -915,6 +964,8 @@ Volatility, YARA, Wireshark, oledump and INetSim
 program apart to understand how it works, without access to the
 original source code. Used to analyze malware and understand
 vulnerabilities
+- **Risk** — The likelihood that a threat actor will exploit a
+vulnerability and the consequent impact on the business
 ## S
 - **Service** — A process that runs continuously in the background, starts
 automatically at boot, runs without user interaction
@@ -1154,7 +1205,11 @@ privileges
 - **TCP SYN Ping** — An Nmap host discovery technique (-PS) that
 sends TCP SYN packets to discover live hosts. Does not require
 root privileges
-## T
+- **TP** — Transformation Procedure, in the Clark-Wilson model,
+programmed operations (read, write) that maintain the integrity
+of CDIs
+- **Threat** — A potential danger associated with a weakness or
+vulnerability in a system
 - **TCP Flags** — Control bits in a TCP packet header that manage
 the state and behavior of a connection:
 
@@ -1207,6 +1262,8 @@ MIME type manipulation
 - **Unauthenticated Scan** — A vulnerability scan performed without
 any credentials, revealing the threat surface visible from outside
 the host
+- **UDI** — Unconstrained Data Item, in the Clark-Wilson model,
+all data types beyond CDIs such as user and system input
 ## V
 - **VirusTotal** — Virus-scanning service that scans files and URLs against
 multiple antivirus engines and website scanners in a single operation
@@ -1238,6 +1295,8 @@ systems to find security weaknesses
 - **Volatility** — An advanced open-source memory forensics
 framework used to analyze RAM dumps and extract forensic artifacts
 such as running processes, network connections and loaded modules
+- **Vulnerability** — A weakness in a system that makes it
+susceptible to attack or damage
 ## W
 - **Web Shell** — Malicious script uploaded to a web server giving
 browser-based shell access
