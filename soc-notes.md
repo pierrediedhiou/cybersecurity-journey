@@ -482,3 +482,96 @@ Input data → Apply Operations (Recipe) → Output result
 ✅ Chain multiple operations into a single recipe
 ✅ Used daily in SOC, DFIR and malware analysis workflows
 ✅ No installation needed — runs entirely in the browser
+## Security Principles
+
+### The CIA Triad
+| Pillar | Goal | Attacked By |
+|--------|------|-------------|
+| **Confidentiality** | Only authorized persons can access data | Disclosure |
+| **Integrity** | Data cannot be altered without detection | Alteration |
+| **Availability** — Systems and services available when needed | Destruction/Denial |
+
+---
+
+### The DAD Triad — Attacks on CIA
+| Attack | Targets | Example |
+|--------|---------|---------|
+| **Disclosure** | Confidentiality | Leaking confidential employee data |
+| **Alteration** | Integrity | Modifying a bank cheque or financial record |
+| **Destruction/Denial** | Availability | DDoS attack taking down a web service |
+
+---
+
+### Additional Security Properties
+| Property | Description |
+|----------|-------------|
+| **Authenticity** | Ensures data, systems or identities are genuine and not forged |
+| **Nonrepudiation** | Ensures a party cannot deny having performed an action |
+
+---
+
+### Security Models
+
+#### Bell-LaPadula Model — Confidentiality Focused
+| Rule | Name | Description |
+|------|------|-------------|
+| Simple Security Property | No Read Up | Lower security subjects cannot read higher security objects |
+| Star Security Property | No Write Down | Higher security subjects cannot write to lower security objects |
+| Discretionary Security Property | Access Matrix | Uses an access matrix to allow read and write operations |
+
+**Key principle:** Protects sensitive data from being read or leaked
+downward to lower clearance levels.
+
+---
+
+#### Biba Model — Integrity Focused
+| Rule | Name | Description |
+|------|------|-------------|
+| Simple Integrity Property | No Read Down | Higher integrity subjects should not read lower integrity objects |
+| Star Integrity Property | No Write Up | Lower integrity subjects should not write to higher integrity objects |
+
+**Key principle:** Prevents lower integrity data from corrupting
+higher integrity data.
+
+---
+
+#### Clark-Wilson Model — Integrity Focused
+| Component | Description |
+|-----------|-------------|
+| **CDI** (Constrained Data Item) | Data whose integrity must be preserved |
+| **UDI** (Unconstrained Data Item) | All other data — user and system input |
+| **TP** (Transformation Procedure) | Programmed operations (read, write) that maintain CDI integrity |
+| **IVP** (Integrity Verification Procedure) | Procedures that check and ensure the validity of CDIs |
+
+---
+
+### Security Models Comparison
+| Model | Goal | Key Concept |
+|-------|------|-------------|
+| **Bell-LaPadula** | Confidentiality | No read up, no write down |
+| **Biba** | Integrity | No read down, no write up |
+| **Clark-Wilson** | Integrity | CDI, UDI, TP, IVP |
+
+---
+
+### Vulnerability, Threat and Risk
+| Concept | Definition | Example |
+|---------|------------|---------|
+| **Vulnerability** | A weakness susceptible to attack | Unpatched software |
+| **Threat** | A potential danger associated with a vulnerability | Attacker targeting the unpatched software |
+| **Risk** | Likelihood of threat exploiting vulnerability and its business impact | High likelihood + critical system = high risk |
+
+**Formula:** Vulnerability × Threat = Risk
+
+---
+
+### Defence-in-Depth
+A security strategy that creates multiple layers of security
+controls. If one layer fails, others remain to protect the system.
+Also called **Multi-Level Security**.
+Layer 1: Perimeter security (firewall)
+Layer 2: Network segmentation
+Layer 3: Host-based security (EDR, AV)
+Layer 4: Application security
+Layer 5: Data encryption
+Layer 6: User awareness and training
