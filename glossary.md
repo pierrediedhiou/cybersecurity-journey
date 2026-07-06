@@ -105,6 +105,10 @@ through two rules:
   subjects should not read lower integrity objects
   - Star Integrity Property (no write up) — lower integrity subjects
   should not write to higher integrity objects
+  - **Blue Team** — The defensive security team responsible for
+protecting an organization's systems, monitoring for threats and
+responding to incidents. Includes SOC analysts, security engineers
+and incident responders
 ## C
 - **cat** — Linux command meaning concatenate, used to display file contents
 - **Censys** — Search engine for Internet-connected hosts, websites, certificates,
@@ -966,6 +970,9 @@ original source code. Used to analyze malware and understand
 vulnerabilities
 - **Risk** — The likelihood that a threat actor will exploit a
 vulnerability and the consequent impact on the business
+- **Red Team** — The offensive security team that simulates real
+attacker techniques to test an organization's defenses. Includes
+penetration testers and ethical hackers
 ## S
 - **Service** — A process that runs continuously in the background, starts
 automatically at boot, runs without user interaction
@@ -1145,6 +1152,14 @@ dynamic analysis as the malware never runs
 utilities developed by Microsoft for monitoring, diagnosing and
 troubleshooting Windows systems. Commonly used in malware analysis
 and incident response
+- **Security Analyst** — A cybersecurity professional on the blue
+team who monitors, investigates and responds to security activity
+on an organization's devices and network. Also referred to as a
+digital defender
+- **Security Engineer** — A cybersecurity professional who builds
+and maintains the systems and processes that protect an
+organization's network and devices. Known as the architects of
+cybersecurity
 ## T
 - **Telnet** — Insecure remote access protocol (Port 23), replaced by SSH
 - **TGT** — Ticket Granting Ticket, allows users to request tickets to
