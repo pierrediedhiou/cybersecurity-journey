@@ -575,3 +575,25 @@ Layer 3: Host-based security (EDR, AV)
 Layer 4: Application security
 Layer 5: Data encryption
 Layer 6: User awareness and training
+## Cybersecurity Career Paths
+
+### Blue Team Roles
+| Role | Description | Key Skills |
+|------|-------------|------------|
+| **Security Analyst (SOC L1/L2/L3)** | Monitors, investigates and responds to security activity on devices and networks | SIEM, log analysis, incident response, threat hunting |
+| **Security Engineer** | Builds and maintains security systems and processes. The architect of cybersecurity | Network security, system hardening, security tooling |
+| **Detection Engineer** | Creates detection rules and logic for security solutions | SIEM rules, threat intelligence, scripting |
+| **Forensic Analyst** | Investigates security incidents by collecting and analyzing digital evidence | DFIR, Volatility, FTK Imager, chain of custody |
+| **Incident Responder** | Leads the response to confirmed security incidents | PICERL framework, containment, eradication, recovery |
+| **Malware Analyst** | Analyzes malicious software to understand its behavior and capabilities | Reverse engineering, FlareVM, REMnux, CAPA |
+
+---
+
+### Blue vs Red Team Comparison
+| | Blue Team | Red Team |
+|---|---|---|
+| **Focus** | Defense | Offense |
+| **Goal** | Detect and respond to attacks | Simulate attacks to test defenses |
+| **Roles** | SOC Analyst, Security Engineer, DFIR | Penetration Tester, Red Teamer, Bug Bounty Hunter |
+| **Tools** | SIEM, EDR, IDS, Wireshark | Metasploit, Burp Suite, Nmap, Hydra |
+| **Mindset** | Defender — protect and detect | Attacker — find and exploit |
