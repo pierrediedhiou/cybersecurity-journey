@@ -597,3 +597,68 @@ Layer 6: User awareness and training
 | **Roles** | SOC Analyst, Security Engineer, DFIR | Penetration Tester, Red Teamer, Bug Bounty Hunter |
 | **Tools** | SIEM, EDR, IDS, Wireshark | Metasploit, Burp Suite, Nmap, Hydra |
 | **Mindset** | Defender — protect and detect | Attacker — find and exploit |
+## Identity, Authentication, Authorisation and Accountability (IAAA)
+
+### What is IAAA?
+IAAA is a framework of four core principles that govern how access
+to systems and resources is managed, verified and audited.
+
+---
+
+### The Four IAAA Principles
+| Principle | Definition | Examples |
+|-----------|------------|---------|
+| **Identity** | A unique account representing a person or service | Username, email address, user ID, service account |
+| **Authentication** | Proving that identity is genuine | Password, OTP, passkey, biometrics, smart card |
+| **Authorisation** | What that identity is allowed to do | File permissions, role-based access, firewall rules |
+| **Accountability** | Recording and alerting on who did what, when and where | Logs, audit trails, SIEM alerts |
+
+---
+
+### IAAA Flow
+Identity       → Who are you?
+Authentication → Prove it
+Authorisation  → What can you do?
+Accountability → Everything you do is recorded
+---
+
+### Authentication Methods
+| Method | Type | Strength |
+|--------|------|----------|
+| Password | Something you know | Low — can be guessed or stolen |
+| PIN | Something you know | Low — short and guessable |
+| OTP (One-Time Password) | Something you have | Medium — time-limited |
+| Passkey | Something you have | High — cryptographic, phishing resistant |
+| Biometrics (fingerprint, face) | Something you are | High — hard to replicate |
+| Smart card | Something you have | High — physical possession required |
+| MFA (combination) | Multiple factors | Very High |
+
+---
+
+### Authorisation Models
+| Model | Description | Example |
+|-------|-------------|---------|
+| **DAC** (Discretionary Access Control) | Owner controls who accesses their resources | File owner sets permissions on their files |
+| **MAC** (Mandatory Access Control) | System enforces access based on security labels | Bell-LaPadula model, military clearance levels |
+| **RBAC** (Role-Based Access Control) | Access based on user role in the organization | Admin role, user role, read-only role |
+| **ABAC** (Attribute-Based Access Control) | Access based on multiple attributes | Department + location + time of day |
+
+---
+
+### Accountability in Practice
+| Tool | How it Supports Accountability |
+|------|-------------------------------|
+| **SIEM** | Centralizes and correlates logs to detect and alert on suspicious activity |
+| **Audit Logs** | Record every action taken by every user and system |
+| **IDS/IPS** | Detects and alerts on suspicious network behavior |
+| **EDR** | Records endpoint activity including process creation and file changes |
+
+---
+
+### Why IAAA Matters for SOC Analysts
+✅ Identity helps you know WHICH account was involved
+✅ Authentication logs show HOW they logged in
+✅ Authorisation tells you WHAT they should and should not access
+✅ Accountability (logs) show WHAT they actually did
+✅ Together they enable incident investigation and attribution
+✅ Missing any one pillar makes forensics and response much harder
