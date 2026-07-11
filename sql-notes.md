@@ -316,3 +316,20 @@ SELECT * FROM users WHERE username='' OR '1'='1' AND password='';
 | **Medium** | Limited impact or requires chaining | Weak password reset token |
 | **Low** | Minimal impact, hard to exploit | Information disclosure |
 | **Informational** | No direct impact but worth noting | Server version in headers |
+## SQL Injection — OWASP Context
+
+### Why SQL Injection is Still Critical
+SQL Injection has been in the OWASP Top 10 for over a decade
+because it remains one of the most common and impactful web
+vulnerabilities. It falls under the broader **Injection** category
+in OWASP Top 10 2025 (A03).
+
+### Prevention in SQL Context
+```sql
+-- VULNERABLE — never do this
+query = "SELECT * FROM users WHERE username='" + username + "'"
+
+-- SAFE — use parameterized queries
+query = "SELECT * FROM users WHERE username = ?"
+execute(query, [username])
+```
