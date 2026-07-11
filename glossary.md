@@ -231,6 +231,10 @@ three core pillars of information security:
 integrity using CDIs, UDIs, TPs and IVPs
 - **Confidentiality** — Ensuring only intended recipients can access
 data. Attacked by Disclosure
+- **Cryptographic Failure** — A vulnerability that occurs when
+sensitive data is not adequately protected due to missing encryption,
+faulty implementation or insufficient security measures. OWASP Top
+10 category (formerly called Sensitive Data Exposure)
 ## D
 - **Daemon** — A background service running on Linux
 - **Delegation** — Process of granting privileges to a user over an OU
@@ -564,6 +568,11 @@ Accountability — the four core principles governing how access
 to systems and resources is managed and audited
 - **Identity** — A unique account (user ID, email) that represents
 a person or service in a system
+- **Injection** — A vulnerability where an application takes user
+input and passes it directly into a system that can execute commands
+or queries (database, shell, templating engine, API) without proper
+validation or sanitization. Includes SQLi, XSS, command injection,
+LDAP injection and more
 ## J
 - **John the Ripper** — Free open source password cracking tool that
 automatically detects hash types and supports wordlist, single and
@@ -1181,6 +1190,10 @@ digital defender
 and maintains the systems and processes that protect an
 organization's network and devices. Known as the architects of
 cybersecurity
+- **Software and Data Integrity Failure** — A vulnerability where
+an application relies on code, updates or data it assumes are safe
+without verifying their authenticity, integrity or origin. Includes
+supply chain attacks and insecure deserialization
 ## T
 - **Telnet** — Insecure remote access protocol (Port 23), replaced by SSH
 - **TGT** — Ticket Granting Ticket, allows users to request tickets to
