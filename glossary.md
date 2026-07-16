@@ -235,6 +235,10 @@ data. Attacked by Disclosure
 sensitive data is not adequately protected due to missing encryption,
 faulty implementation or insufficient security measures. OWASP Top
 10 category (formerly called Sensitive Data Exposure)
+- **CIRT** — Cyber Incident Response Team, a dedicated team
+responsible for responding to and managing cybersecurity incidents
+within an organization. Works closely with the SOC during active
+incidents
 ## D
 - **Daemon** — A background service running on Linux
 - **Delegation** — Process of granting privileges to a user over an OU
@@ -710,6 +714,10 @@ GPS locations
 - **Malware Infection** — An incident caused by malicious programs
 that damage a system, network or application. The most common type
 of security incident
+- **MSSP** — Managed Security Service Provider, a company that
+delivers outsourced security services to organizations that cannot
+build or maintain an internal SOC. Services typically include
+24/7 monitoring, threat detection and incident response
 ## N
 - **NAT** — Network Address Translation, maps private IPs to a public IP
 - **Nmap** — Network scanning tool used to discover open ports and services
