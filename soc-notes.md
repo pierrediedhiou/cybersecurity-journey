@@ -662,3 +662,86 @@ Accountability → Everything you do is recorded
 ✅ Accountability (logs) show WHAT they actually did
 ✅ Together they enable incident investigation and attribution
 ✅ Missing any one pillar makes forensics and response much harder
+## SOC Role in the Blue Team
+
+### What is a SOC?
+A Security Operations Center (SOC) is a team of IT security
+professionals tasked with five core responsibilities:
+1. Monitoring   — Continuously watch networks and systems for threats
+2. Preventing   — Proactively block known threats before they occur
+3. Detecting    — Identify malicious activity and anomalies
+4. Investigating — Analyze alerts to determine scope and impact
+5. Responding   — Contain, eradicate and recover from incidents
+---
+
+### SOC Team Models
+| Model | Description | Best For |
+|-------|-------------|---------|
+| **Internal SOC** | Dedicated in-house security team | Large organizations with budget |
+| **Virtual SOC** | Remote security team, no physical location | Medium organizations |
+| **MSSP** | Outsourced SOC provided by a third party | Small/medium organizations without resources |
+| **Hybrid SOC** | Combination of internal team and MSSP | Organizations wanting internal control with external support |
+
+---
+
+### SOC vs CIRT
+| | SOC | CIRT |
+|---|---|---|
+| **Focus** | Ongoing monitoring and detection | Active incident response |
+| **When active** | 24/7 continuous | Activated when incident confirmed |
+| **Goal** | Detect threats early | Contain and eradicate confirmed incidents |
+| **Relationship** | SOC detects and escalates | CIRT responds to SOC escalations |
+
+---
+
+### Key SOC Metrics (KPIs)
+| Metric | Description |
+|--------|-------------|
+| **MTTD** | Mean Time to Detect — how long to identify a threat |
+| **MTTR** | Mean Time to Respond — how long to contain and resolve |
+| **False Positive Rate** | Percentage of alerts that are not real threats |
+| **Alert Volume** | Total number of alerts processed per day/week |
+| **Incident Escalation Rate** | Percentage of alerts escalated from L1 to L2/L3 |
+
+---
+
+### SOC Tools Stack
+| Category | Common Tools |
+|----------|-------------|
+| **SIEM** | Splunk, Microsoft Sentinel, QRadar, Elastic SIEM |
+| **EDR** | CrowdStrike, SentinelOne, Microsoft Defender |
+| **IDS/IPS** | Snort, Suricata, Zeek |
+| **Threat Intelligence** | MISP, VirusTotal, Shodan |
+| **SOAR** | Splunk SOAR, Palo Alto XSOAR |
+| **Ticketing** | ServiceNow, Jira |
+| **Network Analysis** | Wireshark, tcpdump, Zeek |
+
+---
+
+### SOC Daily Workflow
+Start of shift
+↓
+Review overnight alerts and incidents
+↓
+Triage new alerts (L1) — false positive or true positive?
+↓
+Escalate confirmed incidents to L2/L3
+↓
+Investigate and correlate data across sources
+↓
+Contain and respond to confirmed incidents (CIRT)
+↓
+Update tickets and document findings
+↓
+Handover to next shift
+---
+
+### Blue Team Responsibilities Summary
+✅ Monitor networks and systems 24/7
+✅ Analyze and triage security alerts
+✅ Hunt for threats proactively (threat hunting)
+✅ Maintain and tune detection rules
+✅ Respond to and contain confirmed incidents
+✅ Conduct forensic investigations
+✅ Report security posture to management and CISO
+✅ Continuously improve detection and response capabilities
