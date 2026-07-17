@@ -346,6 +346,13 @@ making systems or services unavailable. The opposite of Availability
 - **Disclosure** — An attack on confidentiality, exposing secret
 or sensitive data to unauthorized parties. The opposite of
 Confidentiality
+- **Deepfake** — AI-generated synthetic media (video, audio or
+images) that realistically impersonates a real person. Used in
+social engineering attacks to impersonate executives or trusted
+individuals
+- **Detection (Social Engineering)** — The process of identifying
+that a social engineering attack is occurring or has occurred,
+through technical controls, user reporting and monitoring
 ## E
 - **Encryption** — Process of encoding data so only authorized parties can read it
 - **Enumeration** — Systematically gathering information about a target system
@@ -577,6 +584,9 @@ input and passes it directly into a system that can execute commands
 or queries (database, shell, templating engine, API) without proper
 validation or sanitization. Includes SQLi, XSS, command injection,
 LDAP injection and more
+- **Impersonation** — A social engineering technique where an
+attacker pretends to be a trusted person or authority figure
+(ex: IT support, manager, executive) to manipulate the victim
 ## J
 - **John the Ripper** — Free open source password cracking tool that
 automatically detects hash types and supports wordlist, single and
@@ -718,6 +728,13 @@ of security incident
 delivers outsourced security services to organizations that cannot
 build or maintain an internal SOC. Services typically include
 24/7 monitoring, threat detection and incident response
+- **Mitigation (Social Engineering)** — Proactive measures to
+reduce the likelihood or impact of social engineering attacks,
+including security awareness training, MFA and email filtering
+- **Malware Download** — A social engineering delivery method
+where the victim is tricked into downloading and running a
+malicious file, often disguised as a legitimate document or
+software update
 ## N
 - **NAT** — Network Address Translation, maps private IPs to a public IP
 - **Nmap** — Network scanning tool used to discover open ports and services
@@ -1202,6 +1219,10 @@ cybersecurity
 an application relies on code, updates or data it assumes are safe
 without verifying their authenticity, integrity or origin. Includes
 supply chain attacks and insecure deserialization
+- **Social Engineering** — A manipulation technique that exploits
+human psychology rather than technical flaws to gain unauthorized
+access. Designed to appear trustworthy and trigger emotional
+responses like urgency, fear or curiosity
 ## T
 - **Telnet** — Insecure remote access protocol (Port 23), replaced by SSH
 - **TGT** — Ticket Granting Ticket, allows users to request tickets to
