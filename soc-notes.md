@@ -745,3 +745,97 @@ Handover to next shift
 ✅ Conduct forensic investigations
 ✅ Report security posture to management and CISO
 ✅ Continuously improve detection and response capabilities
+## Humans as Attack Vectors
+
+### Why Humans are the Weakest Link
+While technical defenses protect networks, humans are often the
+easiest target. Social engineering bypasses firewalls, IDS and
+encryption by simply manipulating people into helping the attacker.
+
+**The fortress analogy:**
+- Technical attack = breach the walls and gates
+- Social engineering = convince the gatekeeper to open the door
+
+---
+
+### What is Social Engineering?
+Social engineering exploits human psychology rather than technical
+flaws. For it to succeed, attacks are designed to be:
+
+| Characteristic | Description | Example |
+|----------------|-------------|---------|
+| **Trustworthy** | Attacker appears legitimate so victim trusts them | Spoofed email from IT department |
+| **Emotional** | Triggers urgency, fear or curiosity | "Your account will be deleted in 24 hours" |
+
+---
+
+### Common Human-Targeted Attack Types
+| Attack Type | Description | Example |
+|-------------|-------------|---------|
+| **Phishing** | Fraudulent emails designed to steal credentials or deliver malware | Fake Microsoft login page link |
+| **Spear Phishing** | Targeted phishing using personal details about the victim | Email appearing to come from victim's manager |
+| **Vishing** | Voice phishing — phone calls pretending to be support or authority | Fake IT helpdesk call requesting password |
+| **Smishing** | SMS phishing — malicious links sent via text message | Fake bank alert text |
+| **Malware Downloads** | Victim tricked into downloading and running malicious files | Fake invoice PDF with embedded macro |
+| **Deepfakes** | AI-generated video or audio impersonating trusted people | Fake video call of CEO approving a wire transfer |
+| **Impersonation** | Attacker pretends to be IT, management or a vendor | Attacker calling as "IT support" to reset a password |
+| **Baiting** | Leaving infected USB drives in accessible locations | USB labeled "Salary 2024" left in company car park |
+| **Pretexting** | Creating a fabricated scenario to manipulate the victim | Fake vendor claiming they need system access |
+| **Tailgating** | Following an authorized person through a secured entry | Walking behind an employee through a badge-locked door |
+
+---
+
+### Phishing Attack Anatomy
+1. Attacker researches the target (OSINT, LinkedIn, company website)
+2. Crafts a convincing email with a spoofed sender address
+3. Adds urgency or emotional trigger (account suspended, invoice due)
+4. Includes malicious link or attachment
+5. Victim clicks and either:
+a. Enters credentials on a fake login page (credential harvesting)
+b. Downloads malware disguised as a legitimate file
+6. Attacker uses stolen credentials or malware for further access
+---
+
+### Defending Against Human-Targeted Attacks
+
+#### Mitigation — Prevent Attacks
+| Control | Description |
+|---------|-------------|
+| **Security Awareness Training** | Educate employees to recognize phishing and social engineering |
+| **Phishing Simulations** | Send fake phishing emails to test and train employees |
+| **Email Filtering** | Block known malicious senders, domains and attachments |
+| **MFA** | Even if credentials are stolen, MFA blocks unauthorized access |
+| **Least Privilege** | Limit damage from compromised accounts by restricting access |
+| **Clear IT Policies** | Define what IT will and will never ask employees to do |
+
+#### Detection — Identify Attacks
+| Control | Description |
+|---------|-------------|
+| **SIEM Alerting** | Detect unusual login attempts, locations and behaviors |
+| **Email Header Analysis** | Identify spoofed sender addresses and suspicious routing |
+| **User Reporting** | Encourage employees to report suspicious emails immediately |
+| **EDR Monitoring** | Detect malware execution from downloaded files |
+| **Anomaly Detection** | Flag unusual data transfers or access patterns |
+
+---
+
+### Red Flags Employees Should Recognize
+🚩 Urgent requests demanding immediate action
+🚩 Requests to bypass normal procedures
+🚩 Unexpected emails with attachments or links
+🚩 Requests for passwords or sensitive information
+🚩 Sender email address doesn't match the organization
+🚩 Poor grammar or unusual formatting
+🚩 Threats of account suspension or legal action
+🚩 Too-good-to-be-true offers or rewards
+---
+
+### Social Engineering vs Technical Attacks
+| | Social Engineering | Technical Attack |
+|---|---|---|
+| **Target** | Human psychology | System vulnerabilities |
+| **Skill required** | Low to medium | High |
+| **Success rate** | Very high | Lower |
+| **Detection difficulty** | Hard — no malicious code | Easier — security tools detect |
+| **Defense** | Training and awareness | Patches and security tools |
+| **Example** | Phishing email | SQL injection |
