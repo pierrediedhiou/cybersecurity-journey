@@ -839,3 +839,115 @@ b. Downloads malware disguised as a legitimate file
 | **Detection difficulty** | Hard — no malicious code | Easier — security tools detect |
 | **Defense** | Training and awareness | Patches and security tools |
 | **Example** | Phishing email | SQL injection |
+## SOC L1 Alert Triage
+
+### Events vs Alerts
+| Concept | Description | Example |
+|---------|-------------|---------|
+| **Event** | Any observable occurrence in a system or network | User login, file download, DNS query |
+| **Alert** | An event that matches a detection rule and triggers a notification | Failed login 10 times in 60 seconds triggers brute force alert |
+
+Not every event becomes an alert — only events matching
+detection rules generate alerts for analysts to review.
+
+---
+
+### SOC Team Roles in Alert Triage
+| Role | Responsibility |
+|------|---------------|
+| **L1 Analyst** | Reviews alerts, distinguishes real threats from false positives, escalates confirmed incidents to L2 |
+| **L2 Analyst** | Receives escalated alerts from L1, performs deeper analysis and remediation |
+| **SOC Engineer** | Ensures alerts contain enough information for efficient triage, tunes detection rules |
+| **SOC Manager** | Tracks speed and quality of alert triage, ensures real attacks are not missed |
+
+---
+
+### Alert Properties
+. Every alert typically contains:
+. Alert name/title — What triggered the detection rule
+. Severity — Critical / High / Medium / Low
+. Timestamp — When the event occurred
+. Source IP — Where the activity came from
+. Destination IP — Where the activity was directed
+. Affected user/host — Which account or machine was involved
+. Raw log data — The underlying evidence
+. MITRE ATT&CK mapping — Which tactic/technique was detected
+---
+
+### Alert Prioritisation — The 3-Step Approach
+
+#### Step 1 — Filter the Alerts
+✅ Only take NEW, unseen and unresolved alerts
+✅ Do NOT take alerts already being reviewed by teammates
+✅ Check the alert queue before starting to avoid duplicate work
+#### Step 2 — Sort by Severity
+| Priority | Severity | Why |
+|----------|----------|-----|
+| 1st | **Critical** | Most likely to be a real major threat with highest impact |
+| 2nd | **High** | Serious threat, likely real and impactful |
+| 3rd | **Medium** | Moderate threat, investigate after critical and high |
+| 4th | **Low** | Least likely to be real, lowest impact |
+
+Detection engineers design rules so that **critical alerts are
+far more likely to be genuine major threats** than medium or low.
+
+#### Step 3 — Sort by Time
+Start with the OLDEST alerts first, end with the NEWEST
+
+Why: If two breaches are happening simultaneously:
+
+. The older breach attacker is likely already dumping data
+. The newer breach attacker has just started reconnaissance
+
+Responding to the older breach first limits the most damage
+---
+
+### Alert Triage Decision Flow
+New alert received
+↓
+Is it already being investigated? → YES → Skip, take next alert
+↓ NO
+What is the severity?
+↓
+Critical/High → Investigate immediately
+Medium/Low → Queue for later
+↓
+Analyze the alert
+↓
+False Positive? → Document and close
+↓
+True Positive? → Escalate to L2, open incident ticket
+---
+
+### L1 Triage Checklist
+✅ Check alert has not already been claimed by another analyst
+✅ Review alert severity and timestamp
+✅ Identify affected user, host and IP addresses
+✅ Review raw log data and supporting evidence
+✅ Check MITRE ATT&CK technique if available
+✅ Search for related alerts on the same host or user
+✅ Search threat intelligence for known IOCs
+✅ Determine: False Positive or True Positive?
+✅ If True Positive: escalate to L2 with full notes
+✅ If False Positive: document reason and close
+✅ Update ticket with all findings
+---
+
+### Common Alert Triage Mistakes to Avoid
+❌ Taking alerts already claimed by a teammate
+❌ Starting with low severity alerts before critical ones
+❌ Closing alerts as false positive without investigating
+❌ Escalating to L2 without documenting your findings
+❌ Ignoring older alerts in favor of newer ones
+❌ Not checking for related alerts on the same host/user
+❌ Forgetting to update the ticket with your analysis
+---
+
+### SIEM and EDR Automation in Triage
+Most SOC teams automate prioritization by configuring:
+- **Alert severity scoring** — Critical rules trigger first
+- **Alert sorting logic** — Automatic queue ordering by severity
+- **Deduplication** — Merging duplicate alerts for same event
+- **Auto-enrichment** — Automatically adding threat intel context
+- **Playbook triggers** — Automatic response actions for known
+alert types (ex: auto-block IP on phishing detection)
