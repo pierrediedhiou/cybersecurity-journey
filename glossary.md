@@ -245,6 +245,9 @@ faulty implementation or insufficient security measures. OWASP Top
 responsible for responding to and managing cybersecurity incidents
 within an organization. Works closely with the SOC during active
 incidents
+- **C2 Server** — Command and Control server, infrastructure used
+by attackers to remotely control compromised systems and receive
+stolen data
 ## D
 - **Daemon** — A background service running on Linux
 - **Delegation** — Process of granting privileges to a user over an OU
@@ -407,6 +410,10 @@ executable file format used on Linux and Unix systems
 such as a login attempt, file access or network connection. Not
 all events are alerts — only those matching detection rules
 generate alerts
+- **EDR** — Endpoint Detection and Response, a security solution
+deployed on individual endpoints that provides visibility,
+detection and response capabilities through continuous telemetry
+collection
 ## F
 - **File** — A unit of stored data (text, code, image, config, etc).
 Everything in Linux is technically a file
@@ -1334,6 +1341,9 @@ referred to as an incident
 - **Triage** — From the French word meaning "to sort" — in SOC
 context, the process of sorting and prioritizing alerts by
 severity, time and likelihood of being a real threat
+- **Telemetry** — The continuous collection and transmission of
+data from endpoints to an EDR or SIEM for monitoring, detection
+and investigation. Acts as the "black box" of an endpoint
 ## U
 - **UAC** — User Account Control, Windows security feature that controls
 administrative privileges
