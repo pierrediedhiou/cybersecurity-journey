@@ -951,3 +951,103 @@ Most SOC teams automate prioritization by configuring:
 - **Auto-enrichment** — Automatically adding threat intel context
 - **Playbook triggers** — Automatic response actions for known
 alert types (ex: auto-block IP on phishing detection)
+## EDR (Endpoint Detection and Response)
+
+### What is EDR?
+An EDR is a security solution deployed on individual endpoints
+(laptops, servers, workstations) that continuously collects
+telemetry data to enable security teams to detect, investigate
+and respond to threats in real time.
+
+---
+
+### The Three Pillars of EDR
+| Pillar | Description |
+|--------|-------------|
+| **Visibility** | Continuous monitoring of all endpoint activity through telemetry collection |
+| **Detection** | Identifies malicious behavior using rules, behavioral analysis and threat intelligence |
+| **Response** | Enables containment actions like isolating the endpoint, killing processes or blocking files |
+
+---
+
+### EDR Telemetry — The Endpoint Black Box
+Telemetry is everything an EDR collects from an endpoint to
+enable detection and investigation:
+
+| Telemetry Type | What it Captures | Why it Matters |
+|----------------|-----------------|----------------|
+| **Process Executions and Terminations** | All running and terminated processes, parent-child relationships | Identifies suspicious child processes, malware payloads, unusual executables |
+| **Network Connections** | All inbound and outbound connections from the endpoint | Detects C2 communication, unusual ports, data exfiltration, lateral movement |
+| **Command Line Activity** | All commands executed in CMD, PowerShell, bash | Identifies malicious commands and obfuscated PowerShell scripts missed by AV |
+| **File and Folder Modifications** | File creation, modification, deletion and movement | Detects data staging, ransomware file encryption, malicious file dropping |
+| **Registry Modifications** | Changes to Windows registry keys and values | Identifies persistence mechanisms, configuration changes during malware execution |
+
+---
+
+### EDR vs Traditional Antivirus
+| | Traditional AV | EDR |
+|---|---|---|
+| **Detection method** | Signature-based only | Behavioral + signature + threat intel |
+| **Visibility** | Limited — only scans files | Full endpoint telemetry |
+| **Response capability** | Quarantine files only | Isolate host, kill processes, rollback changes |
+| **Obfuscated attacks** | Often misses them | Detects via behavioral analysis |
+| **PowerShell attacks** | Largely blind | Captures all command line activity |
+| **Forensic data** | Minimal | Full timeline of all endpoint activity |
+| **Real-time monitoring** | No | Yes — continuous |
+
+---
+
+### What EDR Can Detect That AV Misses
+✅ Obfuscated PowerShell script execution
+✅ Living off the land attacks (LOLBins) — using legitimate tools
+✅ Process injection into legitimate processes
+✅ Suspicious parent-child process relationships
+✅ C2 beaconing and unusual outbound connections
+✅ Fileless malware running only in memory
+✅ Registry-based persistence mechanisms
+✅ Lateral movement using stolen credentials
+✅ Data exfiltration to external IP addresses
+---
+
+### Common EDR Solutions
+| Tool | Vendor |
+|------|--------|
+| **CrowdStrike Falcon** | CrowdStrike |
+| **SentinelOne** | SentinelOne |
+| **Microsoft Defender for Endpoint** | Microsoft |
+| **Carbon Black** | VMware |
+| **Cortex XDR** | Palo Alto Networks |
+| **Elastic EDR** | Elastic |
+
+---
+
+### EDR Alert Investigation Workflow
+EDR alert triggered
+↓
+Review telemetry — process tree, network connections, command line
+↓
+Identify parent-child process relationship
+↓
+Check command line arguments for suspicious activity
+↓
+Review network connections — external IPs, unusual ports
+↓
+Check file and registry modifications
+↓
+Search threat intelligence for IOCs
+↓
+False Positive → Document and close
+True Positive → Isolate endpoint, escalate to L2
+---
+
+### Key Suspicious Indicators in EDR Telemetry
+| Indicator | Why Suspicious |
+|-----------|---------------|
+| `cmd.exe` or `powershell.exe` spawned by `word.exe` | Office macro executing shell |
+| Encoded PowerShell commands (`-EncodedCommand`) | Obfuscation technique |
+| `svchost.exe` with unusual parent process | Process injection |
+| Outbound connection to non-standard port | C2 communication |
+| Mass file renaming with new extensions | Ransomware encryption |
+| New registry run key created | Persistence mechanism |
+| `whoami`, `net user`, `ipconfig` executed in sequence | Discovery phase |
+| Large outbound data transfer at unusual hours | Data exfiltration |
