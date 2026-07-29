@@ -1051,3 +1051,136 @@ True Positive → Isolate endpoint, escalate to L2
 | New registry run key created | Persistence mechanism |
 | `whoami`, `net user`, `ipconfig` executed in sequence | Discovery phase |
 | Large outbound data transfer at unusual hours | Data exfiltration |
+## Splunk — SIEM Fundamentals
+
+### What is Splunk?
+Splunk is one of the leading SIEM solutions in the market. It
+allows security teams to collect, analyze and correlate network
+and machine logs in real time for threat detection, investigation
+and incident response.
+
+---
+
+### Splunk Architecture — Three Core Components
+| Component | Role | Description |
+|-----------|------|-------------|
+| **Splunk Forwarder** | Data collection | Lightweight agent installed on endpoints that collects and sends data to Splunk |
+| **Splunk Indexer** | Data processing | Receives data from forwarders, parses and normalizes it into field-value pairs, stores as searchable events |
+| **Splunk Search Head** | Data analysis | Where analysts search, analyze and visualize indexed log data using SPL |
+
+### Data Flow
+Endpoint/Log Source
+↓
+Splunk Forwarder (collect and send)
+↓
+Splunk Indexer (parse, normalize, store as events)
+↓
+Splunk Search Head (search, analyze, visualize)
+↓
+SOC Analyst (investigate and respond)
+---
+
+### SPL — Search Processing Language
+
+#### Basic SPL Syntax
+index=* sourcetype=* keyword | command | command
+#### Most Useful SPL Commands
+| Command | Purpose | Example |
+|---------|---------|---------|
+| `search` | Filter events by keyword | `search failed login` |
+| `index=` | Specify which index to search | `index=windows` |
+| `sourcetype=` | Filter by log source type | `sourcetype=WinEventLog` |
+| `\|table` | Display specific fields as a table | `\| table _time, src_ip, user` |
+| `\|stats` | Calculate statistics | `\| stats count by src_ip` |
+| `\|sort` | Sort results | `\| sort -count` |
+| `\|head` | Show first N results | `\| head 10` |
+| `\|tail` | Show last N results | `\| tail 10` |
+| `\|dedup` | Remove duplicate results | `\| dedup src_ip` |
+| `\|rename` | Rename a field | `\| rename src_ip as Source` |
+| `\|eval` | Create calculated fields | `\| eval status=if(code=200,"OK","Error")` |
+| `\|where` | Filter results with conditions | `\| where count > 100` |
+| `\|rex` | Extract fields using regex | `\| rex field=_raw "user=(?P<user>\w+)"` |
+| `\|timechart` | Create time-based charts | `\| timechart count by EventCode` |
+| `\|lookup` | Enrich data with external tables | `\| lookup threat_intel ip as src_ip` |
+
+---
+
+### Common SOC Splunk Searches
+
+**Brute force detection:**
+```spl
+index=windows sourcetype=WinEventLog EventCode=4625
+| stats count by src_ip, user
+| where count > 10
+| sort -count
+```
+
+**Failed logins followed by success:**
+```spl
+index=windows sourcetype=WinEventLog EventCode=4625 OR EventCode=4624
+| stats count by user, EventCode
+| sort user
+```
+
+**PowerShell execution:**
+```spl
+index=windows sourcetype=WinEventLog EventCode=4104
+| table _time, ComputerName, ScriptBlockText
+```
+
+**Unusual outbound connections:**
+```spl
+index=network sourcetype=firewall action=allowed
+| stats count by dest_ip, dest_port
+| where count < 5
+| sort count
+```
+
+**New user created:**
+```spl
+index=windows sourcetype=WinEventLog EventCode=4720
+| table _time, ComputerName, TargetUserName, SubjectUserName
+```
+
+---
+
+### Common Windows Event IDs to Know
+| Event ID | Description |
+|----------|-------------|
+| `4624` | Successful login |
+| `4625` | Failed login |
+| `4634` | Account logoff |
+| `4720` | New user account created |
+| `4722` | User account enabled |
+| `4725` | User account disabled |
+| `4728` | User added to security group |
+| `4732` | User added to local group |
+| `4768` | Kerberos ticket requested |
+| `4769` | Kerberos service ticket requested |
+| `4776` | NTLM authentication attempted |
+| `4104` | PowerShell script block logged |
+| `7045` | New service installed |
+
+---
+
+### Splunk Investigation Workflow for SOC Analysts
+1. Receive alert from Splunk
+2. Open the alert in Search Head
+3. Review the triggering event and raw log data
+4. Expand the time window to get context around the event
+5. Search for related events on the same host/user/IP
+6. Use stats and table commands to identify patterns
+7. Check threat intelligence for known IOCs
+8. Determine: False Positive or True Positive?
+9. Document findings in the ticket
+10. Escalate to L2 if True Positive
+---
+
+### Splunk vs Other SIEM Solutions
+| | Splunk | Microsoft Sentinel | QRadar | Elastic SIEM |
+|---|---|---|---|---|
+| **Type** | Commercial | Cloud-native | Commercial | Open source option |
+| **Query language** | SPL | KQL | AQL | EQL/Lucene |
+| **Ease of use** | High | High | Medium | Medium |
+| **Cost** | High | Pay per use | High | Low/Free |
+| **Best for** | Enterprise SOC | Azure environments | IBM environments | Cost-conscious teams |
