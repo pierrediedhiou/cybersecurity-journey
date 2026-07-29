@@ -1240,6 +1240,21 @@ supply chain attacks and insecure deserialization
 human psychology rather than technical flaws to gain unauthorized
 access. Designed to appear trustworthy and trigger emotional
 responses like urgency, fear or curiosity
+- **Splunk** — One of the leading SIEM solutions, allowing users
+to collect, analyze and correlate network and machine logs in
+real time for security monitoring and investigation
+- **Splunk Forwarder** — A lightweight agent installed on endpoints
+that collects data and sends it to the Splunk instance for
+indexing and analysis
+- **Splunk Indexer** — The Splunk component that processes data
+received from forwarders, parses and normalizes it into
+field-value pairs, categorizes it and stores it as searchable
+events
+- **Splunk Search Head** — The Splunk component where analysts
+search and analyze indexed logs using SPL (Search Processing
+Language)
+- **SPL** — Search Processing Language, the query language used
+in Splunk to search, filter, analyze and visualize log data
 ## T
 - **Telnet** — Insecure remote access protocol (Port 23), replaced by SSH
 - **TGT** — Ticket Granting Ticket, allows users to request tickets to
