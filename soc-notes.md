@@ -1184,3 +1184,136 @@ index=windows sourcetype=WinEventLog EventCode=4720
 | **Ease of use** | High | High | Medium | Medium |
 | **Cost** | High | Pay per use | High | Low/Free |
 | **Best for** | Enterprise SOC | Azure environments | IBM environments | Cost-conscious teams |
+## SOAR (Security Orchestration, Automation and Response)
+
+### What is SOAR?
+SOAR is a platform that unifies all security tools used in a SOC
+into a single interface, allowing analysts to operate SIEM, EDR,
+firewall, threat intelligence and ticketing systems without
+switching between tools. It also automates repetitive tasks
+through playbooks.
+
+---
+
+### The Problem SOAR Solves — Manual Tool Switching
+**Example: VPN Brute Force Investigation (without SOAR)**
+Alert triggered in SIEM
+↓
+Switch to SIEM → Check if user normally uses that IP
+↓
+Switch to Threat Intelligence → Check IP reputation
+↓
+Switch to IAM Tool → Disable user if successful login found
+↓
+Switch to Ticketing System → Open and track the incident
+Each switch wastes time, introduces human error and slows
+response. With SOAR, all of this happens in one interface
+— or automatically via a playbook.
+
+---
+
+### SOAR Core Capabilities
+| Capability | Description |
+|------------|-------------|
+| **Orchestration** | Connects and integrates all security tools into one unified interface |
+| **Automation** | Automates repetitive manual tasks through playbooks |
+| **Response** | Executes response actions (block IP, disable user, isolate host) automatically or with one click |
+| **Case Management** | Tracks incidents and analyst actions in one place |
+| **Reporting** | Generates reports on incident metrics and analyst performance |
+
+---
+
+### SOAR vs SIEM
+| | SIEM | SOAR |
+|---|---|---|
+| **Primary function** | Collect, correlate and alert on logs | Automate and orchestrate the response |
+| **Human interaction** | High — analysts manually investigate | Lower — automates repetitive tasks |
+| **Tool integration** | Collects logs from tools | Controls and operates tools |
+| **Response capability** | None — detection only | Yes — automated response actions |
+| **Works with** | Log sources | SIEM, EDR, TI, IAM, firewall, ticketing |
+
+---
+
+### SOAR Playbooks
+A playbook is a predefined automated workflow triggered by a
+specific alert type. It replaces the manual multi-tool process
+with automated actions.
+
+**Example Playbook — VPN Brute Force:**
+Trigger: SIEM alert — 10+ failed VPN logins from same IP
+
+Automated Steps:
+
+1. Query SIEM → Check if IP is known for this user
+2. Query Threat Intelligence → Check IP reputation score
+3. If IP is malicious → Auto-block IP in firewall
+4. If successful login detected → Auto-disable user in IAM
+5. Create ticket in ticketing system with all findings
+6. Notify L2 analyst via email or Slack
+7. Request analyst approval for further response actions
+**Example Playbook — Phishing Email:**
+Trigger: User reports phishing email
+
+Automated Steps:
+
+1. Extract sender, links and attachments from email
+2. Query Threat Intelligence for sender domain and links
+3. Scan attachments with antivirus
+4. If malicious → Delete email from all mailboxes
+5. Block sender domain in email gateway
+6. Check if any user clicked the link (SIEM query)
+7. If clicked → Isolate endpoint via EDR
+8. Create incident ticket with full timeline
+9. Notify affected users
+---
+
+### Tools SOAR Integrates With
+| Category | Examples |
+|----------|---------|
+| **SIEM** | Splunk, Microsoft Sentinel, QRadar |
+| **EDR** | CrowdStrike, SentinelOne, Defender |
+| **Threat Intelligence** | VirusTotal, MISP, Shodan |
+| **Firewall** | Palo Alto, Fortinet, Cisco |
+| **IAM** | Active Directory, Okta, Azure AD |
+| **Ticketing** | ServiceNow, Jira |
+| **Email** | Microsoft 365, Google Workspace |
+| **Communication** | Slack, Microsoft Teams |
+
+---
+
+### Popular SOAR Platforms
+| Platform | Vendor |
+|----------|--------|
+| **Splunk SOAR** | Splunk |
+| **Palo Alto XSOAR** | Palo Alto Networks |
+| **Microsoft Sentinel** | Microsoft (built-in SOAR) |
+| **IBM QRadar SOAR** | IBM |
+| **Shuffle** | Open source |
+
+---
+
+### Benefits of SOAR for SOC Analysts
+✅ No more switching between 5+ tools during investigation
+✅ Repetitive tasks automated — analysts focus on complex work
+✅ Faster response time (MTTR significantly reduced)
+✅ Consistent process — playbooks ensure no steps are missed
+✅ Full audit trail of all automated and manual actions
+✅ Reduces analyst burnout from alert fatigue
+✅ Scales with alert volume without adding headcount
+---
+
+### SOAR Investigation Workflow
+Alert triggered in SIEM
+↓
+SOAR automatically enriches alert with context
+(threat intel, user info, IP reputation)
+↓
+Playbook executes automated response steps
+↓
+Analyst reviews enriched alert in SOAR interface
+↓
+Analyst approves or modifies automated actions
+↓
+Final response — contain, eradicate, recover
+↓
+Case closed and documented in ticketing system
