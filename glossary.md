@@ -604,6 +604,10 @@ LDAP injection and more
 - **Impersonation** — A social engineering technique where an
 attacker pretends to be a trusted person or authority figure
 (ex: IT support, manager, executive) to manipulate the victim
+- **IAM Tool** — Identity and Access Management tool, used to
+manage user accounts, permissions and access controls. In SOC
+context, used to disable compromised accounts during incident
+response
 ## J
 - **John the Ripper** — Free open source password cracking tool that
 automatically detects hash types and supports wordlist, single and
@@ -942,6 +946,10 @@ format used on Windows systems (.exe, .dll, .sys files)
 - **Passkey** — A modern passwordless authentication method using
 cryptographic key pairs stored on a device, replacing traditional
 passwords with biometric or PIN verification
+- **Playbook (SOAR)** — A predefined automated list of actions
+configured in a SOAR platform to handle a specific type of
+incident. Automates repetitive manual tasks that analysts
+previously performed across multiple tools
 ## Q
 - **Query String** — The part of a URL starting with ? that sends
 parameters to the server (ex: ?search=hacking). Can be exploited
@@ -1255,6 +1263,10 @@ search and analyze indexed logs using SPL (Search Processing
 Language)
 - **SPL** — Search Processing Language, the query language used
 in Splunk to search, filter, analyze and visualize log data
+- **SOAR** — Security Orchestration, Automation and Response, a
+platform that unifies all security tools used in a SOC into a
+single interface and automates repetitive incident response tasks
+through playbooks
 ## T
 - **Telnet** — Insecure remote access protocol (Port 23), replaced by SSH
 - **TGT** — Ticket Granting Ticket, allows users to request tickets to
