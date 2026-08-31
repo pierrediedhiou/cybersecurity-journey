@@ -454,6 +454,9 @@ acting like a security guard for a network
 VM, a Windows-based virtual machine developed by FireEye Mandiant
 containing a comprehensive collection of tools for reverse
 engineering, malware analysis, incident response and forensics
+- **Fragmentation Attack** — An evasion technique where an attacker
+breaks IP packets into smaller fragments to obscure malicious
+payloads and bypass signature-based detection in IDS systems
 ## G
 - **GPO** — Group Policy Objects, collection of settings applied to
 Organizational Units in Active Directory
@@ -608,6 +611,9 @@ attacker pretends to be a trusted person or authority figure
 manage user accounts, permissions and access controls. In SOC
 context, used to disable compromised accounts during incident
 response
+- **Intermediary Device** — A network device that routes or forwards
+traffic between endpoints, such as routers, switches and firewalls.
+A source of network traffic for NTA
 ## J
 - **John the Ripper** — Free open source password cracking tool that
 automatically detects hash types and supports wordlist, single and
@@ -823,6 +829,11 @@ hosts
 - **Nonrepudiation** — A security property that ensures a party
 cannot deny having performed an action, such as sending a message
 or making a transaction
+- **NTA** — Network Traffic Analysis, the process of capturing,
+inspecting and analyzing data as it flows through a network to
+gain visibility and detect threats
+- **Network Traffic Source** — The origin of captured network data.
+Two main types exist: endpoint devices and intermediary devices
 ## O
 - **Open Port** — A port actively accepting connections on a device
 - **OpenSSL** — Cryptographic library that powers HTTPS encryption
@@ -1471,6 +1482,9 @@ API endpoints. Available at web.archive.org
 - **WSGI** — Web Server Gateway Interface, a Python standard for
 web server communication. WSGIServer in the Server header strongly
 indicates a Django or Python-based application
+- **WAN** — Wide Area Network, connects multiple smaller networks
+across large geographic areas spanning cities, countries or
+continents. The Internet is the largest public WAN
 ## X
 - **XSS** — Cross-Site Scripting, injecting malicious scripts into web pages
 - **XZ Utils** — Linux compression tool targeted by a supply chain attack
