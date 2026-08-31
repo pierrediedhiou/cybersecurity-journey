@@ -2041,3 +2041,99 @@ curl -sI http://target.com
 | Exposed status/debug endpoint | `/server-status` | N/A | `/api/debug/env`, `/api/routes` | `/nginx_status` |
 | Sensitive files accessible | `backup.bak`, `internal-notes.txt` | `.env`, `notes.txt`, `backup.zip` | `config.js` | `server-config.txt`, `deploy-notes.txt` |
 | Missing security headers | All | All | All | All |
+## Network Traffic Analysis Commands
+
+### Capture Traffic with tcpdump
+```bash
+# Capture all traffic on any interface
+sudo tcpdump -i any
+
+# Capture and save to file
+sudo tcpdump -i any -w capture.pcap
+
+# Read a saved capture file
+tcpdump -r capture.pcap
+
+# Filter by host
+tcpdump -i any host 192.168.1.100
+
+# Filter by port
+tcpdump -i any port 80
+
+# Filter by protocol
+tcpdump -i any icmp
+tcpdump -i any udp
+tcpdump -i any tcp
+
+# Capture DNS traffic
+sudo tcpdump -i any port 53
+
+# Capture HTTP traffic
+sudo tcpdump -i any port 80 -A
+
+# Capture with verbose and no DNS resolution
+sudo tcpdump -i any -nn -v
+```
+
+### Analyze Traffic with Wireshark Filters
+Filter by IP
+
+ip.addr == 192.168.1.100
+
+Filter by source IP
+
+ip.src == 192.168.1.100
+
+Filter by destination IP
+
+ip.dst == 192.168.1.100
+
+Filter by port
+
+tcp.port == 443
+
+Filter by protocol
+
+dns
+http
+icmp
+ftp
+ssh
+
+Filter HTTP GET requests
+
+http.request.method == "GET"
+
+Filter large packets (possible exfiltration)
+
+frame.len > 1000
+
+Filter DNS queries
+
+dns.flags.response == 0
+
+Filter fragmented packets
+
+ip.flags.mf == 1
+
+Filter by string in payload
+
+frame contains "password"
+
+### Tshark — Command Line Wireshark
+```bash
+# Read pcap file
+tshark -r capture.pcap
+
+# Filter DNS traffic
+tshark -r capture.pcap -Y "dns"
+
+# Show only HTTP requests
+tshark -r capture.pcap -Y "http.request"
+
+# Extract specific fields
+tshark -r capture.pcap -Y "dns" -T fields -e dns.qry.name
+
+# Count connections by IP
+tshark -r capture.pcap -T fields -e ip.src | sort | uniq -c | sort -rn
+```
