@@ -2137,3 +2137,46 @@ tshark -r capture.pcap -Y "dns" -T fields -e dns.qry.name
 # Count connections by IP
 tshark -r capture.pcap -T fields -e ip.src | sort | uniq -c | sort -rn
 ```
+## Data Exfiltration Detection Commands
+
+### Detect DNS Exfiltration with tcpdump
+```bash
+# Capture DNS traffic
+sudo tcpdump -i any port 53 -w dns_capture.pcap
+
+# Look for long subdomain queries
+sudo tcpdump -i any port 53 -A | grep -E "[a-zA-Z0-9+/]{20,}"
+
+# Monitor DNS query frequency
+tshark -r capture.pcap -Y "dns.flags.response == 0" \
+-T fields -e dns.qry.name | sort | uniq -c | sort -rn
+```
+
+### Detect HTTP Exfiltration
+```bash
+# Monitor large outbound POST requests
+sudo tcpdump -i any 'tcp port 80 and (tcp[((tcp[12:1]&0xf0)>>2):4]=0x504f5354)'
+
+# Extract HTTP POST bodies
+tshark -r capture.pcap -Y "http.request.method==POST" \
+-T fields -e http.file_data
+```
+
+### Detect ICMP Tunneling
+```bash
+# Capture ICMP and check payload size
+sudo tcpdump -i any icmp -v
+
+# Filter ICMP with large payloads in Wireshark
+# Filter: icmp && frame.len > 100
+```
+
+### Detect FTP Exfiltration
+```bash
+# Monitor FTP connections
+sudo tcpdump -i any port 21 -A
+
+# Check for FTP credentials in cleartext
+tshark -r capture.pcap -Y "ftp" -T fields \
+-e ftp.request.command -e ftp.request.arg
+```
