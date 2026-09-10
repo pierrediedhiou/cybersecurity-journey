@@ -362,6 +362,13 @@ individuals
 - **Detection (Social Engineering)** — The process of identifying
 that a social engineering attack is occurring or has occurred,
 through technical controls, user reporting and monitoring
+- **Data Exfiltration** — The unauthorized transfer of sensitive
+data from a computer or network to an external destination
+controlled by an attacker
+- **DNS Exfiltration** — A data exfiltration technique that abuses
+the Domain Name System by encoding stolen data inside DNS queries
+and responses, bypassing firewalls and web proxies that typically
+allow DNS traffic
 ## E
 - **Encryption** — Process of encoding data so only authorized parties can read it
 - **Enumeration** — Systematically gathering information about a target system
@@ -532,6 +539,9 @@ and anomaly-based detection to leverage the strengths of both methods
 - **HIDS** — Host Intrusion Detection System, installed individually
 on a host and detects security threats related to that specific
 host only
+- **HTTP Exfiltration** — A data exfiltration technique that uses
+HTTP as the transport to move stolen data out of a network,
+blending with normal web traffic to avoid detection
 ## I
 - **Injection** — Attack inserting malicious code into an input field
 - **IP Address** — Internet Protocol Address, a unique numerical label assigned
@@ -614,6 +624,10 @@ response
 - **Intermediary Device** — A network device that routes or forwards
 traffic between endpoints, such as routers, switches and firewalls.
 A source of network traffic for NTA
+- **ICMP Tunneling** — A data exfiltration technique that abuses
+ICMP (ping) packets to hide and transfer stolen data, exploiting
+the fact that ICMP is commonly allowed through firewalls and
+inspected less strictly than TCP/UDP
 ## J
 - **John the Ripper** — Free open source password cracking tool that
 automatically detects hash types and supports wordlist, single and
