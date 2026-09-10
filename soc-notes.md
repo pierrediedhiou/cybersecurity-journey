@@ -1419,3 +1419,153 @@ inspection, or alert on excessive fragmentation.
 ✅ Check for fragmented packets (possible IDS evasion)
 ✅ Review HTTP traffic for suspicious user agents or URIs
 ✅ Monitor for cleartext credential transmission
+## Data Exfiltration Detection
+
+### What is Data Exfiltration?
+Data exfiltration is the unauthorized transfer of sensitive data
+from a computer or network to an external destination. It is
+typically the final goal of an attacker after compromising a
+system, and maps to the **Actions on Objectives** phase of the
+Cyber Kill Chain.
+
+---
+
+### Common Data Exfiltration Methods
+| Method | Protocol | Why Attackers Use It |
+|--------|----------|---------------------|
+| **DNS Exfiltration** | DNS (port 53) | Commonly allowed through firewalls, less inspected |
+| **HTTP Exfiltration** | HTTP (port 80) | Blends with normal web traffic, traverses firewalls |
+| **HTTPS Exfiltration** | HTTPS (port 443) | Encrypted — harder to inspect content |
+| **FTP Exfiltration** | FTP (port 21) | Can move large files, often misconfigured |
+| **ICMP Tunneling** | ICMP | Ping traffic commonly allowed, less strictly inspected |
+| **Email Exfiltration** | SMTP (port 25) | Blends with normal email traffic |
+| **Cloud Storage** | HTTPS | Uploads to Dropbox, Google Drive, OneDrive |
+
+---
+
+### DNS Exfiltration — How it Works
+Normal DNS query: what is the IP of google.com?
+Exfiltration DNS: what is the IP of
+U2Vuc2l0aXZlRGF0YQ==.attacker.com?
+(Base64 encoded stolen data as subdomain)
+
+The DNS resolver forwards the query to attacker.com
+The attacker's DNS server decodes the stolen data
+No firewall blocks it — it looks like a DNS query!
+
+**Detection signals:**
+🚩 High volume of DNS queries to a single domain
+🚩 Unusually long subdomain names (encoded data)
+🚩 DNS queries with non-existent domain responses (NXDOMAIN)
+🚩 DNS queries at regular intervals (automated beaconing)
+🚩 Unknown or newly registered domains in DNS logs
+🚩 Large DNS response sizes
+
+---
+
+### HTTP Exfiltration — How it Works
+Normal HTTP: GET /index.html HTTP/1.1
+
+Exfiltration via:
+
+POST body → stolen data in request body
+URL parameters → data=U2Vuc2l0aXZlRGF0YQ==
+HTTP headers → custom headers with encoded data
+Cookie values → session=U2Vuc2l0aXZlRGF0YQ==
+Chunked encoding → data split across many requests
+
+**Detection signals:**
+🚩 Large POST requests to external IP addresses
+🚩 Unusual or unknown User-Agent strings
+🚩 HTTP to IP addresses instead of domain names
+🚩 Encoded data in URLs or headers (Base64, hex)
+🚩 High volume of requests to same external host
+🚩 Outbound HTTP to non-standard ports
+
+---
+
+### FTP Exfiltration — How it Works
+Attacker compromises FTP credentials or misconfigured server
+↓
+Connects to internal FTP server
+↓
+Downloads sensitive files in bulk
+↓
+Transfers to external FTP server under attacker control
+
+**Detection signals:**
+🚩 FTP connections to external IP addresses
+🚩 Large file transfers over FTP
+🚩 FTP login attempts from unusual source IPs
+🚩 Connections outside business hours
+🚩 Compromised or ephemeral FTP accounts
+🚩 FTP traffic on non-standard ports
+
+---
+
+### ICMP Exfiltration — How it Works
+Normal ping: ICMP Echo Request → small payload (usually empty)
+
+Exfiltration: ICMP Echo Request → payload contains stolen data
+e.g., ping attacker.com with data in ICMP payload
+
+Attacker captures ICMP packets and extracts the hidden data
+
+**Detection signals:**
+🚩 ICMP packets with unusually large payloads
+🚩 High volume of ICMP traffic to external IPs
+🚩 ICMP traffic at regular intervals
+🚩 ICMP payload containing readable strings or Base64
+🚩 ICMP to destinations never pinged before
+
+---
+
+### Universal Exfiltration Detection Checklist
+✅ Monitor for large outbound data transfers at unusual hours
+✅ Alert on connections to newly registered or unknown domains
+✅ Inspect DNS query length and frequency
+✅ Monitor ICMP payload sizes
+✅ Alert on FTP connections to external IPs
+✅ Inspect HTTP POST body sizes
+✅ Use DLP (Data Loss Prevention) tools
+✅ Baseline normal traffic and alert on deviations
+✅ Check for encoding patterns (Base64, hex) in traffic
+✅ Monitor cloud storage uploads (Dropbox, Google Drive)
+
+---
+
+### Detection Tools for Exfiltration
+| Tool | What it Detects |
+|------|----------------|
+| **Wireshark/tcpdump** | Inspect packet payloads manually |
+| **Suricata/Snort** | Signature-based detection rules for known patterns |
+| **Zeek** | DNS, HTTP and connection logs with metadata |
+| **SIEM** | Correlate large transfer alerts across log sources |
+| **DLP Solution** | Detect sensitive data leaving the network |
+| **DNS Firewall** | Block known malicious domains and flag suspicious queries |
+
+---
+
+### Splunk Searches for Exfiltration Detection
+
+**High volume DNS queries:**
+```spl
+index=dns
+| stats count by query
+| where count > 100
+| sort -count
+```
+
+**Large outbound HTTP POST:**
+```spl
+index=network sourcetype=proxy method=POST
+| where bytes_out > 1000000
+| table _time, src_ip, dest_ip, url, bytes_out
+```
+
+**ICMP with large payload:**
+```spl
+index=network protocol=icmp
+| where packet_size > 100
+| table _time, src_ip, dest_ip, packet_size
+```
