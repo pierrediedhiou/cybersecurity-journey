@@ -2180,3 +2180,61 @@ sudo tcpdump -i any port 21 -A
 tshark -r capture.pcap -Y "ftp" -T fields \
 -e ftp.request.command -e ftp.request.arg
 ```
+## Snort Commands
+
+### Snort Basic Usage
+```bash
+# Test Snort configuration
+snort -T -c /etc/snort/snort.conf
+
+# Sniffer mode — display packets in console
+snort -v
+
+# Sniffer mode — verbose with full packet data
+snort -vde
+
+# Packet logger mode — save packets to directory
+snort -dev -l /var/log/snort
+
+# NIDS mode — run with rules file
+snort -A console -c /etc/snort/snort.conf -i eth0
+
+# NIDS mode — read from pcap file
+snort -A console -c /etc/snort/snort.conf -r capture.pcap
+
+# Run specific rule file against pcap
+snort -c /etc/snort/rules/local.rules -r capture.pcap -A console
+
+# Run in NIPS/inline mode
+snort -Q --daq afpacket -i eth0:eth1 -c /etc/snort/snort.conf
+```
+
+### Snort Output Modes
+```bash
+# Alert to console
+snort -A console -c snort.conf -r file.pcap
+
+# Alert to fast (one line per alert)
+snort -A fast -c snort.conf -r file.pcap
+
+# Alert to full (detailed)
+snort -A full -c snort.conf -r file.pcap
+
+# No alert output
+snort -A none -c snort.conf -r file.pcap
+```
+
+### Snort Key Flags
+| Flag | Description |
+|------|-------------|
+| `-v` | Verbose — show packet headers |
+| `-d` | Show packet data/payload |
+| `-e` | Show data link layer headers |
+| `-i` | Specify network interface |
+| `-r` | Read from pcap file |
+| `-l` | Log directory |
+| `-c` | Specify config/rules file |
+| `-T` | Test config file |
+| `-A` | Alert output mode |
+| `-Q` | Inline/NIPS mode |
+| `-n` | Process only N packets |
