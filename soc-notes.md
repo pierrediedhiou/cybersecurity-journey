@@ -1569,3 +1569,96 @@ index=network protocol=icmp
 | where packet_size > 100
 | table _time, src_ip, dest_ip, packet_size
 ```
+## Snort — IDS/IPS Fundamentals
+
+### IDS vs IPS — Core Difference
+| | IDS (Intrusion Detection System) | IPS (Intrusion Prevention System) |
+|---|---|---|
+| **Action on threat** | Creates an alert | Terminates the connection |
+| **Traffic flow** | Passive — monitors only | Active — sits inline |
+| **Response** | Notify analyst | Block automatically |
+| **Risk** | None — read only | Can block legitimate traffic |
+
+---
+
+### IDS Types
+| Type | Scope | Action on Signature Match |
+|------|-------|--------------------------|
+| **NIDS** (Network IDS) | Entire subnet | Creates an alert |
+| **HIDS** (Host IDS) | Single endpoint | Creates an alert |
+
+---
+
+### IPS Types
+| Type | Scope | Detection Method | Action on Match |
+|------|-------|-----------------|----------------|
+| **NIPS** (Network IPS) | Entire subnet | Signature-based | Terminates connection |
+| **NBA** (Network Behaviour Analysis) | Entire subnet | Anomaly-based | Terminates connection |
+| **WIPS** (Wireless IPS) | Wireless network | Signature-based | Terminates connection |
+| **HIPS** (Host IPS) | Single endpoint | Signature-based | Terminates connection |
+
+---
+
+### Snort Operating Modes
+| Mode | Description | Use Case |
+|------|-------------|---------|
+| **Sniffer Mode** | Reads and displays IP packets in the console | Quick traffic inspection |
+| **Packet Logger Mode** | Logs all inbound and outbound IP packets | Traffic recording for analysis |
+| **NIDS Mode** | Logs packets deemed malicious by user-defined rules | Detection and alerting |
+| **NIPS Mode** | Drops packets deemed malicious by user-defined rules | Active threat blocking |
+
+---
+
+### Snort Rule Structure
+action protocol src_ip src_port direction dest_ip dest_port (options)
+
+Example:
+alert tcp any any -> 192.168.1.0/24 80 (msg:"HTTP Traffic Detected"; sid:1000001; rev:1;)
+
+| Part | Description | Example |
+|------|-------------|---------|
+| **action** | What to do when rule matches | alert, drop, log, reject |
+| **protocol** | Protocol to match | tcp, udp, icmp, ip |
+| **src_ip** | Source IP or network | any, 192.168.1.0/24 |
+| **src_port** | Source port | any, 80, 1:1024 |
+| **direction** | Traffic direction | -> (one way), <> (both ways) |
+| **dest_ip** | Destination IP or network | any, 192.168.1.0/24 |
+| **dest_port** | Destination port | any, 80, 443 |
+| **msg** | Alert message | "HTTP Traffic Detected" |
+| **sid** | Unique rule ID | sid:1000001 |
+| **rev** | Rule revision number | rev:1 |
+
+---
+
+### Common Snort Rule Examples
+```bash
+# Detect ICMP ping
+alert icmp any any -> any any (msg:"ICMP Ping Detected"; sid:1000001; rev:1;)
+
+# Detect SSH brute force (multiple connections)
+alert tcp any any -> any 22 (msg:"SSH Brute Force Attempt"; \
+threshold:type both, track by_src, count 5, seconds 60; sid:1000002; rev:1;)
+
+# Detect FTP login attempt
+alert tcp any any -> any 21 (msg:"FTP Login Attempt"; \
+content:"USER"; sid:1000003; rev:1;)
+
+# Detect HTTP GET request
+alert tcp any any -> any 80 (msg:"HTTP GET Request"; \
+content:"GET"; http_method; sid:1000004; rev:1;)
+
+# Drop malicious traffic (NIPS mode)
+drop tcp any any -> any any (msg:"Malicious Traffic Blocked"; \
+content:"malware"; sid:1000005; rev:1;)
+```
+
+---
+
+### Snort Rule Actions
+| Action | Description |
+|--------|-------------|
+| `alert` | Generate an alert and log the packet |
+| `log` | Log the packet only, no alert |
+| `drop` | Block and log the packet (NIPS mode) |
+| `reject` | Block, log and send TCP reset or ICMP unreachable |
+| `pass` | Ignore the packet |
