@@ -125,6 +125,9 @@ through two rules:
 protecting an organization's systems, monitoring for threats and
 responding to incidents. Includes SOC analysts, security engineers
 and incident responders
+- **Behaviour-Based IPS (NBA)** — Network Behaviour Analysis, an
+IPS type that monitors network traffic and terminates connections
+when anomalies are detected, rather than relying on signatures
 ## C
 - **cat** — Linux command meaning concatenate, used to display file contents
 - **Censys** — Search engine for Internet-connected hosts, websites, certificates,
@@ -542,6 +545,12 @@ host only
 - **HTTP Exfiltration** — A data exfiltration technique that uses
 HTTP as the transport to move stolen data out of a network,
 blending with normal web traffic to avoid detection
+- **HIDS** — Host-based Intrusion Detection System, monitors
+traffic on a single endpoint device and creates alerts when
+signatures are matched
+- **HIPS** — Host-based Intrusion Prevention System, actively
+protects a single endpoint device and terminates connections when
+signatures are matched
 ## I
 - **Injection** — Attack inserting malicious code into an input field
 - **IP Address** — Internet Protocol Address, a unique numerical label assigned
@@ -848,6 +857,15 @@ inspecting and analyzing data as it flows through a network to
 gain visibility and detect threats
 - **Network Traffic Source** — The origin of captured network data.
 Two main types exist: endpoint devices and intermediary devices
+- **NIDS** — Network Intrusion Detection System, monitors traffic
+across an entire subnet and creates alerts when signatures are
+matched. Detects but does not block
+- **NIPS** — Network Intrusion Prevention System, monitors traffic
+across an entire subnet and terminates connections when signatures
+are matched. Actively blocks threats
+- **NBA** — Network Behaviour Analysis, a behaviour-based IPS
+approach that identifies and blocks anomalous traffic patterns
+rather than known signatures
 ## O
 - **Open Port** — A port actively accepting connections on a device
 - **OpenSSL** — Cryptographic library that powers HTTPS encryption
@@ -1292,6 +1310,11 @@ in Splunk to search, filter, analyze and visualize log data
 platform that unifies all security tools used in a SOC into a
 single interface and automates repetitive incident response tasks
 through playbooks
+- **Snort** — An open-source Network Intrusion Detection and
+Prevention System (NIDS/NIPS) that can operate in sniffer, packet
+logger, NIDS and NIPS modes
+- **Snort Rule** — A detection rule written in Snort's rule language
+that defines what traffic patterns should trigger an alert or block
 ## T
 - **Telnet** — Insecure remote access protocol (Port 23), replaced by SSH
 - **TGT** — Ticket Granting Ticket, allows users to request tickets to
@@ -1499,6 +1522,9 @@ indicates a Django or Python-based application
 - **WAN** — Wide Area Network, connects multiple smaller networks
 across large geographic areas spanning cities, countries or
 continents. The Internet is the largest public WAN
+- **WIPS** — Wireless Intrusion Prevention System, monitors wireless
+network traffic and terminates connections when signatures are
+matched
 ## X
 - **XSS** — Cross-Site Scripting, injecting malicious scripts into web pages
 - **XZ Utils** — Linux compression tool targeted by a supply chain attack
