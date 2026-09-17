@@ -1662,3 +1662,80 @@ content:"malware"; sid:1000005; rev:1;)
 | `drop` | Block and log the packet (NIPS mode) |
 | `reject` | Block, log and send TCP reset or ICMP unreachable |
 | `pass` | Ignore the packet |
+## Web Security Essentials
+
+### How a Web Request Works
+User types URL in browser
+↓
+Browser sends HTTP/HTTPS request to web server
+↓
+Web server processes the request (Apache, Nginx, IIS)
+↓
+Application retrieves data from database if needed
+↓
+Server sends HTTP response back to browser
+↓
+Browser renders the page for the user
+
+---
+
+### Web Security Defense Layers
+| Layer | Control | Description |
+|-------|---------|-------------|
+| **Network** | Firewall | Controls inbound and outbound traffic |
+| **Application** | WAF | Filters malicious HTTP requests before they reach the app |
+| **Endpoint** | Antivirus / EDR | Protects the host machine from malware |
+| **Performance** | CDN | Caches and serves content closer to users, also absorbs DDoS |
+| **Code** | Patch Management | Keeps dependencies and web server up to date |
+| **Access** | Strong Authentication | MFA, least privilege for admin panels and code repos |
+
+---
+
+### Web Security Best Practices
+| Practice | Description | Why it Matters |
+|----------|-------------|----------------|
+| **Patch Management** | Keep app dependencies, web server and OS updated | Fixes known CVEs before attackers exploit them |
+| **Strong Authentication** | MFA for admin panels, code repos and host access | Prevents unauthorized access even with stolen passwords |
+| **WAF** | Deploy as an additional protection layer | Blocks SQLi, XSS and other web attacks at the edge |
+| **CDN** | Serve cached content from distributed servers | Reduces latency and absorbs DDoS attacks |
+| **Antivirus/EDR** | Protect endpoints and servers from malware | Detects malicious files on the host machine |
+| **HTTPS** | Encrypt all traffic with TLS | Prevents MITM attacks and credential interception |
+| **Input Validation** | Validate and sanitize all user input | Prevents injection attacks |
+| **Least Privilege** | Limit database and app permissions | Reduces blast radius of a compromise |
+| **Logging and Monitoring** | Log all access and errors | Enables detection and forensic investigation |
+| **Backups** | Regular tested backups | Enables recovery from ransomware and data loss |
+
+---
+
+### Common Web Server Software
+| Software | Common Use |
+|----------|-----------|
+| **Apache** | Most widely used, commonly hosts WordPress |
+| **Nginx** | High performance, reverse proxy and load balancer |
+| **IIS** | Microsoft web server for Windows environments |
+| **LiteSpeed** | High performance, popular with shared hosting |
+| **Tomcat** | Java application server |
+
+---
+
+### WAF vs Firewall vs IDS
+| | Firewall | WAF | IDS |
+|---|---|---|---|
+| **Operates at** | Network layer | Application layer (HTTP) | Network or host layer |
+| **Inspects** | IP, ports, protocols | HTTP requests and responses | Traffic patterns and signatures |
+| **Blocks** | Unauthorized connections | Malicious web requests | Alerts only (IDS), blocks (IPS) |
+| **Best against** | Network attacks | SQLi, XSS, CSRF, web attacks | Known attack signatures |
+
+---
+
+### Web Security Checklist for SOC Analysts
+✅ Verify WAF is active and rules are up to date
+✅ Monitor web server logs for suspicious requests
+✅ Check for failed authentication attempts on admin panels
+✅ Alert on SQL injection patterns in HTTP logs
+✅ Monitor for unusual file uploads or downloads
+✅ Check patch status of web server and dependencies
+✅ Verify HTTPS is enforced (no HTTP fallback)
+✅ Monitor CDN for DDoS absorption metrics
+✅ Check antivirus status on host machines
+✅ Review access logs for unusual geographic locations
