@@ -69,6 +69,8 @@ detected that matches a detection rule
 - **Alert Triage** — The process of reviewing, classifying and
 prioritizing security alerts to determine which are real threats
 (true positives) and which are benign (false positives)
+- **Apache** — The most widely used open-source web server software,
+commonly used to host WordPress websites and web applications
 ## B
 - **Bash** (Bourne Again Shell) — Most common shell on Linux, default on Kali Linux
 - **Bind Shell** — Shell that listens on a port on the target waiting for attacker
@@ -251,6 +253,9 @@ incidents
 - **C2 Server** — Command and Control server, infrastructure used
 by attackers to remotely control compromised systems and receive
 stolen data
+- **CDN** — Content Delivery Network, a distributed network of
+servers that store and serve cached content from locations closer
+to the user to reduce latency and improve performance
 ## D
 - **Daemon** — A background service running on Linux
 - **Delegation** — Process of granting privileges to a user over an OU
@@ -551,6 +556,9 @@ signatures are matched
 - **HIPS** — Host-based Intrusion Prevention System, actively
 protects a single endpoint device and terminates connections when
 signatures are matched
+- **Host Machine** — The operating system and environment that runs
+the web server and application. A compromised host machine gives
+attackers access to everything running on it
 ## I
 - **Injection** — Attack inserting malicious code into an input field
 - **IP Address** — Internet Protocol Address, a unique numerical label assigned
@@ -785,6 +793,8 @@ including security awareness training, MFA and email filtering
 where the victim is tricked into downloading and running a
 malicious file, often disguised as a legitimate document or
 software update
+- **Mitigation** — A cybersecurity concept involving actions taken
+to stop or limit damage from threats before or after they occur
 ## N
 - **NAT** — Network Address Translation, maps private IPs to a public IP
 - **Nmap** — Network scanning tool used to discover open ports and services
@@ -993,6 +1003,9 @@ passwords with biometric or PIN verification
 configured in a SOAR platform to handle a specific type of
 incident. Automates repetitive manual tasks that analysts
 previously performed across multiple tools
+- **Patch Management** — The process of keeping application
+dependencies, web servers and host machines up to date with
+security patches to fix known vulnerabilities
 ## Q
 - **Query String** — The part of a URL starting with ? that sends
 parameters to the server (ex: ?search=hacking). Can be exploited
