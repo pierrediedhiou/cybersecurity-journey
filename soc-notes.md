@@ -1739,3 +1739,121 @@ Browser renders the page for the user
 ✅ Monitor CDN for DDoS absorption metrics
 ✅ Check antivirus status on host machines
 ✅ Review access logs for unusual geographic locations
+## Detecting Web DDoS Attacks
+
+### DoS vs DDoS
+| | DoS | DDoS |
+|---|---|---|
+| **Source** | Single machine | Thousands/millions of machines (botnet) |
+| **Scale** | Small | Massive |
+| **Difficulty to block** | Easy — block one IP | Hard — millions of IPs |
+| **Coordination** | None | Coordinated botnet |
+| **Impact** | Limited | Can take down large services |
+
+---
+
+### Why DDoS Attacks Matter
+When a DDoS attack succeeds:
+- Customers cannot log in, shop or access services
+- Businesses lose revenue for every minute of downtime
+- Brand reputation and customer trust are damaged
+- Can be used as a distraction while another attack occurs
+
+---
+
+### Types of Web DDoS Attacks
+| Attack Type | How it Works | Target |
+|-------------|-------------|--------|
+| **Slowloris** | Sends many partial HTTP requests to keep connections open and tie up server resources | Web server connection pool |
+| **HTTP Flood** | Sends massive volume of HTTP GET or POST requests to overwhelm the server | Web server CPU and bandwidth |
+| **Cache Bypass** | Bypasses CDN edge servers using unique URLs, forcing the origin server to respond to every request | Origin server directly |
+| **Oversized Query** | Sends large, resource-intensive requests forcing the server to do expensive processing | Server CPU and memory |
+| **Login/Form Abuse** | Floods authentication endpoints with login attempts or password resets | Auth logic and database |
+| **Faulty Input Validation Abuse** | Exploits poorly designed input handling to crash or overload the server | Application logic |
+
+---
+
+### DDoS Attack Layers
+| Layer | OSI Layer | Example Attacks |
+|-------|-----------|----------------|
+| **Volumetric** | Layer 3/4 | UDP flood, ICMP flood, DNS amplification |
+| **Protocol** | Layer 3/4 | SYN flood, Ping of Death, Smurf attack |
+| **Application** | Layer 7 | HTTP flood, Slowloris, cache bypass |
+
+---
+
+### DDoS Mitigation Controls
+| Control | Description | Protects Against |
+|---------|-------------|-----------------|
+| **CDN** | Caches content at edge servers closest to users, absorbs traffic volume | Volumetric and application attacks |
+| **Load Balancer** | Distributes traffic across multiple servers, reroutes if one fails | Server overload |
+| **WAF** | Filters malicious HTTP requests at the application layer | HTTP flood, Slowloris, login abuse |
+| **CAPTCHA** | Differentiates humans from bots on login and form pages | Login/form abuse, automated floods |
+| **Rate Limiting** | Limits requests per IP per time window | HTTP floods, login abuse |
+| **IP Reputation Blocking** | Blocks known botnet IP ranges | All DDoS types |
+| **Anycast Routing** | Distributes attack traffic across multiple data centers | Volumetric attacks |
+| **SIEM** | Correlates logs to detect anomalous traffic patterns | Detection and alerting |
+
+---
+
+### How CDN Helps Against DDoS
+Without CDN:
+All traffic → Origin server → Server overwhelmed → Downtime
+
+With CDN:
+Most traffic → CDN edge servers (cached content served)
+Only uncached → Origin server (small fraction of total)
+DDoS traffic → Absorbed and filtered at CDN edge
+
+CDN also provides **load balancing** — distributing traffic
+across multiple servers so no single server is overloaded,
+and rerouting requests if one becomes unavailable.
+
+---
+
+### DDoS Detection Signals in SIEM
+| Signal | What it Indicates |
+|--------|------------------|
+| Sudden spike in request rate from many IPs | Volumetric DDoS |
+| Many requests with identical patterns | HTTP flood botnet |
+| Connections staying open but sending no data | Slowloris attack |
+| High rate of requests to `/login` or `/reset` | Login/form abuse |
+| Requests bypassing CDN cache (unique URLs) | Cache bypass attack |
+| Same request hitting origin server repeatedly | Cache bypass |
+| Requests with oversized query strings or bodies | Oversized query attack |
+
+---
+
+### Splunk Search for DDoS Detection
+```spl
+# Detect HTTP flood — high request rate per source IP
+index=web sourcetype=access_combined
+| stats count by src_ip
+| where count > 1000
+| sort -count
+
+# Detect login abuse
+index=web sourcetype=access_combined uri="/login" method=POST
+| stats count by src_ip
+| where count > 50
+| sort -count
+
+# Detect slowloris — many open connections from same IP
+index=network
+| stats count by src_ip, connection_state
+| where connection_state="SYN_SENT" AND count > 100
+```
+
+---
+
+### DDoS Response Checklist for SOC Analysts
+✅ Confirm attack by checking traffic volume spike in SIEM
+✅ Identify attack type (volumetric, protocol, application)
+✅ Check CDN logs for traffic absorption metrics
+✅ Enable rate limiting on affected endpoints immediately
+✅ Block top attacking IP ranges at firewall/WAF
+✅ Enable CAPTCHA on login and form pages if not already active
+✅ Notify the business of potential service degradation
+✅ Contact CDN provider to activate DDoS protection mode
+✅ Document attack timeline, volume and source IPs
+✅ Review and update WAF rules after attack
