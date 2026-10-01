@@ -4,7 +4,7 @@ My cybersecurity learning journey
 
 ## About Me
 I am currently learning cybersecurity with the goal of
-working in the field.
+working in the field as a SOC Analyst.
 
 ## Platforms I'm learning on
 - TryHackMe
