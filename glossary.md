@@ -130,6 +130,9 @@ and incident responders
 - **Behaviour-Based IPS (NBA)** — Network Behaviour Analysis, an
 IPS type that monitors network traffic and terminates connections
 when anomalies are detected, rather than relying on signatures
+- **Botnet** — A network of compromised machines controlled by an
+attacker and used to launch coordinated attacks such as DDoS.
+Individual machines in a botnet are called bots or zombies
 ## C
 - **cat** — Linux command meaning concatenate, used to display file contents
 - **Censys** — Search engine for Internet-connected hosts, websites, certificates,
@@ -256,6 +259,10 @@ stolen data
 - **CDN** — Content Delivery Network, a distributed network of
 servers that store and serve cached content from locations closer
 to the user to reduce latency and improve performance
+- **CAPTCHA** — Completely Automated Public Turing test to tell
+Computers and Humans Apart, a security feature used to
+differentiate between human users and automated bots. Used to
+prevent automated abuse of login forms and web services
 ## D
 - **Daemon** — A background service running on Linux
 - **Delegation** — Process of granting privileges to a user over an OU
@@ -377,6 +384,14 @@ controlled by an attacker
 the Domain Name System by encoding stolen data inside DNS queries
 and responses, bypassing firewalls and web proxies that typically
 allow DNS traffic
+- **DDoS** — Distributed Denial of Service, a large-scale DoS
+attack where thousands or millions of compromised devices
+(a botnet) flood a single target with traffic simultaneously
+- **DDoS Mitigation** — The process of successfully protecting a
+targeted network or server from a Distributed Denial of Service
+attack
+- **DoS** — Denial of Service, an attack designed to overwhelm a
+website or application making it unavailable to legitimate users
 ## E
 - **Encryption** — Process of encoding data so only authorized parties can read it
 - **Enumeration** — Systematically gathering information about a target system
@@ -702,6 +717,9 @@ troubleshooting and investigation purposes
 - **Log Source** — Any device or system that generates log data
 used by a SIEM, divided into two categories: host-centric and
 network-centric
+- **Load Balancing** — A CDN feature that distributes traffic
+across multiple servers to prevent any single server from being
+overloaded, and reroutes requests if one server becomes unavailable
 ## M
 - **Machine Account** — Windows computer account, always ends with $ symbol
 - **Malware** — Malicious software designed to damage or gain unauthorized access
