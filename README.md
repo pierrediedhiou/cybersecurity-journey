@@ -34,6 +34,8 @@ working in the field as a SOC Analyst.
 <img width="700" height="362" alt="e168e0dd81d351ba064b9416ced68a56" src="https://github.com/user-attachments/assets/3d1ae632-6465-4073-9f71-dab430545b99" />
 <img width="700" height="362" alt="38ff2aa673d4b5037e351745a5e606fa" src="https://github.com/user-attachments/assets/636df644-06d8-48d0-acc8-cd0c03c832b5" />
 <img width="700" height="362" alt="6e200fb33b7a57df7ca4f51e95535aa5" src="https://github.com/user-attachments/assets/9dbf06b6-a1d5-4565-a46f-335e7a17453d" />
+<img width="700" height="362" alt="ca45ab4b2b2d15f2c1634924e7c2cb8f" src="https://github.com/user-attachments/assets/fcf1ba4e-755c-41cd-8381-82a6eb6e4c37" />
+
 
 ## Certifications
 Cyber Security 101
