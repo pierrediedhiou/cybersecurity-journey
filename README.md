@@ -14,7 +14,9 @@ working in the field.
 ## Progress
 - ✅ Linux Fundamentals
 - ✅ Search Skills
-- 🔄 Currently learning: Networking Basics
+- ✅ Networking Basics
+- ✅ Cyber Security 101
+- 🔄 Currently learning: SOC Level 1
 
 ## Badges
 <img width="700" height="362" alt="199ed838a746acf165fd218fb5233433" src="https://github.com/user-attachments/assets/9fb5abd0-dc33-415a-b2ef-34f7231553d2" />
