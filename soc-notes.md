@@ -1857,3 +1857,172 @@ index=network
 ✅ Contact CDN provider to activate DDoS protection mode
 ✅ Document attack timeline, volume and source IPs
 ✅ Review and update WAF rules after attack
+## Windows Logging for SOC
+
+### Windows Event Viewer
+Event Viewer is Microsoft Windows's built-in tool that acts as a
+centralized repository for three main log categories:
+
+| Log Category | Description | Examples |
+|-------------|-------------|---------|
+| **System** | OS and hardware events | Driver failures, system startup/shutdown |
+| **Security** | Authentication and access events | Logons, privilege use, account changes |
+| **Application** | App-specific events | Software errors, application crashes |
+
+---
+
+### The Two Most Important Security Event IDs
+| Event ID | Event | Why it Matters |
+|----------|-------|----------------|
+| **4624** | Successful Logon | Detect suspicious RDP/network logins and identify the starting point of an attack |
+| **4625** | Failed Logon | Detect brute force, password spraying or vulnerability scanning |
+
+---
+
+### Complete Windows Security Event ID Reference
+
+#### Authentication Events
+| Event ID | Description | SOC Use Case |
+|----------|-------------|-------------|
+| **4624** | Successful logon | Detect suspicious RDP, network or off-hours logins |
+| **4625** | Failed logon | Detect brute force and password spraying |
+| **4634** | Account logoff | Track session duration |
+| **4648** | Logon using explicit credentials | Detect pass-the-hash or credential reuse |
+| **4768** | Kerberos TGT requested | Detect Kerberos attacks |
+| **4769** | Kerberos service ticket requested | Detect lateral movement |
+| **4771** | Kerberos pre-auth failed | Detect AS-REP roasting |
+| **4776** | NTLM authentication attempted | Detect NTLM relay attacks |
+
+#### Account Management Events
+| Event ID | Description | SOC Use Case |
+|----------|-------------|-------------|
+| **4720** | User account created | Detect unauthorized account creation |
+| **4722** | User account enabled | Detect re-enabling of disabled accounts |
+| **4723** | User changed their password | Track password changes |
+| **4724** | User's password was reset | Detect unauthorized password resets |
+| **4725** | User account disabled | Track account disabling |
+| **4726** | User account deleted | Detect account deletion |
+| **4738** | User account changed | Detect account modification |
+| **4732** | User added to security group | Detect privilege escalation |
+| **4733** | User removed from security group | Track group membership changes |
+| **4728** | User added to global group | Detect unauthorized group changes |
+
+#### Process and System Events
+| Event ID | Log | Description | SOC Use Case |
+|----------|-----|-------------|-------------|
+| **4688** | Security | Process creation | Detect malicious process execution |
+| **7045** | System | New service installed | Detect malware persistence |
+| **1102** | Security | Audit log cleared | Detect attacker covering tracks |
+| **4698** | Security | Scheduled task created | Detect persistence mechanisms |
+| **4702** | Security | Scheduled task modified | Detect task tampering |
+
+---
+
+### Sysmon Event IDs
+
+#### Process Monitoring
+| Event ID | Description | SOC Use Case |
+|----------|-------------|-------------|
+| **1** | Process creation | Full command line and parent process — much more detail than 4688 |
+| **5** | Process terminated | Track process lifecycle |
+| **10** | Process accessed | Detect process injection |
+
+#### File and Registry Events
+| Event ID | Description | SOC Use Case |
+|----------|-------------|-------------|
+| **11** | File created | Detect malware dropping files |
+| **12** | Registry key created or deleted | Detect registry persistence |
+| **13** | Registry value set | Detect registry modification |
+| **14** | Registry key or value renamed | Detect registry tampering |
+
+#### Network Events
+| Event ID | Description | SOC Use Case |
+|----------|-------------|-------------|
+| **3** | Network connection | Detect C2 communication, lateral movement |
+| **22** | DNS query | Detect DNS exfiltration, C2 beaconing |
+| **15** | File stream created | Detect alternate data stream hiding |
+
+---
+
+### Windows Logging vs Sysmon Comparison
+| | Windows Event Log | Sysmon |
+|---|---|---|
+| **Installation** | Built-in, no setup needed | Must be installed separately |
+| **Process logging** | Basic (4688) — limited detail | Detailed (Event 1) — full command line, hashes |
+| **Network logging** | None by default | Full connection logging (Event 3) |
+| **DNS logging** | None by default | Full DNS query logging (Event 22) |
+| **File logging** | None by default | File creation logging (Event 11) |
+| **Registry logging** | Limited | Detailed registry change logging |
+| **Recommended for SOC** | Baseline coverage | Essential for thorough detection |
+
+---
+
+### Critical Attack Detection by Event ID
+| Attack Type | Key Event IDs to Monitor |
+|-------------|--------------------------|
+| **Brute Force** | 4625 (many failed logins from same IP) |
+| **Password Spraying** | 4625 (many failed logins across different users) |
+| **Successful Breach** | 4624 after multiple 4625 (success after failures) |
+| **Lateral Movement** | 4624 with logon type 3 (network), 4769 |
+| **Privilege Escalation** | 4732 (added to admin group) |
+| **Persistence** | 7045 (new service), 4698 (scheduled task) |
+| **Credential Dumping** | 10 (Sysmon — LSASS process accessed) |
+| **Log Tampering** | 1102 (audit log cleared) |
+| **C2 Communication** | Sysmon 3 (unusual outbound connection) |
+| **DNS Exfiltration** | Sysmon 22 (high frequency DNS queries) |
+
+---
+
+### Splunk Searches for Windows Event IDs
+```spl
+# Detect brute force (many failed logins from same IP)
+index=windows EventCode=4625
+| stats count by src_ip, user
+| where count > 10
+| sort -count
+
+# Detect successful login after failures (breach indicator)
+index=windows EventCode=4625 OR EventCode=4624
+| stats count by user, EventCode
+| sort user
+
+# Detect new admin group member added
+index=windows EventCode=4732
+| table _time, ComputerName, TargetUserName, SubjectUserName
+
+# Detect new user account created
+index=windows EventCode=4720
+| table _time, ComputerName, TargetUserName, SubjectUserName
+
+# Detect scheduled task creation (persistence)
+index=windows EventCode=4698
+| table _time, ComputerName, TaskName, SubjectUserName
+
+# Detect audit log cleared (attacker covering tracks)
+index=windows EventCode=1102
+| table _time, ComputerName, SubjectUserName
+
+# Sysmon — detect suspicious process (PowerShell from Word)
+index=windows source="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational" EventCode=1
+ParentImage="*winword.exe" Image="*powershell.exe"
+| table _time, ComputerName, Image, ParentImage, CommandLine
+
+# Sysmon — detect C2 beaconing
+index=windows source="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational" EventCode=3
+| stats count by DestinationIp, DestinationPort
+| where count > 50
+| sort -count
+```
+
+---
+
+### Windows Logon Types Reference
+| Logon Type | Description | Suspicious if... |
+|------------|-------------|-----------------|
+| **2** | Interactive (local keyboard) | Admin logs in remotely |
+| **3** | Network (file share, etc) | Unusual source IP |
+| **4** | Batch (scheduled task) | Unexpected task runs |
+| **5** | Service | New unknown service starts |
+| **7** | Unlock workstation | After hours unlock |
+| **10** | Remote Interactive (RDP) | Unusual source IP or time |
+| **11** | Cached credentials | Domain controller unreachable |
