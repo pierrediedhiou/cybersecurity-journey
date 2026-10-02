@@ -444,6 +444,10 @@ generate alerts
 deployed on individual endpoints that provides visibility,
 detection and response capabilities through continuous telemetry
 collection
+- **Event Viewer** — A Microsoft Windows built-in tool that acts
+as a centralized repository for system, security and application
+logs, allowing administrators and analysts to view and manage
+event logs
 ## F
 - **File** — A unit of stored data (text, code, image, config, etc).
 Everything in Linux is technically a file
@@ -1346,6 +1350,11 @@ Prevention System (NIDS/NIPS) that can operate in sniffer, packet
 logger, NIDS and NIPS modes
 - **Snort Rule** — A detection rule written in Snort's rule language
 that defines what traffic patterns should trigger an alert or block
+- **Sysmon** — System Monitor, a Windows system service and device
+driver that logs detailed system activity to the Windows Event
+Log, including process creation, network connections, file changes
+and registry modifications. Provides far more detail than standard
+Windows logging
 ## T
 - **Telnet** — Insecure remote access protocol (Port 23), replaced by SSH
 - **TGT** — Ticket Granting Ticket, allows users to request tickets to
