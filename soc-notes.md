@@ -2026,3 +2026,161 @@ index=windows source="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational" Event
 | **7** | Unlock workstation | After hours unlock |
 | **10** | Remote Interactive (RDP) | Unusual source IP or time |
 | **11** | Cached credentials | Domain controller unreachable |
+## Windows Threat Detection — Initial Access
+
+### What is Initial Access?
+Initial Access is the moment an attacker successfully enters a
+target environment. It is the first phase in the MITRE ATT&CK
+framework and the starting point of every attack chain.
+
+---
+
+### MITRE ATT&CK Initial Access Techniques
+| Technique | ID | Method | How Attackers Use It |
+|-----------|-----|--------|---------------------|
+| **External Remote Services** | T1133 | RDP, VNC, SSH | Look for exposed services with weak or default passwords |
+| **Exploit Public-Facing Application** | T1190 | Web apps | Target misconfigured or unpatched websites and applications |
+| **Phishing** | T1566 | Email | Trick users into opening malicious attachments or links |
+| **Removable Media** | T1091 | USB drives | Infect USB devices and leave them where users will plug them in |
+
+---
+
+### Two Main Categories of Initial Access
+| Category | Examples | Best Detection Method |
+|----------|----------|----------------------|
+| **Exposed Services** | RDP, VPN, SSH, web apps | Authentication logs (4624/4625), network logs |
+| **User-Driven Attacks** | Phishing, USB, LNK files | Process execution events (Sysmon Event ID 1) |
+
+---
+
+### Initial Access via RDP — Detection
+
+**How attackers use RDP:**
+1. Scan internet for open port 3389 (Nmap, Shodan)
+2. Brute force or credential stuff the login
+3. Successful login = Initial Access achieved
+
+**Key Event IDs:**
+| Event ID | Description | What to Look For |
+|----------|-------------|-----------------|
+| **4625** | Failed logon | Many failures from same IP = brute force |
+| **4624** | Successful logon | Logon Type 10 (RDP) from unusual IP |
+| **4648** | Logon with explicit credentials | Credential reuse or pass-the-hash |
+
+**Detection signals:**
+🚩 Multiple 4625 events followed by 4624 (brute force success)
+🚩 4624 with Logon Type 10 (RDP) from external IP
+🚩 4624 outside business hours or from unusual geography
+🚩 4624 for accounts that never use RDP
+🚩 RDP connection from a country not in the allowlist
+
+**Splunk search — RDP brute force:**
+```spl
+index=windows EventCode=4625 LogonType=10
+| stats count by src_ip, TargetUserName
+| where count > 5
+| sort -count
+```
+
+**Splunk search — Successful RDP after failures:**
+```spl
+index=windows (EventCode=4625 OR EventCode=4624) LogonType=10
+| transaction TargetUserName maxspan=5m
+| where eventcount > 5
+| table _time, TargetUserName, src_ip
+```
+
+---
+
+### Initial Access via Phishing — Detection
+
+**How phishing leads to Initial Access:**
+1.Attacker sends phishing email with malicious attachment
+(Word macro, PDF, LNK file, ISO, ZIP)
+2. User opens the attachment
+3. Attachment executes a payload (PowerShell, cmd.exe)
+4. Payload downloads malware or establishes reverse shell
+5. Initial Access achieved
+
+**Suspicious process chains to detect (Sysmon Event 1):**
+winword.exe → powershell.exe (Word macro)
+excel.exe → cmd.exe (Excel macro)
+outlook.exe → wscript.exe (Email attachment)
+explorer.exe → powershell.exe (LNK file click)
+mshta.exe → cmd.exe (HTA file execution)
+
+**Splunk search — Office spawning shell:**
+```spl
+index=windows source="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational"
+EventCode=1
+(ParentImage="*winword.exe" OR ParentImage="*excel.exe"
+OR ParentImage="*outlook.exe")
+(Image="*powershell.exe" OR Image="*cmd.exe" OR Image="*wscript.exe")
+| table _time, ComputerName, ParentImage, Image, CommandLine
+```
+
+---
+
+### Initial Access via Removable Media — Detection
+
+**How USB attacks work:**
+1. Attacker infects USB with malware (autorun, LNK files)
+2. User plugs USB into corporate machine
+3. Autorun executes or user clicks malicious LNK
+4. Malware executes — Initial Access achieved
+
+**Detection signals:**
+🚩 New removable device connected (Event ID 6416)
+🚩 Process execution from removable drive path (E:, F:, G:)
+🚩 LNK file execution from USB path
+🚩 Powershell or cmd.exe spawned from USB location
+
+**Splunk search — Process from removable drive:**
+```spl
+index=windows source="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational"
+EventCode=1
+| where match(Image, "^[D-Z]:\\\\")
+| table _time, ComputerName, Image, CommandLine, ParentImage
+```
+
+---
+
+### Initial Access via Public-Facing Applications — Detection
+
+**How web app exploitation leads to Initial Access:**
+1. Attacker scans for vulnerable web apps (Nmap, Nikto, Shodan)
+2. Exploits vulnerability (SQLi, RCE, file upload, deserialization)
+3. Uploads web shell or executes commands
+4. Initial Access achieved on the web server
+
+**Detection signals:**
+🚩 Web server spawning cmd.exe or powershell.exe (Sysmon 1)
+🚩 Unusual HTTP requests in web server logs (SQLi patterns, /cmd=)
+🚩 New files created in web root directory (Sysmon 11)
+🚩 Outbound network connection from web server process
+🚩 WAF alerts on injection attempts
+
+---
+
+### Initial Access Detection Summary
+| Method | Primary Event IDs | Detection Tool |
+|--------|------------------|----------------|
+| **RDP Brute Force** | 4625, 4624 (Type 10) | Windows Security Log |
+| **Phishing** | Sysmon 1 (Office → Shell) | Sysmon |
+| **USB/Removable Media** | 6416, Sysmon 1 (from USB path) | Sysmon |
+| **Web App Exploit** | Sysmon 1 (web server → shell), Sysmon 11 | Sysmon + WAF logs |
+| **VPN/SSH Brute Force** | 4625, 4624 (Type 3) | Windows Security Log |
+
+---
+
+### Initial Access SOC Response Checklist
+✅ Identify the initial access method (RDP, phishing, web app, USB)
+✅ Find the first successful authentication or execution event
+✅ Identify the compromised account or machine
+✅ Check for lateral movement from the compromised host
+✅ Check if attacker established persistence (Task 4698, Service 7045)
+✅ Isolate the compromised host via EDR
+✅ Reset credentials for the compromised account
+✅ Preserve logs and memory image for forensics
+✅ Document the attack timeline for incident report
+✅ Escalate to L2/L3 with full findings
