@@ -133,6 +133,9 @@ when anomalies are detected, rather than relying on signatures
 - **Botnet** — A network of compromised machines controlled by an
 attacker and used to launch coordinated attacks such as DDoS.
 Individual machines in a botnet are called bots or zombies
+- **Breaching a Host** — Successfully logging into or gaining
+execution on a target machine, representing the completion of
+the Initial Access phase of an attack
 ## C
 - **cat** — Linux command meaning concatenate, used to display file contents
 - **Censys** — Search engine for Internet-connected hosts, websites, certificates,
@@ -664,6 +667,9 @@ A source of network traffic for NTA
 ICMP (ping) packets to hide and transfer stolen data, exploiting
 the fact that ICMP is commonly allowed through firewalls and
 inspected less strictly than TCP/UDP
+- **Initial Access** — The first phase of an attack where a threat
+actor successfully gains entry into a target environment. Maps to
+the first stage of the MITRE ATT&CK framework
 ## J
 - **John the Ripper** — Free open source password cracking tool that
 automatically detects hash types and supports wordlist, single and
@@ -724,6 +730,10 @@ network-centric
 - **Load Balancing** — A CDN feature that distributes traffic
 across multiple servers to prevent any single server from being
 overloaded, and reroutes requests if one server becomes unavailable
+- **LNK File** — A Windows shortcut file (.lnk) commonly abused
+by attackers to execute malicious code when a user clicks what
+appears to be a legitimate shortcut. A common user-driven
+Initial Access technique
 ## M
 - **Machine Account** — Windows computer account, always ends with $ symbol
 - **Malware** — Malicious software designed to damage or gain unauthorized access
@@ -1446,10 +1456,6 @@ privileges but is more detectable
 - **TCP SYN Scan** — An Nmap scan (-sS) also called a stealth or
 half-open scan. Sends SYN packets but does not complete the
 handshake, making it less detectable. Requires root privileges
-
-- **UDP Scan** — An Nmap scan (-sU) used to discover open UDP
-services. Slower than TCP scans because UDP has no handshake
-mechanism to confirm port state
 - **True Positive** — An alert that points to something genuinely
 harmful and is confirmed as dangerous upon investigation. Also
 referred to as an incident
@@ -1459,11 +1465,25 @@ severity, time and likelihood of being a real threat
 - **Telemetry** — The continuous collection and transmission of
 data from endpoints to an EDR or SIEM for monitoring, detection
 and investigation. Acts as the "black box" of an endpoint
+- **T1091** — MITRE ATT&CK technique: Replication Through Removable
+Media. Threat actors infect USB devices hoping users will plug
+them into multiple machines
+- **T1133** — MITRE ATT&CK technique: External Remote Services.
+Threat actors look for exposed RDP, VNC or SSH with weak
+passwords to gain remote access
+- **T1190** — MITRE ATT&CK technique: Exploit Public-Facing
+Application. Threat actors target misconfigured or vulnerable
+websites and applications
+- **T1566** — MITRE ATT&CK technique: Phishing. Threat actors use
+fraudulent emails to trick users into launching malware themselves
 ## U
 - **UAC** — User Account Control, Windows security feature that controls
 administrative privileges
 - **UDP Scan** — An Nmap scan (-sU) used to discover open UDP services
 on a target
+- **UDP Scan** — An Nmap scan (-sU) used to discover open UDP
+services. Slower than TCP scans because UDP has no handshake
+mechanism to confirm port state
 - **UDP** — User Datagram Protocol, connectionless transport protocol,
 faster but less reliable than TCP
 - **URL** — Uniform Resource Locator, a web address that guides your
