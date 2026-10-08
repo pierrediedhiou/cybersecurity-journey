@@ -266,6 +266,10 @@ to the user to reduce latency and improve performance
 Computers and Humans Apart, a security feature used to
 differentiate between human users and automated bots. Used to
 prevent automated abuse of login forms and web services
+- **Collection** — A MITRE ATT&CK phase where attackers acquire
+sensitive data from the compromised environment after completing
+discovery. Focuses on gathering files, credentials, emails and
+other valuable data before exfiltration
 ## D
 - **Daemon** — A background service running on Linux
 - **Delegation** — Process of granting privileges to a user over an OU
@@ -395,6 +399,10 @@ targeted network or server from a Distributed Denial of Service
 attack
 - **DoS** — Denial of Service, an attack designed to overwhelm a
 website or application making it unavailable to legitimate users
+- **Discovery** — A MITRE ATT&CK phase that occurs immediately
+after Initial Access where attackers identify the victim
+environment — users, systems, network topology, installed
+software and security tools. Best detected with Sysmon
 ## E
 - **Encryption** — Process of encoding data so only authorized parties can read it
 - **Enumeration** — Systematically gathering information about a target system
