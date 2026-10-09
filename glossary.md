@@ -136,6 +136,10 @@ Individual machines in a botnet are called bots or zombies
 - **Breaching a Host** — Successfully logging into or gaining
 execution on a target machine, representing the completion of
 the Initial Access phase of an attack
+- **Backdoor** — A hidden method used by an attacker to bypass
+normal authentication and gain unauthorized, repeatable access
+to a system, network or application. Installed during the
+persistence phase to maintain long-term access
 ## C
 - **cat** — Linux command meaning concatenate, used to display file contents
 - **Censys** — Search engine for Internet-connected hosts, websites, certificates,
@@ -270,6 +274,13 @@ prevent automated abuse of login forms and web services
 sensitive data from the compromised environment after completing
 discovery. Focuses on gathering files, credentials, emails and
 other valuable data before exfiltration
+- **C2 Channel** — Command and Control channel, the dedicated
+secret communication pathway that malware uses to communicate
+with the attacker's server. Used to receive commands, send
+stolen data and download additional tools
+- **QueryName** — In DNS logging context, the domain name being
+requested in a DNS query. Used in SOC analysis to identify
+suspicious or malicious domains being contacted by endpoints
 ## D
 - **Daemon** — A background service running on Linux
 - **Delegation** — Process of granting privileges to a user over an OU
@@ -1046,6 +1057,10 @@ previously performed across multiple tools
 - **Patch Management** — The process of keeping application
 dependencies, web servers and host machines up to date with
 security patches to fix known vulnerabilities
+- **Persistence** — A MITRE ATT&CK phase where attackers install
+backdoors, scheduled tasks, registry run keys or services to
+maintain access to a compromised system across reboots and
+re-authentication
 ## Q
 - **Query String** — The part of a URL starting with ? that sends
 parameters to the server (ex: ?search=hacking). Can be exploited
