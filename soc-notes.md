@@ -2351,3 +2351,271 @@ OR CommandLine="*certutil*urlcache*" OR CommandLine="*bitsadmin*transfer*")
 ✅ Correlate discovery activity with recent Initial Access events
 ✅ Check if discovery commands ran as SYSTEM or elevated user
 ✅ Escalate to L2 if discovery followed immediately by Initial Access
+## Windows Threat Detection — C2, Backdoors and Persistence
+
+### Attack Phase Context
+Initial Access → Discovery → Persistence → C2 → Exfiltration
+(get in) (look around) (stay in) (phone home) (steal data)
+
+Key principle: **Initial Access is the best stage to detect
+and stop an attack** — once an attacker establishes persistence
+and C2, detection and response become significantly harder.
+
+---
+
+### What is a C2 Channel?
+A Command and Control (C2) channel is the secret communication
+pathway between malware on a compromised host and the attacker's
+server. Through C2 the attacker can:
+
+| C2 Function | Description |
+|-------------|-------------|
+| **Send commands** | Tell the malware what to do next |
+| **Receive output** | Get results of executed commands |
+| **Download tools** | Push additional malware to the host |
+| **Exfiltrate data** | Pull stolen data from the host |
+| **Update malware** | Modify or upgrade the implant |
+
+---
+
+### Common C2 Protocols
+| Protocol | Port | Why Attackers Use It |
+|----------|------|---------------------|
+| **HTTP/HTTPS** | 80/443 | Blends with normal web traffic |
+| **DNS** | 53 | Almost always allowed, less inspected |
+| **ICMP** | N/A | Ping traffic rarely blocked |
+| **WebSockets** | 80/443 | Persistent connection, hard to detect |
+| **SMB** | 445 | Internal lateral movement C2 |
+| **Custom TCP/UDP** | Various | Encrypted, harder to identify |
+
+---
+
+### Common C2 Frameworks Used by Attackers
+| Framework | Description |
+|-----------|-------------|
+| **Cobalt Strike** | Most widely used commercial C2 framework |
+| **Metasploit Meterpreter** | Open source, widely known |
+| **Sliver** | Open source alternative to Cobalt Strike |
+| **Brute Ratel** | Commercial, designed to evade EDR |
+| **Empire** | PowerShell-based C2 framework |
+
+---
+
+### Backdoor Types and Detection
+| Backdoor Type | How it Works | Detection Method |
+|---------------|-------------|-----------------|
+| **Scheduled Task** | Runs malware on schedule | Event 4698, Sysmon 1 |
+| **Registry Run Key** | Executes on user login | Sysmon 13 (registry set) |
+| **Service** | Runs as Windows service | Event 7045 |
+| **Startup Folder** | File placed in startup folder | Sysmon 11 (file create) |
+| **WMI Subscription** | Triggered by system events | WMI logs |
+| **DLL Hijacking** | Replaces legitimate DLL | Sysmon 7 (image load) |
+
+---
+
+### C2 Detection via DNS (QueryName)
+
+DNS is one of the most abused C2 channels because it is
+almost always allowed through firewalls.
+
+**What to look for in DNS logs:**
+
+Key principle: **Initial Access is the best stage to detect
+and stop an attack** — once an attacker establishes persistence
+and C2, detection and response become significantly harder.
+
+---
+
+### What is a C2 Channel?
+A Command and Control (C2) channel is the secret communication
+pathway between malware on a compromised host and the attacker's
+server. Through C2 the attacker can:
+
+| C2 Function | Description |
+|-------------|-------------|
+| **Send commands** | Tell the malware what to do next |
+| **Receive output** | Get results of executed commands |
+| **Download tools** | Push additional malware to the host |
+| **Exfiltrate data** | Pull stolen data from the host |
+| **Update malware** | Modify or upgrade the implant |
+
+---
+
+### Common C2 Protocols
+| Protocol | Port | Why Attackers Use It |
+|----------|------|---------------------|
+| **HTTP/HTTPS** | 80/443 | Blends with normal web traffic |
+| **DNS** | 53 | Almost always allowed, less inspected |
+| **ICMP** | N/A | Ping traffic rarely blocked |
+| **WebSockets** | 80/443 | Persistent connection, hard to detect |
+| **SMB** | 445 | Internal lateral movement C2 |
+| **Custom TCP/UDP** | Various | Encrypted, harder to identify |
+
+---
+
+### Common C2 Frameworks Used by Attackers
+| Framework | Description |
+|-----------|-------------|
+| **Cobalt Strike** | Most widely used commercial C2 framework |
+| **Metasploit Meterpreter** | Open source, widely known |
+| **Sliver** | Open source alternative to Cobalt Strike |
+| **Brute Ratel** | Commercial, designed to evade EDR |
+| **Empire** | PowerShell-based C2 framework |
+
+---
+
+### Backdoor Types and Detection
+| Backdoor Type | How it Works | Detection Method |
+|---------------|-------------|-----------------|
+| **Scheduled Task** | Runs malware on schedule | Event 4698, Sysmon 1 |
+| **Registry Run Key** | Executes on user login | Sysmon 13 (registry set) |
+| **Service** | Runs as Windows service | Event 7045 |
+| **Startup Folder** | File placed in startup folder | Sysmon 11 (file create) |
+| **WMI Subscription** | Triggered by system events | WMI logs |
+| **DLL Hijacking** | Replaces legitimate DLL | Sysmon 7 (image load) |
+
+---
+
+### C2 Detection via DNS (QueryName)
+
+DNS is one of the most abused C2 channels because it is
+almost always allowed through firewalls.
+
+**What to look for in DNS logs:**
+QueryName = the domain name being requested by the endpoint
+
+Suspicious QueryName patterns:
+🚩 Long random-looking subdomains (DGA domains)
+ex: a7f3k2m9p.attacker.com
+
+🚩 High frequency queries to same domain
+ex: beaconing every 60 seconds
+
+🚩 Newly registered domains (less than 30 days old)
+
+🚩 Domains with high entropy (random characters)
+ex: xk3p9mf2.ru
+
+🚩 Known C2 domains (threat intelligence feeds)
+
+🚩 DNS queries for non-existent domains (NXDOMAIN flood)
+(used in DGA malware)
+
+**Sysmon Event 22 — DNS Query:**
+Event ID: 22
+QueryName: suspicious-domain.com
+QueryResults: 185.220.101.45
+Image: C:\Windows\System32\powershell.exe
+
+**Splunk search — High frequency DNS beaconing:**
+```spl
+index=windows source="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational"
+EventCode=22
+| stats count by QueryName, Image
+| where count > 50
+| sort -count
+```
+
+**Splunk search — DGA detection (high entropy domains):**
+```spl
+index=windows source="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational"
+EventCode=22
+| eval domain_length=len(QueryName)
+| where domain_length > 30
+| stats count by QueryName, Image
+| sort -count
+```
+
+**Splunk search — DNS from suspicious processes:**
+```spl
+index=windows source="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational"
+EventCode=22
+NOT (Image="*chrome.exe*" OR Image="*firefox.exe*"
+OR Image="*svchost.exe*" OR Image="*explorer.exe*")
+| table _time, ComputerName, Image, QueryName, QueryResults
+```
+
+---
+
+### C2 Detection via Network Connections (Sysmon Event 3)
+
+**Suspicious outbound connection patterns:**
+🚩 Process making outbound connection to unknown external IP
+🚩 Regular interval connections (beaconing every N seconds)
+🚩 Connection from unusual process (word.exe, excel.exe)
+🚩 Connection to IP on threat intelligence blocklist
+🚩 Connection on non-standard port from standard process
+🚩 High volume of small outbound packets (C2 polling)
+
+**Splunk search — Unusual process making outbound connection:**
+```spl
+index=windows source="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational"
+EventCode=3
+NOT (Image="*chrome.exe*" OR Image="*firefox.exe*"
+OR Image="*svchost.exe*" OR Image="*MsMpEng.exe*")
+DestinationIsIpv6=false
+| table _time, ComputerName, Image, DestinationIp,
+DestinationPort, DestinationHostname
+```
+
+**Splunk search — C2 beaconing detection:**
+```spl
+index=windows source="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational"
+EventCode=3
+| stats count, earliest(_time) as first_seen,
+latest(_time) as last_seen by DestinationIp, Image
+| where count > 20
+| eval duration=last_seen-first_seen
+| eval avg_interval=duration/count
+| sort avg_interval
+```
+
+---
+
+### Persistence Detection
+
+**Common persistence Event IDs:**
+| Event ID | Source | Description |
+|----------|--------|-------------|
+| **4698** | Security | Scheduled task created |
+| **4702** | Security | Scheduled task modified |
+| **7045** | System | New service installed |
+| **Sysmon 13** | Sysmon | Registry value set (run keys) |
+| **Sysmon 11** | Sysmon | File created in startup folder |
+
+**Common persistence registry locations:**
+HKCU\Software\Microsoft\Windows\CurrentVersion\Run
+HKLM\Software\Microsoft\Windows\CurrentVersion\Run
+HKCU\Software\Microsoft\Windows\CurrentVersion\RunOnce
+HKLM\Software\Microsoft\Windows NT\CurrentVersion\Winlogon
+
+**Splunk search — New scheduled task:**
+```spl
+index=windows EventCode=4698
+| table _time, ComputerName, SubjectUserName, TaskName, TaskContent
+```
+
+**Splunk search — Registry run key modification:**
+```spl
+index=windows source="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational"
+EventCode=13
+(TargetObject="*\\CurrentVersion\\Run*"
+OR TargetObject="*\\CurrentVersion\\RunOnce*")
+| table _time, ComputerName, Image, TargetObject, Details
+```
+
+---
+
+### C2 and Persistence SOC Checklist
+✅ Monitor DNS QueryName for high frequency or high entropy domains
+✅ Alert on DNS queries from unusual processes (not browsers/svchost)
+✅ Check Sysmon Event 3 for outbound connections from Office/scripts
+✅ Alert on regular interval connections (beaconing pattern)
+✅ Check threat intelligence feeds against destination IPs/domains
+✅ Monitor Event 4698 for new scheduled tasks
+✅ Monitor Sysmon 13 for modifications to Run registry keys
+✅ Alert on Event 7045 for new services installed
+✅ Check startup folders for new files (Sysmon 11)
+✅ Correlate C2 activity with previous Initial Access events
+✅ Isolate host if active C2 channel confirmed
+✅ Capture memory image before isolation if possible
