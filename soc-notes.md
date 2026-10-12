@@ -2619,3 +2619,58 @@ OR TargetObject="*\\CurrentVersion\\RunOnce*")
 ✅ Correlate C2 activity with previous Initial Access events
 ✅ Isolate host if active C2 channel confirmed
 ✅ Capture memory image before isolation if possible
+## Linux Logging for SOC
+
+### Key Principles
+✅ Linux logs are stored in /var/log/ by default in plain text
+✅ Top three SOC log sources: auth.log, app logs, runtime logs
+✅ Bash history is unreliable — use auditd instead
+✅ Linux logging can be chaotic — focus on key log files
+✅ Forward logs to SIEM for correlation and alerting
+
+---
+
+### Top Three Linux Log Sources for SOC
+| Priority | Log Source | Location | What it Detects |
+|----------|------------|----------|----------------|
+| **1** | auth.log | /var/log/auth.log | SSH brute force, sudo abuse, failed logins |
+| **2** | App-specific logs | /var/log/apache2/, /var/log/nginx/ | Web attacks, SQLi, scanning |
+| **3** | Runtime logs | /var/log/syslog, journald | Service failures, system changes |
+
+---
+
+### Linux vs Windows Logging Comparison
+| | Linux | Windows |
+|---|---|---|
+| **Log location** | /var/log/ (plain text) | Event Viewer (binary) |
+| **Auth logging** | auth.log | Event ID 4624/4625 |
+| **Process logging** | auditd or Sysmon for Linux | Sysmon Event 1 |
+| **Reliability** | Variable — bash history unreliable | More consistent |
+| **Best tool** | auditd | Sysmon |
+| **SIEM integration** | rsyslog or Filebeat | Winlogbeat or NXLog |
+
+---
+
+### Linux Attack Detection by Log Source
+| Attack Type | Log Source | What to Look For |
+|-------------|------------|-----------------|
+| **SSH Brute Force** | auth.log | Many "Failed password" from same IP |
+| **Successful SSH** | auth.log | "Accepted password" from unknown IP |
+| **Sudo Abuse** | auth.log | Unexpected sudo usage |
+| **Web Attack (SQLi/XSS)** | Apache/Nginx access.log | Suspicious URI patterns |
+| **Reverse Shell** | auditd | execve of nc, bash, python |
+| **Persistence** | auditd, cron | New cron job, new service |
+| **Privilege Escalation** | auditd | SUID execution, sudo -l |
+| **Data Exfiltration** | auditd, network logs | Large file reads or transfers |
+
+---
+
+### Bash History vs auditd
+| | Bash History | auditd |
+|---|---|---|
+| **Level** | User space | Kernel level |
+| **Can be disabled by user** | Yes — unset HISTFILE | No |
+| **Can be cleared** | Yes — history -c | No |
+| **Real-time** | No — written on session close | Yes |
+| **Captures all commands** | No | Yes |
+| **Recommended for SOC** | No | Yes |
