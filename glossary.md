@@ -71,6 +71,13 @@ prioritizing security alerts to determine which are real threats
 (true positives) and which are benign (false positives)
 - **Apache** — The most widely used open-source web server software,
 commonly used to host WordPress websites and web applications
+- **auditd** — The Linux Audit Daemon, a kernel-level logging
+framework that records detailed system activity including file
+access, system calls, user commands and privilege escalation.
+More reliable than bash history for SOC investigations
+- **auth.log** — A Linux log file located at /var/log/auth.log
+that records all authentication events including SSH logins,
+sudo usage, failed login attempts and PAM authentication
 ## B
 - **Bash** (Bourne Again Shell) — Most common shell on Linux, default on Kali Linux
 - **Bind Shell** — Shell that listens on a port on the target waiting for attacker
@@ -513,6 +520,9 @@ engineering, malware analysis, incident response and forensics
 - **Fragmentation Attack** — An evasion technique where an attacker
 breaks IP packets into smaller fragments to obscure malicious
 payloads and bypass signature-based detection in IDS systems
+- **Flowchart** — A visual diagram that represents the sequential
+steps of a workflow or process using standardized symbols and
+arrows to show flow and decision points (The visual diagram or map of a process)
 ## G
 - **GPO** — Group Policy Objects, collection of settings applied to
 Organizational Units in Active Directory
@@ -1164,6 +1174,9 @@ vulnerability and the consequent impact on the business
 - **Red Team** — The offensive security team that simulates real
 attacker techniques to test an organization's defenses. Includes
 penetration testers and ethical hackers
+- **Runtime Log** — Application logs generated during the execution
+of a service or application, recording operational events,
+errors and warnings specific to that application
 ## S
 - **Service** — A process that runs continuously in the background, starts
 automatically at boot, runs without user interaction
@@ -1608,6 +1621,9 @@ continents. The Internet is the largest public WAN
 - **WIPS** — Wireless Intrusion Prevention System, monitors wireless
 network traffic and terminates connections when signatures are
 matched
+- **Workflow** — A repeatable, structured sequence of tasks that
+a team or system performs to complete a specific goal. The
+actual operational process and execution of work (The actual operational process and execution of work)
 ## X
 - **XSS** — Cross-Site Scripting, injecting malicious scripts into web pages
 - **XZ Utils** — Linux compression tool targeted by a supply chain attack
