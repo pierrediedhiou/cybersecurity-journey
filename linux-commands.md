@@ -2238,3 +2238,193 @@ snort -A none -c snort.conf -r file.pcap
 | `-A` | Alert output mode |
 | `-Q` | Inline/NIPS mode |
 | `-n` | Process only N packets |
+## Linux Logging for SOC
+
+### Default Log Location
+```bash
+# All Linux logs stored here by default
+/var/log/
+
+# List all log files
+ls -la /var/log/
+
+# Most logs are plain text — readable with cat, grep, tail
+```
+
+### Top Three SOC Log Sources
+
+#### 1. Authentication Log (auth.log)
+```bash
+# View authentication log
+cat /var/log/auth.log
+
+# Real-time monitoring
+tail -f /var/log/auth.log
+
+# Find failed SSH logins
+grep "Failed password" /var/log/auth.log
+
+# Find successful SSH logins
+grep "Accepted password" /var/log/auth.log
+grep "Accepted publickey" /var/log/auth.log
+
+# Find sudo usage
+grep "sudo" /var/log/auth.log
+
+# Find all authentication failures
+grep "authentication failure" /var/log/auth.log
+
+# Count failed logins by IP
+grep "Failed password" /var/log/auth.log | \
+grep -oP 'from \K[\d.]+' | sort | uniq -c | sort -rn
+```
+
+#### 2. Application-Specific Logs
+```bash
+# Apache web server logs
+cat /var/log/apache2/access.log
+cat /var/log/apache2/error.log
+
+# Nginx web server logs
+cat /var/log/nginx/access.log
+cat /var/log/nginx/error.log
+
+# MySQL logs
+cat /var/log/mysql/mysql.log
+
+# Filter Apache for 404 errors
+grep " 404 " /var/log/apache2/access.log
+
+# Filter for POST requests (possible SQLi/exfiltration)
+grep "POST" /var/log/apache2/access.log
+
+# Filter for large response sizes (possible exfiltration)
+awk '$10 > 100000' /var/log/apache2/access.log
+```
+
+#### 3. Runtime Logs (syslog/journald)
+```bash
+# System log
+cat /var/log/syslog
+tail -f /var/log/syslog
+
+# Kernel log
+cat /var/log/kern.log
+
+# Boot log
+cat /var/log/boot.log
+
+# journald — systemd journal (newer systems)
+journalctl
+journalctl -u ssh          # SSH service logs
+journalctl -f              # Follow real-time
+journalctl --since "1 hour ago"
+journalctl -p err          # Only error level
+```
+
+### auditd — Reliable SOC Logging
+```bash
+# Install auditd
+apt install auditd
+
+# Start auditd service
+systemctl start auditd
+systemctl enable auditd
+
+# View audit logs
+cat /var/log/audit/audit.log
+
+# Search audit log for specific user
+ausearch -ua username
+
+# Search for failed logins
+ausearch -m USER_AUTH --success no
+
+# Search for sudo commands
+ausearch -m USER_CMD
+
+# Search for file access
+ausearch -f /etc/passwd
+
+# Real-time audit log monitoring
+tail -f /var/log/audit/audit.log
+
+# Add audit rule — monitor file access
+auditctl -w /etc/passwd -p rwxa -k passwd_watch
+
+# Add audit rule — monitor all executed commands
+auditctl -a always,exit -F arch=b64 -S execve -k commands
+
+# List all active audit rules
+auditctl -l
+
+# Generate readable audit report
+aureport
+
+# Generate authentication report
+aureport --auth
+
+# Generate command execution report
+aureport --exec
+```
+
+### Bash History — Why it is Unreliable for SOC
+```bash
+# Bash history location
+~/.bash_history
+
+# Why it is unreliable:
+# - Users can clear it: history -c
+# - Can be disabled: unset HISTFILE
+# - Not real-time — only written on session close
+# - Can be edited by the attacker
+# - Does not capture all commands in all scenarios
+
+# Better alternatives:
+# 1. auditd — kernel level, cannot be easily disabled by users
+# 2. Sysmon for Linux — process execution logging
+# 3. SIEM forwarding of auditd logs
+```
+
+### Key Linux Log Files Reference
+| Log File | Location | Contents |
+|----------|----------|---------|
+| auth.log | /var/log/auth.log | SSH, sudo, PAM authentication |
+| syslog | /var/log/syslog | General system messages |
+| kern.log | /var/log/kern.log | Kernel messages |
+| boot.log | /var/log/boot.log | System boot messages |
+| cron | /var/log/cron | Scheduled task execution |
+| apache2 | /var/log/apache2/ | Web server access and errors |
+| nginx | /var/log/nginx/ | Web server access and errors |
+| audit.log | /var/log/audit/audit.log | auditd kernel audit events |
+| dpkg.log | /var/log/dpkg.log | Package installation history |
+| lastlog | /var/log/lastlog | Last login for each user |
+| wtmp | /var/log/wtmp | Login and logout history |
+| btmp | /var/log/btmp | Failed login attempts |
+
+### Useful Commands for Log Analysis
+```bash
+# Check last logins
+last
+
+# Check last failed logins
+lastb
+
+# Check who is currently logged in
+who
+w
+
+# Check recently installed packages (possible malware install)
+grep " install " /var/log/dpkg.log
+
+# Find files modified in last 24 hours (possible backdoor)
+find / -mtime -1 -type f 2>/dev/null
+
+# Find SUID files (privilege escalation targets)
+find / -perm -4000 -type f 2>/dev/null
+
+# Check crontab for persistence
+crontab -l
+cat /etc/crontab
+ls /etc/cron.*
+```
