@@ -1071,6 +1071,13 @@ security patches to fix known vulnerabilities
 backdoors, scheduled tasks, registry run keys or services to
 maintain access to a compromised system across reboots and
 re-authentication
+- **Process Tree** — The hierarchical relationship between parent
+and child processes on a system. Analyzing the process tree
+reveals suspicious parent-child relationships that indicate
+malicious activity (ex: apache2 spawning bash)
+- **Process Tree Analysis** — The technique of examining
+parent-child process relationships to identify the Initial
+Access method and trace the attacker's execution chain
 ## Q
 - **Query String** — The part of a URL starting with ? that sends
 parameters to the server (ex: ?search=hacking). Can be exploited
@@ -1401,6 +1408,10 @@ driver that logs detailed system activity to the Windows Event
 Log, including process creation, network connections, file changes
 and registry modifications. Provides far more detail than standard
 Windows logging
+- **Supply Chain Attack** — An attack that compromises a trusted
+third-party software package, library or update mechanism to
+deliver malware to targets who install or update the software.
+Common on Linux due to widespread use of package managers
 ## T
 - **Telnet** — Insecure remote access protocol (Port 23), replaced by SSH
 - **TGT** — Ticket Granting Ticket, allows users to request tickets to
