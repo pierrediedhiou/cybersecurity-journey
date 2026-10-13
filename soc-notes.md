@@ -2674,3 +2674,224 @@ OR TargetObject="*\\CurrentVersion\\RunOnce*")
 | **Real-time** | No — written on session close | Yes |
 | **Captures all commands** | No | Yes |
 | **Recommended for SOC** | No | Yes |
+## Linux Threat Detection — Initial Access
+
+### Key Principles
+✅ SSH attacks are widespread but easy to detect via auth.log
+✅ Exposed services are always a risk — can lead to full compromise
+✅ Phishing is less common on Linux but supply chain attacks are real
+✅ Process tree analysis is the best approach for identifying
+Initial Access techniques on Linux
+
+---
+
+### Linux Initial Access Methods
+| Method | Risk Level | Detection Source |
+|--------|-----------|-----------------|
+| **SSH Brute Force** | High — very common | auth.log |
+| **Exposed Services** | Critical — full compromise possible | auth.log, app logs, auditd |
+| **Supply Chain Attack** | High — hard to detect | dpkg.log, auditd, file hashes |
+| **Human-Led Attack** | Medium — requires insider or social engineering | auditd, auth.log |
+| **Phishing (uncommon)** | Low on Linux servers | Process tree, auditd |
+
+---
+
+### SSH Attack Detection
+
+**SSH brute force is the most common Linux Initial Access
+method — easy to detect but critical to monitor.**
+
+**What happens during SSH brute force:**
+Attacker scans for port 22 (Nmap, Shodan)
+↓
+Tries username/password combinations (Hydra, Medusa)
+↓
+Many “Failed password” entries in auth.log
+↓
+If successful → “Accepted password” in auth.log
+↓
+Initial Access achieved — attacker has shell
+
+**auth.log patterns to detect:**
+```bash
+# Brute force in progress
+Failed password for root from 185.220.101.45 port 52341 ssh2
+Failed password for root from 185.220.101.45 port 52342 ssh2
+Failed password for admin from 185.220.101.45 port 52343 ssh2
+
+# Successful login after failures
+Accepted password for ubuntu from 185.220.101.45 port 52344 ssh2
+
+# Invalid user (scanning for usernames)
+Invalid user admin from 185.220.101.45 port 52341
+Invalid user test from 185.220.101.45 port 52342
+```
+
+**Detection commands:**
+```bash
+# Count failed SSH logins by IP
+grep "Failed password" /var/log/auth.log | \
+grep -oP 'from \K[\d.]+' | sort | uniq -c | sort -rn
+
+# Find successful logins
+grep "Accepted" /var/log/auth.log
+
+# Find successful login after many failures (breach)
+grep -E "Failed|Accepted" /var/log/auth.log | grep "185.220.101.45"
+
+# Find invalid username attempts (user enumeration)
+grep "Invalid user" /var/log/auth.log | \
+grep -oP 'from \K[\d.]+' | sort | uniq -c | sort -rn
+
+# Find all unique IPs that attempted SSH login
+grep "Failed password" /var/log/auth.log | \
+grep -oP 'from \K[\d.]+' | sort -u
+```
+
+**Splunk search — SSH brute force:**
+```spl
+index=linux sourcetype=syslog
+"Failed password"
+| rex "from (?P<src_ip>\d+\.\d+\.\d+\.\d+)"
+| stats count by src_ip
+| where count > 10
+| sort -count
+```
+
+**Splunk search — Successful SSH after failures:**
+```spl
+index=linux sourcetype=syslog
+("Failed password" OR "Accepted password")
+| rex "from (?P<src_ip>\d+\.\d+\.\d+\.\d+)"
+| rex "(?P<status>Failed|Accepted)"
+| stats count by src_ip, status
+| sort src_ip
+```
+
+---
+
+### Exposed Services Detection
+
+**Any service exposed to the internet is a potential
+Initial Access vector — not just SSH.**
+
+**Common exposed services and their risks:**
+| Service | Port | Risk if Exposed |
+|---------|------|----------------|
+| SSH | 22 | Brute force, credential stuffing |
+| Apache/Nginx | 80/443 | Web app exploitation, RCE |
+| MySQL/PostgreSQL | 3306/5432 | SQL injection, credential brute force |
+| FTP | 21 | Credential brute force, anonymous access |
+| Telnet | 23 | Cleartext credential interception |
+| SMB | 445 | EternalBlue, credential relay |
+| Redis | 6379 | Unauthenticated access, RCE |
+| Docker API | 2375 | Container escape, host compromise |
+| Elasticsearch | 9200 | Unauthenticated data access |
+
+**Check what is exposed:**
+```bash
+# Check all listening services
+ss -tulnp
+
+# Check which services are internet-facing
+nmap -sV localhost
+
+# Check firewall rules
+iptables -L -n
+ufw status verbose
+```
+
+---
+
+### Process Tree Analysis — Best Approach for Initial Access
+
+**Why process tree analysis works:**
+Every Initial Access method leaves a unique process tree
+signature. The parent-child relationship reveals HOW the
+attacker got in.
+
+**Common suspicious process trees by Initial Access method:**
+
+| Initial Access | Parent Process | Child Process | Interpretation |
+|----------------|---------------|---------------|----------------|
+| **SSH brute force** | sshd | bash or sh | Direct shell from SSH |
+| **Web shell** | apache2 or nginx | bash, python, sh | Web server spawning shell |
+| **PHP exploit** | php-fpm | bash or python | PHP executing OS commands |
+| **Cron job backdoor** | cron | bash | Persistence via cron |
+| **Supply chain** | apt or dpkg | bash | Package install spawning shell |
+| **Python script** | python3 | bash, curl, wget | Script executing shell commands |
+
+**auditd process tree analysis:**
+```bash
+# Find all bash shells spawned by web servers
+ausearch -m EXECVE | grep -A5 "apache2\|nginx\|php"
+
+# Find processes spawned by cron
+ausearch -m EXECVE | grep -B5 "crond\|cron"
+
+# Find wget or curl executions (download cradles)
+ausearch -x wget
+ausearch -x curl
+
+# Find reverse shell indicators
+ausearch -m EXECVE | grep -E "nc |netcat|/bin/bash -i|python.*socket"
+```
+
+**Suspicious process chains to detect:**
+apache2 → bash (web shell RCE)
+nginx → python3 (web shell RCE)
+php-fpm → wget (malware download)
+sshd → bash → wget (post-SSH download)
+cron → bash → curl (cron persistence running C2)
+apt → bash (supply chain attack)
+
+---
+
+### Supply Chain Attack Detection on Linux
+
+**How supply chain attacks work on Linux:**
+Attacker compromises legitimate package or library
+↓
+Package uploaded to PyPI, npm, apt repository
+↓
+Admin runs: apt install package / pip install package
+↓
+Package executes malicious code during installation
+↓
+Initial Access achieved
+
+**Detection:**
+```bash
+# Check recently installed packages
+grep " install " /var/log/dpkg.log | tail -50
+
+# Check pip installed packages
+pip list
+pip show package_name
+
+# Verify package integrity
+debsums -c package_name      # Check file integrity
+sha256sum /path/to/binary    # Verify hash manually
+
+# Check for unexpected processes after install
+ps aux | grep -v "expected_processes"
+
+# Check network connections made during install
+# (use auditd to capture this)
+ausearch -m SYSCALL -sc connect --start recent
+```
+
+---
+
+### Linux Initial Access SOC Checklist
+✅ Monitor auth.log for failed SSH logins in real time
+✅ Alert when failed SSH logins from same IP exceed threshold
+✅ Alert on successful SSH login after multiple failures
+✅ Alert on SSH login from new or unknown IP addresses
+✅ Audit all exposed services regularly (ss -tulnp)
+✅ Check process trees for web servers spawning shells
+✅ Monitor auditd for wget/curl executed after SSH login
+✅ Check dpkg.log after package installations
+✅ Alert on cron jobs executing shells or downloaders
+✅ Verify file integrity of critical binaries after supply chain events
+✅ Forward all auth.log events to SIEM for correlation
