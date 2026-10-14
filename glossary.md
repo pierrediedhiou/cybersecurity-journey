@@ -610,6 +610,11 @@ signatures are matched
 - **Host Machine** — The operating system and environment that runs
 the web server and application. A compromised host machine gives
 attackers access to everything running on it
+- **Hack and Forget** — An automated attack style performed at
+scale by botnets where attackers compromise systems quickly
+using scripted techniques without manual interaction.
+The attacker moves on immediately after compromise, leaving
+automated malware to do the rest
 ## I
 - **Injection** — Attack inserting malicious code into an input field
 - **IP Address** — Internet Protocol Address, a unique numerical label assigned
@@ -763,6 +768,10 @@ overloaded, and reroutes requests if one server becomes unavailable
 by attackers to execute malicious code when a user clicks what
 appears to be a legitimate shortcut. A common user-driven
 Initial Access technique
+- **Living off the Land (LotL)** — A technique where attackers
+use legitimate, pre-installed system tools (ls, cat, wget, ssh,
+curl, bash) to carry out malicious activity, making detection
+harder because no custom malware is dropped
 ## M
 - **Machine Account** — Windows computer account, always ends with $ symbol
 - **Malware** — Malicious software designed to damage or gain unauthorized access
