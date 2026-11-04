@@ -301,3 +301,100 @@ curated collection of tools specifically designed for:
 8. Extract IOCs (IPs, domains, file paths, registry keys)
 9. Map findings to MITRE ATT&CK
 10. Write analysis report
+## Malware Classification
+
+### What is Malware?
+Malware refers to software or code created to damage systems,
+steal information or allow unauthorized access. It appears in
+many forms, each with different tactics and goals.
+
+### Impact of Malware on Organizations
+• Financial loss (ransom payments, downtime costs)
+• Stolen data (intellectual property, customer records)
+• Disrupted services (availability loss)
+• Reputational damage (loss of customer trust)
+
+---
+
+### Malware Types Reference Table
+| Type | Goal | Real-World Indicator | Example Scenario |
+|------|------|----------------------|-------------------|
+| **Adware** | Generate revenue via ads | Frequent pop-ups, suspicious background process | Browser shows ads even with no sites open |
+| **Spyware** | Covert surveillance | Unauthorized access to personal data | Employee's emails accessed by someone else |
+| **Ransomware** | Extort payment | Ransom note, encrypted files | Files encrypted after malicious email attachment |
+| **Wiper** | Destroy data | Crashed servers, overwritten files | Servers crash, files overwritten with random data |
+| **C2 Malware** | Remote control | Connections to unfamiliar domains at odd hours | Endpoint reaching out to unknown C2 domains |
+| **Data Stealer** | Exfiltrate data | Sensitive documents leaked online | Files from user directories sent externally |
+| **Keylogger** | Steal credentials | Unauthorized financial transfers | Keystrokes recorded on accountant's PC |
+| **Cryptominer** | Hijack resources | Slow desktops, high CPU, fans running | High CPU usage linked to mining activity |
+
+---
+
+### Malware Classification by Goal
+| Goal Category | Malware Types |
+|---------------|---------------|
+| **Financial gain** | Ransomware, Cryptominer, Keylogger |
+| **Espionage/Surveillance** | Spyware, Keylogger, C2 malware |
+| **Data theft** | Data stealer, Spyware, Keylogger |
+| **Destruction** | Wiper |
+| **Remote access/control** | C2 malware |
+| **Advertising/Revenue** | Adware |
+
+---
+
+### Binary vs Script-Based Malware
+| | Binary Malware | Script-Based Malware |
+|---|---|---|
+| **Format** | Compiled executable (.exe, ELF) | Interpreted script (PowerShell, Python, Bash, JS) |
+| **Detection** | Signature-based AV, hash matching | Behavioral analysis, content inspection |
+| **Analysis tools** | CAPA, IDA Pro, Ghidra, PEStudio | Text editors, CyberChef, sandbox execution |
+| **Obfuscation** | Packing, encryption | Base64 encoding, string concatenation |
+| **Persistence** | Registry, services, scheduled tasks | Often fileless — lives in memory or scripts |
+| **Examples** | Ransomware binaries, trojans | Malicious PowerShell scripts, macro malware |
+
+---
+
+### Malware Classification Workflow
+1. Observe the symptom/alert
+(pop-ups, encrypted files, high CPU, unusual network traffic)
+↓
+2. Identify the behavior pattern
+(what is it doing — displaying ads, encrypting, mining, stealing)
+↓
+3. Match behavior to malware type
+(use the reference table above)
+↓
+4. Determine binary vs script-based format
+↓
+5. Select appropriate analysis tools
+(static/dynamic analysis, CAPA, sandbox)
+↓
+6. Document classification and IOCs
+↓
+7. Report findings with MITRE ATT&CK mapping
+
+---
+
+### Key Detection Signals by Malware Type
+| Malware Type | SOC Detection Signal |
+|--------------|----------------------|
+| **Adware** | Unusual background processes, browser extension changes |
+| **Spyware** | Unexpected outbound connections, keystroke capture APIs |
+| **Ransomware** | Mass file renaming/encryption, shadow copy deletion |
+| **Wiper** | Mass file deletion/overwrite, MBR modification |
+| **C2 Malware** | Beaconing to unknown domains, DNS anomalies (Sysmon 22) |
+| **Data Stealer** | Large outbound transfers, access to sensitive directories |
+| **Keylogger** | Hooking into keyboard input APIs, hidden processes |
+| **Cryptominer** | Sustained high CPU/GPU usage, connections to mining pools |
+
+---
+
+### Malware Classification Checklist
+✅ Identify the observable symptom (what changed on the system)
+✅ Correlate with network, process and file system artifacts
+✅ Classify by primary goal (financial, espionage, destruction, etc)
+✅ Determine binary or script-based format
+✅ Check for C2 communication (DNS, network connections)
+✅ Map behavior to MITRE ATT&CK techniques
+✅ Use appropriate analysis tools (static vs dynamic)
+✅ Document classification with evidence and IOCs
