@@ -78,6 +78,9 @@ More reliable than bash history for SOC investigations
 - **auth.log** — A Linux log file located at /var/log/auth.log
 that records all authentication events including SSH logins,
 sudo usage, failed login attempts and PAM authentication
+- **Adware** — Malware that displays unwanted advertisements,
+often as pop-ups, generating revenue for the attacker or
+redirecting users to malicious sites
 ## B
 - **Bash** (Bourne Again Shell) — Most common shell on Linux, default on Kali Linux
 - **Bind Shell** — Shell that listens on a port on the target waiting for attacker
@@ -288,6 +291,12 @@ stolen data and download additional tools
 - **QueryName** — In DNS logging context, the domain name being
 requested in a DNS query. Used in SOC analysis to identify
 suspicious or malicious domains being contacted by endpoints
+- **C2 Malware** — Command and Control malware that establishes
+a communication channel with an attacker's server, allowing
+remote command execution, file transfer and further exploitation
+- **Cryptominer** — Malware that hijacks a victim's computing
+resources (CPU/GPU) to mine cryptocurrency without the owner's
+consent, often causing high CPU usage and system slowdown
 ## D
 - **Daemon** — A background service running on Linux
 - **Delegation** — Process of granting privileges to a user over an OU
@@ -421,6 +430,9 @@ website or application making it unavailable to legitimate users
 after Initial Access where attackers identify the victim
 environment — users, systems, network topology, installed
 software and security tools. Best detected with Sysmon
+- **Data Stealer** — Malware designed to locate and exfiltrate
+sensitive files, documents and data from a victim's system to an
+external server controlled by the attacker
 ## E
 - **Encryption** — Process of encoding data so only authorized parties can read it
 - **Enumeration** — Systematically gathering information about a target system
@@ -724,6 +736,9 @@ encryption)
 - **Keylogger** — A tool or technique that records keystrokes on a
 target system. In Meterpreter: keyscan_start, keyscan_dump,
 keyscan_stop
+- **Keylogger** — Malware that records every keystroke made on a
+compromised system, commonly used to steal passwords, banking
+credentials and other sensitive input
 ## L
 - **Linux Distributions** — Different versions of Linux built for different purposes:
   - **General Purpose:** Ubuntu | Debian | Fedora | Linux Mint
@@ -865,6 +880,9 @@ malicious file, often disguised as a legitimate document or
 software update
 - **Mitigation** — A cybersecurity concept involving actions taken
 to stop or limit damage from threats before or after they occur
+- **Malware** — Software or code created to damage systems, steal
+information or allow unauthorized access. Includes many types
+such as ransomware, spyware, adware, wipers and more
 ## N
 - **NAT** — Network Address Translation, maps private IPs to a public IP
 - **Nmap** — Network scanning tool used to discover open ports and services
@@ -1193,6 +1211,8 @@ penetration testers and ethical hackers
 - **Runtime Log** — Application logs generated during the execution
 of a service or application, recording operational events,
 errors and warnings specific to that application
+- **Ransomware** — Malware that encrypts a victim's files and
+demands payment (ransom) in exchange for the decryption key
 ## S
 - **Service** — A process that runs continuously in the background, starts
 automatically at boot, runs without user interaction
@@ -1421,6 +1441,9 @@ Windows logging
 third-party software package, library or update mechanism to
 deliver malware to targets who install or update the software.
 Common on Linux due to widespread use of package managers
+- **Spyware** — Malware designed to covertly monitor and collect
+information about a user's activity, such as keystrokes, browsing
+habits or personal communications, and send it to an attacker
 ## T
 - **Telnet** — Insecure remote access protocol (Port 23), replaced by SSH
 - **TGT** — Ticket Granting Ticket, allows users to request tickets to
@@ -1644,6 +1667,9 @@ matched
 - **Workflow** — A repeatable, structured sequence of tasks that
 a team or system performs to complete a specific goal. The
 actual operational process and execution of work (The actual operational process and execution of work)
+- **Wiper** — Destructive malware designed to permanently destroy
+or overwrite data on a system, with no intention of financial gain
+or ransom, unlike ransomware
 ## X
 - **XSS** — Cross-Site Scripting, injecting malicious scripts into web pages
 - **XZ Utils** — Linux compression tool targeted by a supply chain attack
