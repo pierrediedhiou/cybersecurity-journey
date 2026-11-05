@@ -433,6 +433,11 @@ software and security tools. Best detected with Sysmon
 - **Data Stealer** — Malware designed to locate and exfiltrate
 sensitive files, documents and data from a victim's system to an
 external server controlled by the attacker
+- **Dynamic Analysis** (malware context) — Analyzing malware by
+actually executing it in a controlled sandbox environment and
+observing its real behavior. Malware faces an inherent dilemma —
+it must execute to fulfill its purpose, which is exactly what
+dynamic analysis exploits to reveal its true behavior
 ## E
 - **Encryption** — Process of encoding data so only authorized parties can read it
 - **Enumeration** — Systematically gathering information about a target system
@@ -1105,6 +1110,9 @@ malicious activity (ex: apache2 spawning bash)
 - **Process Tree Analysis** — The technique of examining
 parent-child process relationships to identify the Initial
 Access method and trace the attacker's execution chain
+- **PE** — Portable Executable, the standard executable file
+format used by Windows systems (.exe, .dll, .sys). Static
+analysis tools examine PE file structure without running it
 ## Q
 - **Query String** — The part of a URL starting with ? that sends
 parameters to the server (ex: ?search=hacking). Can be exploited
@@ -1444,6 +1452,10 @@ Common on Linux due to widespread use of package managers
 - **Spyware** — Malware designed to covertly monitor and collect
 information about a user's activity, such as keystrokes, browsing
 habits or personal communications, and send it to an attacker
+- **Static Analysis** (malware context) — Analyzing malware
+without executing it, examining its code, structure, strings
+and imports. Safer than dynamic analysis since the malware
+never runs
 ## T
 - **Telnet** — Insecure remote access protocol (Port 23), replaced by SSH
 - **TGT** — Ticket Granting Ticket, allows users to request tickets to
