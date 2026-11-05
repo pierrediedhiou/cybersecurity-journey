@@ -398,3 +398,110 @@ many forms, each with different tactics and goals.
 ✅ Map behavior to MITRE ATT&CK techniques
 ✅ Use appropriate analysis tools (static vs dynamic)
 ✅ Document classification with evidence and IOCs
+## Intro to Malware Analysis
+
+### The Two Core Malware Analysis Techniques
+
+| | Static Analysis | Dynamic Analysis |
+|---|---|---|
+| **Executes the malware?** | No | Yes |
+| **Safety** | Safe — malware never runs | Requires isolated sandbox |
+| **What it reveals** | Code structure, strings, imports, metadata | Real behavior, network traffic, file changes |
+| **Speed** | Fast | Slower — must observe execution |
+| **Risk** | Low | Higher — must be fully contained |
+| **Tools** | CAPA, PEStudio, strings, oledump, IDA Pro, Ghidra | Process Monitor, Wireshark, Fakenet-NG, sandbox |
+| **Best for** | Initial triage, quick classification | Understanding true behavior and capabilities |
+
+---
+
+### The Malware Analyst's Dilemma
+Malware faces a fundamental dilemma that analysts exploit:
+Malware MUST execute to fulfill its purpose
+↓
+Execution reveals its true behavior
+↓
+This is exactly what Dynamic Analysis captures
+No matter how well obfuscated or packed malware is statically,
+it cannot hide its behavior once it actually runs. This is why
+dynamic analysis is so powerful — but also why it requires a
+fully isolated and controlled environment (sandbox, REMnux, FlareVM).
+
+---
+
+### Static Analysis Workflow
+1. Identify file type and format (PE, ELF, script, document)
+2. Calculate file hashes (MD5, SHA256) — check against VirusTotal
+3. Extract strings — look for URLs, IPs, file paths, commands
+4. Examine PE headers and sections (PEStudio, CFF Explorer)
+5. Check imports/exports — what Windows APIs does it call
+6. Run CAPA — identify capabilities automatically
+7. Check for packing/obfuscation (entropy analysis)
+8. Document findings — no execution required
+
+### Dynamic Analysis Workflow
+1. Set up isolated sandbox (FlareVM, REMnux, isolated VM snapshot)
+2. Start monitoring tools BEFORE execution:
+     • Process Monitor (file/registry activity)
+     • Wireshark (network traffic)
+     • Process Explorer (process tree)
+4. Execute the malware sample
+5. Observe behavior in real time:
+     • What files are created/modified?
+     • What registry keys are changed?
+     • What network connections are made?
+     • What processes are spawned?
+5. Capture network traffic with Fakenet-NG (simulate internet)
+6. Stop execution and analyze captured data
+7. Revert sandbox snapshot (never reuse an infected VM)
+
+---
+
+### PE (Portable Executable) File Structure
+PE is the standard executable file format on Windows (.exe, .dll,
+.sys, .sys, .ocx). Understanding its structure is essential for
+static analysis.
+
+| PE Section | Contains |
+|------------|---------|
+| **DOS Header** | Legacy MS-DOS compatibility header |
+| **PE Header** | File metadata, target architecture |
+| **Section Table** | List of sections (.text, .data, .rsrc) |
+| **.text** | Executable code |
+| **.data** | Initialized global/static variables |
+| **.rdata** | Read-only data, often strings |
+| **.rsrc** | Resources (icons, dialogs, version info) |
+| **Import Table** | External functions the PE depends on (DLLs) |
+| **Export Table** | Functions the PE makes available to others |
+
+**Why PE structure matters for analysis:**
+✅ Imports reveal capabilities (ex: WinINet.dll = network activity)
+✅ Section entropy reveals packing/encryption
+✅ Resources section can hide embedded payloads
+✅ Compile timestamp can reveal when malware was built
+✅ Digital signature (or lack of) indicates legitimacy
+
+---
+
+### Static vs Dynamic — When to Use Which
+Use STATIC analysis first when:
+✅ You need a quick initial triage
+✅ You want to avoid any execution risk
+✅ You’re checking against known malware families
+✅ You need to extract IOCs quickly (strings, hashes)
+
+Use DYNAMIC analysis when:
+✅ Static analysis is inconclusive (heavily obfuscated/packed)
+✅ You need to see real network behavior (C2 domains, IPs)
+✅ You need to understand the full attack chain
+✅ You want to capture dropped files and registry changes
+
+---
+
+### Malware Analysis Safety Rules
+✅ Always use an isolated, air-gapped or controlled network
+✅ Never analyze malware on your host machine
+✅ Always take a VM snapshot before execution
+✅ Always revert to snapshot after analysis — never reuse
+✅ Use Fakenet-NG or INetSim to simulate internet safely
+✅ Disable shared folders and clipboard between host and VM
+✅ Never connect analysis VM directly to the internet
