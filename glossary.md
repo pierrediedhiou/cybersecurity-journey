@@ -297,6 +297,12 @@ remote command execution, file transfer and further exploitation
 - **Cryptominer** — Malware that hijacks a victim's computing
 resources (CPU/GPU) to mine cryptocurrency without the owner's
 consent, often causing high CPU usage and system slowdown
+- **CVE** — Common Vulnerabilities and Exposures, a catalogue
+number assigned to publicly disclosed vulnerabilities, formatted
+as CVE-YEAR-NUMBER (ex: CVE-2023-4863)
+- **CVSS** — Common Vulnerability Scoring System, a 0-10 severity
+scale for vulnerabilities with base, temporal and environmental
+scoring modifiers
 ## D
 - **Daemon** — A background service running on Linux
 - **Delegation** — Process of granting privileges to a user over an OU
@@ -969,6 +975,9 @@ are matched. Actively blocks threats
 - **NBA** — Network Behaviour Analysis, a behaviour-based IPS
 approach that identifies and blocks anomalous traffic patterns
 rather than known signatures
+- **NVD** — National Vulnerability Database, the canonical US
+government repository that links CVE numbers to CVSS scores,
+known exploits and affected products
 ## O
 - **Open Port** — A port actively accepting connections on a device
 - **OpenSSL** — Cryptographic library that powers HTTPS encryption
@@ -1456,6 +1465,9 @@ habits or personal communications, and send it to an attacker
 without executing it, examining its code, structure, strings
 and imports. Safer than dynamic analysis since the malware
 never runs
+- **STIX** — Structured Threat Information eXpression, a
+structured JSON schema used to describe and share threat
+intelligence information in a standardized format
 ## T
 - **Telnet** — Insecure remote access protocol (Port 23), replaced by SSH
 - **TGT** — Ticket Granting Ticket, allows users to request tickets to
@@ -1567,6 +1579,11 @@ Application. Threat actors target misconfigured or vulnerable
 websites and applications
 - **T1566** — MITRE ATT&CK technique: Phishing. Threat actors use
 fraudulent emails to trick users into launching malware themselves
+- **TAXII** — Trusted Automated eXchange of Indicator Information,
+a set of secure APIs used to exchange threat intelligence in near
+real-time between organizations. Supports two sharing models:
+Collection (producer hosts intel) and Channel (central server
+publishes to subscribers)
 ## U
 - **UAC** — User Account Control, Windows security feature that controls
 administrative privileges
