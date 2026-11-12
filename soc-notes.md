@@ -3131,3 +3131,114 @@ index=linux source="/var/log/audit/audit.log" type=EXECVE
 ✅ Alert on SSH to internal IPs from compromised host
 ✅ Alert on cat ~/.ssh/id_rsa (SSH key theft)
 ✅ Correlate all activity with the initial auth.log event
+## Vulnerability Notification Triage
+
+### Why This Matters for SOC L1
+A SOC queue contains almost as many **vulnerability notifications**
+as malware alerts. As an L1 analyst you must know how to identify,
+prioritize and organize these alongside active threat alerts.
+
+---
+
+### Vulnerability Intelligence Chain
+| Component | Role | Example |
+|-----------|------|---------|
+| **CVE** | Unique identifier for a vulnerability | CVE-2023-4863 |
+| **CVSS** | Severity score for the vulnerability | 8.8 (High) |
+| **NVD** | Central database linking CVE to CVSS, exploits and affected products | nvd.nist.gov |
+A vulnerability is discovered
+↓
+Assigned a CVE number (catalogue identifier)
+↓
+Scored using CVSS (0-10 severity scale)
+↓
+Published in NVD with full details, exploits and affected products
+
+---
+
+### CVSS Score to Severity (Refresher)
+| CVSS Score Range | Severity Level |
+|-------------------|---------------|
+| 0.0 - 3.9 | Low |
+| 4.0 - 6.9 | Medium |
+| 7.0 - 8.9 | High |
+| 9.0 - 10.0 | Critical |
+
+---
+
+### Vulnerability Notification Triage Workflow
+1. Receive vulnerability notification in SOC queue
+   ↓
+2. Identify the CVE number referenced
+   ↓
+3. Look up CVE in NVD — check CVSS score and details
+   ↓
+4. Check if the affected product/version exists in your environment
+   ↓
+5. Check for known public exploits (Exploit-DB, Metasploit)
+   ↓
+6. Prioritize by severity (Critical first) AND exploitability
+   ↓
+7. Escalate to patching/engineering team if applicable
+   ↓
+8. Document and close if not applicable to the environment
+
+---
+
+### Vulnerability vs Malware Alert — Triage Differences
+| | Vulnerability Notification | Malware Alert |
+|---|---|---|
+| **Nature** | Potential weakness, not yet exploited | Active or attempted compromise |
+| **Urgency** | Based on CVSS + exploitability | Based on confirmed activity |
+| **Action** | Patch management, risk assessment | Immediate containment and response |
+| **Source** | NVD, vendor advisories, scanners | SIEM, EDR, IDS alerts |
+
+---
+
+## Threat Intelligence Sharing — STIX and TAXII
+
+### STIX — The Data Format
+STIX is the structured JSON schema used to describe threat
+intelligence in a standardized, machine-readable format. It
+captures indicators, tactics, techniques, threat actors and
+relationships between them.
+
+### TAXII — The Transport Protocol
+TAXII is a set of secure APIs used to exchange STIX threat
+intelligence in near real-time between organizations.
+
+| Model | Description |
+|-------|-------------|
+| **Collection** | Threat intel is collected and hosted by a producer; consumers pull data from it |
+| **Channel** | Threat intel is published to subscribers from a central server (push model) |
+
+### STIX vs TAXII
+| | STIX | TAXII |
+|---|---|---|
+| **What it is** | The data format | The transport protocol |
+| **Analogy** | The letter | The postal service |
+| **Content** | Indicators, TTPs, threat actors | API for exchanging STIX data |
+STIX (data format) + TAXII (transport) = Automated threat
+intelligence sharing between organizations in near real-time
+
+---
+
+### Threat Intelligence Platforms Using STIX/TAXII
+| Platform | Description |
+|----------|-------------|
+| **MISP** | Open source threat intelligence sharing platform |
+| **AlienVault OTX** | Open Threat Exchange, community threat intel |
+| **Anomali** | Commercial threat intelligence platform |
+| **IBM X-Force Exchange** | Commercial threat intel sharing |
+
+---
+
+### Vulnerability and Threat Intel SOC Checklist
+✅ Check CVSS score before prioritizing a vulnerability notification
+✅ Verify if the affected product exists in your environment
+✅ Check NVD for known public exploits (increases urgency)
+✅ Escalate Critical/High CVSS vulnerabilities immediately
+✅ Subscribe to TAXII feeds for real-time threat intelligence
+✅ Use STIX-formatted intel to enrich SIEM detection rules
+✅ Cross-reference IOCs from threat intel against your logs
+✅ Document vulnerability triage decisions for audit trail
