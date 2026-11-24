@@ -40,6 +40,7 @@ working in the field as a SOC Analyst.
 <img width="773" height="635" alt="Screenshot 2026-11-19 at 16 56 02" src="https://github.com/user-attachments/assets/01ae4938-22d4-407f-8993-a3bab851fa3e" />
 <img width="760" height="635" alt="Screenshot 2026-11-19 at 16 53 46" src="https://github.com/user-attachments/assets/872ddb0a-fddb-4afc-a957-3c165b6888d3" />
 <img width="760" height="635" alt="Screenshot 2026-11-19 at 16 46 39" src="https://github.com/user-attachments/assets/d56aca2e-a0a5-4534-9f49-3b56094a341f" />
+<img width="755" height="626" alt="Screenshot 2026-11-24 at 11 55 49" src="https://github.com/user-attachments/assets/776b0302-4222-4b1e-b470-3b47fefbd7b0" />
 
 
 ## Certifications
