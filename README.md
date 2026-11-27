@@ -17,7 +17,7 @@ working in the field as a SOC Analyst.
 - ✅ Networking Basics
 - ✅ Cyber Security 101
 - ✅ SOC Level 1
-- 🔄 Currently learning: ...
+- 🔄 Currently learning: SOC Level 2
 
 ## Badges
 <img width="700" height="362" alt="199ed838a746acf165fd218fb5233433" src="https://github.com/user-attachments/assets/9fb5abd0-dc33-415a-b2ef-34f7231553d2" />
