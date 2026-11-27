@@ -16,7 +16,8 @@ working in the field as a SOC Analyst.
 - ✅ Search Skills
 - ✅ Networking Basics
 - ✅ Cyber Security 101
-- 🔄 Currently learning: SOC Level 1
+- ✅ SOC Level 1
+- 🔄 Currently learning: ...
 
 ## Badges
 <img width="700" height="362" alt="199ed838a746acf165fd218fb5233433" src="https://github.com/user-attachments/assets/9fb5abd0-dc33-415a-b2ef-34f7231553d2" />
@@ -47,3 +48,7 @@ working in the field as a SOC Analyst.
 Cyber Security 101
 
 https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-IBVYVVAPZG.pdf
+
+SOC Level 1
+
+https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-4TRQS9Y2EK.pdf
